@@ -1,0 +1,125 @@
+package de.ur.unimon.unimons;
+
+import java.util.ArrayList;
+
+public class Unimon {
+	
+	private String name;
+	private int level, xp;
+	private int health, baseHealth, maxHealth;
+	ArrayList<Spell> possibleSpells;
+	ArrayList<Spell> ownedSpells;
+	private boolean isAlive;
+	
+	public Unimon(String name, int baseHealth){
+		this.name = name;	
+		this.baseHealth = baseHealth;
+		health = getMaxHealth();
+		level = 1;
+		xp = 0;
+		possibleSpells = new ArrayList<Spell>();
+		ownedSpells = new ArrayList<Spell>();
+		isAlive = true;
+	}
+	
+	public void setName(String name){
+		this.name = name;
+	}
+	
+	public String getName(){
+		return name;
+	}
+	
+	public void setLevel(int level){
+		this.level = level;
+	}
+	
+	public int getLevel(){
+		return level;
+	}
+	
+	public void levelUp(){
+		level += 1;
+	}
+	
+	public void setXp(int xp) {
+		this.xp = xp;
+	}
+	
+	public int getXp(){
+		return xp;
+	}
+	
+	public void addXp(int amount){
+		xp += amount;
+	}
+	
+	public void setBaseHealth(int baseHealth){
+		this.baseHealth = baseHealth;
+	}
+	
+	public int getBaseHealth(){
+		return baseHealth;
+	}
+	
+	public void setMaxHealth(int maxHealth){
+		this.maxHealth = maxHealth;
+	}
+	
+	public int getMaxHealth(){
+		calculateMaxHealth();
+		return maxHealth;
+	}
+	
+	private void calculateMaxHealth(){
+		maxHealth = (int) (baseHealth + Math.exp((level/15))+10);
+	}
+	
+	public void setHealth(int health){
+		this.health = health;
+	}
+	
+	public int getHealth(){
+		return health;
+	}
+	
+	public void addHealth(int amount){
+		if (health + amount > maxHealth){
+			health = maxHealth;
+		} else {
+			health += amount;
+		}
+		
+	}
+	
+	public void loseHealth(int amount){
+		if (health - amount < 0){
+			health = 0;
+			isAlive = false;
+		} else {
+			health -= amount;
+		}
+	}
+	
+	public boolean isAlive(){
+		if (health > 0){
+			isAlive = true;
+		} else {
+			isAlive = false;
+		}
+		return isAlive;
+	}
+	
+	public Spell getSpellBySpellNumber(int number){
+		return possibleSpells.get(number);
+	}
+	
+	public void addPossibleSpell(Spell spell){
+		possibleSpells.add(spell.getSpellNumber(), spell);
+	}
+	
+	public void learnSpell(Spell spell){
+		ownedSpells.add(spell);
+	}
+
+}
