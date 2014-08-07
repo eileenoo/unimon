@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public class Unimon {
 	
 	private String name;
-	private int level, xp;
+	private int level, xp, xpPerLevel;
 	private int health, baseHealth, maxHealth;
 	ArrayList<Spell> possibleSpells;
 	ArrayList<Spell> ownedSpells;
@@ -42,6 +42,19 @@ public class Unimon {
 		level += 1;
 	}
 	
+	public void setXpPerLevel(int xpPerLevel){
+		this.xpPerLevel = xpPerLevel;
+	}
+	
+	public int getXpPerLevel(){
+		calculateXpPerLevel();
+		return xpPerLevel;
+	}
+	
+	private void calculateXpPerLevel() {
+		setXpPerLevel(100 + (int) Math.exp((level/2))+10);
+	}
+
 	public void setXp(int xp) {
 		this.xp = xp;
 	}
@@ -51,8 +64,16 @@ public class Unimon {
 	}
 	
 	public void addXp(int amount){
-		xp += amount;
+		if (xp + amount < getXpPerLevel()){
+			xp += amount;
+		}
+		else {
+			xp = (xp + amount) - getXpPerLevel();
+			levelUp();
+		}
 	}
+	
+	
 	
 	public void setBaseHealth(int baseHealth){
 		this.baseHealth = baseHealth;
