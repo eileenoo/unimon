@@ -9,14 +9,14 @@ import de.ur.unimon.unimons.Unimon;
 public class BattleLogic {
 	private Unimon playerUnimon;
 	private Unimon enemyUnimon;
-	Random rand;
+	Random randomGenerator;
 
-	public BattleLogic(Unimon player, Unimon enemy) {
-		this.playerUnimon = player;
-		this.enemyUnimon = enemy;
+	public BattleLogic(Unimon playerUnimon, Unimon enemyUnimon) {
+		this.playerUnimon = playerUnimon;
+		this.enemyUnimon = enemyUnimon;
 	}
 
-	public Unimon doDamage(Unimon attacker, Spell spell) {
+	public Unimon ownUnimonAttack(Unimon attacker, Spell spell) {
 
 		if (attacker == playerUnimon) {
 			enemyUnimon.loseHealth(spell.getDamage());
@@ -37,9 +37,9 @@ public class BattleLogic {
 		//Player addMoney
 	}
 
-	public Unimon enemyAttack() {
-		int size = enemyUnimon.ownedSpells.size();
-		playerUnimon.loseHealth(enemyUnimon.ownedSpells.get(rand.nextInt(size)).getDamage());
+	public Unimon enemyUnimonAttack() {
+		int spellSize = enemyUnimon.ownedSpells.size();
+		playerUnimon.loseHealth(enemyUnimon.ownedSpells.get(randomGenerator.nextInt(spellSize)).getDamage());
 		if (playerUnimon.getHealth() >= 0) {
 			fightLost();
 		}
@@ -62,7 +62,7 @@ public class BattleLogic {
 			escape = false;
 		}
 		if (difference == 1 || difference == -1 || difference == 0) {
-			escape = rand.nextBoolean();
+			escape = randomGenerator.nextBoolean();
 		}
 		return escape;
 
@@ -89,7 +89,7 @@ public class BattleLogic {
 			}
 
 		}
-		return rand.nextBoolean();
+		return randomGenerator.nextBoolean();
 	}
 
 }
