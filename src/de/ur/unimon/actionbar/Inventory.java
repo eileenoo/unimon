@@ -1,10 +1,7 @@
 package de.ur.unimon.actionbar;
 
 public class Inventory {
-	// private String healpot;
-	// private String uniball;
-	// private String revive;
-	// private String protection;
+
 	private int healpots = 0;
 	private int uniballs = 0;
 	private int revive = 0;

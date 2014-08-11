@@ -1,4 +1,3 @@
-
 package de.ur.unimon.unimons;
 
 import java.util.ArrayList;
@@ -6,9 +5,9 @@ import java.util.ArrayList;
 public class Unimon {
 	
 	private String name;
-	private int level, xp;
+	private int level, xp, xpPerLevel, skillPoint;
 	private int health, baseHealth, maxHealth;
-	private ArrayList<Spell> possibleSpells;
+	public ArrayList<Spell> possibleSpells;
 	public ArrayList<Spell> ownedSpells;
 	private boolean isAlive;
 	private boolean ownedByTrainer;
@@ -23,13 +22,14 @@ public class Unimon {
 		ownedSpells = new ArrayList<Spell>();
 		isAlive = true;
 		this.ownedByTrainer = ownedByTrainer;
+		xpPerLevel = 0; 
+		skillPoint = 0; 
 		
 		
 	}
 	
 	public boolean ownedByTrainer(){
 		return ownedByTrainer;
-		
 	}
 	
 	public void setName(String name){
@@ -52,6 +52,27 @@ public class Unimon {
 		level += 1;
 	}
 	
+	public void setSkillpoints (int skillPoint) {
+		this.skillPoint = skillPoint;
+	}
+	
+	public int getSkillpoints() {
+		return skillPoint;
+	}
+	
+	public void setXpPerLevel(int xpPerLevel){
+		this.xpPerLevel = xpPerLevel;
+	}
+	
+	public int getXpPerLevel(){
+		calculateXpPerLevel();
+		return xpPerLevel;
+	}
+	
+	private void calculateXpPerLevel() {
+		setXpPerLevel(100 + (int) Math.exp((level/2))+10);
+	}
+
 	public void setXp(int xp) {
 		this.xp = xp;
 	}
@@ -62,6 +83,14 @@ public class Unimon {
 	
 	public void addXp(int amount){
 		xp += amount;
+	
+		if (xp + amount < getXpPerLevel()){
+			xp += amount;
+		}
+		else {
+			xp = (xp + amount) - getXpPerLevel();
+			levelUp();
+		}
 	}
 	
 	public void setBaseHealth(int baseHealth){
