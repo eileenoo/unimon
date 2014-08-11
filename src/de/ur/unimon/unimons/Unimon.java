@@ -7,11 +7,12 @@ public class Unimon {
 	private String name;
 	private int level, xp;
 	private int health, baseHealth, maxHealth;
-	ArrayList<Spell> possibleSpells;
-	ArrayList<Spell> ownedSpells;
+	private ArrayList<Spell> possibleSpells;
+	public ArrayList<Spell> ownedSpells;
 	private boolean isAlive;
+	private boolean ownedByTrainer;
 	
-	public Unimon(String name, int baseHealth){
+	public Unimon(String name, int baseHealth, boolean ownedByTrainer){
 		this.name = name;	
 		this.baseHealth = baseHealth;
 		health = getMaxHealth();
@@ -20,6 +21,14 @@ public class Unimon {
 		possibleSpells = new ArrayList<Spell>();
 		ownedSpells = new ArrayList<Spell>();
 		isAlive = true;
+		this.ownedByTrainer = ownedByTrainer;
+		
+		
+	}
+	
+	public boolean ownedByTrainer(){
+		return ownedByTrainer;
+		
 	}
 	
 	public void setName(String name){
