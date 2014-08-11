@@ -23,33 +23,39 @@ public final class R {
     }
     public static final class drawable {
         public static final int ic_launcher=0x7f020000;
+        public static final int map=0x7f020001;
+        public static final int player=0x7f020002;
     }
     public static final class id {
-        public static final int action_settings=0x7f080019;
+        public static final int action_settings=0x7f08001d;
+        public static final int canvas_layout=0x7f08000b;
         public static final int guide_button=0x7f080003;
-        public static final int inventory=0x7f080009;
+        public static final int inner_Llayout=0x7f08000a;
+        public static final int inventory=0x7f08000c;
         public static final int item_image=0x7f080007;
         public static final int item_name=0x7f080008;
-        public static final int language=0x7f080011;
-        public static final int language_english_radio=0x7f080012;
-        public static final int language_german_radio=0x7f080013;
+        public static final int language=0x7f080015;
+        public static final int language_english_radio=0x7f080016;
+        public static final int language_german_radio=0x7f080017;
         public static final int listView_inventory=0x7f080006;
-        public static final int listView_unimons=0x7f080014;
-        public static final int map_overview=0x7f08000b;
+        public static final int listView_unimons=0x7f080018;
+        public static final int map_overview=0x7f08000e;
         public static final int money=0x7f080004;
+        public static final int move_player_test_button=0x7f08000f;
         public static final int newGame_button=0x7f080000;
-        public static final int nextStoryPart_button=0x7f08000d;
+        public static final int nextStoryPart_button=0x7f080011;
         public static final int options_button=0x7f080002;
         public static final int resume_button=0x7f080001;
-        public static final int sound=0x7f08000e;
-        public static final int sound_off_radio=0x7f080010;
-        public static final int sound_on_radio=0x7f08000f;
-        public static final int story=0x7f08000c;
-        public static final int unimon_image=0x7f080015;
-        public static final int unimon_info=0x7f080018;
-        public static final int unimon_level=0x7f080017;
-        public static final int unimon_name=0x7f080016;
-        public static final int unimons=0x7f08000a;
+        public static final int scrollview=0x7f080009;
+        public static final int sound=0x7f080012;
+        public static final int sound_off_radio=0x7f080014;
+        public static final int sound_on_radio=0x7f080013;
+        public static final int story=0x7f080010;
+        public static final int unimon_image=0x7f080019;
+        public static final int unimon_info=0x7f08001c;
+        public static final int unimon_level=0x7f08001b;
+        public static final int unimon_name=0x7f08001a;
+        public static final int unimons=0x7f08000d;
         public static final int xp=0x7f080005;
     }
     public static final class layout {

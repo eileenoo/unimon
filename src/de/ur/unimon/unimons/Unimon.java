@@ -18,12 +18,14 @@ public class Unimon {
 		health = getMaxHealth();
 		level = 1;
 		xp = 0;
-		xpPerLevel = 0; 
-		skillPoint = 0; 
 		possibleSpells = new ArrayList<Spell>();
 		ownedSpells = new ArrayList<Spell>();
 		isAlive = true;
 		this.ownedByTrainer = ownedByTrainer;
+		xpPerLevel = 0; 
+		skillPoint = 0; 
+		
+		
 	}
 	
 	public boolean ownedByTrainer(){
@@ -80,6 +82,8 @@ public class Unimon {
 	}
 	
 	public void addXp(int amount){
+		xp += amount;
+	
 		if (xp + amount < getXpPerLevel()){
 			xp += amount;
 		}
@@ -88,8 +92,6 @@ public class Unimon {
 			levelUp();
 		}
 	}
-	
-	
 	
 	public void setBaseHealth(int baseHealth){
 		this.baseHealth = baseHealth;
