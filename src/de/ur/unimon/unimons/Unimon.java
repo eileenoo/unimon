@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public class Unimon {
 	
 	private String name;
-	private int level, xp, xpPerLevel;
+	private int level, xp, xpPerLevel, skillPoint;
 	private int health, baseHealth, maxHealth;
 	ArrayList<Spell> possibleSpells;
 	ArrayList<Spell> ownedSpells;
@@ -17,6 +17,8 @@ public class Unimon {
 		health = getMaxHealth();
 		level = 1;
 		xp = 0;
+		xpPerLevel = 0; 
+		skillPoint = 0; 
 		possibleSpells = new ArrayList<Spell>();
 		ownedSpells = new ArrayList<Spell>();
 		isAlive = true;
@@ -40,6 +42,14 @@ public class Unimon {
 	
 	public void levelUp(){
 		level += 1;
+	}
+	
+	public void setSkillpoints (int skillPoint) {
+		this.skillPoint = skillPoint;
+	}
+	
+	public int getSkillpoints() {
+		return skillPoint;
 	}
 	
 	public void setXpPerLevel(int xpPerLevel){
