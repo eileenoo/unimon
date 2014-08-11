@@ -2,42 +2,58 @@ package de.ur.unimon.battle;
 
 import java.util.Random;
 
+import de.ur.unimon.actionbar.Player;
 import de.ur.unimon.unimons.Spell;
 import de.ur.unimon.unimons.Unimon;
 
 public class BattleLogic {
-	private Unimon player;
-	private Unimon enemy;
+	private Unimon playerUnimon;
+	private Unimon enemyUnimon;
 	Random rand;
 
 	public BattleLogic(Unimon player, Unimon enemy) {
-		this.player = player;
-		this.enemy = enemy;
+		this.playerUnimon = player;
+		this.enemyUnimon = enemy;
 	}
 
-	public Unimon doDmg(Unimon attacker, Spell spell) {
+	public Unimon doDamage(Unimon attacker, Spell spell) {
 
-		if (attacker == player) {
-			enemy.loseHealth(spell.getDamage());
+		if (attacker == playerUnimon) {
+			enemyUnimon.loseHealth(spell.getDamage());
 		}
 		// if (attacker == enemy) {
 		// player.loseHealth(enemy.ownedSpells.get(rand.nextInt(size))
 		// .getDamage());
 		// }
-		return enemy;
+		
+		if (enemyUnimon.getHealth() >= 0) {
+			fightWon();
+		}
+		return enemyUnimon;
 
 	}
 
-	public Unimon enemyAttack() {
-		int size = enemy.ownedSpells.size();
-		player.loseHealth(enemy.ownedSpells.get(rand.nextInt(size)).getDamage());
-		return player;
+	private void fightWon() {
+		//Player addMoney
+	}
 
+	public Unimon enemyAttack() {
+		int size = enemyUnimon.ownedSpells.size();
+		playerUnimon.loseHealth(enemyUnimon.ownedSpells.get(rand.nextInt(size)).getDamage());
+		if (playerUnimon.getHealth() >= 0) {
+			fightLost();
+		}
+		return playerUnimon;
+	}
+
+	private void fightLost() {
+		// TODO Auto-generated method stub
+		
 	}
 
 	public boolean escape() {
 		boolean escape = false;
-		int difference = enemy.getLevel() - player.getLevel();
+		int difference = enemyUnimon.getLevel() - playerUnimon.getLevel();
 
 		if (difference <= -2) {
 			escape = true;
@@ -53,22 +69,22 @@ public class BattleLogic {
 	}
 
 	public void changeUnimon(Unimon choosenUnimon) {
-		this.player = choosenUnimon;
+		this.playerUnimon = choosenUnimon;
 	}
 
 	public void useHealpot() {
-		player.addHealth(50);
+		playerUnimon.addHealth(50);
 	}
 
 	public boolean catchUnimon() {
-		if (enemy.ownedByTrainer() == true) {
+		if (enemyUnimon.ownedByTrainer() == true) {
 			return false;
 		}
-		if (enemy.ownedByTrainer() == false) {
-			if (enemy.getHealth() < enemy.getMaxHealth() * 0.3) {
+		if (enemyUnimon.ownedByTrainer() == false) {
+			if (enemyUnimon.getHealth() < enemyUnimon.getMaxHealth() * 0.3) {
 				return true;
 			}
-			if (enemy.getHealth() > enemy.getMaxHealth() * 0.7) {
+			if (enemyUnimon.getHealth() > enemyUnimon.getMaxHealth() * 0.7) {
 				return false;
 			}
 

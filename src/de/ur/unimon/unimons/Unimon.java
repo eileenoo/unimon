@@ -12,7 +12,7 @@ public class Unimon {
 	private boolean isAlive;
 	private boolean ownedByTrainer;
 	
-	public Unimon(String name, int baseHealth){
+	public Unimon(String name, int baseHealth, boolean ownedByTrainer){
 		this.name = name;	
 		this.baseHealth = baseHealth;
 		health = getMaxHealth();
