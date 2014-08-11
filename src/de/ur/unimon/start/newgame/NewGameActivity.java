@@ -11,11 +11,13 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 public class NewGameActivity extends Activity{
 	
-	TextView story;
+	ImageView wulfmanImg;
+	TextView story_part_one;
 	Button nextStoryPart;
 	
 	
@@ -28,8 +30,24 @@ public class NewGameActivity extends Activity{
 	}
 
 	private void initUI() {
-		story = (TextView) findViewById(R.id.story);
-		nextStoryPart = (Button) findViewById(R.id.nextStoryPart_button);
+		wulfmanImg = (ImageView) findViewById(R.drawable.ic_launcher);
+		story_part_one = (TextView) findViewById(R.id.story_part_one);
+		nextStoryPart = (Button) findViewById(R.id.next_button);
+		setButtonOnClick();
 	}
+	
+private void setButtonOnClick() {
+		
+		
+		nextStoryPart.setOnClickListener(new OnClickListener(){
+			
+    		public void onClick(View v) {
+    			story_part_one.setText(R.string.story_part_two);
+    			Intent choose_unimon = new Intent(NewGameActivity.this,
+				ChooseUnimonActivity.class);
+    			startActivity(choose_unimon);
+			}
+    	});
+		}
 
 }
