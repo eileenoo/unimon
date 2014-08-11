@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+    
+    <TextView
+        android:id="@+id/sound"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="15dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="15dp"
+        android:text="@string/sound_text"
+        android:textSize="20sp" />
+    
+    <RadioGroup
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:orientation="horizontal" >
+        
+    <RadioButton
+        android:id="@+id/sound_on_radio"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:checked="true"
+        android:onClick="onRadioButtonClicked"
+        android:text="@string/sound_on_text" />
+    
+    <RadioButton 
+        android:id="@+id/sound_off_radio"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/sound_off_text"
+        android:onClick="onRadioButtonClicked"/>
+    
+</RadioGroup>
+    
+    <TextView
+        android:id="@+id/language"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="15dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="15dp"
+        android:text="@string/language_text"
+        android:textSize="20sp" />
+    
+        <RadioGroup
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:orientation="horizontal" >
+        
+    <RadioButton
+        android:id="@+id/language_english_radio"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:checked="true"
+        android:onClick="onRadioButtonClicked"
+        android:text="@string/english_text" />
+    
+    <RadioButton 
+        android:id="@+id/language_german_radio"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/german_text"
+        android:onClick="onRadioButtonClicked"/>
+    
+</RadioGroup>
+    
+
+</LinearLayout>
+

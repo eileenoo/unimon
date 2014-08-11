@@ -1,5 +1,7 @@
 package de.ur.unimon.buildings;
 
-public class DompteurActivity {
+import android.app.Activity;
+
+public class DompteurActivity extends Activity{
 
 }

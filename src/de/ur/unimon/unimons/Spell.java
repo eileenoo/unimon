@@ -69,6 +69,7 @@ public class Spell {
 
 	private void calculateSpellDamge() {
 		Random randomDmgCalculator = new Random();
+		
 		int tempDamage = (int) (baseDamage + Math.exp((spellLevel/2))+5);
 		int randomBonusDmg = randomDmgCalculator.nextInt((int) (tempDamage*0.2)+1);
 		int randomSign = randomDmgCalculator.nextInt(2);
@@ -76,6 +77,16 @@ public class Spell {
 			damage = tempDamage + randomBonusDmg;
 		} else {
 			damage = tempDamage - randomBonusDmg;
+		}
+		
+		int critChance = randomDmgCalculator.nextInt(7);
+		int missChance = randomDmgCalculator.nextInt(14);
+		
+		if (critChance == 1){
+			damage *= 1.5;
+		}
+		if (missChance == 1){
+			damage = 0;
 		}
 	}
 }
