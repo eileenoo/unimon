@@ -1,6 +1,8 @@
+
 package de.ur.unimon.appstart;
 
 import de.ur.mi.android.excercises.starter.R;
+
 import de.ur.unimon.mapoverview.MapActivity;
 import de.ur.unimon.start.newgame.NewGameActivity;
 import android.app.Activity;
@@ -64,4 +66,5 @@ public class StartScreenActivity extends Activity {
     }
 
 }
+
 
