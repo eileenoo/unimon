@@ -3,6 +3,7 @@ package de.ur.unimon.actionbar;
 import java.util.ArrayList;
 
 import de.ur.mi.android.excercises.starter.R;
+import de.ur.unimon.unimons.Unimon;
 import android.content.Context;
 import android.location.Location;
 import android.view.LayoutInflater;
@@ -13,29 +14,28 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-public class UnimonListAdapter extends BaseAdapter{
+public class UnimonListAdapter extends BaseAdapter {
 
 	private Context context;
 	LayoutInflater infalInflater;
-//	ArrayList<Unimon> unimons;
+	ArrayList<Unimon> unimons;
 	private TextView unimonName, unimonLevel;
 	private Button unimonImage;
 
-/*	public LocationListAdapter(Context context,
-			ArrayList<Unimon> unimons) {
+	public UnimonListAdapter(Context context, ArrayList<Unimon> unimons) {
 		this.context = context;
 		infalInflater = LayoutInflater.from(context);
 		this.unimons = unimons;
-	}*/
+	}
 
 	@Override
 	public int getCount() {
-		return 0; //unimons.size();
+		return unimons.size();
 	}
 
 	@Override
 	public Object getItem(int position) {
-		return null; //unimons.get(position);
+		return unimons.get(position);
 	}
 
 	@Override
@@ -48,22 +48,23 @@ public class UnimonListAdapter extends BaseAdapter{
 		if (convertView == null) {
 			LayoutInflater infalInflater = (LayoutInflater) this.context
 					.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-			convertView = infalInflater.inflate(R.layout.unimon_list_item,
-					null);
-			
+			convertView = infalInflater
+					.inflate(R.layout.unimon_list_item, null);
+
 		}
-		
-	//	Unimon unimon = (Unimon) getItem(position);
-		
-	//	if (unimon != null){
+
+		Unimon unimon = (Unimon) getItem(position);
+
+		if (unimon != null) {
 			unimonImage = (Button) convertView.findViewById(R.id.unimon_image);
 			unimonName = (TextView) convertView.findViewById(R.id.unimon_name);
-			unimonLevel = (TextView) convertView.findViewById(R.id.unimon_level);
-			
-	//		unimonImage.setImageResource(R.drawable.ic_launcher);		
-	//		unimonName.setText("" + unimon.getName());
-	//		unimonLevel.setText("" + unimon.getLevel());
-	//	}
+			unimonLevel = (TextView) convertView
+					.findViewById(R.id.unimon_level);
+
+			// unimonImage.setImageResource(R.drawable.ic_launcher);
+			unimonName.setText("" + unimon.getName());
+			unimonLevel.setText("" + unimon.getLevel());
+		}
 		return convertView;
 
 	}

@@ -8,15 +8,20 @@ import de.ur.unimon.mapoverview.MapActivity;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 public class NewGameActivity extends Activity{
 	
-	TextView story;
+	ImageView wulfmanImg;
+	TextView story_part_one;
 	Button nextStoryPart;
+	int pageNum;
+	private static final String TAG = "PAGENUM";
 	
 	
 	@Override
@@ -28,8 +33,39 @@ public class NewGameActivity extends Activity{
 	}
 
 	private void initUI() {
-		story = (TextView) findViewById(R.id.story);
-		nextStoryPart = (Button) findViewById(R.id.nextStoryPart_button);
+		wulfmanImg = (ImageView) findViewById(R.drawable.ic_launcher);
+		story_part_one = (TextView) findViewById(R.id.story_part_one);
+		nextStoryPart = (Button) findViewById(R.id.next_button);
+		setButtonOnClick();
 	}
+	
+	private void setButtonOnClick() {
+		pageNum = 0;
+				
+		nextStoryPart.setOnClickListener(new OnClickListener(){
+			
+    		public void onClick(View v) {
+    			Log.d(TAG, ""+pageNum);
+    			
+    			if (pageNum == 0){
+    				story_part_one.setText(R.string.story_part_two);
+    				pageNum++;
+    			}
+    			
+    			else if (pageNum == 1){
+    				story_part_one.setText(R.string.story_part_three);
+    				pageNum++;
+    			}
+    			   			     			
+    			else{
+    			
+    			Intent choose_unimon = new Intent(NewGameActivity.this,
+				ChooseUnimonActivity.class);
+    			startActivity(choose_unimon);
+    			}
+			
+    		}
+		});
+		}
 
 }
