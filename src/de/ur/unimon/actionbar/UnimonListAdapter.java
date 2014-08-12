@@ -2,17 +2,16 @@ package de.ur.unimon.actionbar;
 
 import java.util.ArrayList;
 
-import de.ur.mi.android.excercises.starter.R;
-import de.ur.unimon.unimons.Unimon;
 import android.content.Context;
-import android.location.Location;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.Button;
-import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
+import de.ur.mi.android.excercises.starter.R;
+import de.ur.unimon.unimons.Unimon;
 
 public class UnimonListAdapter extends BaseAdapter {
 
@@ -21,6 +20,7 @@ public class UnimonListAdapter extends BaseAdapter {
 	ArrayList<Unimon> unimons;
 	private TextView unimonName, unimonLevel;
 	private Button unimonImage;
+	private ProgressBar healthBar;
 
 	public UnimonListAdapter(Context context, ArrayList<Unimon> unimons) {
 		this.context = context;
@@ -60,10 +60,12 @@ public class UnimonListAdapter extends BaseAdapter {
 			unimonName = (TextView) convertView.findViewById(R.id.unimon_name);
 			unimonLevel = (TextView) convertView
 					.findViewById(R.id.unimon_level);
+			healthBar = (ProgressBar) convertView.findViewById(R.id.healthBar);
 
 			// unimonImage.setImageResource(R.drawable.ic_launcher);
 			unimonName.setText("" + unimon.getName());
 			unimonLevel.setText("" + unimon.getLevel());
+			healthBar.setProgress(unimon.getHealth());
 		}
 		return convertView;
 

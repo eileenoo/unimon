@@ -7,7 +7,7 @@
    	<string name="newGameButton_text">New Game</string>
     <string name="resumeButton_text">Resume</string>
     <string name="guideButton_text">Guide</string>
-     <string name="optionsButton_text">Options</string>
+    <string name="optionsButton_text">Options</string>
     <string name="sound_text">Sound</string>
     <string name="language_text">Language</string>
     <string name="sound_off_text">Off</string>
@@ -35,6 +35,10 @@
     <string name="tips_tricks_title">Tips and Tricks</string> 
     <string name="tips_tricks_text">Switch on gps!</string>  
     <string name="wulfman_img">Dr. Wulfman</string>
+    <string name="choose_primary_unimon">Wähle dein primäres Unimon für den Kampf aus!</string>
+    <string name="choose_second_unimon">Wähle ein Ersatzunimon!</string>
+    <string name="choose_third_unimon">Wähle ein weiteres Ersatzunimon!</string>
+    <string name="confirm_selection">Okay</string>
     
 
 </resources>
