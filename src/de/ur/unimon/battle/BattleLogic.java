@@ -1,5 +1,7 @@
 package de.ur.unimon.battle;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 import java.util.Random;
 
 import de.ur.unimon.actionbar.Player;
@@ -16,30 +18,22 @@ public class BattleLogic {
 		this.enemyUnimon = enemyUnimon;
 	}
 
-	public Unimon ownUnimonAttack(Unimon attacker, Spell spell) {
-
-		if (attacker == playerUnimon) {
-			enemyUnimon.loseHealth(spell.getDamage());
-		}
-		// if (attacker == enemy) {
-		// player.loseHealth(enemy.ownedSpells.get(rand.nextInt(size))
-		// .getDamage());
-		// }
-		
+	public Unimon ownUnimonAttack(Spell spell) {
+		enemyUnimon.loseHealth(spell.getDamage());
 		if (enemyUnimon.getHealth() >= 0) {
 			fightWon();
 		}
 		return enemyUnimon;
-
 	}
 
 	private void fightWon() {
-		//Player addMoney
+// addmoney in player
 	}
 
 	public Unimon enemyUnimonAttack() {
 		int spellSize = enemyUnimon.ownedSpells.size();
-		playerUnimon.loseHealth(enemyUnimon.ownedSpells.get(randomGenerator.nextInt(spellSize)).getDamage());
+		playerUnimon.loseHealth(enemyUnimon.ownedSpells.get(
+				randomGenerator.nextInt(spellSize)).getDamage());
 		if (playerUnimon.getHealth() >= 0) {
 			fightLost();
 		}
@@ -48,24 +42,22 @@ public class BattleLogic {
 
 	private void fightLost() {
 		// TODO Auto-generated method stub
-		
+
 	}
 
-	public boolean escape() {
+	public boolean tryToEscape() {
 		boolean escape = false;
 		int difference = enemyUnimon.getLevel() - playerUnimon.getLevel();
 
 		if (difference <= -2) {
 			escape = true;
-		}
-		if (difference >= 2) {
+		} else if (difference >= 2) {
 			escape = false;
-		}
-		if (difference == 1 || difference == -1 || difference == 0) {
+		} else if (difference == 1 || difference == -1 || difference == 0) {
 			escape = randomGenerator.nextBoolean();
 		}
-		return escape;
 
+		return escape;
 	}
 
 	public void changeUnimon(Unimon choosenUnimon) {
@@ -76,18 +68,15 @@ public class BattleLogic {
 		playerUnimon.addHealth(50);
 	}
 
-	public boolean catchUnimon() {
-		if (enemyUnimon.ownedByTrainer() == true) {
+	// Sollte in Tips & Tricks stehen: Man kann ein Unimon nur fangen, wenn es
+	// ein wildes Unimon ist
+	public boolean ableToCatchUnimon() {
+		if (enemyUnimon.ownedByTrainer()) {
 			return false;
-		}
-		if (enemyUnimon.ownedByTrainer() == false) {
-			if (enemyUnimon.getHealth() < enemyUnimon.getMaxHealth() * 0.3) {
-				return true;
-			}
-			if (enemyUnimon.getHealth() > enemyUnimon.getMaxHealth() * 0.7) {
-				return false;
-			}
-
+		} else if (enemyUnimon.getHealth() < enemyUnimon.getMaxHealth() * 0.3) {
+			return true;
+		} else if (enemyUnimon.getHealth() > enemyUnimon.getMaxHealth() * 0.7) {
+			return false;
 		}
 		return randomGenerator.nextBoolean();
 	}

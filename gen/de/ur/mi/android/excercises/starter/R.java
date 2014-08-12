@@ -60,17 +60,18 @@ public final class R {
     }
     public static final class layout {
         public static final int activity_main=0x7f030000;
-        public static final int choose_unimon_activity=0x7f030001;
-        public static final int guide_screen_activity=0x7f030002;
-        public static final int inventory_activity=0x7f030003;
-        public static final int inventory_list_item=0x7f030004;
-        public static final int map_activity=0x7f030005;
-        public static final int new_game_activity=0x7f030006;
-        public static final int options_screen_activity=0x7f030007;
-        public static final int shop_activity=0x7f030008;
-        public static final int unimon_list_activity=0x7f030009;
-        public static final int unimon_list_item=0x7f03000a;
-        public static final int unimon_list_item_detail=0x7f03000b;
+        public static final int battle_activity=0x7f030001;
+        public static final int choose_unimon_activity=0x7f030002;
+        public static final int guide_screen_activity=0x7f030003;
+        public static final int inventory_activity=0x7f030004;
+        public static final int inventory_list_item=0x7f030005;
+        public static final int map_activity=0x7f030006;
+        public static final int new_game_activity=0x7f030007;
+        public static final int options_screen_activity=0x7f030008;
+        public static final int shop_activity=0x7f030009;
+        public static final int unimon_list_activity=0x7f03000a;
+        public static final int unimon_list_item=0x7f03000b;
+        public static final int unimon_list_item_detail=0x7f03000c;
     }
     public static final class menu {
         public static final int main=0x7f070000;
@@ -81,7 +82,11 @@ public final class R {
         public static final int action_settings=0x7f050002;
         public static final int action_unimons=0x7f05000e;
         public static final int app_name=0x7f050000;
+        public static final int catch_unimon_fail_text=0x7f05001e;
+        public static final int catch_unimon_success_text=0x7f05001d;
         public static final int english_text=0x7f05000b;
+        public static final int escape_not_successfull_toast_text=0x7f05001c;
+        public static final int escape_toast_text=0x7f05001b;
         public static final int german_text=0x7f05000c;
         public static final int guideButton_text=0x7f050005;
         public static final int hello_world=0x7f050001;

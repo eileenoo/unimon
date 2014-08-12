@@ -4,10 +4,10 @@
     <string name="app_name">StarterProjekt</string>
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
-   	<string name="newGameButton_text">New Game</string>
+    <string name="newGameButton_text">New Game</string>
     <string name="resumeButton_text">Resume</string>
     <string name="guideButton_text">Guide</string>
-     <string name="optionsButton_text">Options</string>
+    <string name="optionsButton_text">Options</string>
     <string name="sound_text">Sound</string>
     <string name="language_text">Language</string>
     <string name="sound_off_text">Off</string>
@@ -28,7 +28,9 @@
     <string name="level_text">Level: </string>
     <string name="unimon_image_text">Unimon Bild</string>
     <string name="unimon_info_text">Ich bin ein Wassermon!</string>
-       
-    
+    <string name="escape_toast_text">Your escape was successful!</string>
+    <string name="escape_not_successfull_toast_text">Your escape was not successful!</string>
+    <string name="catch_unimon_success_text">You catched the Unimon! Yay!</string>
+    <string name="catch_unimon_fail_text">Unimon catch failed!</string>
 
 </resources>
