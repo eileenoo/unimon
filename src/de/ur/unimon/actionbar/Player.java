@@ -3,17 +3,19 @@ package de.ur.unimon.actionbar;
 import java.util.ArrayList;
 
 import de.ur.unimon.unimons.Unimon;
+import de.ur.unimon.unimons.UnimonList;
 
 public class Player {
 	
 	private int ownedMoney;
-	public ArrayList <Unimon> ownUnimonList;
+	public ArrayList <Unimon> ownUnimonList = getUnimonList();
 	//Inventory inventory = new Inventory (0, 0, 0, 0);
 	
 	public Player () {
 		ownedMoney = 0;
 //		inventory = new Inventory (0, 0, 0, 0);
 		ownUnimonList = new ArrayList<Unimon>();
+		
 	}
 	
 	public Player (int Money, ArrayList<Unimon> ownUnimonList) {
