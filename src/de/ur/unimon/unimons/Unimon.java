@@ -20,7 +20,7 @@ public class Unimon {
 		xp = 0;
 		possibleSpells = new ArrayList<Spell>();
 		ownedSpells = new ArrayList<Spell>();
-		isAlive = true;
+		setAlive(true);
 		this.ownedByTrainer = ownedByTrainer;
 		xpPerLevel = 0; 
 		skillPoint = 0; 
@@ -134,7 +134,7 @@ public class Unimon {
 	public void loseHealth(int amount){
 		if (health - amount < 0){
 			health = 0;
-			isAlive = false;
+			setAlive(false);
 		} else {
 			health -= amount;
 		}
@@ -159,6 +159,10 @@ public class Unimon {
 	
 	public void learnSpell(Spell spell){
 		ownedSpells.add(spell);
+	}
+
+	public void setAlive(boolean isAlive) {
+		this.isAlive = isAlive;
 	}
 
 }
