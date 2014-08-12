@@ -4,7 +4,7 @@
     <string name="app_name">StarterProjekt</string>
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
-   	<string name="newGameButton_text">New Game</string>
+    <string name="newGameButton_text">New Game</string>
     <string name="resumeButton_text">Resume</string>
     <string name="guideButton_text">Guide</string>
     <string name="optionsButton_text">Options</string>
@@ -18,7 +18,8 @@
     <string name="action_unimons">Unimons</string>
     <string name="action_map_overview">Map</string>
     <string name="story_part_one">Hallo my name is Dr. Wulfman! #Save the Students!!!</string>
-    <string name="story_part_two">Train your Unimons and fight! Have fun!</string>
+    <string name="story_part_two">Train your Unimons and fight!</string>
+    <string name="story_part_three">Have fun!</string>
     <string name="next_button_text">Next</string>
     <string name="back_button_text">Back</string>
     <string name="money_text">Money: </string>
@@ -30,6 +31,10 @@
     <string name="level_text">Level: </string>
     <string name="unimon_image_text">Unimon Bild</string>
     <string name="unimon_info_text">Ich bin ein Wassermon!</string>
+    <string name="escape_toast_text">Your escape was successful!</string>
+    <string name="escape_not_successfull_toast_text">Your escape was not successful!</string>
+    <string name="catch_unimon_success_text">You catched the Unimon! Yay!</string>
+    <string name="catch_unimon_fail_text">Unimon catch failed!</string>
     <string name="game_description_text">Der Endbösewicht hat einen Fluch über die Uni Regensburg gelegt, der besagt, dass alle Studenten nur noch schlechte Noten schreiben. Ziel des Spiels ist es, den Bösewicht zu besiegen und damit den Fluch aufzuheben. Um ihn bezwingen zu können, musst du genügend EXPs sammeln und deine Unimons trainieren. Dekan Wulfman beauftragt dich nun den Bösewicht zu besiegen, damit die Universität Regensburg im Landesvergleich wieder am Besten abschneidet. Da du bisher alle Vorlesungen und Seminare geschwänzt hast, konntest du nicht mit dem Fluch belegt werden. Damit du den Bösewicht besiegen kannst, übergibt dir der Dekan dein erstes Unimon, dabei darfst du zwischen drei verschiedenen Unimons auswählen.</string>
     <string name="game_description_title">Game-Description</string>
     <string name="tips_tricks_title">Tips and Tricks</string> 
@@ -38,7 +43,6 @@
     <string name="choose_primary_unimon">Wähle dein primäres Unimon für den Kampf aus!</string>
     <string name="choose_second_unimon">Wähle ein Ersatzunimon!</string>
     <string name="choose_third_unimon">Wähle ein weiteres Ersatzunimon!</string>
-    <string name="confirm_selection">Okay</string>
-    
+   
 
 </resources>

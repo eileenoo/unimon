@@ -5,7 +5,8 @@ import java.util.ArrayList;
 public class Unimon {
 	
 	private String name;
-	private int level, xp, xpPerLevel, skillPoint;
+	private int level, xp, xpPerLevel;
+	public int skillPoint;
 	private int health, baseHealth, maxHealth;
 	public ArrayList<Spell> possibleSpells;
 	public ArrayList<Spell> ownedSpells;
@@ -20,7 +21,7 @@ public class Unimon {
 		xp = 0;
 		possibleSpells = new ArrayList<Spell>();
 		ownedSpells = new ArrayList<Spell>();
-		isAlive = true;
+		setAlive(true);
 		this.ownedByTrainer = ownedByTrainer;
 		xpPerLevel = 0; 
 		skillPoint = 0; 
@@ -134,7 +135,7 @@ public class Unimon {
 	public void loseHealth(int amount){
 		if (health - amount < 0){
 			health = 0;
-			isAlive = false;
+			setAlive(false);
 		} else {
 			health -= amount;
 		}
@@ -159,6 +160,10 @@ public class Unimon {
 	
 	public void learnSpell(Spell spell){
 		ownedSpells.add(spell);
+	}
+
+	public void setAlive(boolean isAlive) {
+		this.isAlive = isAlive;
 	}
 
 }
