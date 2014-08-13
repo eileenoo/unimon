@@ -153,6 +153,10 @@ public class Unimon {
 		return possibleSpells.get(number);
 	}
 	
+	public ArrayList<Spell> getOwnedSpells(){
+		return ownedSpells;
+	}
+	
 	public void addPossibleSpell(Spell spell){
 		possibleSpells.add(spell.getSpellNumber(), spell);
 	}
