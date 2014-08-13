@@ -40,6 +40,7 @@
     <string name="tips_tricks_title">Tips and Tricks</string> 
     <string name="tips_tricks_text">Switch on gps!</string>  
     <string name="wulfman_img">Dr. Wulfman</string>
-    
+    <string name="dompteur_new_skill">Learn new skill</string>
+    <string name ="dompteur_improve_skill">Improve skill</string>
 
 </resources>

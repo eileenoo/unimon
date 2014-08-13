@@ -5,30 +5,6 @@
     android:orientation="vertical"
     android:layout_alignParentBottom="true" >
 
-   
-    <ScrollView
-	   android:layout_alignParentTop="true"
-	   android:layout_width="wrap_content"
-	   android:layout_height="wrap_content"
-	   android:id="@+id/scrollview"
-	   android:layout_above="@+id/inner_Llayout">
-	   
-        <HorizontalScrollView 
-			android:layout_width="match_parent"
-			android:layout_height="match_parent"
-			android:fillViewport="true">
-	   
-		   	<LinearLayout
-		        android:id="@+id/canvas_layout"
-		        android:layout_width="match_parent"
-		        android:layout_height="wrap_content"
-			   	android:orientation="vertical"/>
-		   	
-		   	</HorizontalScrollView>
-	   
-	</ScrollView>
-
-    
     
     <LinearLayout
         android:id="@+id/inner_Llayout"
@@ -36,10 +12,10 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:orientation="horizontal"
-        android:weightSum="4" >
+        android:weightSum="2" >
     
 	    <Button
-	        android:id="@+id/inventory"
+	        android:id="@+id/dompteur_new_skill"
 	        android:layout_width="wrap_content"
 	        android:layout_height="wrap_content"
 	        android:layout_weight="1"
@@ -47,23 +23,7 @@
 	        android:textSize="16sp" />
 	
 	    <Button
-	        android:id="@+id/unimons"
-	        android:layout_width="wrap_content"
-	        android:layout_height="wrap_content"
-	        android:layout_weight="1"
-	        android:text="@string/action_unimons"
-	        android:textSize="16sp" />
-	
-	    <Button
-	        android:id="@+id/map_overview"
-	        android:layout_width="wrap_content"
-	        android:layout_height="wrap_content"
-	        android:layout_weight="1"
-	        android:text="@string/action_map_overview" 
-	        android:textSize="16sp"/>
-	    
-	    <Button
-	        android:id="@+id/move_player_test_button"
+	        android:id="@+id/dompteur_improve_skill"
 	        android:layout_width="wrap_content"
 	        android:layout_height="wrap_content"
 	        android:layout_weight="1"
