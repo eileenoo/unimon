@@ -5,7 +5,8 @@ import java.util.ArrayList;
 public class Unimon {
 	
 	private String name;
-	private int level, xp, xpPerLevel, skillPoint;
+	private int level, xp, xpPerLevel;
+	public int skillPoint;
 	private int health, baseHealth, maxHealth;
 	public ArrayList<Spell> possibleSpells;
 	public ArrayList<Spell> ownedSpells;
@@ -151,6 +152,10 @@ public class Unimon {
 	
 	public Spell getSpellBySpellNumber(int number){
 		return possibleSpells.get(number);
+	}
+	
+	public ArrayList<Spell> getOwnedSpells(){
+		return ownedSpells;
 	}
 	
 	public void addPossibleSpell(Spell spell){

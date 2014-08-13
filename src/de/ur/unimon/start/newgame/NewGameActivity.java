@@ -1,10 +1,16 @@
 package de.ur.unimon.start.newgame;
 
+import java.util.ArrayList;
+
 import de.ur.mi.android.excercises.starter.R;
+import de.ur.unimon.actionbar.Inventory;
 import de.ur.unimon.appstart.GuideScreenActivity;
 import de.ur.unimon.appstart.OptionsScreenActivity;
 import de.ur.unimon.appstart.StartScreenActivity;
 import de.ur.unimon.mapoverview.MapActivity;
+import de.ur.unimon.startgame_logic.Player;
+import de.ur.unimon.unimons.Unimon;
+import de.ur.unimon.unimons.UnimonList;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -22,13 +28,23 @@ public class NewGameActivity extends Activity{
 	Button nextStoryPart;
 	int pageNum;	
 	
+	public Player player;
+	
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.new_game_activity);
 		initUI();
+		createPlayer();
+	}
 
+	private void createPlayer() {
+		ArrayList<Unimon> unimonList = new ArrayList<Unimon>();
+		UnimonList allUnimonList = new UnimonList();
+		unimonList = allUnimonList.getUnimonList();
+		Inventory inventory = new Inventory(4,5,5,4);
+		player = new Player(50, unimonList, inventory);
 	}
 
 	private void initUI() {

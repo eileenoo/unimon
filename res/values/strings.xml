@@ -41,9 +41,28 @@
     <string name="catch_unimon_fail_text">Unimon catch failed!</string>
     <string name="game_description_text">Der Endbösewicht hat einen Fluch über die Uni Regensburg gelegt, der besagt, dass alle Studenten nur noch schlechte Noten schreiben. Ziel des Spiels ist es, den Bösewicht zu besiegen und damit den Fluch aufzuheben. Um ihn bezwingen zu können, musst du genügend EXPs sammeln und deine Unimons trainieren. Dekan Wulfman beauftragt dich nun den Bösewicht zu besiegen, damit die Universität Regensburg im Landesvergleich wieder am Besten abschneidet. Da du bisher alle Vorlesungen und Seminare geschwänzt hast, konntest du nicht mit dem Fluch belegt werden. Damit du den Bösewicht besiegen kannst, übergibt dir der Dekan dein erstes Unimon, dabei darfst du zwischen drei verschiedenen Unimons auswählen.</string>
     <string name="game_description_title">Game-Description</string>
-    <string name="tips_tricks_title">Tips and Tricks</string> 
-    <string name="tips_tricks_text">Switch on gps!</string>  
+    <string name="tips_tricks_title">Tips and Tricks</string>
+    <string name="tips_tricks_text">Man kann ein Unimon nur fangen, wenn es ein wildes Unimon ist. Wenn es einem Trainer gehört kann man es nicht fangen.</string>
     <string name="wulfman_img">Dr. Wulfman</string>
-    
+
+    <string name="dompteur_new_skill">Learn new skill</string>
+    <string name ="dompteur_improve_skill">Improve skill</string>
+
+
+    <string name="battle_lost">Battle lost. Your unimon is dead.</string>
+    <string name="battle_won">Battle won! Yay!</string>
+    <string name="battle_escape_button_text">Try to escape</string>
+    <string name="battle_attack_button_text">Attack</string>
+    <string name="battle_change_unimon_button_text">Change Unimon</string>
+    <string name="battle_use_item_button_text">Use Item</string>
+    <string name="battle_healpot_button_text">Use healpot</string>
+    <string name="battle_uniball_button_text">Use uniball</string>
+    <string name="battle_unimon2_button_text">Select Unimon 2</string>
+    <string name="battle_unimon3_button_text">Select Unimon 3</string>
+    <string name="battle_spell_button_text">Spell 1</string>
+    <string name="choose_primary_unimon">Wähle dein primäres Unimon für den Kampf aus!</string>
+    <string name="choose_second_unimon">Wähle ein Ersatzunimon!</string>
+    <string name="choose_third_unimon">Wähle ein weiteres Ersatzunimon!</string>
+   
 
 </resources>

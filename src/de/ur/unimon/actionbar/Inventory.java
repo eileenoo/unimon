@@ -14,6 +14,38 @@ public class Inventory {
 		this.protectors = protectors;
 	}
 
+	public boolean healpotAvailable() {
+		if (healpots > 0) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+	
+	public boolean uniballAvailable() {
+		if (uniballs > 0) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+	
+	public boolean reviveAvailable() {
+		if (revive > 0) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+	
+	public boolean protectorAvailable() {
+		if (protectors > 0) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+
 	public void addHealpot() {
 		healpots++;
 	}

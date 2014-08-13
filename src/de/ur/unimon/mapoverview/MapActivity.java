@@ -18,6 +18,8 @@ import de.ur.unimon.actionbar.UnimonListActivity;
 import de.ur.unimon.navigation.NavigationController;
 import de.ur.unimon.navigation.NavigationListener;
 import de.ur.unimon.navigation.PlayerPositionDetail;
+import de.ur.unimon.appstart.StartScreenActivity;
+import de.ur.unimon.battle.ChooseBattleUnimonsActivity;
 
 public class MapActivity extends Activity implements NavigationListener{
 	
@@ -91,9 +93,9 @@ public class MapActivity extends Activity implements NavigationListener{
 		});
 		mapButton.setOnClickListener(new OnClickListener() {
 			public void onClick(View v) {
-				Intent map = new Intent(MapActivity.this,
-						MapActivity.class);
-				startActivity(map);
+				Intent startBattle = new Intent(MapActivity.this,
+						ChooseBattleUnimonsActivity.class);
+				startActivity(startBattle);
 			}
 		});
 
