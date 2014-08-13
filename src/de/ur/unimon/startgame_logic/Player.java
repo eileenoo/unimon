@@ -2,27 +2,26 @@ package de.ur.unimon.startgame_logic;
 
 import java.util.ArrayList;
 
+import de.ur.unimon.actionbar.Inventory;
 import de.ur.unimon.unimons.Unimon;
 
 public class Player implements PlayerListener {
 
 	private int ownedMoney;
 	public ArrayList<Unimon> ownUnimonList;
-
-	// Inventory inventory = new Inventory (0, 0, 0, 0);
+	private Inventory inventory;
 
 	public Player() {
 		ownedMoney = 0;
-		// inventory = new Inventory (0, 0, 0, 0);
+		inventory = new Inventory(0, 0, 0, 0);
 		ownUnimonList = new ArrayList<Unimon>();
 	}
 
-	public Player(int Money, ArrayList<Unimon> ownUnimonList) {
-		// public Player (int Money, ArrayList<Unimon> ownUnimonList, Inventory
-		// inventory) {
+	public Player(int Money, ArrayList<Unimon> ownUnimonList,
+			Inventory inventory) {
 		ownedMoney = Money;
 		this.ownUnimonList = ownUnimonList;
-		// this.inventory = inventory;
+		this.inventory = inventory;
 	}
 
 	public void addMoney(int newMoney) {
@@ -41,36 +40,48 @@ public class Player implements PlayerListener {
 		return ownUnimonList;
 	}
 
-	// public void addToInventory() {
-	//
-	// }
-	// public Inventory getInventory() {
-	// return inventory;
-	// }
+	public void addHealpotToInventory() {
+		inventory.addHealpot();
+	}
+	
+	public void addUniballToInventory() {
+		inventory.addUniball();
+	}
+	
+	public void addReviveToInventory() {
+		inventory.addRevive();
+	}
+	
+	public void addProtectorToInventory() {
+		inventory.addProtector();
+	}
 
+	public Inventory getInventory() {
+		return inventory;
+	}
 
 	@Override
 	public void onUniBallCountChange() {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void onHealPotCountChange() {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void onReviveCountChange() {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void onAddUnimonToOwnUnimonList(Unimon unimon) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override

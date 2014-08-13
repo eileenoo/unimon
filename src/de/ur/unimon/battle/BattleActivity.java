@@ -3,9 +3,9 @@ package de.ur.unimon.battle;
 import java.util.ArrayList;
 
 import de.ur.mi.android.excercises.starter.R;
+import android.os.Bundle;
 import android.app.Activity;
 import android.content.Intent;
-import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -45,8 +45,10 @@ public class BattleActivity extends Activity {
 	}
 
 	private void initBattleController() {
+//		Bundle extra = getIntent.
+		
 		// Unimon enemyUnimon = UnimonList.get(bestimmtesUnimon);
-		// Unimon battleUnimon = getIntenBUndleExtraBla();
+//		battleUnimon = getIntenBUndleExtraBla();
 		// Unimon[] unimonList = getIntenundleExtraBla();
 		// battleController = new BattleController(enemyUnimon, battleUnimon,
 		// unimonList);
@@ -76,7 +78,7 @@ public class BattleActivity extends Activity {
 
 	private void changeUnimonButtonClicked() {
 		changeUnimonButton.setOnClickListener(new OnClickListener() {
-			
+
 			@Override
 			public void onClick(View v) {
 				// int battleUnimonsListIndex = onClickListenerReadIndexBla();
@@ -112,7 +114,7 @@ public class BattleActivity extends Activity {
 	private void itemButtonClicked() {
 		healpotButton = (Button) findViewById(R.id.battle_healpot_button);
 		uniballButton = (Button) findViewById(R.id.battle_uniball_button);
-
+		
 		// Abfrage ob ein Healpot im Inventar verfügbar ist
 		if (playerListener.onHealPotAvailable()) {
 			healpotButton.setClickable(true);
