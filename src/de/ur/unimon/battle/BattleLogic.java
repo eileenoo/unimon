@@ -1,10 +1,6 @@
 package de.ur.unimon.battle;
 
-import java.lang.reflect.Array;
-import java.util.ArrayList;
 import java.util.Random;
-
-import de.ur.unimon.actionbar.Player;
 import de.ur.unimon.unimons.Spell;
 import de.ur.unimon.unimons.Unimon;
 
@@ -26,10 +22,6 @@ public class BattleLogic {
 		return enemyUnimon;
 	}
 
-	private void fightWon() {
-// addmoney in player
-	}
-
 	public Unimon enemyUnimonAttack() {
 		int spellSize = enemyUnimon.ownedSpells.size();
 		playerUnimon.loseHealth(enemyUnimon.ownedSpells.get(
@@ -40,12 +32,7 @@ public class BattleLogic {
 		return playerUnimon;
 	}
 
-	private void fightLost() {
-		// TODO Auto-generated method stub
-
-	}
-
-	public boolean tryToEscape() {
+	public boolean ableToEscape() {
 		boolean escape = false;
 		int difference = enemyUnimon.getLevel() - playerUnimon.getLevel();
 
@@ -56,7 +43,6 @@ public class BattleLogic {
 		} else if (difference == 1 || difference == -1 || difference == 0) {
 			escape = randomGenerator.nextBoolean();
 		}
-
 		return escape;
 	}
 
@@ -68,8 +54,6 @@ public class BattleLogic {
 		playerUnimon.addHealth(50);
 	}
 
-	// Sollte in Tips & Tricks stehen: Man kann ein Unimon nur fangen, wenn es
-	// ein wildes Unimon ist
 	public boolean ableToCatchUnimon() {
 		if (enemyUnimon.ownedByTrainer()) {
 			return false;
@@ -79,6 +63,17 @@ public class BattleLogic {
 			return false;
 		}
 		return randomGenerator.nextBoolean();
+	}
+	
+	
+	private void fightLost() {
+		//gesundheit des pokemons ist null
+		//
+
+	}
+
+	private void fightWon() {
+		// addmoney in player
 	}
 
 }
