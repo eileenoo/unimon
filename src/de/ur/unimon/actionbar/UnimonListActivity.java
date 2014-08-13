@@ -2,6 +2,7 @@ package de.ur.unimon.actionbar;
 
 import java.util.ArrayList;
 
+
 import de.ur.mi.android.excercises.starter.R;
 import de.ur.unimon.unimons.Unimon;
 import android.app.Activity;
@@ -41,10 +42,15 @@ public class UnimonListActivity extends Activity{
 			public void onItemClick(AdapterView<?> parent, View view,
 					int position, long id) {
 				
-				Intent unimon_detail = new Intent(UnimonListActivity.this,
+				Intent unimonDetail = new Intent(UnimonListActivity.this,
 						UnimonListDetailActivity.class);
-				startActivity(unimon_detail);
-				
+				Unimon chosenUnimon = (Unimon) listUnimons.getItemAtPosition(position);
+				String chosenUnimonName = chosenUnimon.getName();
+			//	Image chosenUnimmonImage = chosenUnimon.getImage();
+				unimonDetail.putExtra("chosen_unimon_name", chosenUnimonName);
+			//	unimonDetail.putExtra("chosen_unimon_image", chosenUnimonImage);
+				startActivity(unimonDetail);								
+								
 				}
 		});
 	}

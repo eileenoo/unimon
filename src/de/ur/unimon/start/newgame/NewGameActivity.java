@@ -20,8 +20,7 @@ public class NewGameActivity extends Activity{
 	ImageView wulfmanImg;
 	TextView story_part_one;
 	Button nextStoryPart;
-	int pageNum;
-	private static final String TAG = "PAGENUM";
+	int pageNum;	
 	
 	
 	@Override
@@ -44,8 +43,7 @@ public class NewGameActivity extends Activity{
 				
 		nextStoryPart.setOnClickListener(new OnClickListener(){
 			
-    		public void onClick(View v) {
-    			Log.d(TAG, ""+pageNum);
+    		public void onClick(View v) {    			
     			
     			if (pageNum == 0){
     				story_part_one.setText(R.string.story_part_two);

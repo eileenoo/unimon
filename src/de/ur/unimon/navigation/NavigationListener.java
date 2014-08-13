@@ -1,5 +1,6 @@
 package de.ur.unimon.navigation;
 
-public class NavigationListener {
+public interface NavigationListener {		
+		public void onPlayerPositionDetailChanged(PlayerPositionDetail playerPosDetail);
 
 }
