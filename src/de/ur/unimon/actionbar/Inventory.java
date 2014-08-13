@@ -7,56 +7,106 @@ public class Inventory {
 	private int revive = 0;
 	private int protectors = 0;
 
-	private void addHealpot() {
+	public Inventory(int healpots, int uniballs, int revive, int protectors) {
+		this.healpots = healpots;
+		this.uniballs = uniballs;
+		this.revive = revive;
+		this.protectors = protectors;
+	}
+
+	public boolean healpotAvailable() {
+		if (healpots > 0) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+	
+	public boolean uniballAvailable() {
+		if (uniballs > 0) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+	
+	public boolean reviveAvailable() {
+		if (revive > 0) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+	
+	public boolean protectorAvailable() {
+		if (protectors > 0) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+
+	public void addHealpot() {
 		healpots++;
 	}
-	private void addUniball() {
+
+	public void addUniball() {
 		uniballs++;
 	}
-	private void addRevive() {
+
+	public void addRevive() {
 		revive++;
 	}
-	private void addProtector() {
+
+	public void addProtector() {
 		protectors++;
 	}
-	private int getHealpotCount(){
+
+	public int getHealpotCount() {
 		return healpots;
 	}
-	private int getUniballCount(){
+
+	public int getUniballCount() {
 		return uniballs;
 	}
-	private int getReviveCount(){
+
+	public int getReviveCount() {
 		return revive;
 	}
-	private int getProtectorCount(){
+
+	public int getProtectorCount() {
 		return protectors;
 	}
-	private int decreaseHealpots(){
-		if (healpots > 0){
+
+	public int decreaseHealpots() {
+		if (healpots > 0) {
 			healpots--;
 			return healpots;
 		} else {
 			return -1;
 		}
 	}
-	private int decreaseUniball(){
-		if (uniballs > 0){
+
+	public int decreaseUniball() {
+		if (uniballs > 0) {
 			uniballs--;
 			return uniballs;
 		} else {
 			return -1;
 		}
 	}
-	private int decreaseRevive(){
-		if (revive > 0){
+
+	public int decreaseRevive() {
+		if (revive > 0) {
 			revive--;
 			return revive;
 		} else {
 			return -1;
 		}
 	}
-	private int decreaseProtector(){
-		if (protectors > 0){
+
+	public int decreaseProtector() {
+		if (protectors > 0) {
 			protectors--;
 			return protectors;
 		} else {

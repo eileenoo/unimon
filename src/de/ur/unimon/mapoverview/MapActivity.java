@@ -15,6 +15,8 @@ import android.widget.LinearLayout;
 import de.ur.mi.android.excercises.starter.R;
 import de.ur.unimon.actionbar.InventoryActivity;
 import de.ur.unimon.actionbar.UnimonListActivity;
+import de.ur.unimon.appstart.StartScreenActivity;
+import de.ur.unimon.battle.ChooseBattleUnimonsActivity;
 
 public class MapActivity extends Activity {
 	
@@ -72,9 +74,9 @@ public class MapActivity extends Activity {
 		});
 		mapButton.setOnClickListener(new OnClickListener() {
 			public void onClick(View v) {
-				Intent map = new Intent(MapActivity.this,
-						MapActivity.class);
-				startActivity(map);
+				Intent startBattle = new Intent(MapActivity.this,
+						ChooseBattleUnimonsActivity.class);
+				startActivity(startBattle);
 			}
 		});
 
