@@ -1,6 +1,9 @@
 package de.ur.unimon.actionbar;
 
+import java.util.ArrayList;
+
 import de.ur.mi.android.excercises.starter.R;
+import de.ur.unimon.unimons.Unimon;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -13,7 +16,8 @@ import android.widget.AdapterView.OnItemClickListener;
 public class InventoryUnimonListActivity extends Activity{
 	
 	ListView unimonListInventory;
-	private ArrayAdapter<String> unimonListInventory_adpater;
+	private UnimonListAdapter unimonListInventory_adpater;
+	private ArrayList <Unimon> unimons = new ArrayList <Unimon>();
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +39,7 @@ public class InventoryUnimonListActivity extends Activity{
 			public void onItemClick(AdapterView<?> parent, View view,
 					int position, long id) {
 				
+				
 				Intent unimon_inventory = new Intent(InventoryUnimonListActivity.this,
 						InventoryActivity.class);
 				startActivity(unimon_inventory);
@@ -46,7 +51,7 @@ public class InventoryUnimonListActivity extends Activity{
 	
 	private void initListAdapter() {
 		unimonListInventory = (ListView) findViewById(R.id.listView_unimons);
-//		unimonListInventory_adpater = new ArrayAdapter<String>();
+		unimonListInventory_adpater = new UnimonListAdapter(this, unimons);
 		unimonListInventory.setAdapter(unimonListInventory_adpater);
 	}
 	

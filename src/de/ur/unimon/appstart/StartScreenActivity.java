@@ -1,4 +1,3 @@
-
 package de.ur.unimon.appstart;
 
 import java.util.ArrayList;
@@ -18,7 +17,7 @@ import de.ur.unimon.startgame_logic.Player;
 import de.ur.unimon.unimons.UnimonList;
 
 public class StartScreenActivity extends Activity {
-	
+
 	Button newGame_button;
 	Button resume_button;
 	Button options_button;
@@ -27,7 +26,7 @@ public class StartScreenActivity extends Activity {
 	UnimonList allUnimonsList;
 	public static Player player;
 
-	@Override 
+	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
@@ -60,17 +59,19 @@ public class StartScreenActivity extends Activity {
     			Intent resume = new Intent (StartScreenActivity.this, MapActivity.class);
     			startActivity(resume);
 			}
-    	});
-    	options_button.setOnClickListener(new OnClickListener(){
-    		public void onClick(View v) {	
-    			Intent options = new Intent (StartScreenActivity.this, OptionsScreenActivity.class);
-    			startActivity(options);
+		});
+		options_button.setOnClickListener(new OnClickListener() {
+			public void onClick(View v) {
+				Intent options = new Intent(StartScreenActivity.this,
+						OptionsScreenActivity.class);
+				startActivity(options);
 			}
-    	});
-    	guide_button.setOnClickListener(new OnClickListener(){
-    		public void onClick(View v) {	
-    			Intent guide = new Intent (StartScreenActivity.this, GuideScreenActivity.class);
-    			startActivity(guide);
+		});
+		guide_button.setOnClickListener(new OnClickListener() {
+			public void onClick(View v) {
+				Intent guide = new Intent(StartScreenActivity.this,
+						GuideScreenActivity.class);
+				startActivity(guide);
 			}
     	});
     }
@@ -82,5 +83,3 @@ public class StartScreenActivity extends Activity {
 	}
 
 }
-
-

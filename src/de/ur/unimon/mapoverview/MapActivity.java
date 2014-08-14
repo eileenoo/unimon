@@ -15,20 +15,27 @@ import android.widget.LinearLayout;
 import de.ur.mi.android.excercises.starter.R;
 import de.ur.unimon.actionbar.InventoryActivity;
 import de.ur.unimon.actionbar.UnimonListActivity;
+import de.ur.unimon.navigation.NavigationController;
+import de.ur.unimon.navigation.NavigationListener;
+import de.ur.unimon.navigation.PlayerPositionDetail;
 import de.ur.unimon.appstart.StartScreenActivity;
 import de.ur.unimon.battle.ChooseBattleUnimonsActivity;
 
-public class MapActivity extends Activity {
+public class MapActivity extends Activity implements NavigationListener{
 	
 	Button inventoryButton, unimonsButton, mapButton, movePlayerButton;
 	Bitmap map;
+	Bitmap player;
 	public int playerXCoord, playerYCoord;
 	LinearLayout canvasLayout;
+	private NavigationController navigationController;
+	private float playerLatitude, playerLongitude;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.map_activity);
+		initNavigation();
 		initUI();
 			
 		playerXCoord = playerYCoord = 0;
@@ -37,7 +44,19 @@ public class MapActivity extends Activity {
 		MapView canvasMap = new MapView(this);				
 		canvasLayout.addView(canvasMap, map.getWidth(), map.getHeight());	
 
+	}
+	
+	@Override
+	protected void onPause() {
+		navigationController.stop();
+		super.onPause();
+	}
+	
 
+	private void initNavigation() {
+		navigationController = new NavigationController(this, this);
+		navigationController.start();
+		
 	}
 
 	private void initUI() {
@@ -90,9 +109,7 @@ public class MapActivity extends Activity {
 	}
 	
 	
-		private class MapView extends View{
-			
-			Bitmap player;
+		private class MapView extends View{						
 	
 			public MapView(Context context) {
 				super(context);
@@ -107,6 +124,13 @@ public class MapActivity extends Activity {
 				invalidate();
 			}
 			
+		}
+
+
+		@Override
+		public void onPlayerPositionDetailChanged(PlayerPositionDetail playerPosDetail) {
+			playerLatitude = playerPosDetail.getLatitude();
+			playerLongitude = playerPosDetail.getLongitude();
 		}
 
 }

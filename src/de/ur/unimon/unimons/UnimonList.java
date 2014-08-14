@@ -92,7 +92,7 @@ public class UnimonList {
 		brunz.ownedSpells.add(brunzSpell1);
 		brunz.setHealth(20);
 		
-		lisa = new Unimon("Lüsa", 20, false);
+		lisa = new Unimon("Lisa", 20, false);
 		lisaSpell1 =  new Spell ("möp",1,20);
 		lisaSpell2  = new Spell("Biss", 2, 20);
 		lisaSpell3  = new Spell("mip", 3, 20);

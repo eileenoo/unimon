@@ -24,7 +24,11 @@
     <string name="back_button_text">Back</string>
     <string name="money_text">Money: </string>
     <string name="xp_text">XP: </string>
-    <string name="item_text">Trank: </string>
+    <string name="item_count_text">Anzahl: </string>
+    <string name="healpot_name">Healpot</string>
+    <string name="uniball_name">Uniball</string>
+    <string name="revive_name">Revive</string>
+    <string name="protector_name">Protector</string>
     <string name="take_text">-> nehmen</string>
     <string name="image_text">Bild von Item</string>
     <string name="name_text">Name: </string>
@@ -40,6 +44,11 @@
     <string name="tips_tricks_title">Tips and Tricks</string>
     <string name="tips_tricks_text">Man kann ein Unimon nur fangen, wenn es ein wildes Unimon ist. Wenn es einem Trainer gehört kann man es nicht fangen.</string>
     <string name="wulfman_img">Dr. Wulfman</string>
+
+    <string name="dompteur_new_skill">Learn new skill</string>
+    <string name ="dompteur_improve_skill">Improve skill</string>
+
+
     <string name="battle_lost">Battle lost. Your unimon is dead.</string>
     <string name="battle_won">Battle won! Yay!</string>
     <string name="battle_escape_button_text">Try to escape</string>
@@ -55,4 +64,5 @@
     <string name="choose_second_unimon">Wähle ein Ersatzunimon!</string>
     <string name="choose_third_unimon">Wähle ein weiteres Ersatzunimon!</string>
    
+
 </resources>
