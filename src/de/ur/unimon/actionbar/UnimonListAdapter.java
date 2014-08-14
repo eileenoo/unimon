@@ -3,6 +3,7 @@ package de.ur.unimon.actionbar;
 import java.util.ArrayList;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,11 +15,13 @@ import de.ur.mi.android.excercises.starter.R;
 import de.ur.unimon.unimons.Unimon;
 
 public class UnimonListAdapter extends BaseAdapter {
+	
+	public static final String TAG = "Hoi";
 
 	private Context context;
 	LayoutInflater infalInflater;
 	ArrayList<Unimon> unimons;
-	private TextView unimonName, unimonLevel;
+	private TextView unimonName, unimonLevel, health;
 	private Button unimonImage;
 	private ProgressBar healthBar;
 
@@ -61,11 +64,25 @@ public class UnimonListAdapter extends BaseAdapter {
 			unimonLevel = (TextView) convertView
 					.findViewById(R.id.unimon_level);
 			healthBar = (ProgressBar) convertView.findViewById(R.id.healthBar);
+			health = (TextView) convertView.findViewById(R.id.unimon_health);
 
 			// unimonImage.setImageResource(R.drawable.ic_launcher);
 			unimonName.setText("" + unimon.getName());
 			unimonLevel.setText("" + unimon.getLevel());
+			healthBar.setMax(unimon.getMaxHealth());
 			healthBar.setProgress(unimon.getHealth());
+			
+			int currentHealth = unimon.getHealth();
+			int maxHealth = unimon.getMaxHealth();
+			double healthPercentage =((double) currentHealth) / maxHealth;
+		
+			if (healthPercentage >= 0.75) {
+				healthBar.setProgressDrawable(convertView.getResources().getDrawable(R.drawable.green_progress));
+			} else if (healthPercentage <= 0.25){
+				healthBar.setProgressDrawable(convertView.getResources().getDrawable(R.drawable.red_progress));;
+			} else healthBar.setProgressDrawable(convertView.getResources().getDrawable(R.drawable.orange_progress));
+			
+			health.setText(currentHealth+"/"+maxHealth);
 		}
 		return convertView;
 

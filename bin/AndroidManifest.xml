@@ -58,6 +58,10 @@
             android:name="de.ur.unimon.battle.BattleActivity"
             android:label="@string/app_name" >
         </activity>
+        <activity 
+            android:name="de.ur.unimon.battle.ChooseBattleUnimonsActivity"
+            android:label="@string/app_name" >
+        </activity>
 
         <!-- BUILDINGS_PACKAGE -->
         <activity

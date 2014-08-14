@@ -9,7 +9,8 @@
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
-        android:text="@string/unimon_image_text" />
+        android:text="@string/unimon_image_text" 
+        android:focusable="false"/>
 
     <TextView
         android:id="@+id/unimon_name"
@@ -28,14 +29,24 @@
         android:layout_alignParentRight="true"
         android:layout_below="@+id/unimon_name"
         android:text="@string/level_text" />
-
+    
     <ProgressBar
         android:id="@+id/healthBar"
-        style="?android:attr/progressBarStyleSmall"
+        style="?android:attr/progressBarStyleHorizontal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignBottom="@+id/unimon_image"
         android:layout_alignParentRight="true"
-        android:layout_toRightOf="@+id/unimon_image" />
+        android:layout_toRightOf="@+id/unimon_image"/>
+    
+      <TextView
+        android:id="@+id/unimon_health"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/unimon_image"
+        android:layout_alignParentRight="true"
+        android:layout_toRightOf="@+id/unimon_image"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="100dp"/>
 
 </RelativeLayout>

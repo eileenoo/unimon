@@ -17,7 +17,7 @@ public class UnimonListActivity extends Activity{
 	
 	ListView listUnimons;
 	ListAdapter listUnimons_adpater;
-	private ArrayList <Unimon> unimons = new ArrayList <Unimon>();
+	private ArrayList <Unimon> unimons;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -28,6 +28,7 @@ public class UnimonListActivity extends Activity{
 	}
 
 	private void initUI() {
+		unimons = de.ur.unimon.appstart.StartScreenActivity.player.getUnimonList();
 		initListView();
 		initListAdapter();
 		

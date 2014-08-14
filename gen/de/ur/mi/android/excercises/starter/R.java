@@ -22,12 +22,15 @@ public final class R {
         public static final int activity_vertical_margin=0x7f040001;
     }
     public static final class drawable {
-        public static final int ic_launcher=0x7f020000;
-        public static final int map=0x7f020001;
-        public static final int player=0x7f020002;
+        public static final int green_progress=0x7f020000;
+        public static final int ic_launcher=0x7f020001;
+        public static final int map=0x7f020002;
+        public static final int orange_progress=0x7f020003;
+        public static final int player=0x7f020004;
+        public static final int red_progress=0x7f020005;
     }
     public static final class id {
-        public static final int action_settings=0x7f08002b;
+        public static final int action_settings=0x7f08002c;
         public static final int battle_attack_button=0x7f080004;
         public static final int battle_change_unimon_button=0x7f080007;
         public static final int battle_escape_button=0x7f080006;
@@ -64,8 +67,9 @@ public final class R {
         public static final int story_part_one=0x7f08001e;
         public static final int tips_tricks=0x7f080015;
         public static final int tips_tricks_scroll=0x7f080016;
+        public static final int unimon_health=0x7f08002a;
         public static final int unimon_image=0x7f080026;
-        public static final int unimon_info=0x7f08002a;
+        public static final int unimon_info=0x7f08002b;
         public static final int unimon_level=0x7f080028;
         public static final int unimon_name=0x7f080027;
         public static final int unimons=0x7f080010;
