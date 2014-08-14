@@ -6,7 +6,7 @@ import de.ur.unimon.unimons.Unimon;
 
 public class BattleController {
 	
-	private Unimon[] battleUnimonsList = new Unimon[3];
+	private Unimon[] battleUnimonsList = new Unimon[2];
 	private Unimon battleUnimon;
 	private Unimon enemyUnimon;
 	private BattleLogic battleLogic;
