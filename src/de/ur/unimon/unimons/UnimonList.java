@@ -2,7 +2,11 @@ package de.ur.unimon.unimons;
 
 import java.util.ArrayList;
 
+import android.util.Log;
+
 public class UnimonList {
+	
+	public static final String TAG = "Hoi";
 
 	private static Unimon krisk;
 	private static Unimon neni;
@@ -37,6 +41,9 @@ public class UnimonList {
 	public ArrayList<Unimon> unimonList;
 
 	public UnimonList() {
+		
+		unimonList = new ArrayList<Unimon>();
+		
 		krisk = new Unimon("Krisk", 10, true);
 		kriskSpell1 = new Spell("Kratzer", 1, 15);
 		kriskSpell2 = new Spell("Biss", 2, 20);
@@ -51,8 +58,9 @@ public class UnimonList {
 		krisk.possibleSpells.add(kriskSpell5);
 		krisk.possibleSpells.add(kriskSpell6);
 		krisk.ownedSpells.add(kriskSpell1);
+		krisk.setHealth(19);
 
-		neni = new Unimon("Neni", 10, false);
+		neni = new Unimon("Neni", 30, false);
 		neniSpell1 = new Spell ("bla",1,10);
 		neniSpell2 = new Spell ("bli",2,15);
 		neniSpell3 = new Spell ("blub",3,15);
@@ -66,8 +74,9 @@ public class UnimonList {
 		neni.possibleSpells.add(neniSpell5);
 		neni.possibleSpells.add(neniSpell6);
 		neni.ownedSpells.add(neniSpell1);
+		neni.setHealth(5);
 		
-		brunz = new Unimon("Brunz", 10, true);
+		brunz = new Unimon("Brunz", 40, true);
 		brunzSpell1 = new Spell ("bla",1,10);
 		brunzSpell2 = new Spell("Biss", 2, 20);
 		brunzSpell3 = new Spell ("mäp",3,15);
@@ -81,6 +90,7 @@ public class UnimonList {
 		brunz.possibleSpells.add(brunzSpell5);
 		brunz.possibleSpells.add(brunzSpell6);
 		brunz.ownedSpells.add(brunzSpell1);
+		brunz.setHealth(20);
 		
 		lisa = new Unimon("Lisa", 20, false);
 		lisaSpell1 =  new Spell ("möp",1,20);
@@ -96,6 +106,9 @@ public class UnimonList {
 		lisa.possibleSpells.add(lisaSpell5);
 		lisa.possibleSpells.add(lisaSpell6);
 		lisa.ownedSpells.add(lisaSpell1);
+		lisa.setHealth(15);
+		
+		Log.d(TAG, "krisk: "+krisk.getName());
 		
 		unimonList.add(krisk);
 		unimonList.add(neni);

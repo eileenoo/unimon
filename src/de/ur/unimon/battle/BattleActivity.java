@@ -14,19 +14,24 @@ import de.ur.unimon.mapoverview.MapActivity;
 import de.ur.unimon.startgame_logic.PlayerListener;
 import de.ur.unimon.unimons.Spell;
 import de.ur.unimon.unimons.Unimon;
+import de.ur.unimon.unimons.UnimonList;
 
 public class BattleActivity extends Activity {
 
 	private Button changeUnimonButton, attackButton, useItemButton,
-			escapeButton, healpotButton, uniballButton;
+			escapeButton, healpotButton, uniballButton, unimonTwoButton, unimonThreeButton;
 	private Unimon battleUnimon;
 	private Toast toast;
 	private BattleController battleController;
 	private Intent map = new Intent(BattleActivity.this, MapActivity.class);
-	// Ist der Listener jetzt initalisiert? Oder muss der Context der Klasse, in
-	// der das Interface implementiert ist, übergeben werden?
-	private PlayerListener playerListener = (PlayerListener) this;
+	private Intent intent = getIntent();
 	private boolean gameWon = false;
+	private Unimon[] currentBattleUnimonList = new Unimon[2];
+	private int unimonTwoIndex = 0; 
+	private int unimonThreeIndex = 1;
+	
+	// muss noch entfernt & ersetzt werden
+	private PlayerListener playerListener = (PlayerListener) this;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -45,13 +50,22 @@ public class BattleActivity extends Activity {
 	}
 
 	private void initBattleController() {
-//		Bundle extra = getIntent.
+		Bundle extra = intent.getExtras();
+		// Überprüfen auf Richtigkeit :D XD -> cast funktioniert glaub ich nicht..
+		ArrayList<Unimon> battleUnimonList = (ArrayList<Unimon>) extra
+				.get("unimonList");
+
+		// EnemyUnimon wird später auch über den Intent aus ChooseBattleUnimon
+		// geholt, hier: Ersatzcode
 		
-		// Unimon enemyUnimon = UnimonList.get(bestimmtesUnimon);
-//		battleUnimon = getIntenBUndleExtraBla();
-		// Unimon[] unimonList = getIntenundleExtraBla();
-		// battleController = new BattleController(enemyUnimon, battleUnimon,
-		// unimonList);
+		UnimonList listAllUnimons = new UnimonList();
+		Unimon enemyUnimon = listAllUnimons.getUnimonList().get(0);
+
+		battleUnimon = battleUnimonList.get(0);
+		currentBattleUnimonList[0] = battleUnimonList.get(1);
+		currentBattleUnimonList[1] = battleUnimonList.get(2);
+		battleController = new BattleController(enemyUnimon, battleUnimon,
+				currentBattleUnimonList);
 	}
 
 	private void initClickListeners() {
@@ -81,8 +95,29 @@ public class BattleActivity extends Activity {
 
 			@Override
 			public void onClick(View v) {
-				// int battleUnimonsListIndex = onClickListenerReadIndexBla();
-				// battleController.changeCurrentUnimon(battleUnimonsListIndex);
+				unimonTwoButton = (Button) findViewById(R.id.battle_unimon_two_button);
+				unimonThreeButton = (Button) findViewById(R.id.battle_unimon_three_button);
+				
+				String unimonTwoButtonText = currentBattleUnimonList[0].getName();
+				String unimonThreeButtonText = currentBattleUnimonList[1].getName();
+				
+				unimonTwoButton.setText(unimonTwoButtonText);
+				unimonThreeButton.setText(unimonThreeButtonText);
+				
+				clickToChangeUnimon(unimonTwoButton, unimonTwoIndex);
+				clickToChangeUnimon(unimonThreeButton, unimonThreeIndex);
+			}
+		});
+	}
+	
+	private void clickToChangeUnimon(Button unimonNameButton,
+			final int unimonNameIndex) {
+		unimonNameButton.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				battleController.changeCurrentUnimon(unimonNameIndex);
+				currentBattleUnimonList[unimonNameIndex] = battleUnimon;
 			}
 		});
 	}
@@ -114,7 +149,7 @@ public class BattleActivity extends Activity {
 	private void itemButtonClicked() {
 		healpotButton = (Button) findViewById(R.id.battle_healpot_button);
 		uniballButton = (Button) findViewById(R.id.battle_uniball_button);
-		
+
 		// Abfrage ob ein Healpot im Inventar verfügbar ist
 		if (playerListener.onHealPotAvailable()) {
 			healpotButton.setClickable(true);

@@ -36,7 +36,7 @@ public class MapActivity extends Activity implements NavigationListener{
 	public static final double leftUpperCornerLatitude = 49.00106;
 	public static final double bottomRightCornerLongitude = 12.09969;
 	public static final double bottomRightCornerLatitude = 48.99169; //Latitude oben unten
-	public static final float PIXEL_X = 596;//1169;
+	public static final float PIXEL_X = 1169;
 	public static final float PIXEL_Y = 2048;
 
 	@Override
@@ -51,7 +51,7 @@ public class MapActivity extends Activity implements NavigationListener{
 		map = BitmapFactory.decodeResource(getResources(),R.drawable.map);			
 		MapView canvasMap = new MapView(this);				
 		canvasLayout.addView(canvasMap, map.getWidth(), map.getHeight());	
-		//onPlayerPositionDetailChanged(new PlayerPositionDetail(12.096143d,48.997719d));
+		onPlayerPositionDetailChanged(new PlayerPositionDetail(12.096143d,48.997719d));
 
 	}
 	

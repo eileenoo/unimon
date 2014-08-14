@@ -28,7 +28,6 @@ public class NewGameActivity extends Activity{
 	Button nextStoryPart;
 	int pageNum;	
 	
-	public Player player;
 	
 	
 	@Override
@@ -36,16 +35,8 @@ public class NewGameActivity extends Activity{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.new_game_activity);
 		initUI();
-		createPlayer();
 	}
 
-	private void createPlayer() {
-		ArrayList<Unimon> unimonList = new ArrayList<Unimon>();
-		UnimonList allUnimonList = new UnimonList();
-		unimonList = allUnimonList.getUnimonList();
-		Inventory inventory = new Inventory(4,5,5,4);
-		player = new Player(50, unimonList, inventory);
-	}
 
 	private void initUI() {
 		wulfmanImg = (ImageView) findViewById(R.drawable.ic_launcher);
