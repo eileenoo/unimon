@@ -2,19 +2,19 @@ package de.ur.unimon.navigation;
 
 public class PlayerPositionDetail {
 
-	private float latitude;
-	private float longitude;
+	private double latitude;
+	private double longitude;
 	
-	public PlayerPositionDetail(float latitude, float longitude) {		
-		this.latitude = latitude;
-		this.longitude = longitude;
+	public PlayerPositionDetail(double d, double e) {		
+		this.latitude = d;
+		this.longitude = e;
 	}
 
-	public float getLatitude() {
+	public double getLatitude() {
 		return latitude;
 	}
 
-	public float getLongitude() {
+	public double getLongitude() {
 		return longitude;
 	}
 
