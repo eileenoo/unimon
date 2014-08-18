@@ -40,6 +40,7 @@ public class StartScreenActivity extends Activity {
     	options_button = (Button) findViewById (R.id.options_button);
     	guide_button = (Button) findViewById (R.id.guide_button);
     	
+    	//braucht man hier nicht nur jetzt da für DBplayer erzeugung
     	allUnimonsList = new UnimonList();
     	
     	setButtonsOnClick();
@@ -79,6 +80,7 @@ public class StartScreenActivity extends Activity {
     
     private void createPlayer() {
 		Inventory inventory = new Inventory(4,5,5,4);
+		// nur für test, allUnimonLits falsch, man braucht Liste aus DB);
 		player = new Player(50, allUnimonsList.getUnimonList(), inventory);
 	}
 
