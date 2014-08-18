@@ -102,4 +102,9 @@ public class Player implements PlayerListener {
 		return null;
 	}
 
+	public String getXp() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

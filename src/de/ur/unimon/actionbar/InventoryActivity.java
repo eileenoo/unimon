@@ -6,6 +6,7 @@ import de.ur.mi.android.excercises.starter.R;
 import de.ur.unimon.appstart.StartScreenActivity;
 import de.ur.unimon.mapoverview.MapActivity;
 import de.ur.unimon.start.newgame.NewGameActivity;
+import de.ur.unimon.startgame_logic.Player;
 import de.ur.unimon.unimons.Unimon;
 import android.app.Activity;
 import android.content.Intent;

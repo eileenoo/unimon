@@ -11,6 +11,7 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.Toast;
 import de.ur.unimon.mapoverview.MapActivity;
+import de.ur.unimon.startgame_logic.Player;
 import de.ur.unimon.startgame_logic.PlayerListener;
 import de.ur.unimon.unimons.Spell;
 import de.ur.unimon.unimons.Unimon;
@@ -23,12 +24,14 @@ public class BattleActivity extends Activity {
 	private Unimon battleUnimon;
 	private Toast toast;
 	private BattleController battleController;
-	private Intent map = new Intent(BattleActivity.this, MapActivity.class);
-	private Intent intent = getIntent();
-	private boolean gameWon = false;
-	private Unimon[] currentBattleUnimonList = new Unimon[2];
-	private int unimonTwoIndex = 0; 
-	private int unimonThreeIndex = 1;
+	private Intent map;
+	private Intent intent;
+	private boolean gameWon;
+	private Unimon[] currentBattleUnimonList;
+	private int unimonTwoIndex; 
+	private int unimonThreeIndex;
+	private boolean playerStatus;
+	private Player player;
 	
 	// muss noch entfernt & ersetzt werden
 	private PlayerListener playerListener = (PlayerListener) this;
@@ -37,9 +40,21 @@ public class BattleActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.battle_activity);
+		initInstances();
 		initButtons();
 		initBattleController();
 		initClickListeners();
+	}
+
+	private void initInstances() {
+		map = new Intent(BattleActivity.this, MapActivity.class);
+		intent  = getIntent();
+		gameWon = false;
+		currentBattleUnimonList  = new Unimon[2];
+		unimonTwoIndex = 0; 
+		unimonThreeIndex = 1;
+		playerStatus = true;
+		player = de.ur.unimon.appstart.StartScreenActivity.player;
 	}
 
 	private void initButtons() {
