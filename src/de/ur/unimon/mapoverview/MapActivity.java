@@ -143,7 +143,9 @@ public class MapActivity extends Activity implements NavigationListener{
 			double diffX = Math.abs(bottomRightCornerLatitude - leftUpperCornerLatitude);
 			double helpVarX = diffX/PIXEL_X;
 			playerLatitude = playerPosDetail.getLatitude();
+			Log.d("hallo","" + playerLatitude);
 			playerLongitude = playerPosDetail.getLongitude();
+			Log.d("hallo","" + playerLongitude);
 			playerYCoord = (int) (Math.abs(playerLongitude-leftUpperCornerLatitude)/helpVarY);
 			playerXCoord = (int) (Math.abs(playerLatitude-leftUpperCornerLongitude)/helpVarX);
 			Log.d("hallo",""+playerXCoord);

@@ -54,8 +54,8 @@ public class NavigationController implements LocationListener{
 		if (navigationListener == null) {
 			return;
 		}
-		float latitude = (float) lastLocation.getLatitude();
-		float longitude = (float) lastLocation.getLongitude();
+		double latitude =  lastLocation.getLatitude();
+		double longitude =  lastLocation.getLongitude();
 		playerPosDetail = new PlayerPositionDetail (latitude, longitude);
 		navigationListener.onPlayerPositionDetailChanged(playerPosDetail);
 	}
