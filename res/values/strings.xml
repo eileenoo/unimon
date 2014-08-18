@@ -24,7 +24,11 @@
     <string name="back_button_text">Back</string>
     <string name="money_text">Money: </string>
     <string name="xp_text">XP: </string>
-    <string name="item_text">Trank: </string>
+    <string name="item_count_text">Anzahl: </string>
+    <string name="healpot_name">Healpot</string>
+    <string name="uniball_name">Uniball</string>
+    <string name="revive_name">Revive</string>
+    <string name="protector_name">Protector</string>
     <string name="take_text">-> nehmen</string>
     <string name="image_text">Bild von Item</string>
     <string name="name_text">Name: </string>
