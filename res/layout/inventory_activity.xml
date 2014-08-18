@@ -16,7 +16,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
-        android:layout_below="@+id/xp"
+        android:layout_below="@+id/money"
         android:text="@string/image_text" />
 
     <Button
@@ -117,15 +117,5 @@
         android:layout_toRightOf="@+id/protectors_image"
         android:text="@string/item_count_text" />
 
-    <TextView
-        android:id="@+id/xp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_below="@+id/money"
-        android:text="@string/xp_text"
-        android:textSize="20sp" />
-    
-    protector
 
 </RelativeLayout>
