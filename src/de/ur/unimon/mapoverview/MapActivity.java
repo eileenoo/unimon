@@ -51,7 +51,7 @@ public class MapActivity extends Activity implements NavigationListener{
 		map = BitmapFactory.decodeResource(getResources(),R.drawable.map);			
 		MapView canvasMap = new MapView(this);				
 		canvasLayout.addView(canvasMap, map.getWidth(), map.getHeight());	
-		onPlayerPositionDetailChanged(new PlayerPositionDetail(12.096143d,48.997719d));
+		//onPlayerPositionDetailChanged(new PlayerPositionDetail(12.096143d,48.997719d));
 
 	}
 	
@@ -138,6 +138,7 @@ public class MapActivity extends Activity implements NavigationListener{
 
 		@Override
 		public void onPlayerPositionDetailChanged(PlayerPositionDetail playerPosDetail) {
+			Log.d("hoi", "gps, bitch");
 			double diffY = Math.abs(bottomRightCornerLongitude - leftUpperCornerLongitude);
 			double helpVarY = diffY/PIXEL_Y;
 			double diffX = Math.abs(bottomRightCornerLatitude - leftUpperCornerLatitude);

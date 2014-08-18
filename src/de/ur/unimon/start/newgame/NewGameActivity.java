@@ -39,7 +39,7 @@ public class NewGameActivity extends Activity{
 
 
 	private void initUI() {
-		wulfmanImg = (ImageView) findViewById(R.drawable.ic_launcher);
+		wulfmanImg = (ImageView) findViewById(R.id.wulfman_img);
 		story_part_one = (TextView) findViewById(R.id.story_part_one);
 		nextStoryPart = (Button) findViewById(R.id.next_button);
 		setButtonOnClick();

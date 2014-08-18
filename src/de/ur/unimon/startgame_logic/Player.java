@@ -24,6 +24,7 @@ public class Player implements PlayerListener {
 		this.inventory = inventory;
 	}
 
+
 	public void addMoney(int newMoney) {
 		ownedMoney += newMoney;
 	}

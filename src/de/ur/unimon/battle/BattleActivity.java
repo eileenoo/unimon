@@ -20,21 +20,20 @@ import de.ur.unimon.unimons.UnimonList;
 public class BattleActivity extends Activity {
 
 	private Button changeUnimonButton, attackButton, useItemButton,
-			escapeButton, healpotButton, uniballButton, unimonTwoButton, unimonThreeButton;
-	private Unimon battleUnimon;
-	private Toast toast;
-	private BattleController battleController;
+			escapeButton, healpotButton, uniballButton, unimonTwoButton,
+			unimonThreeButton;
 	private Intent map;
-	private Intent intent;
-	private boolean gameWon;
+
+	private Unimon battleUnimon;
+	private Unimon enemyUnimon;
 	private Unimon[] currentBattleUnimonList;
-	private int unimonTwoIndex; 
-	private int unimonThreeIndex;
-	private boolean playerStatus;
 	private Player player;
-	
-	// muss noch entfernt & ersetzt werden
-	private PlayerListener playerListener = (PlayerListener) this;
+	private BattleController battleController;
+
+	private Toast toast;
+
+	private boolean playerStatus;
+	private boolean gameWon;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -48,11 +47,7 @@ public class BattleActivity extends Activity {
 
 	private void initInstances() {
 		map = new Intent(BattleActivity.this, MapActivity.class);
-		intent  = getIntent();
 		gameWon = false;
-		currentBattleUnimonList  = new Unimon[2];
-		unimonTwoIndex = 0; 
-		unimonThreeIndex = 1;
 		playerStatus = true;
 		player = de.ur.unimon.appstart.StartScreenActivity.player;
 	}
@@ -65,20 +60,19 @@ public class BattleActivity extends Activity {
 	}
 
 	private void initBattleController() {
-		Bundle extra = intent.getExtras();
-		// †berprŸfen auf Richtigkeit :D XD -> cast funktioniert glaub ich nicht..
-		ArrayList<Unimon> battleUnimonList = (ArrayList<Unimon>) extra
-				.get("unimonList");
+		Bundle extra = getIntent().getExtras();
+		Unimon[] battleUnimonList = (Unimon[]) extra.get("chosenUnimons");
 
 		// EnemyUnimon wird spŠter auch Ÿber den Intent aus ChooseBattleUnimon
 		// geholt, hier: Ersatzcode
-		
-		UnimonList listAllUnimons = new UnimonList();
-		Unimon enemyUnimon = listAllUnimons.getUnimonList().get(0);
 
-		battleUnimon = battleUnimonList.get(0);
-		currentBattleUnimonList[0] = battleUnimonList.get(1);
-		currentBattleUnimonList[1] = battleUnimonList.get(2);
+		UnimonList listAllUnimons = new UnimonList();
+		enemyUnimon = listAllUnimons.getUnimonList().get(0);
+
+		battleUnimon = battleUnimonList[0];
+		currentBattleUnimonList = new Unimon[2];
+		currentBattleUnimonList[0] = battleUnimonList[1];
+		currentBattleUnimonList[1] = battleUnimonList[2];
 		battleController = new BattleController(enemyUnimon, battleUnimon,
 				currentBattleUnimonList);
 	}
@@ -95,46 +89,74 @@ public class BattleActivity extends Activity {
 
 			@Override
 			public void onClick(View v) {
-				if (battleController.escape()) {
+				if (battleController.ableToEscape()) {
 					showToast(R.string.escape_toast_text);
 					startActivity(map);
 				} else {
 					showToast(R.string.escape_not_successfull_toast_text);
 				}
+				playerStatus = false;
 			}
 		});
+		checkStatus();
 	}
 
 	private void changeUnimonButtonClicked() {
+
 		changeUnimonButton.setOnClickListener(new OnClickListener() {
 
 			@Override
 			public void onClick(View v) {
+
 				unimonTwoButton = (Button) findViewById(R.id.battle_unimon_two_button);
 				unimonThreeButton = (Button) findViewById(R.id.battle_unimon_three_button);
-				
-				String unimonTwoButtonText = currentBattleUnimonList[0].getName();
-				String unimonThreeButtonText = currentBattleUnimonList[1].getName();
-				
-				unimonTwoButton.setText(unimonTwoButtonText);
-				unimonThreeButton.setText(unimonThreeButtonText);
-				
-				clickToChangeUnimon(unimonTwoButton, unimonTwoIndex);
-				clickToChangeUnimon(unimonThreeButton, unimonThreeIndex);
+
+				String unimonTwoButtonText = currentBattleUnimonList[0]
+						.getName();
+				String unimonThreeButtonText = currentBattleUnimonList[1]
+						.getName();
+
+				// Wenn das Array currentBattleUnimonList (der LŠnge 2) an
+				// Stelle [0] leer ist, dann sind beide buttons der zu
+				// wechselnden Buttons nicht klickbar & ""
+				// Wenn Stelle [0] nicht leer ist wird noch gecheckt ob es an
+				// Stelle [1] leer ist
+				if (currentBattleUnimonList[0] != null) {
+					unimonTwoButton.setText(unimonTwoButtonText);
+					int unimonTwoIndex = 0;
+					clickToChangeUnimon(unimonTwoButton, unimonTwoIndex);
+
+					if (currentBattleUnimonList[1] != null) {
+						unimonThreeButton.setText(unimonThreeButtonText);
+						int unimonThreeIndex = 1;
+						clickToChangeUnimon(unimonThreeButton, unimonThreeIndex);
+					} else {
+						unimonThreeButton.setText("");
+						unimonThreeButton.setClickable(false);
+					}
+				} else {
+					unimonTwoButton.setText("");
+					unimonTwoButton.setClickable(false);
+					unimonThreeButton.setText("");
+					unimonThreeButton.setClickable(false);
+				}
+
 			}
 		});
 	}
-	
+
 	private void clickToChangeUnimon(Button unimonNameButton,
 			final int unimonNameIndex) {
 		unimonNameButton.setOnClickListener(new OnClickListener() {
-			
+
 			@Override
 			public void onClick(View v) {
 				battleController.changeCurrentUnimon(unimonNameIndex);
 				currentBattleUnimonList[unimonNameIndex] = battleUnimon;
+				playerStatus = false;
 			}
 		});
+		checkStatus();
 	}
 
 	private void attackButtonClicked() {
@@ -157,36 +179,52 @@ public class BattleActivity extends Activity {
 			// Vllt Besser ein ListView?
 		}
 		// Spell currentSpell = onClickListenerReadIndexBla();
-		// battleController.ownUnimonAttack(currentSpell);
-		//
+		// enemyUnimon = battleController.ownUnimonAttack(currentSpell);
+		if (enemyUnimon.getHealth() >= 0) {
+			gameWon = true;
+			fightEnd();
+		} else {
+			playerStatus = false;
+			checkStatus();
+		}
 	}
 
 	private void itemButtonClicked() {
 		healpotButton = (Button) findViewById(R.id.battle_healpot_button);
 		uniballButton = (Button) findViewById(R.id.battle_uniball_button);
 
-		// Abfrage ob ein Healpot im Inventar verfŸgbar ist
-		if (playerListener.onHealPotAvailable()) {
-			healpotButton.setClickable(true);
-		} else {
-			healpotButton.setClickable(false);
-		}
+		useItemButton.setOnClickListener(new OnClickListener() {
 
-		// Abfrage ob ein Uniball im Inventar verfŸgbar ist
-		if (playerListener.onUniBallAvailable()) {
-			uniballButton.setClickable(true);
-		} else {
-			uniballButton.setClickable(false);
-		}
+			@Override
+			public void onClick(View v) {
+				// Abfrage ob ein Healpot im Inventar verfŸgbar ist
+				if (player.getInventory().healpotAvailable()) {
+					healpotButton.setClickable(true);
+				} else {
+					healpotButton.setClickable(false);
+				}
 
-		healpotButtonClicked();
-		uniballButtonClicked();
+				// Abfrage ob ein Uniball im Inventar verfŸgbar ist
+				if (player.getInventory().uniballAvailable()) {
+					uniballButton.setClickable(true);
+				} else {
+					uniballButton.setClickable(false);
+				}
+
+				healpotButtonClicked();
+				uniballButtonClicked();
+			}
+		});
+
 	}
 
-	// Wird aufgerufen, nachdem eine Aktion durchgefŸhrt wurde, mit einem Delay
-	// von ca.2 Sec
+	// Wird aufgerufen, nachdem eine Aktion durchgefŸhrt wurde
 	private void enemyFight() {
-
+		battleUnimon = battleController.enemyUnimonAttack();
+		if (battleUnimon.getHealth() >= 0) {
+			gameWon = false;
+			fightEnd();
+		}
 	}
 
 	private void fightEnd() {
@@ -204,16 +242,18 @@ public class BattleActivity extends Activity {
 		uniballButton.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				playerListener.onUniBallCountChange();
-				if (battleController.catchUnimon()) {
+				player.getInventory().decreaseUniball();
+				if (battleController.ableToCatchUnimon()) {
 					battleController.unimonCatchSuccess();
 					showToast(R.string.catch_unimon_success_text);
 					startActivity(map);
 				} else {
 					showToast(R.string.catch_unimon_fail_text);
 				}
+				playerStatus = false;
 			}
 		});
+		checkStatus();
 	}
 
 	// HealpotCount wird im BattleController Ÿber Playerlistener den
@@ -223,14 +263,34 @@ public class BattleActivity extends Activity {
 			@Override
 			public void onClick(View v) {
 				battleController.useHealpot();
+				playerStatus = false;
 			}
 		});
+		checkStatus();
 	}
 
 	private void showToast(int toastText) {
 		int duration = Toast.LENGTH_SHORT;
 		toast = Toast.makeText(this, toastText, duration);
 		toast.show();
+	}
+
+	// Es wird geschaut wer an der Reihe ist -Spieler oder GegnerTrainer
+	// Wenn der Spieler nicht mehr an der Reihe ist (weil er schon einen Zug
+	// gemacht hat), werden die Buttons disabled & der Gegner greift an
+	private void checkStatus() {
+		if (playerStatus) {
+			escapeButton.setClickable(true);
+			changeUnimonButton.setClickable(true);
+			attackButton.setClickable(true);
+			useItemButton.setClickable(true);
+		} else {
+			escapeButton.setClickable(false);
+			changeUnimonButton.setClickable(false);
+			attackButton.setClickable(false);
+			useItemButton.setClickable(false);
+			enemyFight();
+		}
 	}
 
 }
