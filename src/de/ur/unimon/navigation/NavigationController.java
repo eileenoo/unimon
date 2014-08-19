@@ -6,6 +6,7 @@ import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Toast;
 
 public class NavigationController implements LocationListener{
@@ -51,17 +52,19 @@ public class NavigationController implements LocationListener{
 	}
 
 	private void updateNavigationInformation() {
+		Log.d("hoi", "updateNavigationInformation");
 		if (navigationListener == null) {
 			return;
 		}
-		float latitude = (float) lastLocation.getLatitude();
-		float longitude = (float) lastLocation.getLongitude();
+		double latitude =  lastLocation.getLatitude();
+		double longitude =  lastLocation.getLongitude();
 		playerPosDetail = new PlayerPositionDetail (latitude, longitude);
 		navigationListener.onPlayerPositionDetailChanged(playerPosDetail);
 	}
 
 	@Override
 	public void onLocationChanged(Location location) {
+		Log.d("hoi", "onLocationChanged");
 		lastLocation = location;
 		updateNavigationInformation();
 	}

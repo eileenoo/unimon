@@ -1,7 +1,6 @@
 package de.ur.unimon.actionbar;
 
 import java.util.ArrayList;
-
 import de.ur.mi.android.excercises.starter.R;
 import de.ur.unimon.appstart.StartScreenActivity;
 import de.ur.unimon.mapoverview.MapActivity;
@@ -15,8 +14,6 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.TextView;
-import de.ur.mi.android.excercises.starter.R;
-import de.ur.unimon.startgame_logic.Player;
 
 public class InventoryActivity extends Activity{
 
