@@ -6,6 +6,7 @@ import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Toast;
 
 public class NavigationController implements LocationListener{
@@ -51,6 +52,7 @@ public class NavigationController implements LocationListener{
 	}
 
 	private void updateNavigationInformation() {
+		Log.d("hoi", "updateNavigationInformation");
 		if (navigationListener == null) {
 			return;
 		}
@@ -62,6 +64,7 @@ public class NavigationController implements LocationListener{
 
 	@Override
 	public void onLocationChanged(Location location) {
+		Log.d("hoi", "onLocationChanged");
 		lastLocation = location;
 		updateNavigationInformation();
 	}

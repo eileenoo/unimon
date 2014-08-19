@@ -1,7 +1,7 @@
 package de.ur.unimon.actionbar;
 
-import java.util.ArrayList;
 
+import java.util.ArrayList;
 import de.ur.mi.android.excercises.starter.R;
 import de.ur.unimon.appstart.StartScreenActivity;
 import de.ur.unimon.mapoverview.MapActivity;
@@ -13,20 +13,16 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.widget.AdapterView;
-import android.widget.AdapterView.OnItemClickListener;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.ListView;
 import android.widget.TextView;
 
 public class InventoryActivity extends Activity{
 
-	private TextView money, xp, healpotName, uniballName, reviveName,
+	private TextView money, healpotName, uniballName, reviveName,
 			protectorName, healpotCount, uniballCount, reviveCount,
 			protectorCount;
 	private Button healpotImage, uniballImage, reviveImage, protectorImage;
-	Inventory inventory = new Inventory(0, 0, 0, 0);
+	Inventory inventory;
 	Player player;
 
 	@Override
@@ -38,11 +34,12 @@ public class InventoryActivity extends Activity{
 	}
 
 	private void initUI() {
-
+		
+		
+		player = de.ur.unimon.appstart.StartScreenActivity.player;
+		inventory = player.getInventory();
 		money = (TextView) findViewById(R.id.money);
-		xp = (TextView) findViewById(R.id.xp);
 		money.setText("Money: " + player.getMoney());
-		xp.setText("XP: " + player.getXp());
 
 		if (inventory != null) {
 
