@@ -6,8 +6,10 @@
     android:layout_alignParentBottom="true" >
 
     
+    
+    
     <LinearLayout
-        android:id="@+id/inner_Llayout"
+        android:id="@+id/dompteur"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
@@ -19,16 +21,16 @@
 	        android:layout_width="wrap_content"
 	        android:layout_height="wrap_content"
 	        android:layout_weight="1"
-	        android:text="@string/action_inventar"
-	        android:textSize="16sp" />
+	        android:text="@string/dompteur_new_skill"
+	        android:textSize="20sp" />
 	
 	    <Button
 	        android:id="@+id/dompteur_improve_skill"
 	        android:layout_width="wrap_content"
 	        android:layout_height="wrap_content"
 	        android:layout_weight="1"
-	        android:text="Move" 
-	        android:textSize="16sp"/>
+	        android:text="@string/dompteur_improve_skill" 
+	        android:textSize="20sp"/>
 	    
 	    </LinearLayout>
 	    
