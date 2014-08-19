@@ -29,16 +29,21 @@ public class ChooseBattleUnimonsActivity extends Activity{
 	ListAdapter listUnimons_adpater;
 	private ArrayList <Unimon> unimons;
 	private Unimon[] chosenUnimons;
-	private int selectionStage;
+	private int selectionStage, lastSelectonStage;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.choose_battle_unimons_activity);
-		
+		getTrainer();
 		initUI();
 	}
 	
+	private void getTrainer() {
+		Bundle extras = getIntent().getExtras();
+		//Trainer trainer = extras.get("trainer);
+	}
+
 	private void initUI() {
 		Player player = de.ur.unimon.appstart.StartScreenActivity.player;
 		unimons = new ArrayList<Unimon>();
@@ -64,21 +69,28 @@ public class ChooseBattleUnimonsActivity extends Activity{
 				
 				chosenUnimons[selectionStage] = unimons.get(position);
 				unimons.remove(position);
-				selectionStage++;
 				
-				if (selectionStage == 1){
-					chooseUnimonText.setText(R.string.choose_second_unimon);
+				selectionStage++;
+				if (unimons.size() == 0) {
+					selectionStage = 3;
 				}
-				else if (selectionStage == 2){
-					chooseUnimonText.setText(R.string.choose_third_unimon);
-				}
-				else if (selectionStage == 3){
+				Log.d("Hoi", "size: "+unimons.size());
+				Log.d("Hoi", "selectionStage: "+selectionStage);
+				
+				if (selectionStage == 3){
 					Intent toBattleActivity = new Intent(ChooseBattleUnimonsActivity.this, BattleActivity.class);
 					toBattleActivity.putExtra("chosenUnimons", chosenUnimons);
+					//toBattleActivity.outExtra("trainer", trainer);
 					//startActivity(toBattleActivity);
 					Intent backToMap = new Intent(ChooseBattleUnimonsActivity.this, MapActivity.class);
 					startActivity(backToMap);
 					
+				}
+				else if (selectionStage == 1){
+					chooseUnimonText.setText(R.string.choose_second_unimon);
+				}
+				else if (selectionStage == 2){
+					chooseUnimonText.setText(R.string.choose_third_unimon);
 				}
 			}
 		});

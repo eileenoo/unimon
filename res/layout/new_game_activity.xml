@@ -9,7 +9,7 @@
         android:id="@+id/wulfman_img"
         android:layout_width="match_parent"
         android:layout_height="350dp"
-        android:src="@drawable/player"
+        android:src="@drawable/christian_wolff"
         android:contentDescription="@string/wulfman_img" />
       
 

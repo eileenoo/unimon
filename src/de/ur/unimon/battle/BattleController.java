@@ -1,69 +1,97 @@
 package de.ur.unimon.battle;
 
+import java.util.Random;
 
+import de.ur.unimon.startgame_logic.Player;
 import de.ur.unimon.startgame_logic.PlayerListener;
+import de.ur.unimon.unimons.Spell;
 import de.ur.unimon.unimons.Unimon;
 
 public class BattleController {
-	
-	private Unimon[] battleUnimonsList = new Unimon[2];
+
+	private Unimon[] battleUnimonsList;
 	private Unimon battleUnimon;
 	private Unimon enemyUnimon;
-	private BattleLogic battleLogic;
-	private PlayerListener playerListener = (PlayerListener) this;
-	
-	
-	public BattleController (Unimon enemyUnimon, Unimon battleUnimon, Unimon[] unimonList) {
+	private Player player;
+	private Random randomGenerator;
+
+	public BattleController(Unimon enemyUnimon, Unimon battleUnimon,
+			Unimon[] unimonList) {
+		initRandomGenerator();
+		initPlayer();
 		initEnemyUnimon(enemyUnimon);
 		initBattleUnimon(battleUnimon);
 		initBattleUnimonList(unimonList);
-		initBattleLogic();
 	}
-	
+
+	private void initRandomGenerator() {
+		randomGenerator = new Random();
+	}
+
+	private void initPlayer() {
+		player = de.ur.unimon.appstart.StartScreenActivity.player;
+	}
+
 	private void initEnemyUnimon(Unimon enemyUnimon) {
-		this.enemyUnimon = enemyUnimon; 
+		this.enemyUnimon = enemyUnimon;
 	}
 
 	private void initBattleUnimon(Unimon battleUnimon) {
-		this.battleUnimon = battleUnimon; 
+		this.battleUnimon = battleUnimon;
 	}
 
 	private void initBattleUnimonList(Unimon[] unimonList) {
 		this.battleUnimonsList = unimonList;
 	}
 
-	private void initBattleLogic() {
-		battleLogic = new BattleLogic(battleUnimon, enemyUnimon);
-	}
+	public boolean ableToEscape() {
+		boolean escape = false;
+		int difference = enemyUnimon.getLevel() - battleUnimon.getLevel();
 
-	public boolean escape() {
-		if(battleLogic.ableToEscape()){
-			return true;
-		} else {
-			return true;
+		if (difference <= -2) {
+			escape = true;
+		} else if (difference >= 2) {
+			escape = false;
+		} else if (difference == 1 || difference == -1 || difference == 0) {
+			escape = randomGenerator.nextBoolean();
 		}
+		return escape;
 	}
-
-	public boolean catchUnimon() {
-		if (battleLogic.ableToCatchUnimon()) {
-		return true;
-		} else {
+	
+	public boolean ableToCatchUnimon() {
+		if (enemyUnimon.ownedByTrainer()) {
+			return false;
+		} else if (enemyUnimon.getHealth() < enemyUnimon.getMaxHealth() * 0.3) {
+			return true;
+		} else if (enemyUnimon.getHealth() > enemyUnimon.getMaxHealth() * 0.7) {
 			return false;
 		}
-	}
-	
-	public void unimonCatchSuccess() {
-		playerListener.onAddUnimonToOwnUnimonList(enemyUnimon);
-	}
-	
-	public void useHealpot() {
-			battleLogic.useHealpot();
-			playerListener.onHealPotCountChange();
-	}
-	
-	public void changeCurrentUnimon(int battleUnimonsListIndex) {
-		Unimon newUnimon = battleUnimonsList[battleUnimonsListIndex]; 
-		battleLogic.changeUnimon(newUnimon);
+		return randomGenerator.nextBoolean();
 	}
 
+	public void unimonCatchSuccess() {
+		player.ownUnimonList.add(enemyUnimon);
+	}
+
+	public void useHealpot() {
+		battleUnimon.addHealth(50);
+		player.getInventory().decreaseHealpots();
+	}
+
+	public void changeCurrentUnimon(int battleUnimonsListIndex) {
+		Unimon newUnimon = battleUnimonsList[battleUnimonsListIndex];
+		battleUnimon = newUnimon;
+	}
+	
+	public Unimon ownUnimonAttack(Spell spell) {
+		enemyUnimon.loseHealth(spell.getDamage());
+		return enemyUnimon;
+	}
+	
+	public Unimon enemyUnimonAttack() {
+		int spellSize = enemyUnimon.ownedSpells.size();
+		battleUnimon.loseHealth(enemyUnimon.ownedSpells.get(
+				randomGenerator.nextInt(spellSize)).getDamage());
+		return battleUnimon;
+	}
 }

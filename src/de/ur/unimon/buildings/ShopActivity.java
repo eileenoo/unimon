@@ -6,6 +6,8 @@ import android.os.Bundle;
 
 public class ShopActivity extends Activity{
 	
+
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -18,5 +20,6 @@ public class ShopActivity extends Activity{
 		// TODO Auto-generated method stub
 		
 	}
+	
 
 }

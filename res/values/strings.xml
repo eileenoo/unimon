@@ -42,7 +42,7 @@
     <string name="game_description_text">Der Endbösewicht hat einen Fluch über die Uni Regensburg gelegt, der besagt, dass alle Studenten nur noch schlechte Noten schreiben. Ziel des Spiels ist es, den Bösewicht zu besiegen und damit den Fluch aufzuheben. Um ihn bezwingen zu können, musst du genügend EXPs sammeln und deine Unimons trainieren. Dekan Wulfman beauftragt dich nun den Bösewicht zu besiegen, damit die Universität Regensburg im Landesvergleich wieder am Besten abschneidet. Da du bisher alle Vorlesungen und Seminare geschwänzt hast, konntest du nicht mit dem Fluch belegt werden. Damit du den Bösewicht besiegen kannst, übergibt dir der Dekan dein erstes Unimon, dabei darfst du zwischen drei verschiedenen Unimons auswählen.</string>
     <string name="game_description_title">Game-Description</string>
     <string name="tips_tricks_title">Tips and Tricks</string>
-    <string name="tips_tricks_text">Man kann ein Unimon nur fangen, wenn es ein wildes Unimon ist. Wenn es einem Trainer gehört kann man es nicht fangen.</string>
+    <string name="tips_tricks_text">Man kann ein Unimon nur fangen, wenn es ein wildes Unimon ist. Wenn es einem Trainer gehört kann man es nicht fangen. ---- Vermeide es Gebäude zu betreten, da das GPS-Signal dort Schwach oder nicht vorhanden. Das UnimonSpiel auf GPS basiert.</string>
     <string name="wulfman_img">Dr. Wulfman</string>
 
     <string name="dompteur_new_skill">Learn new skill</string>
