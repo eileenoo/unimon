@@ -3,6 +3,7 @@ package de.ur.unimon.mapoverview;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.drm.DrmStore.RightsStatus;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
@@ -32,10 +33,10 @@ public class MapActivity extends Activity implements NavigationListener{
 	LinearLayout canvasLayout;
 	private NavigationController navigationController;
 	private double playerLatitude, playerLongitude;
-	public static final double leftUpperCornerLongitude = 12.09154;
-	public static final double leftUpperCornerLatitude = 49.00106;
-	public static final double bottomRightCornerLongitude = 12.09969;
-	public static final double bottomRightCornerLatitude = 48.99169; //Latitude oben unten
+	public static final double leftUpperCornerLongitude = 49.00106;
+	public static final double leftUpperCornerLatitude = 12.09154;
+	public static final double bottomRightCornerLongitude = 48.99169;
+	public static final double bottomRightCornerLatitude = 12.09969; //Latitude oben unten
 	public static final float PIXEL_X = 1169;
 	public static final float PIXEL_Y = 2048;
 
@@ -51,7 +52,8 @@ public class MapActivity extends Activity implements NavigationListener{
 		map = BitmapFactory.decodeResource(getResources(),R.drawable.map);			
 		MapView canvasMap = new MapView(this);				
 		canvasLayout.addView(canvasMap, map.getWidth(), map.getHeight());	
-		//onPlayerPositionDetailChanged(new PlayerPositionDetail(12.096143d,48.997719d));
+		onPlayerPositionDetailChanged(new PlayerPositionDetail(bottomRightCornerLongitude, bottomRightCornerLatitude));
+		//onPlayerPositionDetailChanged(new PlayerPositionDetail(48.997719d, 12.096143d));
 
 	}
 	
@@ -139,14 +141,14 @@ public class MapActivity extends Activity implements NavigationListener{
 		@Override
 		public void onPlayerPositionDetailChanged(PlayerPositionDetail playerPosDetail) {
 			Log.d("hoi", "gps, bitch");
-			double diffY = Math.abs(bottomRightCornerLongitude - leftUpperCornerLongitude);
-			double helpVarY = diffY/PIXEL_Y;
-			double diffX = Math.abs(bottomRightCornerLatitude - leftUpperCornerLatitude);
-			double helpVarX = diffX/PIXEL_X;
+			double diffX = Math.abs(bottomRightCornerLongitude - leftUpperCornerLongitude);
+			double helpVarX = PIXEL_X/diffX;
+			double diffY = Math.abs(bottomRightCornerLatitude - leftUpperCornerLatitude);
+			double helpVarY = PIXEL_Y/diffY;
 			playerLatitude = playerPosDetail.getLatitude();
 			playerLongitude = playerPosDetail.getLongitude();
-			playerYCoord = (int) (Math.abs(playerLongitude-leftUpperCornerLatitude)/helpVarY);
-			playerXCoord = (int) (Math.abs(playerLatitude-leftUpperCornerLongitude)/helpVarX);
+			playerXCoord = (int) (Math.abs(playerLongitude-leftUpperCornerLongitude)*helpVarX);
+			playerYCoord = (int) (Math.abs(playerLatitude-leftUpperCornerLatitude)*helpVarY);
 			Log.d("hallo",""+playerXCoord);
 			Log.d("hallo",""+playerYCoord);
 			

@@ -13,6 +13,7 @@ public class Trainer {
 	double longitude;
 	double latitude;
 	Random rand;
+	boolean isSeen;
 
 	public Trainer(int id, String name, double latitude, double longitude,
 			Unimon unimon, int expvalue, int moneyvalue) {
@@ -23,6 +24,15 @@ public class Trainer {
 		this.unimon = unimon;
 		this.expvalue = expvalue;
 		this.moneyvalue = moneyvalue;
+		this.isSeen = false;
+	}
+	
+	public boolean isSeen(){
+		return isSeen;
+	}
+	
+	public void setVisible(){
+		isSeen = true;
 	}
 
 	public int getId() {
