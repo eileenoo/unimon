@@ -32,10 +32,6 @@ public class Player implements PlayerListener {
 	public int getMoney() {
 		return ownedMoney;
 	}
-	
-	public int getXp (){
-		return 0;
-	}
 
 	public void addUnimon(Unimon newUnimon) {
 		ownUnimonList.add(newUnimon);
@@ -103,6 +99,11 @@ public class Player implements PlayerListener {
 
 	@Override
 	public ArrayList<Unimon> onGetOwnUnimonList() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public String getXp() {
 		// TODO Auto-generated method stub
 		return null;
 	}

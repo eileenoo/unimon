@@ -1,6 +1,5 @@
 package de.ur.unimon.actionbar;
 
-
 import java.util.ArrayList;
 import de.ur.mi.android.excercises.starter.R;
 import de.ur.unimon.appstart.StartScreenActivity;
