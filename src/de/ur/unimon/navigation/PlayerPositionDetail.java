@@ -5,7 +5,7 @@ public class PlayerPositionDetail {
 	private double latitude;
 	private double longitude;
 	
-	public PlayerPositionDetail(double longitude, double latitude) {		
+	public PlayerPositionDetail(double latitude, double longitude) {		
 		this.longitude = longitude;
 		this.latitude = latitude;
 	}

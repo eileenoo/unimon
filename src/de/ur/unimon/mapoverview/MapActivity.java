@@ -1,5 +1,6 @@
 package de.ur.unimon.mapoverview;
 
+import android.animation.ArgbEvaluator;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
@@ -9,6 +10,7 @@ import android.drm.DrmStore.RightsStatus;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
+import android.graphics.Paint;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.util.Log;
@@ -37,12 +39,12 @@ public class MapActivity extends Activity implements NavigationListener{
 	LinearLayout canvasLayout;
 	private NavigationController navigationController;
 	private double playerLatitude, playerLongitude;
-	public static final double leftUpperCornerLongitude = 49.00106;
-	public static final double leftUpperCornerLatitude = 12.09154;
-	public static final double bottomRightCornerLongitude = 48.99169;//x
-	public static final double bottomRightCornerLatitude = 12.09969; //Latitude oben unten Breitengrad y
-	public static final float PIXEL_X = 1169;
-	public static final float PIXEL_Y = 2048;
+	public static final double leftUpperCornerLongitude = 12.09154;
+	public static final double leftUpperCornerLatitude = 49.00106;
+	public static final double bottomRightCornerLongitude = 12.09969;//x
+	public static final double bottomRightCornerLatitude = 48.99169; //Latitude oben unten Breitengrad y
+	public float PIXEL_X; //1559; //1169
+	public float PIXEL_Y; //2731; //2048
 	private int shopXCoord, dompteurXCoord;
 	private int shopYCoord, dompteurYCoord;
 	private boolean shopRangeChecked = false;
@@ -55,13 +57,12 @@ public class MapActivity extends Activity implements NavigationListener{
 		initNavigation();
 		initUI();
 			
-		playerXCoord = playerYCoord = 0;
 		
-		map = BitmapFactory.decodeResource(getResources(),R.drawable.map);			
-		MapView canvasMap = new MapView(this);				
-
-		canvasLayout.addView(canvasMap, map.getWidth(), map.getHeight());
-
+		Log.d("hallo", ""+map.getWidth());
+		Log.d("hallo", ""+map.getHeight());
+		
+		
+		//onPlayerPositionDetailChanged(new PlayerPositionDetail(48.99787089, 12.09574285));
 	}
 	
 	@Override
@@ -84,6 +85,16 @@ public class MapActivity extends Activity implements NavigationListener{
 		mapButton = (Button) findViewById(R.id.map_overview);
 		movePlayerButton = (Button) findViewById(R.id.move_player_test_button);
 		setButtonsOnClick();
+		
+		map = BitmapFactory.decodeResource(getResources(),R.drawable.map);			
+		MapView canvasMap = new MapView(this);		
+		
+		playerXCoord = playerYCoord = 0;
+		
+		canvasLayout.addView(canvasMap, map.getWidth(), map.getHeight());
+		
+		PIXEL_X = map.getWidth();
+		PIXEL_Y = map.getHeight();
 	}
 	
 	/**
@@ -158,9 +169,7 @@ public class MapActivity extends Activity implements NavigationListener{
 			playerXCoord = (int) (Math.abs(playerLongitude-leftUpperCornerLongitude)/helpVarX);
 			playerYCoord = (int) (Math.abs(playerLatitude-leftUpperCornerLatitude)/helpVarY);
 			Log.d("hallo", ""+playerXCoord);
-			Log.d("hallo", ""+playerYCoord);
-			//checkIfShopIsInRange(playerXCoord,playerYCoord);
-			//checkIfDompteurIsInRange(playerXCoord,playerYCoord);			
+			Log.d("hallo", ""+playerYCoord);		
 		}
 		
 
