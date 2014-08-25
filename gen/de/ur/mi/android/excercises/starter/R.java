@@ -100,13 +100,14 @@ public final class R {
         public static final int dompteur_activity=0x7f030007;
         public static final int guide_screen_activity=0x7f030008;
         public static final int inventory_activity=0x7f030009;
-        public static final int map_activity=0x7f03000a;
-        public static final int new_game_activity=0x7f03000b;
-        public static final int options_screen_activity=0x7f03000c;
-        public static final int shop_activity=0x7f03000d;
-        public static final int unimon_list_activity=0x7f03000e;
-        public static final int unimon_list_item=0x7f03000f;
-        public static final int unimon_list_item_detail=0x7f030010;
+        public static final int items_battle_fragment=0x7f03000a;
+        public static final int map_activity=0x7f03000b;
+        public static final int new_game_activity=0x7f03000c;
+        public static final int options_screen_activity=0x7f03000d;
+        public static final int shop_activity=0x7f03000e;
+        public static final int unimon_list_activity=0x7f03000f;
+        public static final int unimon_list_item=0x7f030010;
+        public static final int unimon_list_item_detail=0x7f030011;
     }
     public static final class menu {
         public static final int main=0x7f070000;
