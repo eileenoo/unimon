@@ -39,8 +39,8 @@ public class MapActivity extends Activity implements NavigationListener{
 	LinearLayout canvasLayout;
 	private NavigationController navigationController;
 	private double playerLatitude, playerLongitude;
-	public static final double leftUpperCornerLongitude = 12.09154;
-	public static final double leftUpperCornerLatitude = 49.00106;
+	public static final double leftUpperCornerLongitude = 12.091562;
+	public static final double leftUpperCornerLatitude = 49.0010367;
 	public static final double bottomRightCornerLongitude = 12.09969;//x
 	public static final double bottomRightCornerLatitude = 48.99169; //Latitude oben unten Breitengrad y
 	public float PIXEL_X; //1559; //1169
@@ -62,7 +62,7 @@ public class MapActivity extends Activity implements NavigationListener{
 		Log.d("hallo", ""+map.getHeight());
 		
 		
-		//onPlayerPositionDetailChanged(new PlayerPositionDetail(48.99787089, 12.09574285));
+		onPlayerPositionDetailChanged(new PlayerPositionDetail(48.99787089, 12.09574285));
 	}
 	
 	@Override
