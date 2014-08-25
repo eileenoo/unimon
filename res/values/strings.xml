@@ -54,6 +54,7 @@
 
     <string name="dompteur_new_skill">Learn new skill</string>
     <string name ="dompteur_improve_skill">Improve skill</string>
+    <string name="hospital_healAll">Heal all Unimons</string>
 
 
     <string name="battle_lost">Battle lost. Your unimon is dead.</string>

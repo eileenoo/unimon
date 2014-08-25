@@ -1,13 +1,16 @@
 package de.ur.unimon.mapoverview;
 
+import android.animation.ArgbEvaluator;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.drm.DrmStore.RightsStatus;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
+import android.graphics.Paint;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.util.Log;
@@ -46,10 +49,11 @@ public class MapActivity extends Activity implements NavigationListener {
 																		// Breitengrad
 																		// y
 	private double rangeBuildings = 25;
-	public static final float PIXEL_X = 1169;
-	public static final float PIXEL_Y = 2048;
 	private int shopXCoord, dompteurXCoord, hospitalXCoord;
 	private int shopYCoord, dompteurYCoord, hospitalYCoord;
+	public float PIXEL_X; //1559; //1169
+	public float PIXEL_Y; //2731; //2048
+
 	private boolean shopRangeChecked = false;
 	private boolean dompteurRangeChecked = false;
 	private boolean hospitalRangeChecked = false;
@@ -63,6 +67,10 @@ public class MapActivity extends Activity implements NavigationListener {
 		builder = new AlertDialog.Builder(this);
 		initUI();
 		initNavigation();
+		
+		Log.d("hallo", ""+map.getWidth());
+		Log.d("hallo", ""+map.getHeight());
+
 	}
 
 	@Override
@@ -83,13 +91,15 @@ public class MapActivity extends Activity implements NavigationListener {
 		unimonsButton = (Button) findViewById(R.id.unimons);
 		mapButton = (Button) findViewById(R.id.map_overview);
 		movePlayerButton = (Button) findViewById(R.id.move_player_test_button);
-		map = BitmapFactory.decodeResource(getResources(), R.drawable.map);
-		int mapHeight = map.getHeight();
-		Log.d("hallo", "mapHeight " + mapHeight);
-		int mapWidth = map.getWidth();
-		Log.d("hallo", "mapWidth " + mapWidth);
-		MapView canvasMap = new MapView(this);
+		map = BitmapFactory.decodeResource(getResources(), R.drawable.map);				
+		MapView canvasMap = new MapView(this);		
+		
+		playerXCoord = playerYCoord = 0;
+		
 		canvasLayout.addView(canvasMap, map.getWidth(), map.getHeight());
+		
+		PIXEL_X = map.getWidth();
+		PIXEL_Y = map.getHeight();
 		setButtonsOnClick();
 	}
 
