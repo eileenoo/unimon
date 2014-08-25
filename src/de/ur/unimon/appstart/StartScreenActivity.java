@@ -81,7 +81,7 @@ public class StartScreenActivity extends Activity {
     private void createPlayer() {
 		Inventory inventory = new Inventory(4,5,5,4);
 		// nur für test, allUnimonLits falsch, man braucht Liste aus DB);
-		player = new Player(50, allUnimonsList.getUnimonList(), inventory);
+		player = new Player(200, allUnimonsList.getUnimonList(), inventory);
 	}
 
 }

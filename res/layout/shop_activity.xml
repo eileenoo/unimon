@@ -1,8 +1,161 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical" >
     
 
-</LinearLayout>
+ <TextView
+        android:id="@+id/money"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/money_text"
+        android:textSize="20sp" />
+
+    <Button
+        android:id="@+id/healpot_image"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/money"
+        android:text="@string/image_text" />
+
+    <Button
+        android:id="@+id/uniball_image"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/healpot_image"
+        android:text="@string/image_text" />
+
+    <Button
+        android:id="@+id/revive_image"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/uniball_image"
+        android:text="@string/image_text" />
+
+    <Button
+        android:id="@+id/protectors_image"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/revive_image"
+        android:text="@string/image_text" />
+
+    <TextView
+        android:id="@+id/item_healpot"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignTop="@+id/healpot_image"
+        android:layout_toRightOf="@+id/healpot_image"
+        android:text="@string/healpot_name"
+        android:textSize="15sp" />
+
+    <TextView
+        android:id="@+id/item_healpot_count"
+        android:layout_width="186dp"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/healpot_image"
+        android:layout_alignBottom="@+id/healpot_image"
+        android:layout_toRightOf="@+id/healpot_image"
+        android:text="@string/item_count_text" />
+
+    <TextView
+        android:id="@+id/item_uniball"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/item_healpot_count"
+        android:layout_alignTop="@+id/uniball_image"
+        android:text="@string/uniball_name"
+        android:textSize="15sp" />
+
+    <TextView
+        android:id="@+id/item_uniball_count"
+        android:layout_width="186dp"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/uniball_image"
+        android:layout_alignBottom="@+id/uniball_image"
+        android:layout_toRightOf="@+id/uniball_image"
+        android:text="@string/item_count_text" />
+
+    <TextView
+        android:id="@+id/item_revive"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignRight="@+id/item_uniball_count"
+        android:layout_alignTop="@+id/revive_image"
+        android:layout_toRightOf="@+id/revive_image"
+        android:text="@string/revive_name"
+        android:textSize="15sp" />
+
+    <TextView
+        android:id="@+id/item_revive_count"
+        android:layout_width="186dp"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/revive_image"
+        android:layout_alignBottom="@+id/revive_image"
+        android:layout_toRightOf="@+id/revive_image"
+        android:text="@string/item_count_text" />
+
+    <TextView
+        android:id="@+id/item_protector"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/protectors_image"
+        android:layout_toRightOf="@+id/protectors_image"
+        android:text="@string/protector_name"
+        android:textSize="15sp" />
+
+    <TextView
+        android:id="@+id/item_protector_count"
+        android:layout_width="186dp"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/protectors_image"
+        android:layout_alignBottom="@+id/protectors_image"
+        android:layout_toRightOf="@+id/protectors_image"
+        android:text="@string/item_count_text" />
+    
+    <TextView
+        android:id="@+id/item_healpot_price"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/item_healpot"
+        android:layout_alignBottom="@+id/item_healpot"
+        android:layout_alignRight="@+id/item_healpot_count"
+        android:layout_marginRight="35dp"
+        android:text="@string/price" />
+
+    <TextView
+        android:id="@+id/item_uniball_price"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/item_uniball"
+        android:layout_alignBottom="@+id/item_uniball"
+        android:layout_alignRight="@+id/item_uniball_count"
+        android:layout_marginRight="35dp"
+        android:text="@string/price" />
+
+     <TextView
+         android:id="@+id/item_revive_price"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:layout_alignBaseline="@+id/item_revive"
+         android:layout_alignBottom="@+id/item_revive"
+         android:layout_alignRight="@+id/item_revive_count"
+         android:layout_marginRight="35dp"
+         android:text="@string/price" />
+     
+     <TextView
+         android:id="@+id/item_protector_price"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:layout_alignBaseline="@+id/item_protector"
+         android:layout_alignBottom="@+id/item_protector"
+         android:layout_alignRight="@+id/item_protector_count"
+         android:layout_marginRight="35dp"
+         android:text="@string/price" />
+
+</RelativeLayout>
