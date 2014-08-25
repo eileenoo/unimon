@@ -21,6 +21,17 @@
         android:layout_below="@id/want_to_enter_text"
         android:orientation="horizontal"
         android:weightSum="2" >
+        
+    <Button
+        android:id="@+id/do_not_enter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="40dp"
+        android:layout_margin="10dp"
+        android:layout_weight="1"
+        android:text="@string/cancel"
+        android:textSize="15sp" />
 
     <Button
         android:id="@+id/enter"
@@ -33,16 +44,7 @@
         android:text="@string/ok" 
         android:textSize="15sp"/>
 
-    <Button
-        android:id="@+id/do_not_enter"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="40dp"
-        android:layout_margin="10dp"
-        android:layout_weight="1"
-        android:text="@string/cancel"
-        android:textSize="15sp" />
+    
     
     </LinearLayout>
 

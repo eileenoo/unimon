@@ -15,6 +15,8 @@ public class NavigationController implements LocationListener{
 	public static final float UPDATE_DISTANCE = 1;
 	LocationManager locationManager;
 	private Location lastLocation;
+	Location shop, dompteur, hospital;
+	
 	private NavigationListener navigationListener;
 	PlayerPositionDetail playerPosDetail;
 	ProgressDialog progressDialog;
@@ -50,18 +52,45 @@ public class NavigationController implements LocationListener{
 	public Location getLastKnownLocation() {
 		return lastLocation;
 	}
-
+	
 	private void updateNavigationInformation() {
+		shop = new Location("");
+		dompteur = new Location("");
+		hospital = new Location("");
+		setShopCoords();
+		setDompteurCoords();
+		setHospitalCoords();
 		Log.d("hoi", "updateNavigationInformation");
-		if (navigationListener == null) {
+		if (navigationListener == null || shop == null || dompteur == null || hospital == null) {
 			return;
 		}
 		double latitude =  lastLocation.getLatitude();
 		double longitude =  lastLocation.getLongitude();
-		playerPosDetail = new PlayerPositionDetail (latitude, longitude);
+		float distanceShop = lastLocation.distanceTo(shop);
+		float distanceDompteur = lastLocation.distanceTo(dompteur);
+		float distanceHospital = lastLocation.distanceTo(hospital);
+		playerPosDetail = new PlayerPositionDetail (latitude, longitude, distanceShop, distanceDompteur, distanceHospital);
 		navigationListener.onPlayerPositionDetailChanged(playerPosDetail);
 	}
 
+	
+	private void setShopCoords(){
+		shop.setLatitude(48.9977715); //richtige Koordinaten fehlen!!! 48.9977715
+		Log.d("hoi", "shopLatitude " + shop.getLatitude());
+		shop.setLongitude(12.0938617);//12.0938617
+	}
+	
+	private void setDompteurCoords(){
+		dompteur.setLatitude(48.99787); //richtige Koordinaten fehlen!!! // 48.9992075
+		dompteur.setLongitude(12.09410); //12.095735
+	}
+	
+	private void setHospitalCoords(){
+		hospital.setLatitude(48.99787); //richtige Koordinaten fehlen!!! // 48.9981304
+		hospital.setLongitude(12.09403);// 12.0932311
+	}
+
+	
 	@Override
 	public void onLocationChanged(Location location) {
 		Log.d("hoi", "onLocationChanged");
