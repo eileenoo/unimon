@@ -1,18 +1,14 @@
 package de.ur.unimon.mapoverview;
 
-import android.animation.ArgbEvaluator;
 import android.app.Activity;
-import android.app.AlertDialog;
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
-import android.drm.DrmStore.RightsStatus;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
-import android.graphics.Paint;
 import android.os.Bundle;
-import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -21,14 +17,10 @@ import android.widget.LinearLayout;
 import de.ur.mi.android.excercises.starter.R;
 import de.ur.unimon.actionbar.InventoryActivity;
 import de.ur.unimon.actionbar.UnimonListActivity;
+import de.ur.unimon.battle.ChooseBattleUnimonsActivity;
 import de.ur.unimon.navigation.NavigationController;
 import de.ur.unimon.navigation.NavigationListener;
 import de.ur.unimon.navigation.PlayerPositionDetail;
-import de.ur.unimon.start.newgame.NewGameActivity;
-import de.ur.unimon.appstart.StartScreenActivity;
-import de.ur.unimon.battle.ChooseBattleUnimonsActivity;
-import de.ur.unimon.battle.TrainerList;
-import de.ur.unimon.buildings.ShopActivity;
 
 public class MapActivity extends Activity implements NavigationListener{
 	
@@ -49,6 +41,8 @@ public class MapActivity extends Activity implements NavigationListener{
 	private int shopYCoord, dompteurYCoord;
 	private boolean shopRangeChecked = false;
 	private boolean dompteurRangeChecked = false;
+	private EnterAlertFragment alertFragment;
+	private FragmentManager fragmentManager;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -56,7 +50,7 @@ public class MapActivity extends Activity implements NavigationListener{
 		setContentView(R.layout.map_activity);
 		initNavigation();
 		initUI();
-			
+		initFragmentManager();	
 		
 		Log.d("hallo", ""+map.getWidth());
 		Log.d("hallo", ""+map.getHeight());
@@ -65,6 +59,14 @@ public class MapActivity extends Activity implements NavigationListener{
 		onPlayerPositionDetailChanged(new PlayerPositionDetail(48.99787089, 12.09574285));
 	}
 	
+	private void initFragmentManager() {
+		alertFragment = new EnterAlertFragment();
+		fragmentManager = getFragmentManager();
+		FragmentTransaction transaction = fragmentManager.beginTransaction();
+		transaction.add(R.id.map_activity_layout, alertFragment, "alertFragment");
+		transaction.commit();
+	}
+
 	@Override
 	protected void onPause() {
 		navigationController.stop();

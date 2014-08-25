@@ -64,6 +64,7 @@
     <string name="choose_primary_unimon">Wähle dein primäres Unimon für den Kampf aus!</string>
     <string name="choose_second_unimon">Wähle ein Ersatzunimon!</string>
     <string name="choose_third_unimon">Wähle ein weiteres Ersatzunimon!</string>
-   
+    <string name="ok">Ok</string>
+   	<string name="cancel">Cancel</string>
 
 </resources>
