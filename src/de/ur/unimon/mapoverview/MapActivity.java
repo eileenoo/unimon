@@ -1,36 +1,30 @@
 package de.ur.unimon.mapoverview;
 
-import android.animation.ArgbEvaluator;
+import de.ur.mi.android.excercises.starter.R;
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.drm.DrmStore.RightsStatus;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
-import android.graphics.Paint;
 import android.os.Bundle;
-import android.util.DisplayMetrics;
-import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.LinearLayout;
-import de.ur.mi.android.excercises.starter.R;
 import de.ur.unimon.actionbar.InventoryActivity;
 import de.ur.unimon.actionbar.UnimonListActivity;
-import de.ur.unimon.navigation.NavigationController;
-import de.ur.unimon.navigation.NavigationListener;
-import de.ur.unimon.navigation.PlayerPositionDetail;
-import de.ur.unimon.start.newgame.NewGameActivity;
-import de.ur.unimon.appstart.StartScreenActivity;
 import de.ur.unimon.battle.ChooseBattleUnimonsActivity;
-import de.ur.unimon.battle.TrainerList;
 import de.ur.unimon.buildings.DompteurActivity;
 import de.ur.unimon.buildings.HospitalActivity;
 import de.ur.unimon.buildings.ShopActivity;
+import de.ur.unimon.navigation.NavigationController;
+import de.ur.unimon.navigation.NavigationListener;
+import de.ur.unimon.navigation.PlayerPositionDetail;
 
 public class MapActivity extends Activity implements NavigationListener {
 
@@ -54,10 +48,18 @@ public class MapActivity extends Activity implements NavigationListener {
 	public float PIXEL_X; //1559; //1169
 	public float PIXEL_Y; //2731; //2048
 
-	private boolean shopRangeChecked = false;
-	private boolean dompteurRangeChecked = false;
-	private boolean hospitalRangeChecked = false;
+	private boolean isShopInRange = false;
+	private boolean isDompteurInRange = false;
+	private boolean isHospitalInRange = false;
+	
+	private EnterAlertFragment alertFragment;
+	private FragmentManager fragmentManager;
+	private FragmentTransaction transaction;
+	
+	
 	AlertDialog.Builder builder;
+
+	
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -67,10 +69,15 @@ public class MapActivity extends Activity implements NavigationListener {
 		builder = new AlertDialog.Builder(this);
 		initUI();
 		initNavigation();
-		
-		Log.d("hallo", ""+map.getWidth());
-		Log.d("hallo", ""+map.getHeight());
-
+		initFragmentManager();
+	}
+	
+	private void initFragmentManager() {
+		alertFragment = new EnterAlertFragment();
+		fragmentManager = getFragmentManager();
+		transaction = fragmentManager.beginTransaction();
+		transaction.setCustomAnimations(R.animator.slide_in_bottom, R.animator.slide_out_top);
+		transaction.add(R.id.map_activity_layout, alertFragment, "alertFragment");
 	}
 
 	@Override
@@ -140,6 +147,7 @@ public class MapActivity extends Activity implements NavigationListener {
 				startActivity(dompteur);
 				// playerXCoord += 20;
 				// playerYCoord += 50;
+
 			}
 		});
 	}
@@ -181,36 +189,52 @@ public class MapActivity extends Activity implements NavigationListener {
 	}
 
 	private void checkRangeTrue(PlayerPositionDetail playerPosDetail) {
-		if (shopRangeChecked == true && playerPosDetail.getDistanceShop() >= rangeBuildings) {
-			shopRangeChecked = false;
+		if (isShopInRange == true && playerPosDetail.getDistanceShop() >= rangeBuildings) {
+			isShopInRange = false;
 		}
 
-		else if (dompteurRangeChecked == true
+		else if (isDompteurInRange == true
 				&& playerPosDetail.getDistanceDompteur() >= rangeBuildings) {
-			dompteurRangeChecked = false;
+			isDompteurInRange = false;
 		}
 
-		else if (hospitalRangeChecked == true
+		else if (isHospitalInRange == true
 				&& playerPosDetail.getDistanceHospital() >= rangeBuildings) {
-			hospitalRangeChecked = false;
+			isHospitalInRange = false;
 		}
 	}
 
 	private void checkRangeFalse(PlayerPositionDetail playerPosDetail) {
-		if (shopRangeChecked == false && playerPosDetail.getDistanceShop() < rangeBuildings) {
-			showShopAlert();
-		} else if (dompteurRangeChecked == false
+		if (isShopInRange == false && playerPosDetail.getDistanceShop() < rangeBuildings) {
+			//showShopAlert();
+			isShopInRange = false;
+			showFragmentForBuildings("Shop");
+		} else if (isDompteurInRange == false
 				&& playerPosDetail.getDistanceDompteur() < rangeBuildings) {
-			showDompteurAlert();
-		} else if (hospitalRangeChecked == false
+			//showDompteurAlert();
+			isDompteurInRange = false;
+			showFragmentForBuildings("Dompteur");
+		} else if (isHospitalInRange == false
 				&& playerPosDetail.getDistanceHospital() < rangeBuildings) {
-			showHospitalAlert();
+			//showHospitalAlert();
+			isHospitalInRange = false;
+			showFragmentForBuildings("Hospital");
 		}
 	}
+	
+	private void showFragmentForBuildings(String building) {
+		Bundle extras = new Bundle();
+		extras.putString("building", building);
+		alertFragment.setArguments(extras);
+		transaction.commit();
+		
+	}
+
+	
 
 	// Alert für Shop Activity
 
-	private void showShopAlert() {
+	/*private void showShopAlert() {
 
 		builder.setTitle(getResources().getString(R.string.shop_name));
 		builder.setMessage("Möchtest du den Shop betreten?");
@@ -311,5 +335,6 @@ public class MapActivity extends Activity implements NavigationListener {
 		AlertDialog alert = builder.create();
 		alert.show();
 
-	}
+	}*/
+
 }

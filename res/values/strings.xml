@@ -58,7 +58,7 @@
     <string name="wulfman_img">Dr. Wulfman</string>
 
     <string name="dompteur_new_skill">Learn new skill</string>
-    <string name ="dompteur_improve_skill">Improve skill</string>
+    <string name="dompteur_improve_skill">Improve skill</string>
     <string name="hospital_healAll">Heal all Unimons</string>
 
 
@@ -75,11 +75,11 @@
     <string name="battle_spell_button_text">Spell 1</string>
     <string name="choose_primary_unimon">Wähle dein primäres Unimon für den Kampf aus!</string>
     <string name="choose_second_unimon">Wähle ein Ersatzunimon!</string>
-    <string name="choose_third_unimon">Wähle ein weiteres Ersatzunimon!</string>
-    
+    <string name="choose_third_unimon">Wähle ein weiteres Ersatzunimon!</string>    
     <string name="cancel">Cancel</string>
     <string name="alert_money_warning_title">Achtung!</string>
     <string name="alert_money_warning_message">Du brauchst mehr Geld, um dir das kaufen zu können!</string>
     <string name="ok">OK</string>
+
 
 </resources>
