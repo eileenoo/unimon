@@ -69,10 +69,10 @@ public class MapActivity extends Activity implements NavigationListener {
 		initNavigation();
 		initFragmentManager();
 
-//		onPlayerPositionDetailChanged(new PlayerPositionDetail(12, 48, 100, 30, 1000));
-//		onPlayerPositionDetailChanged(new PlayerPositionDetail(12, 48, 100, 20, 1000));
-//		onPlayerPositionDetailChanged(new PlayerPositionDetail(12, 48, 100, 30, 1000));
-//		onPlayerPositionDetailChanged(new PlayerPositionDetail(12, 48, 100, 20, 1000));
+		onPlayerPositionDetailChanged(new PlayerPositionDetail(12, 48, 100, 30, 1000));
+		onPlayerPositionDetailChanged(new PlayerPositionDetail(12, 48, 100, 20, 1000));
+		onPlayerPositionDetailChanged(new PlayerPositionDetail(12, 48, 100, 30, 1000));
+		onPlayerPositionDetailChanged(new PlayerPositionDetail(12, 48, 100, 20, 1000));
 
 	}
 	
@@ -185,7 +185,7 @@ public class MapActivity extends Activity implements NavigationListener {
 				- leftUpperCornerLongitude) / helpVarX);
 		playerYCoord = (int) (Math
 				.abs(playerLatitude - leftUpperCornerLatitude) / helpVarY);
-		Log.d("hallo", ""+isDompteurInRange);
+		Log.d("penis", ""+isDompteurInRange);
 		checkRangeTrue(playerPosDetail);
 		checkRangeFalse(playerPosDetail);
 	}
