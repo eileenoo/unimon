@@ -31,8 +31,7 @@ public class StartScreenActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
-		initUI();
-		Log.d("hallo", "fick dich");
+		initUI();		
 	}
 	
 	
@@ -82,7 +81,7 @@ public class StartScreenActivity extends Activity {
     
     private void createPlayer() {
 		Inventory inventory = new Inventory(4,5,5,4);
-		// nur für test, allUnimonLits falsch, man braucht Liste aus DB);
+		// nur für test, allUnimonList falsch, man braucht Liste aus DB);
 		player = new Player(200, allUnimonsList.getUnimonList(), inventory);
 	}
 

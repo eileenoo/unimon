@@ -143,8 +143,11 @@ public class MapActivity extends Activity implements NavigationListener {
 		movePlayerButton.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				Intent shop = new Intent(MapActivity.this, ShopActivity.class);
-				startActivity(shop);
+				Intent dompteur = new Intent(MapActivity.this, DompteurActivity.class);
+				startActivity(dompteur);
+				// playerXCoord += 20;
+				// playerYCoord += 50;
+
 			}
 		});
 	}
@@ -221,6 +224,10 @@ public class MapActivity extends Activity implements NavigationListener {
 	
 	private void showFragmentForBuildings(String building) {
 		Bundle extras = new Bundle();
+		if (alertFragment.getArguments() != null){
+			extras = alertFragment.getArguments();
+			extras.clear();
+		};
 		extras.putString("building", building);
 		alertFragment.setArguments(extras);
 		transaction.commit();
@@ -231,106 +238,107 @@ public class MapActivity extends Activity implements NavigationListener {
 
 	// Alert für Shop Activity
 
-//	private void showShopAlert() {
-//
-//		builder.setTitle(R.string.shop_name);
-//		builder.setMessage("Möchtest du den Shop betreten?");
-//
-//		builder.setPositiveButton(R.string.ok,
-//				new DialogInterface.OnClickListener() {
-//
-//					@Override
-//					public void onClick(DialogInterface dialog, int which) {
-//
-//						Intent shopActivity = new Intent(MapActivity.this,
-//								ShopActivity.class);
-//						startActivity(shopActivity);
-//
-//						dialog.dismiss();
-//					}
-//
-//				});
-//
-//		builder.setNegativeButton(R.string.cancel,
-//				new DialogInterface.OnClickListener() {
-//
-//					@Override
-//					public void onClick(DialogInterface dialog, int which) {
-//						shopRangeChecked = true;
-//						dialog.dismiss();
-//					}
-//				});
-//		AlertDialog alert = builder.create();
-//		alert.show();
-//	}
-//
-//	// Alert für Dompteur Activity
-//
-//	private void showDompteurAlert() {
-//		builder.setTitle(R.string.dompteur_name);
-//		builder.setMessage("Möchtest du den Dompteur besuchen?");
-//
-//		builder.setPositiveButton(R.string.ok,
-//				new DialogInterface.OnClickListener() {
-//
-//					@Override
-//					public void onClick(DialogInterface dialog, int which) {
-//
-//						Intent dompteurActivity = new Intent(MapActivity.this,
-//								DompteurActivity.class);
-//						startActivity(dompteurActivity);
-//
-//						dialog.dismiss();
-//					}
-//
-//				});
-//
-//		builder.setNegativeButton(R.string.cancel,
-//				new DialogInterface.OnClickListener() {
-//
-//					@Override
-//					public void onClick(DialogInterface dialog, int which) {
-//						dompteurRangeChecked = true;
-//						dialog.dismiss();
-//					}
-//				});
-//		AlertDialog alert = builder.create();
-//		alert.show();
-//
-//	}
-//
-//	// Alert für Hospital Activity
-//
-//	private void showHospitalAlert() {
-//		builder.setTitle(R.string.hospital_name);
-//		builder.setMessage("Möchtest du das Hospital betreten?");
-//
-//		builder.setPositiveButton(R.string.ok,
-//				new DialogInterface.OnClickListener() {
-//
-//					@Override
-//					public void onClick(DialogInterface dialog, int which) {
-//
-//						Intent hospitalActivity = new Intent(MapActivity.this,
-//								HospitalActivity.class);
-//						startActivity(hospitalActivity);
-//
-//						dialog.dismiss();
-//					}
-//
-//				});
-//
-//		builder.setNegativeButton(R.string.cancel,
-//				new DialogInterface.OnClickListener() {
-//
-//					@Override
-//					public void onClick(DialogInterface dialog, int which) {
-//						hospitalRangeChecked = true;
-//						dialog.dismiss();
-//					}
-//				});
-//		AlertDialog alert = builder.create();
-//		alert.show();
-//
-//	}
+	/*private void showShopAlert() {
+
+		builder.setTitle(getResources().getString(R.string.shop_name));
+		builder.setMessage("Möchtest du den Shop betreten?");
+
+		builder.setPositiveButton(getResources().getString(R.string.ok),
+				new DialogInterface.OnClickListener() {
+
+					@Override
+					public void onClick(DialogInterface dialog, int which) {
+
+						Intent shopActivity = new Intent(MapActivity.this,
+								ShopActivity.class);
+						startActivity(shopActivity);
+
+						dialog.dismiss();
+					}
+
+				});
+
+		builder.setNegativeButton(getResources().getString(R.string.cancel),
+				new DialogInterface.OnClickListener() {
+
+					@Override
+					public void onClick(DialogInterface dialog, int which) {
+						shopRangeChecked = true;
+						dialog.dismiss();
+					}
+				});
+		AlertDialog alert = builder.create();
+		alert.show();
+	}
+
+	// Alert für Dompteur Activity
+
+	private void showDompteurAlert() {
+		builder.setTitle(getResources().getString(R.string.dompteur_name));
+		builder.setMessage("Möchtest du den Dompteur besuchen?");
+
+		builder.setPositiveButton(getResources().getString(R.string.ok),
+				new DialogInterface.OnClickListener() {
+
+					@Override
+					public void onClick(DialogInterface dialog, int which) {
+
+						Intent dompteurActivity = new Intent(MapActivity.this,
+								DompteurActivity.class);
+						startActivity(dompteurActivity);
+
+						dialog.dismiss();
+					}
+
+				});
+
+		builder.setNegativeButton(getResources().getString(R.string.cancel),
+				new DialogInterface.OnClickListener() {
+
+					@Override
+					public void onClick(DialogInterface dialog, int which) {
+						dompteurRangeChecked = true;
+						dialog.dismiss();
+					}
+				});
+		AlertDialog alert = builder.create();
+		alert.show();
+
+	}
+
+	// Alert für Hospital Activity
+
+	private void showHospitalAlert() {
+		builder.setTitle(getResources().getString(R.string.hospital_name));
+		builder.setMessage("Möchtest du das Hospital betreten?");
+
+		builder.setPositiveButton(getResources().getString(R.string.ok),
+				new DialogInterface.OnClickListener() {
+
+					@Override
+					public void onClick(DialogInterface dialog, int which) {
+
+						Intent hospitalActivity = new Intent(MapActivity.this,
+								HospitalActivity.class);
+						startActivity(hospitalActivity);
+
+						dialog.dismiss();
+					}
+
+				});
+
+		builder.setNegativeButton(getResources().getString(R.string.cancel),
+				new DialogInterface.OnClickListener() {
+
+					@Override
+					public void onClick(DialogInterface dialog, int which) {
+						hospitalRangeChecked = true;
+						dialog.dismiss();
+					}
+				});
+		AlertDialog alert = builder.create();
+		alert.show();
+
+	}*/
+
 }

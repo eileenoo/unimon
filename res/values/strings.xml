@@ -24,6 +24,11 @@
     <string name="back_button_text">Back</string>
     <string name="money_text">Money: </string>
     <string name="xp_text">XP: </string>
+    <string name="skillpoint_text">Skillpoints: </string>
+    <string name="unimon_name_text">Name</string>
+    <string name="current_skills_text">Current Skills</string>
+    <string name="dompteur_info_text">Welches Unimon moechtest du trainieren?</string>
+    
     
     <string name="item_count_text">Anzahl: </string>
     <string name="healpot_name">Healpot</string>
