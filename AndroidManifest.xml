@@ -71,13 +71,17 @@
             android:label="@string/app_name" >
         </activity>
         <activity
+            android:name="de.ur.unimon.buildings.DompteurUnimonListActivity"
+            android:label="@string/app_name" >
+        </activity>
+        <activity
             android:name="de.ur.unimon.buildings.HospitalActivity"
             android:label="@string/app_name" >
         </activity>
         <activity
             android:name="de.ur.unimon.buildings.ShopActivity"
             android:label="@string/app_name" >
-        </activity>
+        </activity>       
 
         <!-- MAPOVERVIEW_PACKAGE -->
         <activity

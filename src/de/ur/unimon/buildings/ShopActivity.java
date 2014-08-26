@@ -46,7 +46,7 @@ public class ShopActivity extends Activity {
 	private void initUI() {
 		inventory = player.getInventory();
 		money = (TextView) findViewById(R.id.money);
-		money.setText("Money: " + player.getMoney());
+		money.setText(getResources().getString(R.string.money_text) + player.getMoney());
 
 		// Healpot
 		healpot_Price = 100;
@@ -56,7 +56,7 @@ public class ShopActivity extends Activity {
 		healpotPrice = (TextView) findViewById(R.id.item_healpot_price);
 
 		// healpotImage.setImageResource(R.drawable.ic_launcher);
-		healpotCount.setText("Anzahl: " + inventory.getHealpotCount());
+		healpotCount.setText(getResources().getString(R.string.item_count_text) + inventory.getHealpotCount());
 		healpotPrice.setText("" + healpot_Price);
 
 		// Uniball
@@ -67,7 +67,7 @@ public class ShopActivity extends Activity {
 		uniballPrice = (TextView) findViewById(R.id.item_uniball_price);
 
 		// uniballImage.setImageResource(R.drawable.ic_launcher);
-		uniballCount.setText("Anzahl: " + inventory.getUniballCount());
+		uniballCount.setText(getResources().getString(R.string.item_count_text) + inventory.getUniballCount());
 		uniballPrice.setText("" + uniball_Price);
 
 		// Revive
@@ -78,7 +78,7 @@ public class ShopActivity extends Activity {
 		revivePrice = (TextView) findViewById(R.id.item_revive_price);
 
 		// reviveImage.setImageResource(R.drawable.ic_launcher);
-		reviveCount.setText("Anzahl: " + inventory.getReviveCount());
+		reviveCount.setText(getResources().getString(R.string.item_count_text) + inventory.getReviveCount());
 		revivePrice.setText("" + revive_Price);
 
 		// Protectors
@@ -89,7 +89,7 @@ public class ShopActivity extends Activity {
 		protectorPrice = (TextView) findViewById(R.id.item_protector_price);
 
 		// protectorImage.setImageResource(R.drawable.ic_launcher);
-		protectorCount.setText("Anzahl: " + inventory.getProtectorCount());
+		protectorCount.setText(getResources().getString(R.string.item_count_text) + inventory.getProtectorCount());
 		protectorPrice.setText("" + protector_Price);
 
 		setButtonsOnClick();
@@ -101,10 +101,10 @@ public class ShopActivity extends Activity {
 			public void onClick(View v) {
 				currentMoney = player.getMoney();
 				if (currentMoney >= healpot_Price) {
-					builder.setTitle(R.string.healpot_name);
+					builder.setTitle(getResources().getString(R.string.healpot_name));
 					builder.setMessage("Möchtest du Healpot wirklich kaufen?");
 
-					builder.setPositiveButton(R.string.ok,
+					builder.setPositiveButton(getResources().getString(R.string.ok),
 							new DialogInterface.OnClickListener() {
 
 								@Override
@@ -112,13 +112,13 @@ public class ShopActivity extends Activity {
 										int which) {
 									inventory.addHealpot();
 									player.addMoney(-healpot_Price);
-									money.setText(R.string.money_text + player.getMoney());
-									healpotCount.setText(R.string.item_count_text
+									money.setText(getResources().getString(R.string.money_text) + player.getMoney());
+									healpotCount.setText(getResources().getString(R.string.item_count_text)
 											+ inventory.getHealpotCount());
 									dialog.dismiss();
 								}
 							});
-					builder.setNegativeButton(R.string.cancel,
+					builder.setNegativeButton(getResources().getString(R.string.cancel),
 							new DialogInterface.OnClickListener() {
 
 								@Override
@@ -139,10 +139,10 @@ public class ShopActivity extends Activity {
 			public void onClick(View v) {
 				currentMoney = player.getMoney();
 				if (currentMoney >= uniball_Price) {
-					builder.setTitle(R.string.uniball_name);
+					builder.setTitle(getResources().getString(R.string.uniball_name));
 					builder.setMessage("Möchtest du Uniball wirklich kaufen?");
 
-					builder.setPositiveButton(R.string.ok,
+					builder.setPositiveButton(getResources().getString(R.string.ok),
 							new DialogInterface.OnClickListener() {
 
 								@Override
@@ -150,12 +150,12 @@ public class ShopActivity extends Activity {
 										int which) {
 									inventory.addUniball();
 									player.addMoney(-uniball_Price);
-									money.setText(R.string.money_text + player.getMoney());
-									uniballCount.setText(R.string.item_count_text
+									money.setText(getResources().getString(R.string.money_text) + player.getMoney());
+									uniballCount.setText(getResources().getString(R.string.item_count_text)
 											+ inventory.getUniballCount());
 								}
 							});
-					builder.setNegativeButton(R.string.cancel,
+					builder.setNegativeButton(getResources().getString(R.string.cancel),
 							new DialogInterface.OnClickListener() {
 
 								@Override
@@ -176,10 +176,10 @@ public class ShopActivity extends Activity {
 			public void onClick(View v) {
 				currentMoney = player.getMoney();
 				if (currentMoney >= revive_Price) {
-					builder.setTitle(R.string.revive_name);
+					builder.setTitle(getResources().getString(R.string.revive_name));
 					builder.setMessage("Möchtest du Revive wirklich kaufen?");
 
-					builder.setPositiveButton(R.string.ok,
+					builder.setPositiveButton(getResources().getString(R.string.ok),
 							new DialogInterface.OnClickListener() {
 
 								@Override
@@ -187,12 +187,12 @@ public class ShopActivity extends Activity {
 										int which) {
 									inventory.addRevive();
 									player.addMoney(-revive_Price);
-									money.setText(R.string.money_text + player.getMoney());
-									reviveCount.setText(R.string.item_count_text
+									money.setText(getResources().getString(R.string.money_text) + player.getMoney());
+									reviveCount.setText(getResources().getString(R.string.item_count_text)
 											+ inventory.getReviveCount());
 								}
 							});
-					builder.setNegativeButton(R.string.cancel,
+					builder.setNegativeButton(getResources().getString(R.string.cancel),
 							new DialogInterface.OnClickListener() {
 
 								@Override
@@ -213,10 +213,10 @@ public class ShopActivity extends Activity {
 			public void onClick(View v) {
 				currentMoney = player.getMoney();
 				if (currentMoney >= protector_Price) {
-					builder.setTitle(R.string.protector_name);
+					builder.setTitle(getResources().getString(R.string.protector_name));
 					builder.setMessage("Möchtest du Protector wirklich kaufen?");
 
-					builder.setPositiveButton(R.string.ok,
+					builder.setPositiveButton(getResources().getString(R.string.ok),
 							new DialogInterface.OnClickListener() {
 
 								@Override
@@ -224,12 +224,12 @@ public class ShopActivity extends Activity {
 										int which) {
 									inventory.addProtector();
 									player.addMoney(-protector_Price);
-									money.setText(R.string.money_text + player.getMoney());
-									protectorCount.setText(R.string.item_count_text
+									money.setText(getResources().getString(R.string.money_text) + player.getMoney());
+									protectorCount.setText(getResources().getString(R.string.item_count_text)
 											+ inventory.getProtectorCount());
 								}
 							});
-					builder.setNegativeButton(R.string.cancel,
+					builder.setNegativeButton(getResources().getString(R.string.cancel),
 							new DialogInterface.OnClickListener() {
 
 								@Override
@@ -250,9 +250,9 @@ public class ShopActivity extends Activity {
 
 	private void showLessMoneyAlert() {
 		builder = new AlertDialog.Builder(this);
-		builder.setTitle(R.string.alert_money_warning_title);
-		builder.setMessage(R.string.alert_money_warning_message);
-		builder.setPositiveButton(R.string.ok,
+		builder.setTitle(getResources().getString(R.string.alert_money_warning_title));
+		builder.setMessage(getResources().getString(R.string.alert_money_warning_message));
+		builder.setPositiveButton(getResources().getString(R.string.ok),
 				new DialogInterface.OnClickListener() {
 					@Override
 					public void onClick(DialogInterface dialog, int which) {

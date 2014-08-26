@@ -136,8 +136,8 @@ public class MapActivity extends Activity implements NavigationListener {
 		movePlayerButton.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				Intent shop = new Intent(MapActivity.this, ShopActivity.class);
-				startActivity(shop);
+				Intent dompteur = new Intent(MapActivity.this, DompteurActivity.class);
+				startActivity(dompteur);
 				// playerXCoord += 20;
 				// playerYCoord += 50;
 			}
@@ -212,10 +212,10 @@ public class MapActivity extends Activity implements NavigationListener {
 
 	private void showShopAlert() {
 
-		builder.setTitle(R.string.shop_name);
+		builder.setTitle(getResources().getString(R.string.shop_name));
 		builder.setMessage("Möchtest du den Shop betreten?");
 
-		builder.setPositiveButton(R.string.ok,
+		builder.setPositiveButton(getResources().getString(R.string.ok),
 				new DialogInterface.OnClickListener() {
 
 					@Override
@@ -230,7 +230,7 @@ public class MapActivity extends Activity implements NavigationListener {
 
 				});
 
-		builder.setNegativeButton(R.string.cancel,
+		builder.setNegativeButton(getResources().getString(R.string.cancel),
 				new DialogInterface.OnClickListener() {
 
 					@Override
@@ -246,10 +246,10 @@ public class MapActivity extends Activity implements NavigationListener {
 	// Alert für Dompteur Activity
 
 	private void showDompteurAlert() {
-		builder.setTitle(R.string.dompteur_name);
+		builder.setTitle(getResources().getString(R.string.dompteur_name));
 		builder.setMessage("Möchtest du den Dompteur besuchen?");
 
-		builder.setPositiveButton(R.string.ok,
+		builder.setPositiveButton(getResources().getString(R.string.ok),
 				new DialogInterface.OnClickListener() {
 
 					@Override
@@ -264,7 +264,7 @@ public class MapActivity extends Activity implements NavigationListener {
 
 				});
 
-		builder.setNegativeButton(R.string.cancel,
+		builder.setNegativeButton(getResources().getString(R.string.cancel),
 				new DialogInterface.OnClickListener() {
 
 					@Override
@@ -281,10 +281,10 @@ public class MapActivity extends Activity implements NavigationListener {
 	// Alert für Hospital Activity
 
 	private void showHospitalAlert() {
-		builder.setTitle(R.string.hospital_name);
+		builder.setTitle(getResources().getString(R.string.hospital_name));
 		builder.setMessage("Möchtest du das Hospital betreten?");
 
-		builder.setPositiveButton(R.string.ok,
+		builder.setPositiveButton(getResources().getString(R.string.ok),
 				new DialogInterface.OnClickListener() {
 
 					@Override
@@ -299,7 +299,7 @@ public class MapActivity extends Activity implements NavigationListener {
 
 				});
 
-		builder.setNegativeButton(R.string.cancel,
+		builder.setNegativeButton(getResources().getString(R.string.cancel),
 				new DialogInterface.OnClickListener() {
 
 					@Override

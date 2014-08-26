@@ -53,12 +53,12 @@ public class NewGameActivity extends Activity{
     		public void onClick(View v) {    			
     			
     			if (pageNum == 0){
-    				story_part_one.setText(R.string.story_part_two);
+    				story_part_one.setText(getResources().getString(R.string.story_part_two));
     				pageNum++;
     			}
     			
     			else if (pageNum == 1){
-    				story_part_one.setText(R.string.story_part_three);
+    				story_part_one.setText(getResources().getString(R.string.story_part_three));
     				pageNum++;
     			}
     			   			     			
