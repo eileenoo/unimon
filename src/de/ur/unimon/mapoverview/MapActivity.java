@@ -1,27 +1,25 @@
 package de.ur.unimon.mapoverview;
 
-import de.ur.mi.android.excercises.starter.R;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import de.ur.mi.android.excercises.starter.R;
 import de.ur.unimon.actionbar.InventoryActivity;
 import de.ur.unimon.actionbar.UnimonListActivity;
 import de.ur.unimon.battle.ChooseBattleUnimonsActivity;
 import de.ur.unimon.buildings.DompteurActivity;
-import de.ur.unimon.buildings.HospitalActivity;
-import de.ur.unimon.buildings.ShopActivity;
 import de.ur.unimon.navigation.NavigationController;
 import de.ur.unimon.navigation.NavigationListener;
 import de.ur.unimon.navigation.PlayerPositionDetail;
@@ -65,11 +63,15 @@ public class MapActivity extends Activity implements NavigationListener {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.map_activity);
+		System.out.println("looooog");
+
 		playerXCoord = playerYCoord = 0;
 		builder = new AlertDialog.Builder(this);
 		initUI();
 		initNavigation();
 		initFragmentManager();
+		Log.d("hallo", "isDompteurInRange: "+isDompteurInRange);
+		
 	}
 	
 	private void initFragmentManager() {
@@ -184,6 +186,7 @@ public class MapActivity extends Activity implements NavigationListener {
 				- leftUpperCornerLongitude) / helpVarX);
 		playerYCoord = (int) (Math
 				.abs(playerLatitude - leftUpperCornerLatitude) / helpVarY);
+		Log.d("hallo", ""+isDompteurInRange);
 		checkRangeTrue(playerPosDetail);
 		checkRangeFalse(playerPosDetail);
 	}
@@ -207,17 +210,17 @@ public class MapActivity extends Activity implements NavigationListener {
 	private void checkRangeFalse(PlayerPositionDetail playerPosDetail) {
 		if (isShopInRange == false && playerPosDetail.getDistanceShop() < rangeBuildings) {
 			//showShopAlert();
-			isShopInRange = false;
+			isShopInRange = true;
 			showFragmentForBuildings("Shop");
 		} else if (isDompteurInRange == false
 				&& playerPosDetail.getDistanceDompteur() < rangeBuildings) {
 			//showDompteurAlert();
-			isDompteurInRange = false;
+			isDompteurInRange = true;
 			showFragmentForBuildings("Dompteur");
 		} else if (isHospitalInRange == false
 				&& playerPosDetail.getDistanceHospital() < rangeBuildings) {
 			//showHospitalAlert();
-			isHospitalInRange = false;
+			isHospitalInRange = true;
 			showFragmentForBuildings("Hospital");
 		}
 	}
@@ -228,10 +231,11 @@ public class MapActivity extends Activity implements NavigationListener {
 			extras = alertFragment.getArguments();
 			extras.clear();
 		};
+
 		extras.putString("building", building);
+
 		alertFragment.setArguments(extras);
 		transaction.commit();
-		
 	}
 
 	
