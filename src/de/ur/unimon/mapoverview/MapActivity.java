@@ -1,12 +1,10 @@
 package de.ur.unimon.mapoverview;
 
-import de.ur.mi.android.excercises.starter.R;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -17,12 +15,11 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import de.ur.mi.android.excercises.starter.R;
 import de.ur.unimon.actionbar.InventoryActivity;
 import de.ur.unimon.actionbar.UnimonListActivity;
 import de.ur.unimon.battle.ChooseBattleUnimonsActivity;
 import de.ur.unimon.buildings.DompteurActivity;
-import de.ur.unimon.buildings.HospitalActivity;
-import de.ur.unimon.buildings.ShopActivity;
 import de.ur.unimon.navigation.NavigationController;
 import de.ur.unimon.navigation.NavigationListener;
 import de.ur.unimon.navigation.PlayerPositionDetail;
@@ -32,6 +29,7 @@ public class MapActivity extends Activity implements NavigationListener {
 	Button inventoryButton, unimonsButton, mapButton, movePlayerButton;
 	Bitmap map, player;
 	public int playerXCoord, playerYCoord;
+	
 	LinearLayout canvasLayout;
 	private NavigationController navigationController;
 	private double playerLatitude, playerLongitude;
@@ -59,9 +57,7 @@ public class MapActivity extends Activity implements NavigationListener {
 	private boolean isTrainerSixInRange = false;
 	private boolean	isTrainerBossInRange = false;
 	
-	private EnterAlertFragment alertFragment;
 	private FragmentManager fragmentManager;
-	private FragmentTransaction transaction;
 	
 	
 	AlertDialog.Builder builder;
@@ -80,11 +76,8 @@ public class MapActivity extends Activity implements NavigationListener {
 	}
 	
 	private void initFragmentManager() {
-		alertFragment = new EnterAlertFragment();
 		fragmentManager = getFragmentManager();
-		transaction = fragmentManager.beginTransaction();
-		transaction.setCustomAnimations(R.animator.slide_in_bottom, R.animator.slide_out_top);
-		transaction.add(R.id.map_activity_layout, alertFragment, "alertFragment");
+		
 	}
 
 	@Override
@@ -191,6 +184,7 @@ public class MapActivity extends Activity implements NavigationListener {
 				- leftUpperCornerLongitude) / helpVarX);
 		playerYCoord = (int) (Math
 				.abs(playerLatitude - leftUpperCornerLatitude) / helpVarY);
+		Log.d("hoi", "onPlayerPos "+isDompteurInRange);
 		checkRangeTrue(playerPosDetail);
 		checkRangeFalse(playerPosDetail);
 	}
@@ -202,6 +196,7 @@ public class MapActivity extends Activity implements NavigationListener {
 
 		else if (isDompteurInRange == true
 				&& playerPosDetail.getDistanceDompteur() >= rangeBuildings) {
+			Log.d("hoi", "checkRangeTrue "+isDompteurInRange);
 			isDompteurInRange = false;
 		}
 
@@ -226,6 +221,7 @@ public class MapActivity extends Activity implements NavigationListener {
 		} else if (isDompteurInRange == false
 				&& playerPosDetail.getDistanceDompteur() < rangeBuildings) {
 			//showDompteurAlert();
+			Log.d("hoi", "checkRangeFalse "+isDompteurInRange);
 			isDompteurInRange = true;
 			showFragmentForBuildings("Dompteur");
 		} else if (isHospitalInRange == false
@@ -305,11 +301,18 @@ public class MapActivity extends Activity implements NavigationListener {
 	}
 	
 	private void showFragmentForBuildings(String building) {
+		EnterAlertFragment alertFragment = new EnterAlertFragment();
+		FragmentTransaction transaction = fragmentManager.beginTransaction();
+		transaction.setCustomAnimations(R.animator.slide_in_bottom, R.animator.slide_out_top);
+		transaction.add(R.id.map_activity_layout, alertFragment, "alertFragment");
 		Bundle extras = new Bundle();
-		extras.putString("building", building);
+		if (alertFragment.getArguments() != null){
+			extras = alertFragment.getArguments();
+			extras.clear();
+		};
+		extras.putString("building", building);	
 		alertFragment.setArguments(extras);
 		transaction.commit();
-		
 	}
 
 	

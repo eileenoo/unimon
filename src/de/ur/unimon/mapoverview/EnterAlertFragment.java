@@ -85,7 +85,7 @@ public class EnterAlertFragment extends Fragment {
 			@Override
 			public void onClick(View v) {
 				Log.d("hallo", "CANCEL!!!!");
-				closeFragment();				
+				closeFragment();			
 			}
 		});
 		
