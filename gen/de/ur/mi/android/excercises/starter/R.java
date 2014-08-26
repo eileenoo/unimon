@@ -48,11 +48,11 @@ public final class R {
         public static final int canvas_layout=0x7f090029;
         public static final int choose_unimon_for_battle_textView=0x7f09000c;
         public static final int choose_unimon_listView=0x7f09000d;
-        public static final int do_not_enter=0x7f090018;
+        public static final int do_not_enter=0x7f090017;
         public static final int dompteur=0x7f09000e;
         public static final int dompteur_improve_skill=0x7f090010;
         public static final int dompteur_new_skill=0x7f09000f;
-        public static final int enter=0x7f090017;
+        public static final int enter=0x7f090018;
         public static final int game_description=0x7f090011;
         public static final int game_description_scroll=0x7f090012;
         public static final int guide_button=0x7f090003;
