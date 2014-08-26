@@ -68,15 +68,12 @@ public class MapActivity extends Activity implements NavigationListener {
 		initUI();
 		initNavigation();
 		initFragmentManager();
-<<<<<<< HEAD
-		Log.d("hallo", "isDompteurInRange: "+isDompteurInRange);
-		
-=======
-		onPlayerPositionDetailChanged(new PlayerPositionDetail(12, 48, 100, 30, 1000));
-		onPlayerPositionDetailChanged(new PlayerPositionDetail(12, 48, 100, 20, 1000));
-		onPlayerPositionDetailChanged(new PlayerPositionDetail(12, 48, 100, 30, 1000));
-		onPlayerPositionDetailChanged(new PlayerPositionDetail(12, 48, 100, 20, 1000));
->>>>>>> branch 'master' of https://github.com/neniman/unimon.git
+
+//		onPlayerPositionDetailChanged(new PlayerPositionDetail(12, 48, 100, 30, 1000));
+//		onPlayerPositionDetailChanged(new PlayerPositionDetail(12, 48, 100, 20, 1000));
+//		onPlayerPositionDetailChanged(new PlayerPositionDetail(12, 48, 100, 30, 1000));
+//		onPlayerPositionDetailChanged(new PlayerPositionDetail(12, 48, 100, 20, 1000));
+
 	}
 	
 	private void initFragmentManager() {
