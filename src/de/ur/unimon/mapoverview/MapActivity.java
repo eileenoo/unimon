@@ -207,27 +207,30 @@ public class MapActivity extends Activity implements NavigationListener {
 	private void checkRangeFalse(PlayerPositionDetail playerPosDetail) {
 		if (isShopInRange == false && playerPosDetail.getDistanceShop() < rangeBuildings) {
 			//showShopAlert();
-			isShopInRange = false;
+			isShopInRange = true;
 			showFragmentForBuildings("Shop");
 		} else if (isDompteurInRange == false
 				&& playerPosDetail.getDistanceDompteur() < rangeBuildings) {
 			//showDompteurAlert();
-			isDompteurInRange = false;
+			isDompteurInRange = true;
 			showFragmentForBuildings("Dompteur");
 		} else if (isHospitalInRange == false
 				&& playerPosDetail.getDistanceHospital() < rangeBuildings) {
 			//showHospitalAlert();
-			isHospitalInRange = false;
+			isHospitalInRange = true;
 			showFragmentForBuildings("Hospital");
 		}
 	}
 	
 	private void showFragmentForBuildings(String building) {
 		Bundle extras = new Bundle();
-		extras.putString("building", building);
+		if (alertFragment.getArguments() != null){
+			extras = alertFragment.getArguments();
+			extras.clear();
+		};
+		extras.putString("building", building);	
 		alertFragment.setArguments(extras);
 		transaction.commit();
-		
 	}
 
 	
