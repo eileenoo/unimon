@@ -81,13 +81,13 @@ public class NavigationController implements LocationListener{
 	}
 	
 	private void setDompteurCoords(){
-		dompteur.setLatitude(48.99787); //richtige Koordinaten fehlen!!! // 48.9992075
-		dompteur.setLongitude(12.09410); //12.095735
+		dompteur.setLatitude(48.9992075); //richtige Koordinaten fehlen!!! // 48.9992075
+		dompteur.setLongitude(12.095735); //12.095735
 	}
 	
 	private void setHospitalCoords(){
-		hospital.setLatitude(48.99787); //richtige Koordinaten fehlen!!! // 48.9981304
-		hospital.setLongitude(12.09403);// 12.0932311
+		hospital.setLatitude(48.9981304); //richtige Koordinaten fehlen!!! // 48.9981304
+		hospital.setLongitude(12.0932311);// 12.0932311
 	}
 
 	

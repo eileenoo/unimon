@@ -48,14 +48,15 @@ public class MapActivity extends Activity implements NavigationListener {
 	public float PIXEL_X; //1559; //1169
 	public float PIXEL_Y; //2731; //2048
 
-	private boolean shopRangeChecked = false;
-	private boolean dompteurRangeChecked = false;
+	private boolean isShopInRange = false;
+	private boolean isDompteurInRange = false;
+	private boolean isHospitalInRange = false;
 	
 	private EnterAlertFragment alertFragment;
 	private FragmentManager fragmentManager;
 	private FragmentTransaction transaction;
 	
-	private boolean hospitalRangeChecked = false;
+	
 	AlertDialog.Builder builder;
 
 	
@@ -185,32 +186,35 @@ public class MapActivity extends Activity implements NavigationListener {
 	}
 
 	private void checkRangeTrue(PlayerPositionDetail playerPosDetail) {
-		if (shopRangeChecked == true && playerPosDetail.getDistanceShop() >= rangeBuildings) {
-			shopRangeChecked = false;
+		if (isShopInRange == true && playerPosDetail.getDistanceShop() >= rangeBuildings) {
+			isShopInRange = false;
 		}
 
-		else if (dompteurRangeChecked == true
+		else if (isDompteurInRange == true
 				&& playerPosDetail.getDistanceDompteur() >= rangeBuildings) {
-			dompteurRangeChecked = false;
+			isDompteurInRange = false;
 		}
 
-		else if (hospitalRangeChecked == true
+		else if (isHospitalInRange == true
 				&& playerPosDetail.getDistanceHospital() >= rangeBuildings) {
-			hospitalRangeChecked = false;
+			isHospitalInRange = false;
 		}
 	}
 
 	private void checkRangeFalse(PlayerPositionDetail playerPosDetail) {
-		if (shopRangeChecked == false && playerPosDetail.getDistanceShop() < rangeBuildings) {
+		if (isShopInRange == false && playerPosDetail.getDistanceShop() < rangeBuildings) {
 			//showShopAlert();
+			isShopInRange = false;
 			showFragmentForBuildings("Shop");
-		} else if (dompteurRangeChecked == false
+		} else if (isDompteurInRange == false
 				&& playerPosDetail.getDistanceDompteur() < rangeBuildings) {
 			//showDompteurAlert();
+			isDompteurInRange = false;
 			showFragmentForBuildings("Dompteur");
-		} else if (hospitalRangeChecked == false
+		} else if (isHospitalInRange == false
 				&& playerPosDetail.getDistanceHospital() < rangeBuildings) {
 			//showHospitalAlert();
+			isHospitalInRange = false;
 			showFragmentForBuildings("Hospital");
 		}
 	}
