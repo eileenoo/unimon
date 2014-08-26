@@ -45,6 +45,7 @@ public final class R {
         public static final int battle_unimon_three_button=0x7f09000b;
         public static final int battle_unimon_two_button=0x7f09000a;
         public static final int battle_use_item_button=0x7f090005;
+        public static final int button_healAll=0x7f09001a;
         public static final int canvas_layout=0x7f09002d;
         public static final int choose_unimon_for_battle_textView=0x7f09000c;
         public static final int choose_unimon_listView=0x7f09000d;
@@ -59,7 +60,6 @@ public final class R {
         public static final int guide_button=0x7f090003;
         public static final int healpot_image=0x7f09001e;
         public static final int healthBar=0x7f090041;
-        public static final int hospital=0x7f09001a;
         public static final int inner_Llayout=0x7f09002c;
         public static final int inventory=0x7f09002e;
         public static final int item_healpot=0x7f090022;

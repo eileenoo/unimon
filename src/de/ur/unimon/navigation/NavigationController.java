@@ -1,5 +1,6 @@
 package de.ur.unimon.navigation;
 
+import de.ur.unimon.battle.TrainerList;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.location.Location;
@@ -9,29 +10,36 @@ import android.os.Bundle;
 import android.util.Log;
 import android.widget.Toast;
 
-public class NavigationController implements LocationListener{
-	
+public class NavigationController implements LocationListener {
+
 	public static final long UPDATE_TIME = 500;
 	public static final float UPDATE_DISTANCE = 1;
 	LocationManager locationManager;
 	private Location lastLocation;
-	Location shop, dompteur, hospital;
-	
+	Location shop, dompteur, hospital, trainerOne, trainerTwo, trainerThree,
+			trainerFour, trainerFive, trainerSix, trainerBoss;
+	TrainerList trainerList;
+
 	private NavigationListener navigationListener;
 	PlayerPositionDetail playerPosDetail;
 	ProgressDialog progressDialog;
 	private String gps_lost_info = "Searching for GPS-Signal";
 
-	public NavigationController(Context context,NavigationListener navigationListener) {
+	public NavigationController(Context context,
+			NavigationListener navigationListener) {
 		this.navigationListener = navigationListener;
+		trainerList = new TrainerList();
 		init(context);
 	}
 
 	private void init(Context context) {
-		locationManager = (LocationManager) context.getSystemService(Context.LOCATION_SERVICE);
-		lastLocation = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+		locationManager = (LocationManager) context
+				.getSystemService(Context.LOCATION_SERVICE);
+		lastLocation = locationManager
+				.getLastKnownLocation(LocationManager.GPS_PROVIDER);
 
-		if (lastLocation == null|| locationManager
+		if (lastLocation == null
+				|| locationManager
 						.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
 			Toast toast = Toast.makeText(context, gps_lost_info,
 					Toast.LENGTH_LONG);
@@ -42,7 +50,8 @@ public class NavigationController implements LocationListener{
 	}
 
 	public void start() {
-		locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, UPDATE_TIME, UPDATE_DISTANCE, this);
+		locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER,
+				UPDATE_TIME, UPDATE_DISTANCE, this);
 	}
 
 	public void stop() {
@@ -52,43 +61,121 @@ public class NavigationController implements LocationListener{
 	public Location getLastKnownLocation() {
 		return lastLocation;
 	}
-	
+
 	private void updateNavigationInformation() {
+		trainerList = new TrainerList();
+		trainerOne = new Location("");
+		trainerTwo = new Location("");
+		trainerThree = new Location("");
+		trainerFour = new Location("");
+		trainerFive = new Location("");
+		trainerSix = new Location("");
+		trainerBoss = new Location("");
 		shop = new Location("");
 		dompteur = new Location("");
 		hospital = new Location("");
+		setTrainerOneCoords();
+		setTrainerTwoCoords();
+		setTrainerThreeCoords();
+		setTrainerFourCoords();
+		setTrainerFiveCoords();
+		setTrainerSixCoords();
+		setTrainerBossCoords();
 		setShopCoords();
 		setDompteurCoords();
 		setHospitalCoords();
-		if (navigationListener == null || shop == null || dompteur == null || hospital == null) {
+		if (navigationListener == null || shop == null || dompteur == null
+				|| hospital == null || trainerOne == null || trainerTwo == null
+				|| trainerThree == null || trainerFour == null
+				|| trainerFive == null || trainerSix == null
+				|| trainerBoss == null) {
 			return;
 		}
-		double latitude =  lastLocation.getLatitude();
-		double longitude =  lastLocation.getLongitude();
+		double latitude = lastLocation.getLatitude();
+		double longitude = lastLocation.getLongitude();
 		float distanceShop = lastLocation.distanceTo(shop);
 		float distanceDompteur = lastLocation.distanceTo(dompteur);
 		float distanceHospital = lastLocation.distanceTo(hospital);
-		playerPosDetail = new PlayerPositionDetail (latitude, longitude, distanceShop, distanceDompteur, distanceHospital);
+		float distanceTrainerOne = lastLocation.distanceTo(trainerOne);
+		float distanceTrainerTwo = lastLocation.distanceTo(trainerTwo);
+		float distanceTrainerThree = lastLocation.distanceTo(trainerThree);
+		float distanceTrainerFour = lastLocation.distanceTo(trainerFour);
+		float distanceTrainerFive = lastLocation.distanceTo(trainerFive);
+		float distanceTrainerSix = lastLocation.distanceTo(trainerSix);
+		float distanceTrainerBoss = lastLocation.distanceTo(trainerBoss);
+
+		playerPosDetail = new PlayerPositionDetail(latitude, longitude,
+				distanceShop, distanceDompteur, distanceHospital,
+				distanceTrainerOne, distanceTrainerTwo, distanceTrainerThree,
+				distanceTrainerFour, distanceTrainerFive, distanceTrainerSix,
+				distanceTrainerBoss);
 		navigationListener.onPlayerPositionDetailChanged(playerPosDetail);
 	}
 
-	
-	private void setShopCoords(){
-		shop.setLatitude(48.9977715); 
+	private void setTrainerOneCoords() {
+		trainerOne.setLatitude(trainerList.getTrainerList().get(0)
+				.getLatitude());
+		trainerOne.setLongitude(trainerList.getTrainerList().get(0)
+				.getLongitude());
+	}
+
+	private void setTrainerTwoCoords() {
+		trainerTwo.setLatitude(trainerList.getTrainerList().get(1)
+				.getLatitude());
+		trainerTwo.setLongitude(trainerList.getTrainerList().get(1)
+				.getLongitude());
+	}
+
+	private void setTrainerThreeCoords() {
+		trainerThree.setLatitude(trainerList.getTrainerList().get(2)
+				.getLatitude());
+		trainerThree.setLongitude(trainerList.getTrainerList().get(2)
+				.getLongitude());
+	}
+
+	private void setTrainerFourCoords() {
+		trainerFour.setLatitude(trainerList.getTrainerList().get(3)
+				.getLatitude());
+		trainerFour.setLongitude(trainerList.getTrainerList().get(3)
+				.getLongitude());
+	}
+
+	private void setTrainerFiveCoords() {
+		trainerFive.setLatitude(trainerList.getTrainerList().get(4)
+				.getLatitude());
+		trainerFive.setLongitude(trainerList.getTrainerList().get(4)
+				.getLongitude());
+	}
+
+	private void setTrainerSixCoords() {
+		trainerSix.setLatitude(trainerList.getTrainerList().get(5)
+				.getLatitude());
+		trainerSix.setLongitude(trainerList.getTrainerList().get(5)
+				.getLongitude());
+	}
+
+	private void setTrainerBossCoords() {
+		trainerBoss.setLatitude(trainerList.getTrainerList().get(6)
+				.getLatitude());
+		trainerBoss.setLongitude(trainerList.getTrainerList().get(6)
+				.getLongitude());
+	}
+
+	private void setShopCoords() {
+		shop.setLatitude(48.9977715);
 		shop.setLongitude(12.0938617);
 	}
-	
-	private void setDompteurCoords(){
+
+	private void setDompteurCoords() {
 		dompteur.setLatitude(48.9992075);
-		dompteur.setLongitude(12.095735); 
+		dompteur.setLongitude(12.095735);
 	}
-	
-	private void setHospitalCoords(){
+
+	private void setHospitalCoords() {
 		hospital.setLatitude(48.9981304);
 		hospital.setLongitude(12.0932311);
 	}
 
-	
 	@Override
 	public void onLocationChanged(Location location) {
 		Log.d("hoi", "onLocationChanged");

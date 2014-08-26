@@ -12,6 +12,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -43,14 +44,20 @@ public class MapActivity extends Activity implements NavigationListener {
 																		// Breitengrad
 																		// y
 	private double rangeBuildings = 25;
-	private int shopXCoord, dompteurXCoord, hospitalXCoord;
-	private int shopYCoord, dompteurYCoord, hospitalYCoord;
+	private double rangeTrainer = 30;
 	public float PIXEL_X; //1559; //1169
 	public float PIXEL_Y; //2731; //2048
 
 	private boolean isShopInRange = false;
 	private boolean isDompteurInRange = false;
 	private boolean isHospitalInRange = false;
+	private boolean isTrainerOneInRange = false;
+	private boolean isTrainerTwoInRange = false;
+	private boolean isTrainerThreeInRange = false;
+	private boolean isTrainerFourInRange = false;
+	private boolean isTrainerFiveInRange = false;
+	private boolean isTrainerSixInRange = false;
+	private boolean	isTrainerBossInRange = false;
 	
 	private EnterAlertFragment alertFragment;
 	private FragmentManager fragmentManager;
@@ -202,23 +209,98 @@ public class MapActivity extends Activity implements NavigationListener {
 				&& playerPosDetail.getDistanceHospital() >= rangeBuildings) {
 			isHospitalInRange = false;
 		}
+		
+		else if (isTrainerThreeInRange == true
+				&& playerPosDetail.getDistanceTrainerThree() >= rangeTrainer) {
+			isTrainerThreeInRange = false;
+		}
+		
 	}
 
 	private void checkRangeFalse(PlayerPositionDetail playerPosDetail) {
+		Log.d("hoi", "Trainer 1 Distanz" + playerPosDetail.getDistanceTrainerOne());
 		if (isShopInRange == false && playerPosDetail.getDistanceShop() < rangeBuildings) {
 			//showShopAlert();
-			isShopInRange = false;
+			isShopInRange = true;
 			showFragmentForBuildings("Shop");
 		} else if (isDompteurInRange == false
 				&& playerPosDetail.getDistanceDompteur() < rangeBuildings) {
 			//showDompteurAlert();
-			isDompteurInRange = false;
+			isDompteurInRange = true;
 			showFragmentForBuildings("Dompteur");
 		} else if (isHospitalInRange == false
 				&& playerPosDetail.getDistanceHospital() < rangeBuildings) {
 			//showHospitalAlert();
-			isHospitalInRange = false;
+			isHospitalInRange = true;
 			showFragmentForBuildings("Hospital");
+		}
+		else if (isTrainerOneInRange == false
+				&& playerPosDetail.getDistanceTrainerOne() < rangeTrainer) {
+			//showHospitalAlert();
+			Log.d("hoi", "Trainer 1 check");
+			isTrainerOneInRange = true;
+			Intent battleStart = new Intent(MapActivity.this,
+					ChooseBattleUnimonsActivity.class);
+			startActivity(battleStart);
+		}		
+		else if (isTrainerTwoInRange == false
+				&& playerPosDetail.getDistanceTrainerTwo() < rangeTrainer) {
+			//showHospitalAlert();
+			Log.d("hoi", "Trainer 2 check");
+			isTrainerTwoInRange = true;
+			Intent battleStart = new Intent(MapActivity.this,
+					ChooseBattleUnimonsActivity.class);
+			startActivity(battleStart);
+		}
+		
+		else if (isTrainerThreeInRange == false
+				&& playerPosDetail.getDistanceTrainerThree() < rangeTrainer) {
+			//showHospitalAlert();
+			Log.d("hoi", "Trainer 3 check");
+			isTrainerThreeInRange = true;
+			Intent battleStart = new Intent(MapActivity.this,
+					ChooseBattleUnimonsActivity.class);
+			startActivity(battleStart);
+		}
+		
+		else if (isTrainerFourInRange == false
+				&& playerPosDetail.getDistanceTrainerFour() < rangeTrainer) {
+			//showHospitalAlert();
+			Log.d("hoi", "Trainer 4 check");
+			isTrainerFourInRange = true;
+			Intent battleStart = new Intent(MapActivity.this,
+					ChooseBattleUnimonsActivity.class);
+			startActivity(battleStart);
+		}
+		
+		else if (isTrainerFiveInRange == false
+				&& playerPosDetail.getDistanceTrainerFive() < rangeTrainer) {
+			//showHospitalAlert();
+			Log.d("hoi", "Trainer 5 check");
+			isTrainerFiveInRange = true;
+			Intent battleStart = new Intent(MapActivity.this,
+					ChooseBattleUnimonsActivity.class);
+			startActivity(battleStart);
+		}
+		
+		else if (isTrainerSixInRange == false
+				&& playerPosDetail.getDistanceTrainerSix() < rangeTrainer) {
+			//showHospitalAlert();
+			Log.d("hoi", "Trainer 6 check");
+			isTrainerSixInRange = true;
+			Intent battleStart = new Intent(MapActivity.this,
+					ChooseBattleUnimonsActivity.class);
+			startActivity(battleStart);
+		}
+		
+		else if (isTrainerBossInRange == false
+				&& playerPosDetail.getDistanceTrainerBoss() < rangeTrainer) {
+			//showHospitalAlert();
+			Log.d("hoi", "Trainer Boss check");
+			isTrainerBossInRange = true;
+			Intent battleStart = new Intent(MapActivity.this,
+					ChooseBattleUnimonsActivity.class);
+			startActivity(battleStart);
 		}
 	}
 	
