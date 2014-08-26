@@ -50,9 +50,7 @@ public class MapActivity extends Activity implements NavigationListener {
 	private boolean isDompteurInRange = false;
 	private boolean isHospitalInRange = false;
 	
-	private EnterAlertFragment alertFragment;
 	private FragmentManager fragmentManager;
-	private FragmentTransaction transaction;
 	
 	
 	AlertDialog.Builder builder;
@@ -70,16 +68,20 @@ public class MapActivity extends Activity implements NavigationListener {
 		initUI();
 		initNavigation();
 		initFragmentManager();
+<<<<<<< HEAD
 		Log.d("hallo", "isDompteurInRange: "+isDompteurInRange);
 		
+=======
+		onPlayerPositionDetailChanged(new PlayerPositionDetail(12, 48, 100, 30, 1000));
+		onPlayerPositionDetailChanged(new PlayerPositionDetail(12, 48, 100, 20, 1000));
+		onPlayerPositionDetailChanged(new PlayerPositionDetail(12, 48, 100, 30, 1000));
+		onPlayerPositionDetailChanged(new PlayerPositionDetail(12, 48, 100, 20, 1000));
+>>>>>>> branch 'master' of https://github.com/neniman/unimon.git
 	}
 	
 	private void initFragmentManager() {
-		alertFragment = new EnterAlertFragment();
 		fragmentManager = getFragmentManager();
-		transaction = fragmentManager.beginTransaction();
-		transaction.setCustomAnimations(R.animator.slide_in_bottom, R.animator.slide_out_top);
-		transaction.add(R.id.map_activity_layout, alertFragment, "alertFragment");
+		
 	}
 
 	@Override
@@ -226,6 +228,10 @@ public class MapActivity extends Activity implements NavigationListener {
 	}
 	
 	private void showFragmentForBuildings(String building) {
+		EnterAlertFragment alertFragment = new EnterAlertFragment();
+		FragmentTransaction transaction = fragmentManager.beginTransaction();
+		transaction.setCustomAnimations(R.animator.slide_in_bottom, R.animator.slide_out_top);
+		transaction.add(R.id.map_activity_layout, alertFragment, "alertFragment");
 		Bundle extras = new Bundle();
 		if (alertFragment.getArguments() != null){
 			extras = alertFragment.getArguments();
