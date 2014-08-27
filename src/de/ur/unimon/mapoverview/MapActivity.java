@@ -29,7 +29,7 @@ public class MapActivity extends Activity implements NavigationListener {
 	Button inventoryButton, unimonsButton, mapButton, movePlayerButton;
 	Bitmap map, player;
 	public int playerXCoord, playerYCoord;
-	
+
 	LinearLayout canvasLayout;
 	private NavigationController navigationController;
 	private double playerLatitude, playerLongitude;
@@ -42,9 +42,9 @@ public class MapActivity extends Activity implements NavigationListener {
 																		// Breitengrad
 																		// y
 	private double rangeBuildings = 25;
-	private double rangeTrainer = 30;
-	public float PIXEL_X; //1559; //1169
-	public float PIXEL_Y; //2731; //2048
+	private double rangeTrainer = 20;
+	public float PIXEL_X; // 1559; //1169
+	public float PIXEL_Y; // 2731; //2048
 
 	private boolean isShopInRange = false;
 	private boolean isDompteurInRange = false;
@@ -55,14 +55,11 @@ public class MapActivity extends Activity implements NavigationListener {
 	private boolean isTrainerFourInRange = false;
 	private boolean isTrainerFiveInRange = false;
 	private boolean isTrainerSixInRange = false;
-	private boolean	isTrainerBossInRange = false;
-	
-	private FragmentManager fragmentManager;
-	
-	
-	AlertDialog.Builder builder;
+	private boolean isTrainerBossInRange = false;
 
-	
+	private FragmentManager fragmentManager;
+
+	AlertDialog.Builder builder;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -74,10 +71,10 @@ public class MapActivity extends Activity implements NavigationListener {
 		initNavigation();
 		initFragmentManager();
 	}
-	
+
 	private void initFragmentManager() {
 		fragmentManager = getFragmentManager();
-		
+
 	}
 
 	@Override
@@ -98,13 +95,13 @@ public class MapActivity extends Activity implements NavigationListener {
 		unimonsButton = (Button) findViewById(R.id.unimons);
 		mapButton = (Button) findViewById(R.id.map_overview);
 		movePlayerButton = (Button) findViewById(R.id.move_player_test_button);
-		map = BitmapFactory.decodeResource(getResources(), R.drawable.map);				
-		MapView canvasMap = new MapView(this);		
-		
+		map = BitmapFactory.decodeResource(getResources(), R.drawable.map);
+		MapView canvasMap = new MapView(this);
+
 		playerXCoord = playerYCoord = 0;
-		
+
 		canvasLayout.addView(canvasMap, map.getWidth(), map.getHeight());
-		
+
 		PIXEL_X = map.getWidth();
 		PIXEL_Y = map.getHeight();
 		setButtonsOnClick();
@@ -143,7 +140,8 @@ public class MapActivity extends Activity implements NavigationListener {
 		movePlayerButton.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				Intent dompteur = new Intent(MapActivity.this, DompteurActivity.class);
+				Intent dompteur = new Intent(MapActivity.this,
+						DompteurActivity.class);
 				startActivity(dompteur);
 				// playerXCoord += 20;
 				// playerYCoord += 50;
@@ -184,19 +182,18 @@ public class MapActivity extends Activity implements NavigationListener {
 				- leftUpperCornerLongitude) / helpVarX);
 		playerYCoord = (int) (Math
 				.abs(playerLatitude - leftUpperCornerLatitude) / helpVarY);
-		Log.d("hoi", "onPlayerPos "+isDompteurInRange);
 		checkRangeTrue(playerPosDetail);
 		checkRangeFalse(playerPosDetail);
 	}
 
 	private void checkRangeTrue(PlayerPositionDetail playerPosDetail) {
-		if (isShopInRange == true && playerPosDetail.getDistanceShop() >= rangeBuildings) {
+		if (isShopInRange == true
+				&& playerPosDetail.getDistanceShop() >= rangeBuildings) {
 			isShopInRange = false;
 		}
 
 		else if (isDompteurInRange == true
 				&& playerPosDetail.getDistanceDompteur() >= rangeBuildings) {
-			Log.d("hoi", "checkRangeTrue "+isDompteurInRange);
 			isDompteurInRange = false;
 		}
 
@@ -204,222 +201,190 @@ public class MapActivity extends Activity implements NavigationListener {
 				&& playerPosDetail.getDistanceHospital() >= rangeBuildings) {
 			isHospitalInRange = false;
 		}
-		
+
 		else if (isTrainerThreeInRange == true
 				&& playerPosDetail.getDistanceTrainerThree() >= rangeTrainer) {
 			isTrainerThreeInRange = false;
 		}
-		
+
 	}
 
 	private void checkRangeFalse(PlayerPositionDetail playerPosDetail) {
-		Log.d("hoi", "Trainer 1 Distanz" + playerPosDetail.getDistanceTrainerOne());
-		if (isShopInRange == false && playerPosDetail.getDistanceShop() < rangeBuildings) {
-			//showShopAlert();
+		if (isShopInRange == false
+				&& playerPosDetail.getDistanceShop() < rangeBuildings) {
+			// showShopAlert();
 			isShopInRange = true;
 			showFragmentForBuildings("Shop");
 		} else if (isDompteurInRange == false
 				&& playerPosDetail.getDistanceDompteur() < rangeBuildings) {
-			//showDompteurAlert();
-			Log.d("hoi", "checkRangeFalse "+isDompteurInRange);
+			// showDompteurAlert();
 			isDompteurInRange = true;
 			showFragmentForBuildings("Dompteur");
 		} else if (isHospitalInRange == false
 				&& playerPosDetail.getDistanceHospital() < rangeBuildings) {
-			//showHospitalAlert();
+			// showHospitalAlert();
 			isHospitalInRange = true;
 			showFragmentForBuildings("Hospital");
-		}
-		else if (isTrainerOneInRange == false
+		} else if (isTrainerOneInRange == false
 				&& playerPosDetail.getDistanceTrainerOne() < rangeTrainer) {
-			//showHospitalAlert();
-			Log.d("hoi", "Trainer 1 check");
+			// showHospitalAlert();
 			isTrainerOneInRange = true;
 			Intent battleStart = new Intent(MapActivity.this,
 					ChooseBattleUnimonsActivity.class);
 			startActivity(battleStart);
-		}		
-		else if (isTrainerTwoInRange == false
+		} else if (isTrainerTwoInRange == false
 				&& playerPosDetail.getDistanceTrainerTwo() < rangeTrainer) {
-			//showHospitalAlert();
-			Log.d("hoi", "Trainer 2 check");
+			// showHospitalAlert();
 			isTrainerTwoInRange = true;
 			Intent battleStart = new Intent(MapActivity.this,
 					ChooseBattleUnimonsActivity.class);
 			startActivity(battleStart);
 		}
-		
+
 		else if (isTrainerThreeInRange == false
 				&& playerPosDetail.getDistanceTrainerThree() < rangeTrainer) {
-			//showHospitalAlert();
-			Log.d("hoi", "Trainer 3 check");
+			// showHospitalAlert();
 			isTrainerThreeInRange = true;
 			Intent battleStart = new Intent(MapActivity.this,
 					ChooseBattleUnimonsActivity.class);
 			startActivity(battleStart);
 		}
-		
+
 		else if (isTrainerFourInRange == false
 				&& playerPosDetail.getDistanceTrainerFour() < rangeTrainer) {
-			//showHospitalAlert();
-			Log.d("hoi", "Trainer 4 check");
+			// showHospitalAlert();
 			isTrainerFourInRange = true;
 			Intent battleStart = new Intent(MapActivity.this,
 					ChooseBattleUnimonsActivity.class);
 			startActivity(battleStart);
 		}
-		
+
 		else if (isTrainerFiveInRange == false
 				&& playerPosDetail.getDistanceTrainerFive() < rangeTrainer) {
-			//showHospitalAlert();
-			Log.d("hoi", "Trainer 5 check");
+			// showHospitalAlert();
 			isTrainerFiveInRange = true;
 			Intent battleStart = new Intent(MapActivity.this,
 					ChooseBattleUnimonsActivity.class);
 			startActivity(battleStart);
 		}
-		
+
 		else if (isTrainerSixInRange == false
 				&& playerPosDetail.getDistanceTrainerSix() < rangeTrainer) {
-			//showHospitalAlert();
-			Log.d("hoi", "Trainer 6 check");
+			// showHospitalAlert();
 			isTrainerSixInRange = true;
 			Intent battleStart = new Intent(MapActivity.this,
 					ChooseBattleUnimonsActivity.class);
 			startActivity(battleStart);
 		}
-		
+
 		else if (isTrainerBossInRange == false
 				&& playerPosDetail.getDistanceTrainerBoss() < rangeTrainer) {
-			//showHospitalAlert();
-			Log.d("hoi", "Trainer Boss check");
+			// showHospitalAlert();
 			isTrainerBossInRange = true;
 			Intent battleStart = new Intent(MapActivity.this,
 					ChooseBattleUnimonsActivity.class);
 			startActivity(battleStart);
 		}
 	}
-	
+
 	private void showFragmentForBuildings(String building) {
 		EnterAlertFragment alertFragment = new EnterAlertFragment();
 		FragmentTransaction transaction = fragmentManager.beginTransaction();
-		transaction.setCustomAnimations(R.animator.slide_in_bottom, R.animator.slide_out_top);
-		transaction.add(R.id.map_activity_layout, alertFragment, "alertFragment");
+		transaction.setCustomAnimations(R.animator.slide_in_bottom,
+				R.animator.slide_out_top);
+		transaction.add(R.id.map_activity_layout, alertFragment,
+				"alertFragment");
 		Bundle extras = new Bundle();
-		if (alertFragment.getArguments() != null){
+		if (alertFragment.getArguments() != null) {
 			extras = alertFragment.getArguments();
 			extras.clear();
-		};
-		extras.putString("building", building);	
+		}
+		;
+		extras.putString("building", building);
 		alertFragment.setArguments(extras);
 		transaction.commit();
 	}
 
-	
-
 	// Alert für Shop Activity
 
-	/*private void showShopAlert() {
-
-		builder.setTitle(getResources().getString(R.string.shop_name));
-		builder.setMessage("Möchtest du den Shop betreten?");
-
-		builder.setPositiveButton(getResources().getString(R.string.ok),
-				new DialogInterface.OnClickListener() {
-
-					@Override
-					public void onClick(DialogInterface dialog, int which) {
-
-						Intent shopActivity = new Intent(MapActivity.this,
-								ShopActivity.class);
-						startActivity(shopActivity);
-
-						dialog.dismiss();
-					}
-
-				});
-
-		builder.setNegativeButton(getResources().getString(R.string.cancel),
-				new DialogInterface.OnClickListener() {
-
-					@Override
-					public void onClick(DialogInterface dialog, int which) {
-						shopRangeChecked = true;
-						dialog.dismiss();
-					}
-				});
-		AlertDialog alert = builder.create();
-		alert.show();
-	}
-
-	// Alert für Dompteur Activity
-
-	private void showDompteurAlert() {
-		builder.setTitle(getResources().getString(R.string.dompteur_name));
-		builder.setMessage("Möchtest du den Dompteur besuchen?");
-
-		builder.setPositiveButton(getResources().getString(R.string.ok),
-				new DialogInterface.OnClickListener() {
-
-					@Override
-					public void onClick(DialogInterface dialog, int which) {
-
-						Intent dompteurActivity = new Intent(MapActivity.this,
-								DompteurActivity.class);
-						startActivity(dompteurActivity);
-
-						dialog.dismiss();
-					}
-
-				});
-
-		builder.setNegativeButton(getResources().getString(R.string.cancel),
-				new DialogInterface.OnClickListener() {
-
-					@Override
-					public void onClick(DialogInterface dialog, int which) {
-						dompteurRangeChecked = true;
-						dialog.dismiss();
-					}
-				});
-		AlertDialog alert = builder.create();
-		alert.show();
-
-	}
-
-	// Alert für Hospital Activity
-
-	private void showHospitalAlert() {
-		builder.setTitle(getResources().getString(R.string.hospital_name));
-		builder.setMessage("Möchtest du das Hospital betreten?");
-
-		builder.setPositiveButton(getResources().getString(R.string.ok),
-				new DialogInterface.OnClickListener() {
-
-					@Override
-					public void onClick(DialogInterface dialog, int which) {
-
-						Intent hospitalActivity = new Intent(MapActivity.this,
-								HospitalActivity.class);
-						startActivity(hospitalActivity);
-
-						dialog.dismiss();
-					}
-
-				});
-
-		builder.setNegativeButton(getResources().getString(R.string.cancel),
-				new DialogInterface.OnClickListener() {
-
-					@Override
-					public void onClick(DialogInterface dialog, int which) {
-						hospitalRangeChecked = true;
-						dialog.dismiss();
-					}
-				});
-		AlertDialog alert = builder.create();
-		alert.show();
-
-	}*/
+	/*
+	 * private void showShopAlert() {
+	 * 
+	 * builder.setTitle(getResources().getString(R.string.shop_name));
+	 * builder.setMessage("Möchtest du den Shop betreten?");
+	 * 
+	 * builder.setPositiveButton(getResources().getString(R.string.ok), new
+	 * DialogInterface.OnClickListener() {
+	 * 
+	 * @Override public void onClick(DialogInterface dialog, int which) {
+	 * 
+	 * Intent shopActivity = new Intent(MapActivity.this, ShopActivity.class);
+	 * startActivity(shopActivity);
+	 * 
+	 * dialog.dismiss(); }
+	 * 
+	 * });
+	 * 
+	 * builder.setNegativeButton(getResources().getString(R.string.cancel), new
+	 * DialogInterface.OnClickListener() {
+	 * 
+	 * @Override public void onClick(DialogInterface dialog, int which) {
+	 * shopRangeChecked = true; dialog.dismiss(); } }); AlertDialog alert =
+	 * builder.create(); alert.show(); }
+	 * 
+	 * // Alert für Dompteur Activity
+	 * 
+	 * private void showDompteurAlert() {
+	 * builder.setTitle(getResources().getString(R.string.dompteur_name));
+	 * builder.setMessage("Möchtest du den Dompteur besuchen?");
+	 * 
+	 * builder.setPositiveButton(getResources().getString(R.string.ok), new
+	 * DialogInterface.OnClickListener() {
+	 * 
+	 * @Override public void onClick(DialogInterface dialog, int which) {
+	 * 
+	 * Intent dompteurActivity = new Intent(MapActivity.this,
+	 * DompteurActivity.class); startActivity(dompteurActivity);
+	 * 
+	 * dialog.dismiss(); }
+	 * 
+	 * });
+	 * 
+	 * builder.setNegativeButton(getResources().getString(R.string.cancel), new
+	 * DialogInterface.OnClickListener() {
+	 * 
+	 * @Override public void onClick(DialogInterface dialog, int which) {
+	 * dompteurRangeChecked = true; dialog.dismiss(); } }); AlertDialog alert =
+	 * builder.create(); alert.show();
+	 * 
+	 * }
+	 * 
+	 * // Alert für Hospital Activity
+	 * 
+	 * private void showHospitalAlert() {
+	 * builder.setTitle(getResources().getString(R.string.hospital_name));
+	 * builder.setMessage("Möchtest du das Hospital betreten?");
+	 * 
+	 * builder.setPositiveButton(getResources().getString(R.string.ok), new
+	 * DialogInterface.OnClickListener() {
+	 * 
+	 * @Override public void onClick(DialogInterface dialog, int which) {
+	 * 
+	 * Intent hospitalActivity = new Intent(MapActivity.this,
+	 * HospitalActivity.class); startActivity(hospitalActivity);
+	 * 
+	 * dialog.dismiss(); }
+	 * 
+	 * });
+	 * 
+	 * builder.setNegativeButton(getResources().getString(R.string.cancel), new
+	 * DialogInterface.OnClickListener() {
+	 * 
+	 * @Override public void onClick(DialogInterface dialog, int which) {
+	 * hospitalRangeChecked = true; dialog.dismiss(); } }); AlertDialog alert =
+	 * builder.create(); alert.show();
+	 * 
+	 * }
+	 */
 
 }
