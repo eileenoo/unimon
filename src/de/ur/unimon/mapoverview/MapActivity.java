@@ -59,7 +59,7 @@ public class MapActivity extends Activity implements NavigationListener {
 
 	private FragmentManager fragmentManager;
 	EnterAlertFragment alertFragment;
-	FragmentTransaction transaction;
+	//FragmentTransaction transaction;
 	
 	AlertDialog.Builder builder;
 
@@ -74,21 +74,20 @@ public class MapActivity extends Activity implements NavigationListener {
 		initFragmentManager();
 
 //		onPlayerPositionDetailChanged(new PlayerPositionDetail(12, 48, 100, 30, 1000, 100, 100, 100, 100, 100, 100, 100));
-//		onPlayerPositionDetailChanged(new PlayerPositionDetail(12, 48, 100, 26, 1000, 100, 100, 100, 100, 100, 100, 100));
-//		onPlayerPositionDetailChanged(new PlayerPositionDetail(12, 48, 100, 25, 1000, 100, 100, 100, 100, 100, 100, 100));
 //		onPlayerPositionDetailChanged(new PlayerPositionDetail(12, 48, 100, 25, 1000, 100, 100, 100, 100, 100, 100, 100));
 //		onPlayerPositionDetailChanged(new PlayerPositionDetail(12, 48, 100, 24, 1000, 100, 100, 100, 100, 100, 100, 100));
 //		onPlayerPositionDetailChanged(new PlayerPositionDetail(12, 48, 100, 13, 1000, 100, 100, 100, 100, 100, 100, 100));
+//		closeFragment();
 //		onPlayerPositionDetailChanged(new PlayerPositionDetail(12, 48, 100, 30, 1000, 100, 100, 100, 100, 100, 100, 100));
-//		onPlayerPositionDetailChanged(new PlayerPositionDetail(12, 48, 100, 35, 1000, 100, 100, 100, 100, 100, 100, 100));
+//		onPlayerPositionDetailChanged(new PlayerPositionDetail(12, 48, 100, 15, 1000, 100, 100, 100, 100, 100, 100, 100));
 		
 	}
 	
 	private void initFragmentManager() {
 		fragmentManager = getFragmentManager();
 		alertFragment = new EnterAlertFragment();
-		transaction = fragmentManager.beginTransaction();
-		transaction.setCustomAnimations(R.animator.slide_in_bottom, R.animator.slide_out_top);		
+//		transaction = fragmentManager.beginTransaction();
+//		transaction.setCustomAnimations(R.animator.slide_in_bottom, R.animator.slide_out_top);		
 	}
 
 	@Override
@@ -210,19 +209,19 @@ public class MapActivity extends Activity implements NavigationListener {
 		if (isShopInRange == true
 				&& playerPosDetail.getDistanceShop() >= rangeBuildings) {
 			isShopInRange = false;
-			transaction.remove(alertFragment);
+			closeFragment();
 		}
 
 		else if (isDompteurInRange == true
 				&& playerPosDetail.getDistanceDompteur() >= rangeBuildings) {
 			isDompteurInRange = false;
-			transaction.remove(alertFragment);
+			closeFragment();
 		}
 
 		else if (isHospitalInRange == true
 				&& playerPosDetail.getDistanceHospital() >= rangeBuildings) {
 			isHospitalInRange = false;
-			transaction.remove(alertFragment);
+			closeFragment();
 		}
 
 		else if (isTrainerThreeInRange == true
@@ -230,6 +229,12 @@ public class MapActivity extends Activity implements NavigationListener {
 			isTrainerThreeInRange = false;
 		}
 
+	}
+	
+	private void closeFragment() {
+		FragmentTransaction transaction = getFragmentManager().beginTransaction();
+		transaction.setCustomAnimations(R.animator.slide_in_bottom, R.animator.slide_out_top);
+		transaction.remove(alertFragment).commit();		
 	}
 
 	private void checkRangeFalse(PlayerPositionDetail playerPosDetail) {
@@ -312,8 +317,8 @@ public class MapActivity extends Activity implements NavigationListener {
 
 	private void showFragmentForBuildings(String building) {
 		//EnterAlertFragment alertFragment = new EnterAlertFragment();
-		//FragmentTransaction transaction = fragmentManager.beginTransaction();
-		//transaction.setCustomAnimations(R.animator.slide_in_bottom, R.animator.slide_out_top);
+		FragmentTransaction transaction = fragmentManager.beginTransaction();
+		transaction.setCustomAnimations(R.animator.slide_in_bottom, R.animator.slide_out_top);
 		transaction.add(R.id.map_activity_layout, alertFragment, "alertFragment");
 
 		Bundle extras = new Bundle();
