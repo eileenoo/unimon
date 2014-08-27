@@ -40,4 +40,5 @@ public class TrainerList {
 	public ArrayList<Trainer> getTrainerList(){
 		return trainerList;
 	}
+	
 }

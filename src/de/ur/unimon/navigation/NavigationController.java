@@ -1,5 +1,6 @@
 package de.ur.unimon.navigation;
 
+import de.ur.unimon.battle.TrainerList;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.location.Location;
@@ -11,11 +12,17 @@ import android.widget.Toast;
 
 public class NavigationController implements LocationListener {
 
+
 	public static final long UPDATE_TIME = 2500;
 	public static final float UPDATE_DISTANCE = 2;
+
 	LocationManager locationManager;
 	private Location lastLocation;
-	Location shop, dompteur, hospital;
+
+	Location shop, dompteur, hospital, trainerOne, trainerTwo, trainerThree,
+			trainerFour, trainerFive, trainerSix, trainerBoss;
+	TrainerList trainerList;
+
 
 	private NavigationListener navigationListener;
 	PlayerPositionDetail playerPosDetail;
@@ -25,6 +32,7 @@ public class NavigationController implements LocationListener {
 	public NavigationController(Context context,
 			NavigationListener navigationListener) {
 		this.navigationListener = navigationListener;
+		trainerList = new TrainerList();
 		init(context);
 	}
 
@@ -59,14 +67,34 @@ public class NavigationController implements LocationListener {
 	}
 
 	private void updateNavigationInformation() {
+		trainerList = new TrainerList();
+		trainerOne = new Location("");
+		trainerTwo = new Location("");
+		trainerThree = new Location("");
+		trainerFour = new Location("");
+		trainerFive = new Location("");
+		trainerSix = new Location("");
+		trainerBoss = new Location("");
 		shop = new Location("");
 		dompteur = new Location("");
 		hospital = new Location("");
+		setTrainerOneCoords();
+		setTrainerTwoCoords();
+		setTrainerThreeCoords();
+		setTrainerFourCoords();
+		setTrainerFiveCoords();
+		setTrainerSixCoords();
+		setTrainerBossCoords();
 		setShopCoords();
 		setDompteurCoords();
 		setHospitalCoords();
 		if (navigationListener == null || shop == null || dompteur == null
-				|| hospital == null) {
+
+				|| hospital == null || trainerOne == null || trainerTwo == null
+				|| trainerThree == null || trainerFour == null
+				|| trainerFive == null || trainerSix == null
+				|| trainerBoss == null) {
+
 			return;
 		}
 		double latitude = lastLocation.getLatitude();
@@ -74,10 +102,74 @@ public class NavigationController implements LocationListener {
 		float distanceShop = lastLocation.distanceTo(shop);
 		float distanceDompteur = lastLocation.distanceTo(dompteur);
 		float distanceHospital = lastLocation.distanceTo(hospital);
+
+		float distanceTrainerOne = lastLocation.distanceTo(trainerOne);
+		float distanceTrainerTwo = lastLocation.distanceTo(trainerTwo);
+		float distanceTrainerThree = lastLocation.distanceTo(trainerThree);
+		float distanceTrainerFour = lastLocation.distanceTo(trainerFour);
+		float distanceTrainerFive = lastLocation.distanceTo(trainerFive);
+		float distanceTrainerSix = lastLocation.distanceTo(trainerSix);
+		float distanceTrainerBoss = lastLocation.distanceTo(trainerBoss);
+
 		playerPosDetail = new PlayerPositionDetail(latitude, longitude,
-				distanceShop, distanceDompteur, distanceHospital);
+				distanceShop, distanceDompteur, distanceHospital,
+				distanceTrainerOne, distanceTrainerTwo, distanceTrainerThree,
+				distanceTrainerFour, distanceTrainerFive, distanceTrainerSix,
+				distanceTrainerBoss);
+
 		navigationListener.onPlayerPositionDetailChanged(playerPosDetail);
 	}
+
+
+	private void setTrainerOneCoords() {
+		trainerOne.setLatitude(trainerList.getTrainerList().get(0)
+				.getLatitude());
+		trainerOne.setLongitude(trainerList.getTrainerList().get(0)
+				.getLongitude());
+	}
+
+	private void setTrainerTwoCoords() {
+		trainerTwo.setLatitude(trainerList.getTrainerList().get(1)
+				.getLatitude());
+		trainerTwo.setLongitude(trainerList.getTrainerList().get(1)
+				.getLongitude());
+	}
+
+	private void setTrainerThreeCoords() {
+		trainerThree.setLatitude(trainerList.getTrainerList().get(2)
+				.getLatitude());
+		trainerThree.setLongitude(trainerList.getTrainerList().get(2)
+				.getLongitude());
+	}
+
+	private void setTrainerFourCoords() {
+		trainerFour.setLatitude(trainerList.getTrainerList().get(3)
+				.getLatitude());
+		trainerFour.setLongitude(trainerList.getTrainerList().get(3)
+				.getLongitude());
+	}
+
+	private void setTrainerFiveCoords() {
+		trainerFive.setLatitude(trainerList.getTrainerList().get(4)
+				.getLatitude());
+		trainerFive.setLongitude(trainerList.getTrainerList().get(4)
+				.getLongitude());
+	}
+
+	private void setTrainerSixCoords() {
+		trainerSix.setLatitude(trainerList.getTrainerList().get(5)
+				.getLatitude());
+		trainerSix.setLongitude(trainerList.getTrainerList().get(5)
+				.getLongitude());
+	}
+
+	private void setTrainerBossCoords() {
+		trainerBoss.setLatitude(trainerList.getTrainerList().get(6)
+				.getLatitude());
+		trainerBoss.setLongitude(trainerList.getTrainerList().get(6)
+				.getLongitude());
+	}
+
 
 	private void setShopCoords() {
 		shop.setLatitude(48.9977715);
@@ -92,11 +184,11 @@ public class NavigationController implements LocationListener {
 	}
 
 	private void setHospitalCoords() {
-
 		hospital.setLatitude(48.9981304);
 		hospital.setLongitude(12.0932311);
 
 	}
+
 
 	@Override
 	public void onLocationChanged(Location location) {

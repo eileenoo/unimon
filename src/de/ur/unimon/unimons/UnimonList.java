@@ -164,13 +164,13 @@ public class UnimonList {
 		wild2.possibleSpells.add(wild2Spell6);
 		wild2.ownedSpells.add(wild2Spell1);
 		
-		wild3 = new Unimon("Wildie2", 20, false);
-		wild3Spell1 =  new Spell ("didi",1,20);
-		wild3Spell2  = new Spell("dodo", 2, 20);
-		wild3Spell3  = new Spell("dudu", 3, 20);
-		wild3Spell4  = new Spell("dada", 4, 20);
-		wild3Spell5  = new Spell("dede", 5, 20);
-		wild3Spell6  = new Spell("dldl", 6, 20);
+		wild3 = new Unimon("Wildie3", 20, false);
+		wild3Spell1 =  new Spell ("hihi",1,20);
+		wild3Spell2  = new Spell("hoho", 2, 20);
+		wild3Spell3  = new Spell("huhu", 3, 20);
+		wild3Spell4  = new Spell("haha", 4, 20);
+		wild3Spell5  = new Spell("hehe", 5, 20);
+		wild3Spell6  = new Spell("hlhl", 6, 20);
 		wild3.possibleSpells.add(wild3Spell1);
 		wild3.possibleSpells.add(wild3Spell2);
 		wild3.possibleSpells.add(wild3Spell3);
