@@ -8,28 +8,4 @@
 
 
 
-    <Button
-        android:id="@+id/battle_healpot_button"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/battle_healpot_button_text" />
-
-    <Button
-        android:id="@+id/battle_uniball_button"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/battle_uniball_button_text" />
-
-    <Button
-        android:id="@+id/battle_unimon_two_button"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/battle_unimon2_button_text" />
-
-    <Button
-        android:id="@+id/battle_unimon_three_button"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/battle_unimon3_button_text" />
-
 </LinearLayout>

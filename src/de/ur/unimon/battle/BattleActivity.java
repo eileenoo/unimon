@@ -8,6 +8,7 @@ import android.app.Activity;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.Intent;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -19,16 +20,18 @@ import de.ur.unimon.unimons.Unimon;
 import de.ur.unimon.unimons.UnimonList;
 
 public class BattleActivity extends Activity implements
-		AllOptionsBattleFragment.OnOptionsSelectorListener {
+		AllOptionsBattleFragment.OnOptionsSelectorListener,
+		AttackBattleFragment.OnSpellSelectedListener,
+		ChangeUnimonBattleFragment.OnUnimonChangedListener {
 
 	private Button changeUnimonButton, attackButton, useItemButton,
-			escapeButton, healpotButton, uniballButton, unimonTwoButton,
-			unimonThreeButton;
+			escapeButton, healpotButton, uniballButton;
 	private Intent map;
 
 	private Unimon battleUnimon;
 	private Unimon enemyUnimon;
 	private Unimon[] currentBattleUnimonList;
+	private String[] battleUnimonListStringArray;
 	private Player player;
 	private BattleController battleController;
 
@@ -36,6 +39,9 @@ public class BattleActivity extends Activity implements
 
 	private boolean playerStatus;
 	private boolean gameWon;
+
+	private FragmentManager fragmentManager;
+	private FragmentTransaction fragmentTransaction;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -56,18 +62,25 @@ public class BattleActivity extends Activity implements
 	}
 
 	private void initBattleController() {
-		String[] battleUnimonListStringArray = getIntent().getStringArrayExtra("chosenUnimonStringArray");
+		battleUnimonListStringArray = getIntent().getStringArrayExtra(
+				"chosenUnimonStringArray");
 		// EnemyUnimon wird später auch über den Intent aus ChooseBattleUnimon
 		// geholt, hier: Ersatzcode
 
 		UnimonList listAllUnimons = new UnimonList();
 		enemyUnimon = listAllUnimons.getUnimonList().get(0);
 
-		battleUnimon = player.getUnimonByName(battleUnimonListStringArray[0]);
-		
+		String battleUnimonName = battleUnimonListStringArray[0];
+		String secondBattleUnimonName = battleUnimonListStringArray[1];
+		String thirdBattleUnimonName = battleUnimonListStringArray[2];
+
+		battleUnimon = player.getUnimonByName(battleUnimonName);
+
 		currentBattleUnimonList = new Unimon[2];
-		currentBattleUnimonList[0] = player.getUnimonByName(battleUnimonListStringArray[1]);
-		currentBattleUnimonList[1] = player.getUnimonByName(battleUnimonListStringArray[2]);
+		currentBattleUnimonList[0] = player
+				.getUnimonByName(secondBattleUnimonName);
+		currentBattleUnimonList[1] = player
+				.getUnimonByName(thirdBattleUnimonName);
 		battleController = new BattleController(enemyUnimon, battleUnimon,
 				currentBattleUnimonList);
 	}
@@ -75,16 +88,13 @@ public class BattleActivity extends Activity implements
 	private void createFirstFragment() {
 		AllOptionsBattleFragment allOptionsFragment = new AllOptionsBattleFragment();
 
-		// Übergibt dem ersten Fragment die Information, ob weitere Unimons zum
-		// Kampf bereit stehen
 		Bundle extra = new Bundle();
 		extra.putBoolean("CurrentUnimonListContent",
 				hasCurrentBattleUnimonsListUnimons());
 		allOptionsFragment.setArguments(extra);
 
-		FragmentManager fragmentManager = getFragmentManager();
-		FragmentTransaction fragmentTransaction = fragmentManager
-				.beginTransaction();
+		fragmentManager = getFragmentManager();
+		fragmentTransaction = fragmentManager.beginTransaction();
 		fragmentTransaction.add(R.id.battle_activity_layout,
 				allOptionsFragment, "AllOptionsFragment");
 		fragmentTransaction.commit();
@@ -130,53 +140,40 @@ public class BattleActivity extends Activity implements
 	// checkStatus();
 	// }
 
-//	private void changeUnimonButtonClicked() {
-//
-//		if (currentBattleUnimonList[0] == null) {
-//			changeUnimonButton.setClickable(false);
-//		} else {
-//			changeUnimonButton.setOnClickListener(new OnClickListener() {
-//
-//				@Override
-//				public void onClick(View v) {
-//
-//					unimonTwoButton = (Button) findViewById(R.id.battle_unimon_two_button);
-//					unimonThreeButton = (Button) findViewById(R.id.battle_unimon_three_button);
-//
-//					String unimonTwoButtonText = currentBattleUnimonList[0]
-//							.getName();
-//					String unimonThreeButtonText = currentBattleUnimonList[1]
-//							.getName();
-//
-//					unimonTwoButton.setText(unimonTwoButtonText);
-//					int unimonTwoIndex = 0;
-//					clickToChangeUnimon(unimonTwoButton, unimonTwoIndex);
-//
-//					if (currentBattleUnimonList[1] != null) {
-//						unimonThreeButton.setText(unimonThreeButtonText);
-//						int unimonThreeIndex = 1;
-//						clickToChangeUnimon(unimonThreeButton, unimonThreeIndex);
-//					} else {
-//						unimonThreeButton.setVisibility(View.GONE);
-//					}
-//				}
-//			});
-//		}
-//	}
-
-	private void clickToChangeUnimon(Button unimonNameButton,
-			final int unimonNameIndex) {
-		unimonNameButton.setOnClickListener(new OnClickListener() {
-
-			@Override
-			public void onClick(View v) {
-				battleController.changeCurrentUnimon(unimonNameIndex);
-				currentBattleUnimonList[unimonNameIndex] = battleUnimon;
-				playerStatus = false;
-			}
-		});
-		checkStatus();
-	}
+	// private void changeUnimonButtonClicked() {
+	//
+	// if (currentBattleUnimonList[0] == null) {
+	// changeUnimonButton.setClickable(false);
+	// } else {
+	// changeUnimonButton.setOnClickListener(new OnClickListener() {
+	//
+	// @Override
+	// public void onClick(View v) {
+	//
+	// unimonTwoButton = (Button) findViewById(R.id.battle_unimon_two_button);
+	// unimonThreeButton = (Button)
+	// findViewById(R.id.battle_unimon_three_button);
+	//
+	// String unimonTwoButtonText = currentBattleUnimonList[0]
+	// .getName();
+	// String unimonThreeButtonText = currentBattleUnimonList[1]
+	// .getName();
+	//
+	// unimonTwoButton.setText(unimonTwoButtonText);
+	// int unimonTwoIndex = 0;
+	// clickToChangeUnimon(unimonTwoButton, unimonTwoIndex);
+	//
+	// if (currentBattleUnimonList[1] != null) {
+	// unimonThreeButton.setText(unimonThreeButtonText);
+	// int unimonThreeIndex = 1;
+	// clickToChangeUnimon(unimonThreeButton, unimonThreeIndex);
+	// } else {
+	// unimonThreeButton.setVisibility(View.GONE);
+	// }
+	// }
+	// });
+	// }
+	// }
 
 	// private void attackButtonClicked() {
 	// attackButton.setOnClickListener(new OnClickListener() {
@@ -254,26 +251,6 @@ public class BattleActivity extends Activity implements
 		checkStatus();
 	}
 
-	// Hier muss ein neues Fragment erzeugt werden.
-	private void showSpellList() {
-		ArrayList<Spell> ownedSpells = battleUnimon.getOwnedSpells();
-		int numOwnedSpells = ownedSpells.size();
-		for (int i = 0; i < numOwnedSpells; i++) {
-			// Erzeugen einer Zeile
-			// Name der Zeile (Das was angezeigt wird) = Name des Spells
-			// Vllt Besser ein ListView?
-		}
-		// Spell currentSpell = onClickListenerReadIndexBla();
-		// enemyUnimon = battleController.ownUnimonAttack(currentSpell);
-		if (enemyUnimon.getHealth() >= 0) {
-			gameWon = true;
-			fightEnd();
-		} else {
-			playerStatus = false;
-			checkStatus();
-		}
-	}
-
 	private void showToast(int toastText) {
 		int duration = Toast.LENGTH_SHORT;
 		toast = Toast.makeText(this, toastText, duration);
@@ -317,51 +294,93 @@ public class BattleActivity extends Activity implements
 	}
 
 	// _____________________ONOPTIONSSELECTORLISTENER_METHODEN__________________
-	// Hier wird kein neues Fragment aufgerufen (Entweder wird der Kampf beendet
-	// oder es wird ein Toast angezeigt)
+
+
 	@Override
-	public void onEscapeButtonClicked() {
-//		if (battleController.ableToEscape()) {
-//			showToast(R.string.escape_toast_text);
-//			startActivity(map);
-//		} else {
-//			showToast(R.string.escape_not_successfull_toast_text);
-//		}
-//		playerStatus = false;
-//		checkStatus();
+	public void onEscapeSuccessfull() {		
+		showToast(R.string.escape_toast_text);
+		fragmentManager.popBackStack();
+		startActivity(map);
 	}
+	
+	@Override
+	public void onEscapeFailed() {
+		showToast(R.string.escape_not_successfull_toast_text);
+		 playerStatus = false;
+		// checkStatus();
+	}
+
+	@Override
+	public boolean onIsEscapeAvailable() {
+		boolean isEscapeAvailable = battleController.ableToEscape();
+		return isEscapeAvailable;
+	}
+	
 
 	// In showSpellList muss noch ein neues Fragment erzeugt werden
+	// @Override
+	// public void onAttackButtonClicked() {
+	// AttackBattleFragment attackFragment = new AttackBattleFragment();
+	//
+	// ArrayList<Spell> ownedSpells = battleUnimon.getOwnedSpells();
+	// // Dem AttackFragment muss die SpellList übergeben werden
+	// // Bundle extra = new Bundle();
+	// // extra.putSparseParcelableArray(key, value);
+	// // extra.putArrayList("CurrentUnimonListContent",
+	// // hasCurrentBattleUnimonsListUnimons());
+	// // attackFragment.setArguments(extra);
+	//
+	// fragmentTransaction.add(R.id.battle_activity_layout, attackFragment,
+	// "AttackBattleFragment");
+	// fragmentTransaction.commit();
+	// }
+
+	// _____OnSpellSelectedLister des AttackBattleFragments_____
 	@Override
-	public void onAttackButtonClicked() {
-//		showSpellList();
+	public void onSpellSelected(Spell chosenSpell) {
+		Spell currentSpell = chosenSpell;
+		enemyUnimon = battleController.ownUnimonAttack(currentSpell);
+		if (enemyUnimon.getHealth() >= 0) {
+			gameWon = true;
+			fightEnd();
+		} else {
+			playerStatus = false;
+//			checkStatus();
+		}
+
 	}
 
 	@Override
-	public void onItemButtonClicked() {
-		// TODO Auto-generated method stub
+	public ArrayList<Spell> getSpellList() {
+		if (battleUnimon.getPossibleSpells().isEmpty()) {
+			Log.d("isEmpty:", "true");
+		}
+		// for (int i = 0; i < battleUnimon.getPossibleSpells().size(); i++) {
+		// Log.d("Spell" + i + " :",
+		// battleUnimon.getPossibleSpells().get(i).toString());
+		// }
 
+		// ArrayList<Spell> ownedSpells = battleUnimon.getPossibleSpells();
+		// return ownedSpells;
+		return null;
+	}
+
+	
+	@Override
+	public void onUnimonChanged(Unimon chosenUnimon, int unimonNameIndex) {
+		battleController.changeCurrentUnimon(chosenUnimon);
+		currentBattleUnimonList[unimonNameIndex] = battleUnimon;
+		battleUnimon = chosenUnimon;
+		playerStatus = false;
+//		checkStatus();
+		Log.d("ChosenUnimon", "fu");
 	}
 
 	@Override
-	public void onChangeUnimonButtonClicked() {
-//		unimonTwoButton = (Button) findViewById(R.id.battle_unimon_two_button);
-//		unimonThreeButton = (Button) findViewById(R.id.battle_unimon_three_button);
-//
-//		String unimonTwoButtonText = currentBattleUnimonList[0].getName();
-//		String unimonThreeButtonText = currentBattleUnimonList[1].getName();
-//
-//		unimonTwoButton.setText(unimonTwoButtonText);
-//		int unimonTwoIndex = 0;
-//		clickToChangeUnimon(unimonTwoButton, unimonTwoIndex);
-//
-//		if (currentBattleUnimonList[1] != null) {
-//			unimonThreeButton.setText(unimonThreeButtonText);
-//			int unimonThreeIndex = 1;
-//			clickToChangeUnimon(unimonThreeButton, unimonThreeIndex);
-//		} else {
-//			unimonThreeButton.setVisibility(View.GONE);
-//		}
+	public Unimon[] onGetBattleUnimonListArray() {
+		return currentBattleUnimonList;
 	}
+
+
 
 }

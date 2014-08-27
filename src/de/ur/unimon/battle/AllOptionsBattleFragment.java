@@ -2,12 +2,16 @@
 // Quelle: http://www.mysamplecode.com/2012/08/android-fragment-example.html
 // Quelle: http://developer.android.com/training/basics/fragments/communicating.html
 // Quelle: http://examples.javacodegeeks.com/android/core/app/fragment/android-fragments-example/
+// Quelle: http://stackoverflow.com/questions/21028786/how-do-i-open-a-new-fragment-from-another-fragment
+// Quelle: http://stackoverflow.com/questions/10863572/programmatically-go-back-to-the-previous-fragment-in-the-backstack
 
 package de.ur.unimon.battle;
 
 import de.ur.mi.android.excercises.starter.R;
 import android.app.Activity;
 import android.app.Fragment;
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -22,11 +26,13 @@ public class AllOptionsBattleFragment extends Fragment {
 
 	// In diesem Fragment werden alle Mšglichkeiten des Spielers im Kampf
 	// angezeigt (AttackButton, ChangeUnimonButton, EscapeButton, ItemButton).
-	// Sobald einer dieser Buttons gecklickt wird, wird die ParentActivity durch
-	// das Interface OnOptionsSelectorListener benachrichtigt und dort wird dann
-	// AllOptionsBattleFragment mit einem anderen Fragment ausgetauscht
+	// Sobald einer dieser Buttons gecklickt wird, wird dieses Fragment mit
+	// einem neuen Fragment (AttackFragment, ChangeUnimonFragment, ItemFragment
+	// ausgetauscht.
 
 	private OnOptionsSelectorListener listener;
+	private FragmentManager fragmentManager;
+	private FragmentTransaction fragmentTransaction;
 	private Button attackButton, useItemButton, escapeButton,
 			changeUnimonButton;
 	private boolean currentUnimonListHasContent;
@@ -34,9 +40,12 @@ public class AllOptionsBattleFragment extends Fragment {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+
 		Bundle extras = getArguments();
 		currentUnimonListHasContent = extras
 				.getBoolean("CurrentUnimonListContent");
+
+		fragmentManager = this.getFragmentManager();
 	}
 
 	@Override
@@ -57,13 +66,9 @@ public class AllOptionsBattleFragment extends Fragment {
 
 	// Container Activity must implement this interface
 	public interface OnOptionsSelectorListener {
-		public void onEscapeButtonClicked();
-
-		public void onAttackButtonClicked();
-
-		public void onItemButtonClicked();
-
-		public void onChangeUnimonButtonClicked();
+		public void onEscapeSuccessfull();
+		public void onEscapeFailed();
+		public boolean onIsEscapeAvailable();
 	}
 
 	@Override
@@ -103,7 +108,12 @@ public class AllOptionsBattleFragment extends Fragment {
 
 				@Override
 				public void onClick(View v) {
-					listener.onChangeUnimonButtonClicked();
+					ChangeUnimonBattleFragment changeUnimonFrag = new ChangeUnimonBattleFragment();
+					fragmentTransaction = fragmentManager.beginTransaction();
+					fragmentTransaction.replace(R.id.battle_activity_layout,
+							changeUnimonFrag, "ChangeUnimonFragment");
+					fragmentTransaction.addToBackStack(null);
+					fragmentTransaction.commit();
 				}
 			});
 		}
@@ -114,7 +124,11 @@ public class AllOptionsBattleFragment extends Fragment {
 
 			@Override
 			public void onClick(View v) {
-				listener.onEscapeButtonClicked();
+				if(listener.onIsEscapeAvailable()) {
+					listener.onEscapeSuccessfull();
+				} else {
+					listener.onEscapeFailed();
+				}	
 			}
 		});
 	}
@@ -124,7 +138,12 @@ public class AllOptionsBattleFragment extends Fragment {
 
 			@Override
 			public void onClick(View v) {
-				listener.onItemButtonClicked();
+				ChooseItemFragment itemFrag = new ChooseItemFragment();
+				fragmentTransaction = fragmentManager.beginTransaction();
+				fragmentTransaction.replace(R.id.battle_activity_layout,
+						itemFrag, "ItemBattleFragment");
+				fragmentTransaction.addToBackStack(null);
+				fragmentTransaction.commit();
 			}
 		});
 	}
@@ -134,7 +153,12 @@ public class AllOptionsBattleFragment extends Fragment {
 
 			@Override
 			public void onClick(View v) {
-				listener.onAttackButtonClicked();
+				AttackBattleFragment attackFrag = new AttackBattleFragment();
+				fragmentTransaction = fragmentManager.beginTransaction();
+				fragmentTransaction.replace(R.id.battle_activity_layout,
+						attackFrag, "AttackBattleFragment");
+				fragmentTransaction.addToBackStack(null);
+				fragmentTransaction.commit();
 			}
 		});
 	}

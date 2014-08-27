@@ -1,37 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:layout_gravity="bottom"
     android:background="#FFBB00"
-    android:orientation="vertical" 
-    android:layout_gravity="bottom">
+    android:orientation="vertical" >
 
-    <Button
-        android:id="@+id/battle_attack_button"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal|center"
-        android:text="@string/battle_attack_button_text" />
+        <ListView
+            android:id="@+id/spell_list_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" >
+        </ListView>
 
-    <Button
-        android:id="@+id/battle_use_item_button"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal|center"
-        android:text="@string/battle_use_item_button_text" />
-
-    <Button
-        android:id="@+id/battle_escape_button"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal|center"
-        android:text="@string/battle_escape_button_text" />
-
-    <Button
-        android:id="@+id/battle_change_unimon_button"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal|center"
-        android:text="@string/battle_change_unimon_button_text" />
 
 </LinearLayout>
