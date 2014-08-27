@@ -51,6 +51,8 @@ public class MapActivity extends Activity implements NavigationListener {
 	private boolean isHospitalInRange = false;
 	
 	private FragmentManager fragmentManager;
+	EnterAlertFragment alertFragment;
+	FragmentTransaction transaction;
 	
 	
 	AlertDialog.Builder builder;
@@ -67,13 +69,21 @@ public class MapActivity extends Activity implements NavigationListener {
 		initNavigation();
 		initFragmentManager();
 		onPlayerPositionDetailChanged(new PlayerPositionDetail(12, 48, 100, 30, 1000));
-		onPlayerPositionDetailChanged(new PlayerPositionDetail(12, 48, 100, 20, 1000));
+		onPlayerPositionDetailChanged(new PlayerPositionDetail(12, 48, 100, 26, 1000));
+		onPlayerPositionDetailChanged(new PlayerPositionDetail(12, 48, 100, 25, 1000));
+		onPlayerPositionDetailChanged(new PlayerPositionDetail(12, 48, 100, 25, 1000));
+		onPlayerPositionDetailChanged(new PlayerPositionDetail(12, 48, 100, 24, 1000));
+		onPlayerPositionDetailChanged(new PlayerPositionDetail(12, 48, 100, 13, 1000));
 		onPlayerPositionDetailChanged(new PlayerPositionDetail(12, 48, 100, 30, 1000));
-		onPlayerPositionDetailChanged(new PlayerPositionDetail(12, 48, 100, 20, 1000));
+		onPlayerPositionDetailChanged(new PlayerPositionDetail(12, 48, 100, 35, 1000));
+		
 	}
 	
 	private void initFragmentManager() {
 		fragmentManager = getFragmentManager();
+		alertFragment = new EnterAlertFragment();
+		transaction = fragmentManager.beginTransaction();
+		transaction.setCustomAnimations(R.animator.slide_in_bottom, R.animator.slide_out_top);
 		
 	}
 
@@ -189,16 +199,19 @@ public class MapActivity extends Activity implements NavigationListener {
 	private void checkRangeTrue(PlayerPositionDetail playerPosDetail) {
 		if (isShopInRange == true && playerPosDetail.getDistanceShop() >= rangeBuildings) {
 			isShopInRange = false;
+			transaction.remove(alertFragment);
 		}
 
 		else if (isDompteurInRange == true
 				&& playerPosDetail.getDistanceDompteur() >= rangeBuildings) {
 			isDompteurInRange = false;
+			transaction.remove(alertFragment);
 		}
 
 		else if (isHospitalInRange == true
 				&& playerPosDetail.getDistanceHospital() >= rangeBuildings) {
 			isHospitalInRange = false;
+			transaction.remove(alertFragment);
 		}
 	}
 
@@ -221,16 +234,18 @@ public class MapActivity extends Activity implements NavigationListener {
 	}
 	
 	private void showFragmentForBuildings(String building) {
-		EnterAlertFragment alertFragment = new EnterAlertFragment();
-		FragmentTransaction transaction = fragmentManager.beginTransaction();
-		transaction.setCustomAnimations(R.animator.slide_in_bottom, R.animator.slide_out_top);
+		//EnterAlertFragment alertFragment = new EnterAlertFragment();
+		//FragmentTransaction transaction = fragmentManager.beginTransaction();
+		//transaction.setCustomAnimations(R.animator.slide_in_bottom, R.animator.slide_out_top);
 		transaction.add(R.id.map_activity_layout, alertFragment, "alertFragment");
 		Bundle extras = new Bundle();
 		if (alertFragment.getArguments() != null){
 			extras = alertFragment.getArguments();
 			extras.clear();
 		};
-		extras.putString("building", building);	
+
+		extras.putString("building", building);
+
 		alertFragment.setArguments(extras);
 		transaction.commit();
 	}
