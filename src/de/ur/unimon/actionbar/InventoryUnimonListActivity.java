@@ -17,7 +17,7 @@ public class InventoryUnimonListActivity extends Activity{
 	
 	ListView unimonListInventory;
 	private UnimonListAdapter unimonListInventory_adpater;
-	private ArrayList <Unimon> unimons = new ArrayList <Unimon>();
+	private ArrayList <Unimon> unimons;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -28,8 +28,10 @@ public class InventoryUnimonListActivity extends Activity{
 	}
 
 	private void initUI() {
+		unimons = de.ur.unimon.appstart.StartScreenActivity.player.getUnimonList();
+		initListAdapter();
 		initListView();
-		initListAdapter();		
+			
 	}
 	
 	private void initListView() {
@@ -38,11 +40,12 @@ public class InventoryUnimonListActivity extends Activity{
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view,
 					int position, long id) {
-				
-				
-				Intent unimon_inventory = new Intent(InventoryUnimonListActivity.this,
+				Intent unimonInventory = new Intent(InventoryUnimonListActivity.this,
 						InventoryActivity.class);
-				startActivity(unimon_inventory);
+				Unimon chosenUnimon = (Unimon) unimonListInventory.getItemAtPosition(position);
+				//chosenUnimon.
+				
+				startActivity(unimonInventory);
 				
 				}
 		});

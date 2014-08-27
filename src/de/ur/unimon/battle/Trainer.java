@@ -7,22 +7,30 @@ import de.ur.unimon.unimons.Unimon;
 public class Trainer {
 	int id;
 	String name;
-	int expvalue;
-	int moneyvalue;
+	int expValue, moneyValue;
 	Unimon unimon;
-	double longitude;
-	double latitude;
+	double longitude, latitude;
 	Random rand;
+	boolean isSeen;
 
 	public Trainer(int id, String name, double latitude, double longitude,
-			Unimon unimon, int expvalue, int moneyvalue) {
+			Unimon unimon, int expValue, int moneyValue) {
 		this.id = id;
 		this.name = name;
 		this.longitude = longitude;
 		this.latitude = latitude;
 		this.unimon = unimon;
-		this.expvalue = expvalue;
-		this.moneyvalue = moneyvalue;
+		this.expValue = expValue;
+		this.moneyValue = moneyValue;
+		this.isSeen = false;
+	}
+	
+	public boolean isSeen(){
+		return isSeen;
+	}
+	
+	public void setVisible(){
+		isSeen = true;
 	}
 
 	public int getId() {
@@ -33,20 +41,20 @@ public class Trainer {
 		return name;
 	}
 
-	public double getlongitude() {
+	public double getLongitude() {
 		return longitude;
 	}
 
-	public double getlatitude() {
+	public double getLatitude() {
 		return latitude;
 	}
 
-	public int getMoneyvalue() {
-		return moneyvalue;
+	public int getMoneyValue() {
+		return moneyValue;
 	}
 
-	public int getExpvalue() {
-		return expvalue;
+	public int getExpValue() {
+		return expValue;
 	}
 
 	public Unimon getUnimon() {

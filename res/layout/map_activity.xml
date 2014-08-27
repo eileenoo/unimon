@@ -3,7 +3,8 @@
     android:layout_width="wrap_content"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:layout_alignParentBottom="true" >
+    android:layout_alignParentBottom="true" 
+    android:id="@+id/map_activity_layout">"
 
    
     <ScrollView

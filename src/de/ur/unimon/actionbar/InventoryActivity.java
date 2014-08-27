@@ -1,5 +1,7 @@
 package de.ur.unimon.actionbar;
 
+
+
 import java.util.ArrayList;
 
 import de.ur.mi.android.excercises.starter.R;
@@ -8,6 +10,8 @@ import de.ur.unimon.mapoverview.MapActivity;
 import de.ur.unimon.start.newgame.NewGameActivity;
 import de.ur.unimon.startgame_logic.Player;
 import de.ur.unimon.unimons.Unimon;
+
+
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -15,8 +19,10 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.TextView;
-import de.ur.mi.android.excercises.starter.R;
-import de.ur.unimon.startgame_logic.Player;
+
+
+
+
 
 public class InventoryActivity extends Activity{
 
@@ -41,7 +47,7 @@ public class InventoryActivity extends Activity{
 		player = de.ur.unimon.appstart.StartScreenActivity.player;
 		inventory = player.getInventory();
 		money = (TextView) findViewById(R.id.money);
-		money.setText("Money: " + player.getMoney());
+		money.setText(getResources().getString(R.string.money_text) + player.getMoney());
 
 		if (inventory != null) {
 
@@ -51,7 +57,7 @@ public class InventoryActivity extends Activity{
 			healpotCount = (TextView) findViewById(R.id.item_healpot_count);
 
 			// healpotImage.setImageResource(R.drawable.ic_launcher);
-			healpotCount.setText("Anzahl: " + inventory.getHealpotCount());
+			healpotCount.setText(getResources().getString(R.string.item_count_text) + inventory.getHealpotCount());
 
 			// Uniball
 			uniballImage = (Button) findViewById(R.id.uniball_image);
@@ -59,7 +65,7 @@ public class InventoryActivity extends Activity{
 			uniballCount = (TextView) findViewById(R.id.item_uniball_count);
 
 			// uniballImage.setImageResource(R.drawable.ic_launcher);
-			uniballCount.setText("Anzahl: " + inventory.getUniballCount());
+			uniballCount.setText(getResources().getString(R.string.item_count_text) + inventory.getUniballCount());
 
 			// Revive
 			reviveImage = (Button) findViewById(R.id.revive_image);
@@ -67,7 +73,7 @@ public class InventoryActivity extends Activity{
 			reviveCount = (TextView) findViewById(R.id.item_revive_count);
 
 			// reviveImage.setImageResource(R.drawable.ic_launcher);
-			reviveCount.setText("Anzahl: " + inventory.getReviveCount());
+			reviveCount.setText(getResources().getString(R.string.item_count_text) + inventory.getReviveCount());
 
 			// Protectors
 			protectorImage = (Button) findViewById(R.id.protectors_image);
@@ -75,7 +81,7 @@ public class InventoryActivity extends Activity{
 			protectorCount = (TextView) findViewById(R.id.item_protector_count);
 
 			// protectorImage.setImageResource(R.drawable.ic_launcher);
-			protectorCount.setText("Anzahl: " + inventory.getProtectorCount());
+			protectorCount.setText(getResources().getString(R.string.item_count_text) + inventory.getProtectorCount());
 
 			setButtonsOnClick();
 
