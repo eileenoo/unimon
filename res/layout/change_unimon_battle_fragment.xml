@@ -1,0 +1,21 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="bottom"
+    android:background="#FFBB00"
+    android:orientation="vertical" >
+
+    <Button
+        android:id="@+id/battle_unimon_two_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/battle_unimon2_button_text" />
+
+    <Button
+        android:id="@+id/battle_unimon_three_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/battle_unimon3_button_text" />
+
+</LinearLayout>

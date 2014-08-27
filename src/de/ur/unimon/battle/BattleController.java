@@ -78,14 +78,17 @@ public class BattleController {
 		player.getInventory().decreaseHealpots();
 	}
 
-	public void changeCurrentUnimon(int battleUnimonsListIndex) {
-		Unimon newUnimon = battleUnimonsList[battleUnimonsListIndex];
-		battleUnimon = newUnimon;
+	public void changeCurrentUnimon(Unimon chosenUnimon) {
+		battleUnimon = chosenUnimon;
 	}
 	
 	public Unimon ownUnimonAttack(Spell spell) {
 		enemyUnimon.loseHealth(spell.getDamage());
 		return enemyUnimon;
+	}
+	
+	public int getLostHealthOfEnemyUnimon (Spell spell) {
+		return spell.getDamage();
 	}
 	
 	public Unimon enemyUnimonAttack() {
