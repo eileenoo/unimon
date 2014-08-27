@@ -59,11 +59,11 @@ public class AttackFragmentListAdapter extends BaseAdapter {
 		Spell spell = (Spell) getItem(position);
 
 		if (spell != null) {
-			spellTextView = (TextView) convertView.findViewById(R.id.spell_list_view);
+			spellTextView = (TextView) convertView.findViewById(R.id.spell_name);
 			spellDamageTextView = (TextView) convertView.findViewById(R.id.spell_damage);
 
-			spellTextView.setText(spell.getSpellName());
-			spellDamageTextView.setText("(Level: " + spell.getSpellLevel() + "");
+			spellTextView.setText(spell.getSpellName() + "  ");
+			spellDamageTextView.setText(" spelllevel: " + spell.getSpellLevel());
 		}
 		return convertView;
 

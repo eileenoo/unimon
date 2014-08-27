@@ -21,6 +21,17 @@ public class ChangeUnimonBattleFragment extends Fragment {
 	private Unimon[] currentBattleUnimonList;
 
 	@Override
+	public void onAttach(Activity activity) {
+		super.onAttach(activity);
+		try {
+			listener = (OnUnimonChangedListener) activity;
+		} catch (ClassCastException e) {
+			throw new ClassCastException(activity.toString()
+					+ " must implement OnUnimonChangedListener");
+		}
+	}
+	
+	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 	}
@@ -46,17 +57,6 @@ public class ChangeUnimonBattleFragment extends Fragment {
 		public void onUnimonChanged(Unimon chosenUnimon, int index);
 
 		public Unimon[] onGetBattleUnimonListArray();
-	}
-
-	@Override
-	public void onAttach(Activity activity) {
-		super.onAttach(activity);
-		try {
-			listener = (OnUnimonChangedListener) activity;
-		} catch (ClassCastException e) {
-			throw new ClassCastException(activity.toString()
-					+ " must implement OnUnimonChangedListener");
-		}
 	}
 
 	private void initCurrentBattleUnimonList() {

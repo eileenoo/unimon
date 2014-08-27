@@ -58,6 +58,7 @@
     <string name="battle_healpot_button_text">Use healpot</string>
     <string name="battle_uniball_button_text">Use uniball</string>
     <string name="battle_select_text">Select: </string>
+    <string name="battle_enemyunimon_lost_health_text">Enemy Unimon lost health.</string>
     <string name="battle_unimon2_button_text">Select Unimon 2</string>
     <string name="battle_unimon3_button_text">Select Unimon 3</string>
     <string name="battle_spell_button_text">Spell 1</string>

@@ -87,6 +87,10 @@ public class BattleController {
 		return enemyUnimon;
 	}
 	
+	public int getLostHealthOfEnemyUnimon (Spell spell) {
+		return spell.getDamage();
+	}
+	
 	public Unimon enemyUnimonAttack() {
 		int spellSize = enemyUnimon.ownedSpells.size();
 		battleUnimon.loseHealth(enemyUnimon.ownedSpells.get(

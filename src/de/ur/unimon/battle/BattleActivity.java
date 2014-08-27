@@ -22,7 +22,8 @@ import de.ur.unimon.unimons.UnimonList;
 public class BattleActivity extends Activity implements
 		AllOptionsBattleFragment.OnOptionsSelectorListener,
 		AttackBattleFragment.OnSpellSelectedListener,
-		ChangeUnimonBattleFragment.OnUnimonChangedListener {
+		ChangeUnimonBattleFragment.OnUnimonChangedListener,
+		ChooseItemFragment.OnChooseItemListener {
 
 	private Button changeUnimonButton, attackButton, useItemButton,
 			escapeButton, healpotButton, uniballButton;
@@ -186,101 +187,30 @@ public class BattleActivity extends Activity implements
 	//
 	// }
 
-	private void itemButtonClicked() {
-		healpotButton = (Button) findViewById(R.id.battle_healpot_button);
-		uniballButton = (Button) findViewById(R.id.battle_uniball_button);
-
-		// Sollen wir zu den Items in Klammer noch die aktuelle Anzahl
-		// dazuschreiben?
-
-		useItemButton.setOnClickListener(new OnClickListener() {
-
-			@Override
-			public void onClick(View v) {
-				// Abfrage ob ein Healpot im Inventar verfŸgbar ist
-				if (player.getInventory().healpotAvailable()) {
-					healpotButton.setClickable(true);
-				} else {
-					healpotButton.setClickable(false);
-				}
-
-				// Abfrage ob ein Uniball im Inventar verfŸgbar ist
-				if (player.getInventory().uniballAvailable()) {
-					uniballButton.setClickable(true);
-				} else {
-					uniballButton.setClickable(false);
-				}
-
-				healpotButtonClicked();
-				uniballButtonClicked();
-			}
-		});
-
-	}
-
-	// Uniball Count wird heruntergezŠhlt & im BattleController wird das
-	// gefangene Unimon zur ownUnimonList hinzugefŸgt (wenn es gefangen wurde)
-	private void uniballButtonClicked() {
-		uniballButton.setOnClickListener(new OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				player.getInventory().decreaseUniball();
-				if (battleController.ableToCatchUnimon()) {
-					battleController.unimonCatchSuccess();
-					showToast(R.string.catch_unimon_success_text);
-					startActivity(map);
-				} else {
-					showToast(R.string.catch_unimon_fail_text);
-				}
-				playerStatus = false;
-			}
-		});
-		checkStatus();
-	}
-
-	// HealpotCount wird im BattleController Ÿber Playerlistener den
-	// heruntergeztŠhlt
-	private void healpotButtonClicked() {
-		healpotButton.setOnClickListener(new OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				battleController.useHealpot();
-				playerStatus = false;
-			}
-		});
-		checkStatus();
-	}
-
 	private void showToast(int toastText) {
 		int duration = Toast.LENGTH_SHORT;
 		toast = Toast.makeText(this, toastText, duration);
 		toast.show();
 	}
 
-	// Es wird geschaut wer an der Reihe ist -Spieler oder GegnerTrainer
-	// Wenn der Spieler nicht mehr an der Reihe ist (weil er schon einen Zug
-	// gemacht hat), werden die Buttons disabled & der Gegner greift an
 	private void checkStatus() {
 		if (playerStatus) {
-			escapeButton.setClickable(true);
-			changeUnimonButton.setClickable(true);
-			attackButton.setClickable(true);
-			useItemButton.setClickable(true);
+			//Fragment wieder klickable machen 
 		} else {
-			escapeButton.setClickable(false);
-			changeUnimonButton.setClickable(false);
-			attackButton.setClickable(false);
-			useItemButton.setClickable(false);
+			// Fragment inklickbar machen
 			enemyFight();
 		}
 	}
 
-	// Wird aufgerufen, nachdem eine Aktion durchgefŸhrt wurde
+	// Is called, after each move (attack, escape, changeUnimon, useItem)
 	private void enemyFight() {
 		battleUnimon = battleController.enemyUnimonAttack();
 		if (battleUnimon.getHealth() >= 0) {
 			gameWon = false;
 			fightEnd();
+		} else {
+			playerStatus = true;
+			//checkStatus();
 		}
 	}
 
@@ -293,20 +223,19 @@ public class BattleActivity extends Activity implements
 		startActivity(map);
 	}
 
-	// _____________________ONOPTIONSSELECTORLISTENER_METHODEN__________________
-
+	// _____________________LISTENERS__________________
 
 	@Override
-	public void onEscapeSuccessfull() {		
+	public void onEscapeSuccessfull() {
 		showToast(R.string.escape_toast_text);
 		fragmentManager.popBackStack();
 		startActivity(map);
 	}
-	
+
 	@Override
 	public void onEscapeFailed() {
 		showToast(R.string.escape_not_successfull_toast_text);
-		 playerStatus = false;
+		playerStatus = false;
 		// checkStatus();
 	}
 
@@ -315,65 +244,34 @@ public class BattleActivity extends Activity implements
 		boolean isEscapeAvailable = battleController.ableToEscape();
 		return isEscapeAvailable;
 	}
-	
 
-	// In showSpellList muss noch ein neues Fragment erzeugt werden
-	// @Override
-	// public void onAttackButtonClicked() {
-	// AttackBattleFragment attackFragment = new AttackBattleFragment();
-	//
-	// ArrayList<Spell> ownedSpells = battleUnimon.getOwnedSpells();
-	// // Dem AttackFragment muss die SpellList Ÿbergeben werden
-	// // Bundle extra = new Bundle();
-	// // extra.putSparseParcelableArray(key, value);
-	// // extra.putArrayList("CurrentUnimonListContent",
-	// // hasCurrentBattleUnimonsListUnimons());
-	// // attackFragment.setArguments(extra);
-	//
-	// fragmentTransaction.add(R.id.battle_activity_layout, attackFragment,
-	// "AttackBattleFragment");
-	// fragmentTransaction.commit();
-	// }
-
-	// _____OnSpellSelectedLister des AttackBattleFragments_____
 	@Override
 	public void onSpellSelected(Spell chosenSpell) {
-		Spell currentSpell = chosenSpell;
-		enemyUnimon = battleController.ownUnimonAttack(currentSpell);
+		enemyUnimon = battleController.ownUnimonAttack(chosenSpell);
 		if (enemyUnimon.getHealth() >= 0) {
 			gameWon = true;
 			fightEnd();
 		} else {
+			showToast(R.string.battle_enemyunimon_lost_health_text
+					+ battleController.getLostHealthOfEnemyUnimon(chosenSpell));
 			playerStatus = false;
-//			checkStatus();
+			// checkStatus();
 		}
-
 	}
 
 	@Override
 	public ArrayList<Spell> getSpellList() {
-		if (battleUnimon.getPossibleSpells().isEmpty()) {
-			Log.d("isEmpty:", "true");
-		}
-		// for (int i = 0; i < battleUnimon.getPossibleSpells().size(); i++) {
-		// Log.d("Spell" + i + " :",
-		// battleUnimon.getPossibleSpells().get(i).toString());
-		// }
-
-		// ArrayList<Spell> ownedSpells = battleUnimon.getPossibleSpells();
-		// return ownedSpells;
-		return null;
+		ArrayList<Spell> spellList = battleUnimon.getOwnedSpells();
+		return spellList;
 	}
 
-	
 	@Override
 	public void onUnimonChanged(Unimon chosenUnimon, int unimonNameIndex) {
 		battleController.changeCurrentUnimon(chosenUnimon);
 		currentBattleUnimonList[unimonNameIndex] = battleUnimon;
 		battleUnimon = chosenUnimon;
 		playerStatus = false;
-//		checkStatus();
-		Log.d("ChosenUnimon", "fu");
+		// checkStatus();
 	}
 
 	@Override
@@ -381,6 +279,44 @@ public class BattleActivity extends Activity implements
 		return currentBattleUnimonList;
 	}
 
+	@Override
+	public boolean onHealpotAvailable() {
+		if (player.getInventory().getHealpotCount() == 0) {
+			return false;
+		} else {
+			return true;
+		}
+	}
 
+	@Override
+	public boolean onUniballAvailable() {
+		if (player.getInventory().getUniballCount() == 0) {
+			return false;
+		} else {
+			return true;
+		}
+	}
 
+	@Override
+	public void onHealpotButtonClicked() {
+		player.getInventory().decreaseHealpots();
+		battleController.useHealpot();
+		playerStatus = false;
+		// checkStatus();
+	}
+
+	@Override
+	public void onUniballButtonClicked() {
+		player.getInventory().decreaseUniball();
+		if (battleController.ableToCatchUnimon()) {
+			battleController.unimonCatchSuccess();
+			showToast(R.string.catch_unimon_success_text);
+			startActivity(map);
+		} else {
+			showToast(R.string.catch_unimon_fail_text);
+		}
+		playerStatus = false;
+		// checkStatus();
+
+	}
 }

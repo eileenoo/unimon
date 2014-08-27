@@ -26,6 +26,18 @@ public class AttackBattleFragment extends Fragment {
 	private OnSpellSelectedListener listener;
 
 	@Override
+	public void onAttach(Activity activity) {
+		super.onAttach(activity);
+		
+		try {
+			listener = (OnSpellSelectedListener) activity;
+		} catch (ClassCastException e) {
+			throw new ClassCastException(activity.toString()
+					+ " must implement OnOptionsSelectorListener");
+		}
+	}
+	
+	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		
@@ -42,26 +54,14 @@ public class AttackBattleFragment extends Fragment {
 	@Override
 	public void onActivityCreated(Bundle savedInstanceState) {
 		super.onActivityCreated(savedInstanceState);
-		
-//		initListAdapter();
-//		initListView();
+
+		initListAdapter();
+		initListView();
 	}
 
 	public interface OnSpellSelectedListener {
 		public void onSpellSelected(Spell chosenSpell);
 		public ArrayList<Spell> getSpellList();
-	}
-
-	@Override
-	public void onAttach(Activity activity) {
-		super.onAttach(activity);
-		
-		try {
-			listener = (OnSpellSelectedListener) activity;
-		} catch (ClassCastException e) {
-			throw new ClassCastException(activity.toString()
-					+ " must implement OnOptionsSelectorListener");
-		}
 	}
 
 	private void initListAdapter() {
@@ -79,6 +79,7 @@ public class AttackBattleFragment extends Fragment {
 					int position, long id) {
 				Spell chosenSpell = (Spell) spellListView.getItemAtPosition(position);
 				listener.onSpellSelected(chosenSpell);
+				getFragmentManager().popBackStack();
 			}
 		});
 	}
