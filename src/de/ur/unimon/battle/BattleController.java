@@ -9,19 +9,16 @@ import de.ur.unimon.unimons.Unimon;
 
 public class BattleController {
 
-	private Unimon[] battleUnimonsList;
 	private Unimon battleUnimon;
 	private Unimon enemyUnimon;
 	private Player player;
 	private Random randomGenerator;
 
-	public BattleController(Unimon enemyUnimon, Unimon battleUnimon,
-			Unimon[] unimonList) {
+	public BattleController(Unimon enemyUnimon, Unimon battleUnimon) {
 		initRandomGenerator();
 		initPlayer();
 		initEnemyUnimon(enemyUnimon);
 		initBattleUnimon(battleUnimon);
-		initBattleUnimonList(unimonList);
 	}
 
 	private void initRandomGenerator() {
@@ -38,10 +35,6 @@ public class BattleController {
 
 	private void initBattleUnimon(Unimon battleUnimon) {
 		this.battleUnimon = battleUnimon;
-	}
-
-	private void initBattleUnimonList(Unimon[] unimonList) {
-		this.battleUnimonsList = unimonList;
 	}
 
 	public boolean ableToEscape() {
@@ -71,11 +64,6 @@ public class BattleController {
 
 	public void unimonCatchSuccess() {
 		player.ownUnimonList.add(enemyUnimon);
-	}
-
-	public void useHealpot() {
-		battleUnimon.addHealth(50);
-		player.getInventory().decreaseHealpots();
 	}
 
 	public void changeCurrentUnimon(Unimon chosenUnimon) {
