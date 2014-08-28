@@ -162,6 +162,10 @@ public class Unimon {
 		possibleSpells.add(spell.getSpellNumber(), spell);
 	}
 	
+	public ArrayList<Spell> getPossibleSpells() {
+		return possibleSpells;
+	}
+	
 	public void learnSpell(Spell spell){
 		ownedSpells.add(spell);
 	}

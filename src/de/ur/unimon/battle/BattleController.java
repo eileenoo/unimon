@@ -3,7 +3,7 @@ package de.ur.unimon.battle;
 import java.util.Random;
 
 import de.ur.unimon.startgame_logic.Player;
-import de.ur.unimon.startgame_logic.PlayerListener;
+import de.ur.unimon.startgame_logic.PlayerController;
 import de.ur.unimon.unimons.Spell;
 import de.ur.unimon.unimons.Unimon;
 
@@ -13,6 +13,7 @@ public class BattleController {
 	private Unimon battleUnimon;
 	private Unimon enemyUnimon;
 	private Player player;
+	private PlayerController playerController;
 	private Random randomGenerator;
 
 	public BattleController(Unimon enemyUnimon, Unimon battleUnimon,
@@ -29,7 +30,7 @@ public class BattleController {
 	}
 
 	private void initPlayer() {
-		player = de.ur.unimon.appstart.StartScreenActivity.player;
+		player = playerController.getInstance();
 	}
 
 	private void initEnemyUnimon(Unimon enemyUnimon) {
@@ -78,14 +79,17 @@ public class BattleController {
 		player.getInventory().decreaseHealpots();
 	}
 
-	public void changeCurrentUnimon(int battleUnimonsListIndex) {
-		Unimon newUnimon = battleUnimonsList[battleUnimonsListIndex];
-		battleUnimon = newUnimon;
+	public void changeCurrentUnimon(Unimon chosenUnimon) {
+		battleUnimon = chosenUnimon;
 	}
 	
 	public Unimon ownUnimonAttack(Spell spell) {
 		enemyUnimon.loseHealth(spell.getDamage());
 		return enemyUnimon;
+	}
+	
+	public int getLostHealthOfEnemyUnimon (Spell spell) {
+		return spell.getDamage();
 	}
 	
 	public Unimon enemyUnimonAttack() {

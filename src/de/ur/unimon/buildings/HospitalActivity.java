@@ -2,28 +2,25 @@ package de.ur.unimon.buildings;
 
 import java.util.ArrayList;
 
-import de.ur.mi.android.excercises.starter.R;
-import de.ur.unimon.actionbar.InventoryActivity;
-import de.ur.unimon.actionbar.InventoryUnimonListActivity;
-import de.ur.unimon.actionbar.UnimonListAdapter;
-import de.ur.unimon.startgame_logic.Player;
-import de.ur.unimon.unimons.Unimon;
 import android.app.Activity;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListAdapter;
 import android.widget.ListView;
-import android.widget.AdapterView.OnItemClickListener;
+import de.ur.mi.android.excercises.starter.R;
+import de.ur.unimon.actionbar.UnimonListAdapter;
+import de.ur.unimon.startgame_logic.Player;
+import de.ur.unimon.startgame_logic.PlayerController;
+import de.ur.unimon.unimons.Unimon;
 
 public class HospitalActivity extends Activity{
 	
 	Button button;
 	private ArrayList <Unimon> unimons;
-	Player player;
+	private Player player;
+	private PlayerController playerController;
 	ListView listUnimons;
 	ListAdapter listUnimons_adpater;
 	HospitalLogic hospital;
@@ -33,14 +30,15 @@ public class HospitalActivity extends Activity{
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.hospital_activty);
-		player = de.ur.unimon.appstart.StartScreenActivity.player;
+		
 		hospital = new HospitalLogic();
 		initUI();
 
 	}
 
 	private void initUI() {
-		unimons = de.ur.unimon.appstart.StartScreenActivity.player.getUnimonList();
+		player = playerController.getInstance();
+		unimons = player.getUnimonList();
 		button = (Button) findViewById(R.id.button_healAll);
 		button.setOnClickListener(new OnClickListener() { 
 			

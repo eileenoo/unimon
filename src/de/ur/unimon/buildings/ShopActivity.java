@@ -1,22 +1,18 @@
 package de.ur.unimon.buildings;
 
-import de.ur.mi.android.excercises.starter.R;
-import de.ur.unimon.actionbar.Inventory;
-import de.ur.unimon.actionbar.InventoryActivity;
-import de.ur.unimon.actionbar.InventoryUnimonListActivity;
-import de.ur.unimon.mapoverview.MapActivity;
-import de.ur.unimon.startgame_logic.Player;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
+import de.ur.mi.android.excercises.starter.R;
+import de.ur.unimon.actionbar.Inventory;
+import de.ur.unimon.startgame_logic.Player;
+import de.ur.unimon.startgame_logic.PlayerController;
 
 public class ShopActivity extends Activity {
 
@@ -29,15 +25,17 @@ public class ShopActivity extends Activity {
 			protector_Price;
 
 	Inventory inventory;
-	Player player;
+	private Player player;
+	private PlayerController playerController;
 	AlertDialog.Builder builder;
 	Toast toast;
+	
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.shop_activity);
-		player = de.ur.unimon.appstart.StartScreenActivity.player;
+		player = playerController.getInstance();
 		builder = new AlertDialog.Builder(this);
 		initUI();
 

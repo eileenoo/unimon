@@ -1,5 +1,7 @@
 package de.ur.unimon.mapoverview;
 
+import java.util.ArrayList;
+
 import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentTransaction;
@@ -13,6 +15,9 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 import de.ur.mi.android.excercises.starter.R;
+import de.ur.unimon.battle.ChooseBattleUnimonsActivity;
+import de.ur.unimon.battle.Trainer;
+import de.ur.unimon.battle.TrainerList;
 import de.ur.unimon.buildings.DompteurActivity;
 import de.ur.unimon.buildings.HospitalActivity;
 import de.ur.unimon.buildings.ShopActivity;
@@ -21,7 +26,9 @@ public class EnterAlertFragment extends Fragment {
 	
 	Button okButton, cancelButton;
 	TextView questionView;
-	String building;
+	String building, questionText;
+	int trainerID;
+	private ArrayList<Trainer> trainerList;
 
 	@Override
 	public void onAttach(Activity activity) {
@@ -45,10 +52,16 @@ public class EnterAlertFragment extends Fragment {
 	@Override
 	public void onActivityCreated(Bundle savedInstanceState) {
 		super.onActivityCreated(savedInstanceState);
-		
+		trainerList = new TrainerList().getTrainerList();
 		Bundle extras = getArguments();
 		building = extras.getString("building");
-		String questionText = "Do you want to enter the "+ building;
+		if (building == "Shop" || building == "Hospital" || building == "Dompteur"){
+			questionText = "Do you want to enter the "+ building +"?";
+		}
+		else {
+			trainerID = extras.getInt("trainerID");
+			questionText = "Do you want to fight "+trainerList.get(trainerID).getName()+ "?";
+		}
 		questionView = (TextView) getView().findViewById(R.id.want_to_enter_text);
 		questionView.setText(questionText);
 		
@@ -74,7 +87,13 @@ public class EnterAlertFragment extends Fragment {
 				case "Dompteur":
 					Intent toDompteur = new Intent(getActivity(), DompteurActivity.class);
 					startActivity(toDompteur);
-					break;		
+					break;	
+				case "Trainer":
+					Intent toBattle = new Intent(getActivity(), ChooseBattleUnimonsActivity.class);
+					Bundle extras = new Bundle();
+					extras.putInt("trainerID", trainerID);
+					toBattle.putExtras(extras);
+					startActivity(toBattle);
 				}
 			}
 		});

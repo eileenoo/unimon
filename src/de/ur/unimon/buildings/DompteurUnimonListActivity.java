@@ -1,16 +1,18 @@
 package de.ur.unimon.buildings;
 
-import de.ur.mi.android.excercises.starter.R;
-import de.ur.unimon.startgame_logic.Player;
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.TextView;
+import de.ur.mi.android.excercises.starter.R;
+import de.ur.unimon.startgame_logic.Player;
+import de.ur.unimon.startgame_logic.PlayerController;
 
 public class DompteurUnimonListActivity extends Activity{
-	Player player;
+	private Player player;
+	private PlayerController playerController;
 	Button newSkill, improveSkill;
 	TextView unimonInfo;
 	private String chosenUnimonName;
@@ -21,7 +23,7 @@ public class DompteurUnimonListActivity extends Activity{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.dompteur_unimon_list_activity);
 		extras = this.getIntent().getExtras();
-		player = de.ur.unimon.appstart.StartScreenActivity.player;
+		player = playerController.getInstance();
 		initUI();
 }
 
