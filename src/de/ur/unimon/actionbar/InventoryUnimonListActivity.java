@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.AdapterView.OnItemClickListener;
 
@@ -18,37 +19,25 @@ public class InventoryUnimonListActivity extends Activity{
 	ListView unimonListInventory;
 	private UnimonListAdapter unimonListInventory_adpater;
 	private ArrayList <Unimon> unimons;
+	Button healpot, revive, protector;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.unimon_list_activity);
+		setContentView(R.layout.inventory_unimon_list_activity);
 		initUI();
 
 	}
 
 	private void initUI() {
 		unimons = de.ur.unimon.appstart.StartScreenActivity.player.getUnimonList();
-		initListAdapter();
-		initListView();
-			
-	}
-	
-	private void initListView() {
 		unimonListInventory = (ListView) findViewById(R.id.listView_unimons);
-		unimonListInventory.setOnItemClickListener(new OnItemClickListener() {
-			@Override
-			public void onItemClick(AdapterView<?> parent, View view,
-					int position, long id) {
-				Intent unimonInventory = new Intent(InventoryUnimonListActivity.this,
-						InventoryActivity.class);
-				Unimon chosenUnimon = (Unimon) unimonListInventory.getItemAtPosition(position);
-				//chosenUnimon.
-				
-				startActivity(unimonInventory);
-				
-				}
-		});
+		healpot = (Button) findViewById(R.id.healpot);
+		revive = (Button) findViewById(R.id.revive);
+		protector = (Button) findViewById(R.id.protector);
+		initListAdapter();
+
+			
 	}
 	
 	

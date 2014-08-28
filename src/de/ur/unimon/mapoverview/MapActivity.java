@@ -1,6 +1,7 @@
 package de.ur.unimon.mapoverview;
 
 import android.app.Activity;
+
 import android.app.AlertDialog;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
@@ -132,7 +133,7 @@ public class MapActivity extends Activity implements NavigationListener {
 		mapButton.setOnClickListener(new OnClickListener() {
 			public void onClick(View v) {
 				Intent startBattle = new Intent(MapActivity.this,
-						ChooseBattleUnimonsActivity.class);
+						DompteurActivity.class);
 				startActivity(startBattle);
 			}
 		});

@@ -108,8 +108,6 @@ public class UnimonList {
 		lisa.ownedSpells.add(lisaSpell1);
 		lisa.setHealth(15);
 		
-		Log.d(TAG, "krisk: "+krisk.getName());
-		
 		unimonList.add(krisk);
 		unimonList.add(neni);
 		unimonList.add(brunz);
