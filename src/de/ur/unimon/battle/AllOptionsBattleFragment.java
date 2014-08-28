@@ -13,8 +13,10 @@ import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnKeyListener;
 import android.view.ViewGroup;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -55,19 +57,37 @@ public class AllOptionsBattleFragment extends Fragment {
 				container, false);
 		return view;
 	}
+	
+	
 
 	@Override
 	public void onActivityCreated(Bundle savedInstanceState) {
 		super.onActivityCreated(savedInstanceState);
 
+		enableBackButton();
 		initButtons();
 		initClickListeners();
+	}
+
+	private void enableBackButton() {
+		getView().setFocusableInTouchMode(true);
+		getView().setOnKeyListener(new OnKeyListener() {
+			@Override
+			public boolean onKey(View v, int keyCode, KeyEvent event) {
+				if (keyCode == KeyEvent.KEYCODE_BACK) {
+					return true;
+				}
+				return false;
+			}
+		});
 	}
 
 	// Container Activity must implement this interface
 	public interface OnOptionsSelectorListener {
 		public void onEscapeSuccessfull();
+
 		public void onEscapeFailed();
+
 		public boolean onIsEscapeAvailable();
 	}
 
@@ -124,11 +144,11 @@ public class AllOptionsBattleFragment extends Fragment {
 
 			@Override
 			public void onClick(View v) {
-				if(listener.onIsEscapeAvailable()) {
+				if (listener.onIsEscapeAvailable()) {
 					listener.onEscapeSuccessfull();
 				} else {
 					listener.onEscapeFailed();
-				}	
+				}
 			}
 		});
 	}
