@@ -1,5 +1,7 @@
 package de.ur.unimon.mapoverview;
 
+import java.util.Random;
+
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.FragmentManager;
@@ -31,6 +33,7 @@ public class MapActivity extends Activity implements NavigationListener {
 	public int playerXCoord, playerYCoord;
 
 	LinearLayout canvasLayout;
+	private Random rnd;
 	private NavigationController navigationController;
 	private double playerLatitude, playerLongitude;
 	public static final double leftUpperCornerLongitude = 12.091562;
@@ -60,7 +63,7 @@ public class MapActivity extends Activity implements NavigationListener {
 	private FragmentManager fragmentManager;
 	EnterAlertFragment alertFragment;
 	FragmentTransaction transaction;
-	
+
 	AlertDialog.Builder builder;
 
 	@Override
@@ -73,22 +76,31 @@ public class MapActivity extends Activity implements NavigationListener {
 		initNavigation();
 		initFragmentManager();
 
-//		onPlayerPositionDetailChanged(new PlayerPositionDetail(12, 48, 100, 30, 1000, 100, 100, 100, 100, 100, 100, 100));
-//		onPlayerPositionDetailChanged(new PlayerPositionDetail(12, 48, 100, 26, 1000, 100, 100, 100, 100, 100, 100, 100));
-//		onPlayerPositionDetailChanged(new PlayerPositionDetail(12, 48, 100, 25, 1000, 100, 100, 100, 100, 100, 100, 100));
-//		onPlayerPositionDetailChanged(new PlayerPositionDetail(12, 48, 100, 25, 1000, 100, 100, 100, 100, 100, 100, 100));
-//		onPlayerPositionDetailChanged(new PlayerPositionDetail(12, 48, 100, 24, 1000, 100, 100, 100, 100, 100, 100, 100));
-//		onPlayerPositionDetailChanged(new PlayerPositionDetail(12, 48, 100, 13, 1000, 100, 100, 100, 100, 100, 100, 100));
-//		onPlayerPositionDetailChanged(new PlayerPositionDetail(12, 48, 100, 30, 1000, 100, 100, 100, 100, 100, 100, 100));
-//		onPlayerPositionDetailChanged(new PlayerPositionDetail(12, 48, 100, 35, 1000, 100, 100, 100, 100, 100, 100, 100));
-		
+		// onPlayerPositionDetailChanged(new PlayerPositionDetail(12, 48, 100,
+		// 30, 1000, 100, 100, 100, 100, 100, 100, 100));
+		// onPlayerPositionDetailChanged(new PlayerPositionDetail(12, 48, 100,
+		// 26, 1000, 100, 100, 100, 100, 100, 100, 100));
+		// onPlayerPositionDetailChanged(new PlayerPositionDetail(12, 48, 100,
+		// 25, 1000, 100, 100, 100, 100, 100, 100, 100));
+		// onPlayerPositionDetailChanged(new PlayerPositionDetail(12, 48, 100,
+		// 25, 1000, 100, 100, 100, 100, 100, 100, 100));
+		// onPlayerPositionDetailChanged(new PlayerPositionDetail(12, 48, 100,
+		// 24, 1000, 100, 100, 100, 100, 100, 100, 100));
+		// onPlayerPositionDetailChanged(new PlayerPositionDetail(12, 48, 100,
+		// 13, 1000, 100, 100, 100, 100, 100, 100, 100));
+		// onPlayerPositionDetailChanged(new PlayerPositionDetail(12, 48, 100,
+		// 30, 1000, 100, 100, 100, 100, 100, 100, 100));
+		// onPlayerPositionDetailChanged(new PlayerPositionDetail(12, 48, 100,
+		// 35, 1000, 100, 100, 100, 100, 100, 100, 100));
+
 	}
-	
+
 	private void initFragmentManager() {
 		fragmentManager = getFragmentManager();
 		alertFragment = new EnterAlertFragment();
 		transaction = fragmentManager.beginTransaction();
-		transaction.setCustomAnimations(R.animator.slide_in_bottom, R.animator.slide_out_top);		
+		transaction.setCustomAnimations(R.animator.slide_in_bottom,
+				R.animator.slide_out_top);
 	}
 
 	@Override
@@ -202,27 +214,41 @@ public class MapActivity extends Activity implements NavigationListener {
 				- leftUpperCornerLongitude) / helpVarX);
 		playerYCoord = (int) (Math
 				.abs(playerLatitude - leftUpperCornerLatitude) / helpVarY);
+//		gettingAttacked();
+
+		Log.d("bla", "" + isDompteurInRange);
+
 		checkRangeTrue(playerPosDetail);
 		checkRangeFalse(playerPosDetail);
 	}
+
+//	private void gettingAttacked() {
+//		int rand = rnd.nextInt(100);
+//		if (rand == 0) {
+//			Intent battleStart = new Intent(MapActivity.this,
+//					ChooseBattleUnimonsActivity.class);
+//			startActivity(battleStart);
+//		}
+//	}
+
 
 	private void checkRangeTrue(PlayerPositionDetail playerPosDetail) {
 		if (isShopInRange == true
 				&& playerPosDetail.getDistanceShop() >= rangeBuildings) {
 			isShopInRange = false;
-			transaction.remove(alertFragment);
+			transaction.remove(alertFragment).commit();
 		}
 
 		else if (isDompteurInRange == true
 				&& playerPosDetail.getDistanceDompteur() >= rangeBuildings) {
 			isDompteurInRange = false;
-			transaction.remove(alertFragment);
+			transaction.remove(alertFragment).commit();
 		}
 
 		else if (isHospitalInRange == true
 				&& playerPosDetail.getDistanceHospital() >= rangeBuildings) {
 			isHospitalInRange = false;
-			transaction.remove(alertFragment);
+			transaction.remove(alertFragment).commit();
 		}
 
 		else if (isTrainerThreeInRange == true
@@ -311,17 +337,21 @@ public class MapActivity extends Activity implements NavigationListener {
 	}
 
 	private void showFragmentForBuildings(String building) {
-		//EnterAlertFragment alertFragment = new EnterAlertFragment();
-		//FragmentTransaction transaction = fragmentManager.beginTransaction();
-		//transaction.setCustomAnimations(R.animator.slide_in_bottom, R.animator.slide_out_top);
-		transaction.add(R.id.map_activity_layout, alertFragment, "alertFragment");
+		// EnterAlertFragment alertFragment = new EnterAlertFragment();
+		// FragmentTransaction transaction = fragmentManager.beginTransaction();
+		// transaction.setCustomAnimations(R.animator.slide_in_bottom,
+		// R.animator.slide_out_top);
+		transaction.add(R.id.map_activity_layout, alertFragment,
+				"alertFragment");
 
 		Bundle extras = new Bundle();
 		if (alertFragment.getArguments() != null) {
 			extras = alertFragment.getArguments();
+
 			extras.clear();
 		}
 		extras.putString("building", building);
+
 		alertFragment.setArguments(extras);
 		transaction.commit();
 	}

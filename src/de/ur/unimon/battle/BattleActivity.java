@@ -2,13 +2,13 @@ package de.ur.unimon.battle;
 
 import java.util.ArrayList;
 
-import de.ur.mi.android.excercises.starter.R;
-import android.os.Bundle;
 import android.app.Activity;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.Intent;
+import android.os.Bundle;
 import android.widget.Toast;
+import de.ur.mi.android.excercises.starter.R;
 import de.ur.unimon.mapoverview.MapActivity;
 import de.ur.unimon.startgame_logic.Player;
 import de.ur.unimon.unimons.Spell;
