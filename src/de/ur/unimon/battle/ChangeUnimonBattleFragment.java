@@ -1,7 +1,6 @@
 package de.ur.unimon.battle;
 
 import de.ur.mi.android.excercises.starter.R;
-import de.ur.unimon.battle.AllOptionsBattleFragment.OnOptionsSelectorListener;
 import de.ur.unimon.unimons.Unimon;
 import android.app.Activity;
 import android.app.Fragment;
@@ -11,7 +10,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.View.OnClickListener;
-import android.webkit.WebView.FindListener;
 import android.widget.Button;
 
 public class ChangeUnimonBattleFragment extends Fragment {
@@ -30,7 +28,7 @@ public class ChangeUnimonBattleFragment extends Fragment {
 					+ " must implement OnUnimonChangedListener");
 		}
 	}
-	
+
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -69,17 +67,26 @@ public class ChangeUnimonBattleFragment extends Fragment {
 		unimonThreeButton = (Button) getView().findViewById(
 				R.id.battle_unimon_three_button);
 
-		String unimonTwoButtonText = currentBattleUnimonList[0].getName();
-		String unimonThreeButtonText = currentBattleUnimonList[1].getName();
-		String selectText = getString(R.string.battle_select_text);
+		String unimonTwoButtonText = currentBattleUnimonList[1].getName();
+		String unimonThreeButtonText = currentBattleUnimonList[2].getName();
 
-		unimonTwoButton.setText(selectText + unimonTwoButtonText);
-		int unimonTwoIndex = 0;
+		String selectText = getString(R.string.battle_select_text);
+		String healthText = getString(R.string.unimon_health_info_text);
+		String levelText = getString(R.string.unimon_level_info_text);
+
+		unimonTwoButton.setText(selectText + " " + unimonTwoButtonText + " ( "
+				+ healthText + " " + currentBattleUnimonList[1].getHealth()
+				+ "; " + levelText + " "
+				+ currentBattleUnimonList[1].getLevel() + " ) ");
+		int unimonTwoIndex = 1;
 		clickToChangeUnimon(unimonTwoButton, unimonTwoIndex);
 
-		if (currentBattleUnimonList[1] != null) {
-			unimonThreeButton.setText(selectText + unimonThreeButtonText);
-			int unimonThreeIndex = 1;
+		if (currentBattleUnimonList[2] != null) {
+			unimonThreeButton.setText(selectText + " " + unimonThreeButtonText
+					+ " ( " + healthText + " "
+					+ currentBattleUnimonList[2].getHealth() + "; " + levelText
+					+ " " + currentBattleUnimonList[2].getLevel() + " ) ");
+			int unimonThreeIndex = 2;
 			clickToChangeUnimon(unimonThreeButton, unimonThreeIndex);
 		} else {
 			unimonThreeButton.setVisibility(View.GONE);

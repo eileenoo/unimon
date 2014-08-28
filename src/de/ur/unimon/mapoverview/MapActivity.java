@@ -1,6 +1,7 @@
 package de.ur.unimon.mapoverview;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -12,6 +13,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -34,6 +36,7 @@ public class MapActivity extends Activity implements NavigationListener {
 	public int playerXCoord, playerYCoord;
 
 	LinearLayout canvasLayout;
+	private Random rnd;
 	private NavigationController navigationController;
 	private double playerLatitude, playerLongitude;
 	public static final double leftUpperCornerLongitude = 12.091562;
@@ -61,7 +64,6 @@ public class MapActivity extends Activity implements NavigationListener {
 
 	private FragmentManager fragmentManager;
 	EnterAlertFragment alertFragment;
-	//FragmentTransaction transaction;
 	
 	AlertDialog.Builder builder;
 
@@ -76,7 +78,7 @@ public class MapActivity extends Activity implements NavigationListener {
 		initNavigation();
 		initFragmentManager();
 
-		onPlayerPositionDetailChanged(new PlayerPositionDetail(12, 48, 100, 100, 1000, 5, 100, 100, 100, 100, 100, 100));
+//		onPlayerPositionDetailChanged(new PlayerPositionDetail(12, 48, 100, 100, 1000, 5, 100, 100, 100, 100, 100, 100));
 //		onPlayerPositionDetailChanged(new PlayerPositionDetail(12, 48, 100, 25, 1000, 100, 100, 100, 100, 100, 100, 100));
 //		onPlayerPositionDetailChanged(new PlayerPositionDetail(12, 48, 100, 24, 1000, 100, 100, 100, 100, 100, 100, 100));
 //		onPlayerPositionDetailChanged(new PlayerPositionDetail(12, 48, 100, 13, 1000, 100, 100, 100, 100, 100, 100, 100));
@@ -155,6 +157,7 @@ public class MapActivity extends Activity implements NavigationListener {
 			public void onClick(View v) {
 				Intent startBattle = new Intent(MapActivity.this,
 						ChooseBattleUnimonsActivity.class);
+				startBattle.putExtra("trainerID", 1);
 				startActivity(startBattle);
 			}
 		});
@@ -201,9 +204,23 @@ public class MapActivity extends Activity implements NavigationListener {
 				- leftUpperCornerLongitude) / helpVarX);
 		playerYCoord = (int) (Math
 				.abs(playerLatitude - leftUpperCornerLatitude) / helpVarY);
+//		gettingAttacked();
+
+		Log.d("bla", "" + isDompteurInRange);
+
 		checkRangeTrue(playerPosDetail);
 		checkRangeFalse(playerPosDetail);
 	}
+
+//	private void gettingAttacked() {
+//		int rand = rnd.nextInt(100);
+//		if (rand == 0) {
+//			Intent battleStart = new Intent(MapActivity.this,
+//					ChooseBattleUnimonsActivity.class);
+//			startActivity(battleStart);
+//		}
+//	}
+
 
 	private void checkRangeTrue(PlayerPositionDetail playerPosDetail) {
 		if (isShopInRange == true
@@ -227,36 +244,43 @@ public class MapActivity extends Activity implements NavigationListener {
 		else if (isTrainerOneInRange == true
 				&& playerPosDetail.getDistanceTrainerOne() >= rangeTrainer) {
 			isTrainerOneInRange = false;
+			closeFragment();
 		}
 		
 		else if (isTrainerTwoInRange == true
 				&& playerPosDetail.getDistanceTrainerTwo() >= rangeTrainer) {
 			isTrainerTwoInRange = false;
+			closeFragment();
 		}
 		
 		else if (isTrainerThreeInRange == true
 				&& playerPosDetail.getDistanceTrainerThree() >= rangeTrainer) {
 			isTrainerThreeInRange = false;
+			closeFragment();
 		}
 		
 		else if (isTrainerFourInRange == true
 				&& playerPosDetail.getDistanceTrainerFour() >= rangeTrainer) {
 			isTrainerFourInRange = false;
+			closeFragment();
 		}
 		
 		else if (isTrainerFiveInRange == true
 				&& playerPosDetail.getDistanceTrainerFive() >= rangeTrainer) {
 			isTrainerFiveInRange = false;
+			closeFragment();
 		}
 		
 		else if (isTrainerSixInRange == true
 				&& playerPosDetail.getDistanceTrainerSix() >= rangeTrainer) {
 			isTrainerSixInRange = false;
+			closeFragment();
 		}
 		
 		else if (isTrainerBossInRange == true
 				&& playerPosDetail.getDistanceTrainerBoss() >= rangeTrainer) {
 			isTrainerBossInRange = false;
+			closeFragment();
 		}
 
 	}
@@ -351,13 +375,14 @@ public class MapActivity extends Activity implements NavigationListener {
 		FragmentTransaction transaction = fragmentManager.beginTransaction();
 		transaction.setCustomAnimations(R.animator.slide_in_bottom, R.animator.slide_out_top);
 		transaction.add(R.id.map_activity_layout, alertFragment, "alertFragment");
-
+	
 		Bundle extras = new Bundle();
 		if (alertFragment.getArguments() != null) {
 			extras = alertFragment.getArguments();
 			extras.clear();
 		}
 		extras.putString("building", building);
+
 		alertFragment.setArguments(extras);
 		transaction.commit();
 	}
