@@ -1,70 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/battle_activity_layout"
     android:layout_width="match_parent"
-    android:layout_height="match_parent" >
+    android:layout_height="match_parent"
+    android:layout_gravity="bottom"
+    android:layout_weight="5"
+    android:gravity="bottom"
+    android:orientation="vertical" >
 
-    <Button
-        android:id="@+id/battle_attack_button"
-        android:layout_width="wrap_content"
+    <FrameLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
-        android:text="@string/battle_attack_button_text" />
+        android:background="#FFBB00" >
+    </FrameLayout>
 
-    <Button
-        android:id="@+id/battle_use_item_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
-        android:text="@string/battle_use_item_button_text" />
-
-    <Button
-        android:id="@+id/battle_escape_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
-        android:text="@string/battle_escape_button_text" />
-
-    <Button
-        android:id="@+id/battle_change_unimon_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
-        android:text="@string/battle_change_unimon_button_text" />
-
-    <Button
-        android:id="@+id/battle_healpot_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
-        android:text="@string/battle_healpot_button_text" />
-
-    <Button
-        android:id="@+id/battle_uniball_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
-        android:text="@string/battle_uniball_button_text" />
-
-    <Button
-        android:id="@+id/battle_unimon_two_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
-        android:text="@string/battle_unimon2_button_text" />
-
-    <Button
-        android:id="@+id/battle_unimon_three_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
-        android:text="@string/battle_unimon3_button_text" />
-
-</RelativeLayout>
+</LinearLayout>

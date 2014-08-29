@@ -12,6 +12,9 @@ public class UnimonList {
 	private static Unimon neni;
 	private static Unimon brunz;
 	private static Unimon lisa;
+	private static Unimon wild1;
+	private static Unimon wild2;
+	private static Unimon wild3;
 	private static Spell kriskSpell1;
 	private static Spell kriskSpell2;
 	private static Spell kriskSpell3;
@@ -37,12 +40,35 @@ public class UnimonList {
 	private static Spell lisaSpell5;
 	private static Spell lisaSpell6;
 	
+	private static Spell wild1Spell1;
+	private static Spell wild1Spell2;
+	private static Spell wild1Spell3;
+	private static Spell wild1Spell4;
+	private static Spell wild1Spell5;
+	private static Spell wild1Spell6;
+	
+	private static Spell wild2Spell1;
+	private static Spell wild2Spell2;
+	private static Spell wild2Spell3;
+	private static Spell wild2Spell4;
+	private static Spell wild2Spell5;
+	private static Spell wild2Spell6;
+	
+	private static Spell wild3Spell1;
+	private static Spell wild3Spell2;
+	private static Spell wild3Spell3;
+	private static Spell wild3Spell4;
+	private static Spell wild3Spell5;
+	private static Spell wild3Spell6;
+	
 
 	public ArrayList<Unimon> unimonList;
+	public ArrayList<Unimon> catchableUnimonList;
 
 	public UnimonList() {
 		
 		unimonList = new ArrayList<Unimon>();
+		catchableUnimonList = new ArrayList<Unimon>();
 		
 		krisk = new Unimon("Krisk", 10, true);
 		kriskSpell1 = new Spell("Kratzer", 1, 15);
@@ -60,7 +86,7 @@ public class UnimonList {
 		krisk.ownedSpells.add(kriskSpell1);
 		krisk.setHealth(19);
 
-		neni = new Unimon("Neni", 30, false);
+		neni = new Unimon("Neni", 30, true);
 		neniSpell1 = new Spell ("bla",1,10);
 		neniSpell2 = new Spell ("bli",2,15);
 		neniSpell3 = new Spell ("blub",3,15);
@@ -92,13 +118,13 @@ public class UnimonList {
 		brunz.ownedSpells.add(brunzSpell1);
 		brunz.setHealth(20);
 		
-		lisa = new Unimon("Lisa", 20, false);
+		lisa = new Unimon("Lisa", 20, true);
 		lisaSpell1 =  new Spell ("möp",1,20);
 		lisaSpell2  = new Spell("Biss", 2, 20);
 		lisaSpell3  = new Spell("mip", 3, 20);
-		lisaSpell4  = new Spell("FU", 4, 20);
-		lisaSpell5  = new Spell("YOU", 5, 20);
-		lisaSpell6  = new Spell("HARD", 6, 20);
+		lisaSpell4  = new Spell("test1", 4, 20);
+		lisaSpell5  = new Spell("test2", 5, 20);
+		lisaSpell6  = new Spell("test3", 6, 20);
 		lisa.possibleSpells.add(lisaSpell1);
 		lisa.possibleSpells.add(lisaSpell2);
 		lisa.possibleSpells.add(lisaSpell3);
@@ -107,6 +133,51 @@ public class UnimonList {
 		lisa.possibleSpells.add(lisaSpell6);
 		lisa.ownedSpells.add(lisaSpell1);
 		lisa.setHealth(15);
+		
+		wild1 = new Unimon("Wildie", 20, false);
+		wild1Spell1 =  new Spell ("bibi",1,20);
+		wild1Spell2  = new Spell("bobo", 2, 20);
+		wild1Spell3  = new Spell("bubu", 3, 20);
+		wild1Spell4  = new Spell("baba", 4, 20);
+		wild1Spell5  = new Spell("bebe", 5, 20);
+		wild1Spell6  = new Spell("blbl", 6, 20);
+		wild1.possibleSpells.add(wild1Spell1);
+		wild1.possibleSpells.add(wild1Spell2);
+		wild1.possibleSpells.add(wild1Spell3);
+		wild1.possibleSpells.add(wild1Spell4);
+		wild1.possibleSpells.add(wild1Spell5);
+		wild1.possibleSpells.add(wild1Spell6);
+		wild1.ownedSpells.add(wild1Spell1);
+		
+		wild2 = new Unimon("Wildie2", 20, false);
+		wild2Spell1 =  new Spell ("didi",1,20);
+		wild2Spell2  = new Spell("dodo", 2, 20);
+		wild2Spell3  = new Spell("dudu", 3, 20);
+		wild2Spell4  = new Spell("dada", 4, 20);
+		wild2Spell5  = new Spell("dede", 5, 20);
+		wild2Spell6  = new Spell("dldl", 6, 20);
+		wild2.possibleSpells.add(wild2Spell1);
+		wild2.possibleSpells.add(wild2Spell2);
+		wild2.possibleSpells.add(wild2Spell3);
+		wild2.possibleSpells.add(wild2Spell4);
+		wild2.possibleSpells.add(wild2Spell5);
+		wild2.possibleSpells.add(wild2Spell6);
+		wild2.ownedSpells.add(wild2Spell1);
+		
+		wild3 = new Unimon("Wildie3", 20, false);
+		wild3Spell1 =  new Spell ("hihi",1,20);
+		wild3Spell2  = new Spell("hoho", 2, 20);
+		wild3Spell3  = new Spell("huhu", 3, 20);
+		wild3Spell4  = new Spell("haha", 4, 20);
+		wild3Spell5  = new Spell("hehe", 5, 20);
+		wild3Spell6  = new Spell("hlhl", 6, 20);
+		wild3.possibleSpells.add(wild3Spell1);
+		wild3.possibleSpells.add(wild3Spell2);
+		wild3.possibleSpells.add(wild3Spell3);
+		wild3.possibleSpells.add(wild3Spell4);
+		wild3.possibleSpells.add(wild3Spell5);
+		wild3.possibleSpells.add(wild3Spell6);
+		wild3.ownedSpells.add(wild3Spell1);
 		
 		unimonList.add(krisk);
 		unimonList.add(neni);

@@ -3,25 +3,23 @@ package de.ur.unimon.battle;
 import java.util.Random;
 
 import de.ur.unimon.startgame_logic.Player;
-import de.ur.unimon.startgame_logic.PlayerListener;
+import de.ur.unimon.startgame_logic.PlayerController;
 import de.ur.unimon.unimons.Spell;
 import de.ur.unimon.unimons.Unimon;
 
 public class BattleController {
 
-	private Unimon[] battleUnimonsList;
 	private Unimon battleUnimon;
 	private Unimon enemyUnimon;
 	private Player player;
+	private PlayerController playerController;
 	private Random randomGenerator;
 
-	public BattleController(Unimon enemyUnimon, Unimon battleUnimon,
-			Unimon[] unimonList) {
+	public BattleController(Unimon enemyUnimon, Unimon battleUnimon) {
 		initRandomGenerator();
 		initPlayer();
 		initEnemyUnimon(enemyUnimon);
 		initBattleUnimon(battleUnimon);
-		initBattleUnimonList(unimonList);
 	}
 
 	private void initRandomGenerator() {
@@ -29,7 +27,7 @@ public class BattleController {
 	}
 
 	private void initPlayer() {
-		player = de.ur.unimon.appstart.StartScreenActivity.player;
+		player = playerController.getInstance();
 	}
 
 	private void initEnemyUnimon(Unimon enemyUnimon) {
@@ -38,10 +36,6 @@ public class BattleController {
 
 	private void initBattleUnimon(Unimon battleUnimon) {
 		this.battleUnimon = battleUnimon;
-	}
-
-	private void initBattleUnimonList(Unimon[] unimonList) {
-		this.battleUnimonsList = unimonList;
 	}
 
 	public boolean ableToEscape() {
@@ -73,19 +67,17 @@ public class BattleController {
 		player.ownUnimonList.add(enemyUnimon);
 	}
 
-	public void useHealpot() {
-		battleUnimon.addHealth(50);
-		player.getInventory().decreaseHealpots();
-	}
-
-	public void changeCurrentUnimon(int battleUnimonsListIndex) {
-		Unimon newUnimon = battleUnimonsList[battleUnimonsListIndex];
-		battleUnimon = newUnimon;
+	public void changeCurrentUnimon(Unimon chosenUnimon) {
+		battleUnimon = chosenUnimon;
 	}
 	
 	public Unimon ownUnimonAttack(Spell spell) {
 		enemyUnimon.loseHealth(spell.getDamage());
 		return enemyUnimon;
+	}
+	
+	public int getLostHealthOfEnemyUnimon (Spell spell) {
+		return spell.getDamage();
 	}
 	
 	public Unimon enemyUnimonAttack() {

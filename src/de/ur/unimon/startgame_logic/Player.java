@@ -40,6 +40,16 @@ public class Player implements PlayerListener {
 	public ArrayList<Unimon> getUnimonList() {
 		return ownUnimonList;
 	}
+	
+	public Unimon getUnimonByName(String unimonName) {
+
+		for (int i = 0; i < ownUnimonList.size(); i++) {
+			if (ownUnimonList.get(i).getName().equals(unimonName)) {
+				return ownUnimonList.get(i);
+			}
+		}
+		return null;
+	}
 
 	public void addHealpotToInventory() {
 		inventory.addHealpot();

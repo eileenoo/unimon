@@ -16,6 +16,8 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.TextView;
+import de.ur.unimon.startgame_logic.PlayerController;
+
 
 public class InventoryActivity extends Activity {
 
@@ -26,6 +28,7 @@ public class InventoryActivity extends Activity {
 			protectorImage;
 	Inventory inventory;
 	Player player;
+	PlayerController playerController;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -36,7 +39,8 @@ public class InventoryActivity extends Activity {
 	}
 
 	private void initUI() {
-		player = de.ur.unimon.appstart.StartScreenActivity.player;
+		
+		player = playerController.getInstance();
 		inventory = player.getInventory();
 		money = (TextView) findViewById(R.id.money);
 		money.setText(getResources().getString(R.string.money_text)

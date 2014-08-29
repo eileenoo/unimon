@@ -1,5 +1,7 @@
 package de.ur.unimon.navigation;
 
+import java.util.ArrayList;
+
 import de.ur.unimon.battle.TrainerList;
 import android.app.ProgressDialog;
 import android.content.Context;
@@ -12,12 +14,15 @@ import android.widget.Toast;
 
 public class NavigationController implements LocationListener {
 
-	public static final long UPDATE_TIME = 500;
-	public static final float UPDATE_DISTANCE = 1;
+	public static final long UPDATE_TIME = 2500;
+	public static final float UPDATE_DISTANCE = 2;
+
 	LocationManager locationManager;
 	private Location lastLocation;
+
 	Location shop, dompteur, hospital, trainerOne, trainerTwo, trainerThree,
 			trainerFour, trainerFive, trainerSix, trainerBoss;
+	ArrayList<Float> trainerDistances, buildingDistances;
 	TrainerList trainerList;
 
 	private NavigationListener navigationListener;
@@ -29,6 +34,8 @@ public class NavigationController implements LocationListener {
 			NavigationListener navigationListener) {
 		this.navigationListener = navigationListener;
 		trainerList = new TrainerList();
+		trainerDistances = new ArrayList<Float>();
+		buildingDistances = new ArrayList<Float>();
 		init(context);
 	}
 
@@ -85,10 +92,12 @@ public class NavigationController implements LocationListener {
 		setDompteurCoords();
 		setHospitalCoords();
 		if (navigationListener == null || shop == null || dompteur == null
-				|| hospital == null || trainerOne == null || trainerTwo == null
+
+		|| hospital == null || trainerOne == null || trainerTwo == null
 				|| trainerThree == null || trainerFour == null
 				|| trainerFive == null || trainerSix == null
 				|| trainerBoss == null) {
+
 			return;
 		}
 		double latitude = lastLocation.getLatitude();
@@ -96,6 +105,11 @@ public class NavigationController implements LocationListener {
 		float distanceShop = lastLocation.distanceTo(shop);
 		float distanceDompteur = lastLocation.distanceTo(dompteur);
 		float distanceHospital = lastLocation.distanceTo(hospital);
+		buildingDistances.add(distanceShop);
+		buildingDistances.add(distanceDompteur);
+		buildingDistances.add(distanceHospital);
+		
+
 		float distanceTrainerOne = lastLocation.distanceTo(trainerOne);
 		float distanceTrainerTwo = lastLocation.distanceTo(trainerTwo);
 		float distanceTrainerThree = lastLocation.distanceTo(trainerThree);
@@ -103,12 +117,18 @@ public class NavigationController implements LocationListener {
 		float distanceTrainerFive = lastLocation.distanceTo(trainerFive);
 		float distanceTrainerSix = lastLocation.distanceTo(trainerSix);
 		float distanceTrainerBoss = lastLocation.distanceTo(trainerBoss);
+		trainerDistances.add(distanceTrainerOne);
+		trainerDistances.add(distanceTrainerTwo);
+		trainerDistances.add(distanceTrainerThree);
+		trainerDistances.add(distanceTrainerFour);
+		trainerDistances.add(distanceTrainerFive);
+		trainerDistances.add(distanceTrainerSix);
+		trainerDistances.add(distanceTrainerBoss);
 
 		playerPosDetail = new PlayerPositionDetail(latitude, longitude,
-				distanceShop, distanceDompteur, distanceHospital,
-				distanceTrainerOne, distanceTrainerTwo, distanceTrainerThree,
-				distanceTrainerFour, distanceTrainerFive, distanceTrainerSix,
-				distanceTrainerBoss);
+				buildingDistances,
+				trainerDistances);
+
 		navigationListener.onPlayerPositionDetailChanged(playerPosDetail);
 	}
 

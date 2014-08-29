@@ -71,8 +71,12 @@
     <string name="battle_use_item_button_text">Use Item</string>
     <string name="battle_healpot_button_text">Use healpot</string>
     <string name="battle_uniball_button_text">Use uniball</string>
+    <string name="battle_select_text">Select: </string>
+    <string name="battle_enemyunimon_lost_health_text">Enemy Unimon lost health.</string>
+    <string name="battle_unimon1_button_text">Select Unimon 1</string>
     <string name="battle_unimon2_button_text">Select Unimon 2</string>
     <string name="battle_unimon3_button_text">Select Unimon 3</string>
+    <string name="battle_healpot_used">You used a healpot</string>
     <string name="battle_spell_button_text">Spell 1</string>
     <string name="choose_primary_unimon">Wähle dein primäres Unimon für den Kampf aus!</string>
     <string name="choose_second_unimon">Wähle ein Ersatzunimon!</string>
@@ -82,6 +86,9 @@
     <string name="alert_money_warning_title">Achtung!</string>
     <string name="alert_money_warning_message">Du brauchst mehr Geld, um dir das kaufen zu können!</string>
     <string name="ok">OK</string>
-
+    <string name="unimon_health_info_text">Health: </string>
+    <string name="unimon_level_info_text">Level: </string>
+	<string name="left_parenthesis"> ( </string>
+	<string name="right_parenthesis"> ) </string>
 
 </resources>
