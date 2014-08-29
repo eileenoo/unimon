@@ -88,5 +88,11 @@
     <string name="unimon_level_info_text">Level: </string>
 	<string name="left_parenthesis"> ( </string>
 	<string name="right_parenthesis"> ) </string>
+	
+	<string name="choose_that_unimon">Choose me!</string>
+	
+	<string name="inventory_use_item">Use Item</string>
+	<string name="inventory_use_healPot">Use HealPot</string>
+	<string name="inventory_use_revive">Revive</string>
 
 </resources>
