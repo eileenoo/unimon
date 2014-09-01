@@ -19,14 +19,17 @@ import android.widget.TextView;
 import de.ur.unimon.startgame_logic.PlayerController;
 
 
-public class InventoryActivity extends Activity {
+
+public class InventoryActivity extends Activity{
 
 	private TextView money, healpotName, uniballName, reviveName,
 			protectorName, healpotCount, uniballCount, reviveCount,
 			protectorCount;
+
 	private Button useItemButton, healpotImage, uniballImage, reviveImage,
 			protectorImage;
 	Inventory inventory;
+
 	Player player;
 	PlayerController playerController;
 
@@ -37,6 +40,16 @@ public class InventoryActivity extends Activity {
 		initUI();
 
 	}
+	
+	@Override
+	protected void onResume() {
+		healpotCount.setText(getResources().getString(R.string.item_count_text) + inventory.getHealpotCount());
+		uniballCount.setText(getResources().getString(R.string.item_count_text) + inventory.getUniballCount());
+		reviveCount.setText(getResources().getString(R.string.item_count_text) + inventory.getReviveCount());
+		protectorCount.setText(getResources().getString(R.string.item_count_text) + inventory.getProtectorCount());
+		super.onResume();
+	}
+	
 
 	private void initUI() {
 		
@@ -98,43 +111,12 @@ public class InventoryActivity extends Activity {
 	}
 
 	private void setButtonsOnClick() {
+
 		useItemButton.setOnClickListener(new OnClickListener() {
 			public void onClick(View v) {
 				Intent useItem = new Intent(InventoryActivity.this,
-						InventoryUnimonListActivity.class);
+						InventoryUnimonSwipeActivity.class);
 				startActivity(useItem);
 			}
-		});}}
-		/*healpotImage.setOnClickListener(new OnClickListener() {
-			public void onClick(View v) {
-				Intent addHealpot = new Intent(InventoryActivity.this,
-						InventoryUnimonListActivity.class);
-				startActivity(addHealpot);
-			}
-		});
-
-		uniballImage.setOnClickListener(new OnClickListener() {
-			public void onClick(View v) {
-				Intent addUniball = new Intent(InventoryActivity.this,
-						InventoryUnimonListActivity.class);
-				startActivity(addUniball);
-			}
-		});
-
-		reviveImage.setOnClickListener(new OnClickListener() {
-			public void onClick(View v) {
-				Intent addRevive = new Intent(InventoryActivity.this,
-						InventoryUnimonListActivity.class);
-				startActivity(addRevive);
-			}
-		});
-
-		protectorImage.setOnClickListener(new OnClickListener() {
-			public void onClick(View v) {
-				Intent addProtector = new Intent(InventoryActivity.this,
-						InventoryUnimonListActivity.class);
-				startActivity(addProtector);
-			}
-		});*/
-
-		
+		});}
+}

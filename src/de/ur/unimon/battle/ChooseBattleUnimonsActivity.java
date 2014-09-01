@@ -61,7 +61,7 @@ public class ChooseBattleUnimonsActivity extends Activity {
 			unimons.add((Unimon) unimon);
 		}
 		initListAdapter();
-		chosenUnimons = new Unimon[3];
+		chosenUnimons = new Unimon[unimons.size()];
 		chooseUnimonText = (TextView) findViewById(R.id.choose_unimon_for_battle_textView);
 		initClickListener();
 

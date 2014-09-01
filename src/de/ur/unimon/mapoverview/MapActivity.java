@@ -24,6 +24,7 @@ import de.ur.unimon.actionbar.UnimonListActivity;
 import de.ur.unimon.battle.ChooseBattleUnimonsActivity;
 import de.ur.unimon.battle.Trainer;
 import de.ur.unimon.battle.TrainerList;
+import de.ur.unimon.buildings.DompteurActivity;
 import de.ur.unimon.buildings.ShopActivity;
 import de.ur.unimon.navigation.NavigationController;
 import de.ur.unimon.navigation.NavigationListener;
@@ -174,8 +175,13 @@ public class MapActivity extends Activity implements NavigationListener {
 		movePlayerButton.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				Intent shop = new Intent(MapActivity.this, ShopActivity.class);
-				startActivity(shop);
+
+				/*Intent shop = new Intent(MapActivity.this, ShopActivity.class);
+				startActivity(shop);*/
+
+				Intent dompteur = new Intent(MapActivity.this,
+						DompteurActivity.class);
+				startActivity(dompteur);
 			}
 		});
 	}

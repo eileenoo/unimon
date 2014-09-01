@@ -49,17 +49,33 @@ public class Inventory {
 	public void addHealpot() {
 		healpots++;
 	}
+	
+	public void reduceHealpot() {
+		healpots--;
+	}
 
 	public void addUniball() {
 		uniballs++;
+	}
+	
+	public void reduceUniball() {
+		uniballs--;
 	}
 
 	public void addRevive() {
 		revive++;
 	}
+	
+	public void reduceRevive(){
+		revive--;
+	}
 
 	public void addProtector() {
 		protectors++;
+	}
+	
+	public void reduceProtector() {
+		protectors--;
 	}
 
 	public int getHealpotCount() {
