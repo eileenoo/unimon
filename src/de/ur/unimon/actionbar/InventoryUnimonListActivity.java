@@ -2,22 +2,23 @@ package de.ur.unimon.actionbar;
 
 import java.util.ArrayList;
 
-import de.ur.mi.android.excercises.starter.R;
-import de.ur.unimon.unimons.Unimon;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
 import android.widget.AdapterView.OnItemClickListener;
+import android.widget.ListView;
+import de.ur.mi.android.excercises.starter.R;
+import de.ur.unimon.startgame_logic.PlayerController;
+import de.ur.unimon.unimons.Unimon;
 
 public class InventoryUnimonListActivity extends Activity{
 	
 	ListView unimonListInventory;
 	private UnimonListAdapter unimonListInventory_adpater;
 	private ArrayList <Unimon> unimons;
+	PlayerController playerController;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -28,7 +29,7 @@ public class InventoryUnimonListActivity extends Activity{
 	}
 
 	private void initUI() {
-		unimons = de.ur.unimon.appstart.StartScreenActivity.player.getUnimonList();
+		unimons = playerController.getInstance().getUnimonList();
 		initListAdapter();
 		initListView();
 			

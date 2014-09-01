@@ -1,12 +1,9 @@
 package de.ur.unimon.appstart;
 
-import java.util.ArrayList;
-
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -14,7 +11,7 @@ import de.ur.mi.android.excercises.starter.R;
 import de.ur.unimon.actionbar.Inventory;
 import de.ur.unimon.mapoverview.MapActivity;
 import de.ur.unimon.start.newgame.NewGameActivity;
-import de.ur.unimon.startgame_logic.Player;
+import de.ur.unimon.startgame_logic.PlayerController;
 import de.ur.unimon.unimons.UnimonList;
 
 public class StartScreenActivity extends Activity {
@@ -25,7 +22,7 @@ public class StartScreenActivity extends Activity {
 	Button guide_button;
 	Context context;
 	UnimonList allUnimonsList;
-	public static Player player;
+	PlayerController playerController;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -40,24 +37,21 @@ public class StartScreenActivity extends Activity {
     	resume_button = (Button) findViewById (R.id.resume_button);
     	options_button = (Button) findViewById (R.id.options_button);
     	guide_button = (Button) findViewById (R.id.guide_button);
-    	
-    	//braucht man hier nicht nur jetzt da für DBplayer erzeugung
-    	allUnimonsList = new UnimonList();
-    	
+
     	setButtonsOnClick();
     }
     
     private void setButtonsOnClick(){
     	newGame_button.setOnClickListener(new OnClickListener(){
     		public void onClick(View v) {
-    			player = new Player();
+    			playerController.getInstance();
     			Intent newGame = new Intent (StartScreenActivity.this, NewGameActivity.class);
     			startActivity(newGame);
 			}
     	});
     	resume_button.setOnClickListener(new OnClickListener(){
     		public void onClick(View v) {	
-    			createPlayer();
+    			playerController.getInstanceFromDB();
     			Intent resume = new Intent (StartScreenActivity.this, MapActivity.class);
     			startActivity(resume);
 			}
@@ -77,12 +71,5 @@ public class StartScreenActivity extends Activity {
 			}
     	});
     }
-    
-    
-    private void createPlayer() {
-		Inventory inventory = new Inventory(4,5,5,4);
-		// nur für test, allUnimonList falsch, man braucht Liste aus DB);
-		player = new Player(200, allUnimonsList.getUnimonList(), inventory);
-	}
 
 }

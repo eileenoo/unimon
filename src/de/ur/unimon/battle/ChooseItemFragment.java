@@ -4,6 +4,7 @@ import de.ur.mi.android.excercises.starter.R;
 import de.ur.unimon.battle.ChangeUnimonBattleFragment.OnUnimonChangedListener;
 import android.app.Activity;
 import android.app.Fragment;
+import android.app.FragmentTransaction;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -26,7 +27,7 @@ public class ChooseItemFragment extends Fragment {
 					+ " must implement OnChooseItemListener");
 		}
 	}
-	
+
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -52,43 +53,46 @@ public class ChooseItemFragment extends Fragment {
 		public boolean onHealpotAvailable();
 
 		public boolean onUniballAvailable();
-		
-		public void onHealpotButtonClicked();
-		
+
 		public void onUniballButtonClicked();
 	}
-	
 
-	
 	private void initButtons() {
-		healpotButton = (Button) getView().findViewById(R.id.battle_healpot_button);
-		uniballButton = (Button) getView().findViewById(R.id.battle_uniball_button);
-		
+		healpotButton = (Button) getView().findViewById(
+				R.id.battle_healpot_button);
+		uniballButton = (Button) getView().findViewById(
+				R.id.battle_uniball_button);
+
 		if (listener.onHealpotAvailable()) {
 			healpotButton.setClickable(true);
 		} else {
 			healpotButton.setClickable(false);
 		}
-		
+
 		if (listener.onUniballAvailable()) {
 			uniballButton.setClickable(true);
 		} else {
 			uniballButton.setClickable(false);
 		}
 	}
-	
+
 	private void itemButtonClicked() {
 		healpotButton.setOnClickListener(new OnClickListener() {
-			
+
 			@Override
 			public void onClick(View v) {
-				listener.onHealpotButtonClicked();
-				getFragmentManager().popBackStack();
+				ChooseUnimonForHealpotBattleFragment chooseUnimonForItemFragment = new ChooseUnimonForHealpotBattleFragment();
+				FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
+				fragmentTransaction.replace(R.id.battle_activity_layout,
+						chooseUnimonForItemFragment, "ChooseUnimonForItemBattleFragment");
+				fragmentTransaction.addToBackStack(null);
+				fragmentTransaction.commit();
+				// getFragmentManager().popBackStack();
 			}
 		});
-		
+
 		uniballButton.setOnClickListener(new OnClickListener() {
-			
+
 			@Override
 			public void onClick(View v) {
 				listener.onUniballButtonClicked();

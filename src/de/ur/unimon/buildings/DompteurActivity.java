@@ -2,29 +2,25 @@ package de.ur.unimon.buildings;
 
 import java.util.ArrayList;
 
-
-import de.ur.mi.android.excercises.starter.R;
-import de.ur.unimon.actionbar.UnimonListActivity;
-import de.ur.unimon.actionbar.UnimonListAdapter;
-import de.ur.unimon.actionbar.UnimonListDetailActivity;
-import de.ur.unimon.appstart.StartScreenActivity;
-import de.ur.unimon.mapoverview.MapActivity;
-import de.ur.unimon.startgame_logic.Player;
-import de.ur.unimon.unimons.Unimon;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.Button;
 import android.widget.ListAdapter;
 import android.widget.ListView;
-import android.widget.AdapterView.OnItemClickListener;
 import android.widget.TextView;
+import de.ur.mi.android.excercises.starter.R;
+import de.ur.unimon.actionbar.UnimonListAdapter;
+import de.ur.unimon.startgame_logic.Player;
+import de.ur.unimon.startgame_logic.PlayerController;
+import de.ur.unimon.unimons.Unimon;
 
 public class DompteurActivity extends Activity{
-	Player player;
+	private Player player;
+	private PlayerController playerController;
 	Button newSkill, improveSkill;
 	TextView money, skillpoints, dompteurText;
 	private ArrayList <Unimon> unimons;
@@ -35,12 +31,13 @@ public class DompteurActivity extends Activity{
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.dompteur_activity);
-		player = de.ur.unimon.appstart.StartScreenActivity.player;
+		
 		initUI();
 }
 
 	private void initUI() {
-		unimons = de.ur.unimon.appstart.StartScreenActivity.player.getUnimonList();
+		player = playerController.getInstance();
+		unimons = player.getUnimonList();
 		money = (TextView) findViewById(R.id.money);
 		skillpoints = (TextView) findViewById(R.id.skillpoints);
 		dompteurText = (TextView) findViewById(R.id.dompteur_text);

@@ -1,20 +1,9 @@
 package de.ur.unimon.start.newgame;
 
-import java.util.ArrayList;
-
 import de.ur.mi.android.excercises.starter.R;
-import de.ur.unimon.actionbar.Inventory;
-import de.ur.unimon.appstart.GuideScreenActivity;
-import de.ur.unimon.appstart.OptionsScreenActivity;
-import de.ur.unimon.appstart.StartScreenActivity;
-import de.ur.unimon.mapoverview.MapActivity;
-import de.ur.unimon.startgame_logic.Player;
-import de.ur.unimon.unimons.Unimon;
-import de.ur.unimon.unimons.UnimonList;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;

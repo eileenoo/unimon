@@ -1,6 +1,6 @@
 package de.ur.unimon.battle;
 
-import java.io.ObjectOutputStream.PutField;
+
 import java.util.ArrayList;
 
 import android.app.Activity;
@@ -16,8 +16,8 @@ import android.widget.ListView;
 import android.widget.TextView;
 import de.ur.mi.android.excercises.starter.R;
 import de.ur.unimon.actionbar.UnimonListAdapter;
-import de.ur.unimon.mapoverview.MapActivity;
 import de.ur.unimon.startgame_logic.Player;
+import de.ur.unimon.startgame_logic.PlayerController;
 import de.ur.unimon.unimons.Unimon;
 
 public class ChooseBattleUnimonsActivity extends Activity {
@@ -31,7 +31,9 @@ public class ChooseBattleUnimonsActivity extends Activity {
 	private ArrayList<Unimon> unimons;
 	private Unimon[] chosenUnimons;
 	private String[] chosenUnimonsStringArray;
-	private int selectionStage, lastSelectonStage;
+	private int selectionStage, trainerID;
+	private Player player;
+	private PlayerController playerController;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -43,13 +45,13 @@ public class ChooseBattleUnimonsActivity extends Activity {
 
 	private void getTrainer() {
 		Bundle extras = getIntent().getExtras();
-		// Trainer trainer = (Trainer) extras.get("trainer");
+		trainerID = extras.getInt("trainerID");
 	}
 
 	private void initUI() {
-		Player player = de.ur.unimon.appstart.StartScreenActivity.player;
+		player = playerController.getInstance();
 		unimons = new ArrayList<Unimon>();
-		for (Unimon unimon : player.getUnimonList()) {
+		for (Unimon unimon: player.getUnimonList()) {
 			unimons.add((Unimon) unimon);
 		}
 		initListAdapter();
@@ -67,8 +69,8 @@ public class ChooseBattleUnimonsActivity extends Activity {
 					int position, long id) {
 
 				chosenUnimons[selectionStage] = unimons.get(position);
+				Log.d("hallo", "pos: "+position);
 				unimons.remove(position);
-
 				selectionStage++;
 				if (unimons.size() == 0) {
 					selectionStage = 3;
@@ -83,7 +85,9 @@ public class ChooseBattleUnimonsActivity extends Activity {
 					for (int i = 0; i < chosenUnimons.length; i++) {
 						chosenUnimonsStringArray[i] = chosenUnimons[i].getName();
 					}
+					toBattleActivity.putExtra("trainerID", trainerID);
 					toBattleActivity.putExtra("chosenUnimonStringArray", chosenUnimonsStringArray);
+					
 					// toBattleActivity.outExtra("trainer", trainer);
 					startActivity(toBattleActivity);
 
