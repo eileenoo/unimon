@@ -42,6 +42,12 @@ public class ChooseBattleUnimonsActivity extends Activity {
 		getTrainer();
 		initUI();
 	}
+	
+	@Override
+	public void onBackPressed() {
+	    //Hardware Zurückbutton disabled
+	}
+	
 
 	private void getTrainer() {
 		Bundle extras = getIntent().getExtras();
@@ -55,7 +61,7 @@ public class ChooseBattleUnimonsActivity extends Activity {
 			unimons.add((Unimon) unimon);
 		}
 		initListAdapter();
-		chosenUnimons = new Unimon[3];
+		chosenUnimons = new Unimon[unimons.size()];
 		chooseUnimonText = (TextView) findViewById(R.id.choose_unimon_for_battle_textView);
 		initClickListener();
 
@@ -80,7 +86,7 @@ public class ChooseBattleUnimonsActivity extends Activity {
 					Intent toBattleActivity = new Intent(
 							ChooseBattleUnimonsActivity.this,
 							BattleActivity.class);
-
+					//toBattleActivity.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
 					chosenUnimonsStringArray = new String[3];
 					for (int i = 0; i < chosenUnimons.length; i++) {
 						chosenUnimonsStringArray[i] = chosenUnimons[i].getName();

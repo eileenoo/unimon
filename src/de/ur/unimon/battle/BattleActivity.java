@@ -50,6 +50,8 @@ public class BattleActivity extends Activity implements
 		initBattleController();
 		createFirstFragment();
 	}
+	
+	
 
 	private void initInstances() {
 		map = new Intent(BattleActivity.this, MapActivity.class);

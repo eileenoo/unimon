@@ -1,31 +1,20 @@
 package de.ur.unimon.navigation;
 
+import java.util.ArrayList;
+
 public class PlayerPositionDetail {
 
 	private double latitude, longitude;
-	private float distanceShop, distanceDompteur, distanceHospital,
-			distanceTrainerOne, distanceTrainerTwo, distanceTrainerThree,
-			distanceTrainerFour, distanceTrainerFive, distanceTrainerSix,
-			distanceTrainerBoss;
+	private ArrayList<Float> buildingDistances;
+	private ArrayList<Float> trainerDistances;
 
 	public PlayerPositionDetail(double latitude, double longitude,
-			float distanceShop, float distanceDompteur, float distanceHospital,
-			float distanceTrainerOne, float distanceTrainerTwo,
-			float distanceTrainerThree, float distanceTrainerFour,
-			float distanceTrainerFive, float distanceTrainerSix,
-			float distanceTrainerBoss) {
+			ArrayList<Float> buildingDistances,
+			ArrayList<Float> trainerDistances) {
 		this.latitude = latitude;
 		this.longitude = longitude;
-		this.distanceShop = distanceShop;
-		this.distanceDompteur = distanceDompteur;
-		this.distanceHospital = distanceHospital;
-		this.distanceTrainerOne = distanceTrainerOne;
-		this.distanceTrainerTwo = distanceTrainerTwo;
-		this.distanceTrainerThree = distanceTrainerThree;
-		this.distanceTrainerFour = distanceTrainerFour;
-		this.distanceTrainerFive = distanceTrainerFive;
-		this.distanceTrainerSix = distanceTrainerSix;
-		this.distanceTrainerBoss = distanceTrainerBoss;
+		this.buildingDistances = buildingDistances;
+		this.trainerDistances = trainerDistances;
 
 	}
 
@@ -36,45 +25,12 @@ public class PlayerPositionDetail {
 	public double getLongitude() {
 		return longitude;
 	}
-
-	public float getDistanceShop() {
-		return distanceShop;
-	}
-
-	public float getDistanceDompteur() {
-		return distanceDompteur;
+	
+	public float getDistanceToBuilding(int i) {
+		return buildingDistances.get(i);
 	}
 
-	public float getDistanceHospital() {
-		return distanceHospital;
+	public float getDistanceToTrainer(int j) {
+		return trainerDistances.get(j);
 	}
-	
-	public float getDistanceTrainerOne() {
-		return distanceTrainerOne;
-	}
-	
-	public float getDistanceTrainerTwo() {
-		return distanceTrainerTwo;
-	}
-	
-	public float getDistanceTrainerThree() {
-		return distanceTrainerThree;
-	}
-	
-	public float getDistanceTrainerFour() {
-		return distanceTrainerFour;
-	}
-	
-	public float getDistanceTrainerFive() {
-		return distanceTrainerFive;
-	}
-	
-	public float getDistanceTrainerSix() {
-		return distanceTrainerSix;
-	}
-	
-	public float getDistanceTrainerBoss() {
-		return distanceTrainerBoss;
-	}
-
 }

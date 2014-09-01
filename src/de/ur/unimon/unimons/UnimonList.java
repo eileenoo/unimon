@@ -204,6 +204,7 @@ public class UnimonList {
 		wild3.possibleSpells.add(wild3Spell5);
 		wild3.possibleSpells.add(wild3Spell6);
 		wild3.ownedSpells.add(wild3Spell1);
+
 		
 		start1 = new Unimon("Dickman", 100, false);
 		start1Spell1 =  new Spell ("GetRekkt",1,20);

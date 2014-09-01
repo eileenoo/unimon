@@ -46,6 +46,7 @@ public class StartScreenActivity extends Activity {
     		public void onClick(View v) {
     			playerController.getInstance();
     			Intent newGame = new Intent (StartScreenActivity.this, NewGameActivity.class);
+    			newGame.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
     			startActivity(newGame);
 			}
     	});
