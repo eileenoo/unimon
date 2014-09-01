@@ -46,7 +46,7 @@ public class UnimonListActivity extends Activity{
 					int position, long id) {
 				
 				Intent unimonDetail = new Intent(UnimonListActivity.this,
-						UnimonListDetailActivity.class);
+						UnimonListDetailActivity.class);			
 				Unimon chosenUnimon = (Unimon) listUnimons.getItemAtPosition(position);
 				String chosenUnimonName = chosenUnimon.getName();
 			//	Image chosenUnimmonImage = chosenUnimon.getImage();

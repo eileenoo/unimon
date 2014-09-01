@@ -6,7 +6,7 @@ public class Unimon {
 	
 	private String name;
 	private int level, xp, xpPerLevel;
-	public int skillPoint;
+	public int skillPoints;
 	private int health, baseHealth, maxHealth;
 	public ArrayList<Spell> possibleSpells;
 	public ArrayList<Spell> ownedSpells;
@@ -24,7 +24,7 @@ public class Unimon {
 		setAlive(true);
 		this.ownedByTrainer = ownedByTrainer;
 		xpPerLevel = 0; 
-		skillPoint = 0; 
+		skillPoints = 0; 
 		
 		
 	}
@@ -53,14 +53,24 @@ public class Unimon {
 		level += 1;
 	}
 	
-	public void setSkillpoints (int skillPoint) {
-		this.skillPoint = skillPoint;
+	public void setSkillpoints (int skillPoints) {
+		this.skillPoints = skillPoints;
 	}
 	
-	public int getSkillpoints() {
-		return skillPoint;
+	public int getSkillPoints() {
+		calculateSkillPoints();
+		return skillPoints;
 	}
 	
+	private void calculateSkillPoints() {
+		int usedSkillPoints = 0;
+		for (int i=0; i<ownedSpells.size(); i++){
+			usedSkillPoints += ownedSpells.get(i).getSpellLevel();
+		}
+		skillPoints = level - usedSkillPoints;
+		
+	}
+
 	public void setXpPerLevel(int xpPerLevel){
 		this.xpPerLevel = xpPerLevel;
 	}
@@ -104,6 +114,10 @@ public class Unimon {
 	
 	public void setMaxHealth(int maxHealth){
 		this.maxHealth = maxHealth;
+	}
+	
+	public void setToMaxHealth() {
+		health = maxHealth;
 	}
 	
 	public int getMaxHealth(){
@@ -159,7 +173,7 @@ public class Unimon {
 	}
 	
 	public void addPossibleSpell(Spell spell){
-		possibleSpells.add(spell.getSpellNumber(), spell);
+		possibleSpells.add(spell);
 	}
 	
 	public ArrayList<Spell> getPossibleSpells() {

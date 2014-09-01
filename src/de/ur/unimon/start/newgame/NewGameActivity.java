@@ -55,6 +55,7 @@ public class NewGameActivity extends Activity{
     			
     			Intent choose_unimon = new Intent(NewGameActivity.this,
 				ChooseUnimonActivity.class);
+    			choose_unimon.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
     			startActivity(choose_unimon);
     			}
 			

@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import de.ur.unimon.actionbar.Inventory;
 import de.ur.unimon.unimons.Unimon;
 
-public class Player implements PlayerListener {
+public class Player {
 
 	private int ownedMoney;
 	public ArrayList<Unimon> ownUnimonList;
@@ -55,12 +55,20 @@ public class Player implements PlayerListener {
 		inventory.addHealpot();
 	}
 	
+	public void takeHealpotOutOfInventory() {
+		inventory.reduceHealpot();
+	}
+	
 	public void addUniballToInventory() {
 		inventory.addUniball();
 	}
 	
 	public void addReviveToInventory() {
 		inventory.addRevive();
+	}
+	
+	public void takeReviveOutOfInventory() {
+		inventory.reduceRevive();
 	}
 	
 	public void addProtectorToInventory() {
@@ -70,52 +78,4 @@ public class Player implements PlayerListener {
 	public Inventory getInventory() {
 		return inventory;
 	}
-
-	@Override
-	public void onUniBallCountChange() {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void onHealPotCountChange() {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void onReviveCountChange() {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void onAddUnimonToOwnUnimonList(Unimon unimon) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public boolean onUniBallAvailable() {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	public boolean onHealPotAvailable() {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	public ArrayList<Unimon> onGetOwnUnimonList() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	public String getXp() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
 }
