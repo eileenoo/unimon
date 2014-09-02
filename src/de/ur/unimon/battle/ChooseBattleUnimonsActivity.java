@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
+import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.ListAdapter;
 import android.widget.ListView;
@@ -28,8 +29,7 @@ public class ChooseBattleUnimonsActivity extends Activity {
 	Button confirmButton;
 	TextView chooseUnimonText;
 	ListAdapter listUnimons_adpater;
-	private ArrayList<Unimon> unimons;
-	private Unimon[] chosenUnimons;
+	private ArrayList<Unimon> ownedUnimons;
 	private String[] chosenUnimonsStringArray;
 	private int selectionStage, trainerID;
 	private Player player;
@@ -56,12 +56,12 @@ public class ChooseBattleUnimonsActivity extends Activity {
 
 	private void initUI() {
 		player = playerController.getInstance();
-		unimons = new ArrayList<Unimon>();
+		ownedUnimons = new ArrayList<Unimon>();
 		for (Unimon unimon: player.getUnimonList()) {
-			unimons.add((Unimon) unimon);
+			ownedUnimons.add((Unimon) unimon);
 		}
 		initListAdapter();
-		chosenUnimons = new Unimon[unimons.size()];
+		chosenUnimonsStringArray = new String[3];
 		chooseUnimonText = (TextView) findViewById(R.id.choose_unimon_for_battle_textView);
 		initClickListener();
 
@@ -73,28 +73,21 @@ public class ChooseBattleUnimonsActivity extends Activity {
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view,
 					int position, long id) {
-
-				chosenUnimons[selectionStage] = unimons.get(position);
-				Log.d("hallo", "pos: "+position);
-				unimons.remove(position);
+				
+				chosenUnimonsStringArray[selectionStage] = ownedUnimons.get(position).getName();
+				ownedUnimons.remove(position);
+				((BaseAdapter) listUnimons_adpater).notifyDataSetChanged();
 				selectionStage++;
-				if (unimons.size() == 0) {
+				
+				if (ownedUnimons.size() == 0) {
 					selectionStage = 3;
 				}
 
 				if (selectionStage == 3) {
-					Intent toBattleActivity = new Intent(
-							ChooseBattleUnimonsActivity.this,
-							BattleActivity.class);
+					Intent toBattleActivity = new Intent(ChooseBattleUnimonsActivity.this, BattleActivity.class);
 					//toBattleActivity.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
-					chosenUnimonsStringArray = new String[3];
-					for (int i = 0; i < chosenUnimons.length; i++) {
-						chosenUnimonsStringArray[i] = chosenUnimons[i].getName();
-					}
 					toBattleActivity.putExtra("trainerID", trainerID);
 					toBattleActivity.putExtra("chosenUnimonStringArray", chosenUnimonsStringArray);
-					
-					// toBattleActivity.outExtra("trainer", trainer);
 					startActivity(toBattleActivity);
 
 				} else if (selectionStage == 1) {
@@ -109,7 +102,7 @@ public class ChooseBattleUnimonsActivity extends Activity {
 
 	private void initListAdapter() {
 		listUnimons = (ListView) findViewById(R.id.choose_unimon_listView);
-		listUnimons_adpater = new UnimonListAdapter(this, unimons);
+		listUnimons_adpater = new UnimonListAdapter(this, ownedUnimons);
 		listUnimons.setAdapter(listUnimons_adpater);
 	}
 
