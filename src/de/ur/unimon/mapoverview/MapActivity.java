@@ -62,7 +62,7 @@ public class MapActivity extends Activity implements NavigationListener {
 	public static final double bottomRightCornerLatitude = 48.99169;
 
 	private double rangeBuildings = 25;
-	private double rangeTrainer = 70;
+	private double rangeTrainer = 25;
 	public float PIXEL_X; // 1559; //1169
 	public float PIXEL_Y; // 2731; //2048
 
@@ -398,6 +398,7 @@ public class MapActivity extends Activity implements NavigationListener {
 		else if (isDompteurInRange == true
 				&& playerPosDetail.getDistanceToBuilding(1) >= rangeBuildings) {
 			isDompteurInRange = false;
+			Log.d("hallo","Fragment Dompteur close");
 			closeFragment();
 		}
 
@@ -418,6 +419,7 @@ public class MapActivity extends Activity implements NavigationListener {
 		else if (isTrainerThreeInRange == true
 				&& playerPosDetail.getDistanceToTrainer(2) >= rangeTrainer) {
 			isTrainerThreeInRange = false;
+			Log.d("hallo","Fragment Trainer 3 close");
 			closeFragment();
 		}
 
@@ -464,6 +466,7 @@ public class MapActivity extends Activity implements NavigationListener {
 		} else if (isDompteurInRange == false
 				&& playerPosDetail.getDistanceToBuilding(1) < rangeBuildings) {
 			isDompteurInRange = true;
+			Log.d("hallo", "sollte fragemnt anzeigen");
 			showFragmentForBuildings("Dompteur");
 		} else if (isHospitalInRange == false
 				&& playerPosDetail.getDistanceToBuilding(2) < rangeBuildings) {
@@ -477,12 +480,15 @@ public class MapActivity extends Activity implements NavigationListener {
 		} else if (isTrainerTwoInRange == false
 				&& playerPosDetail.getDistanceToTrainer(1) < rangeTrainer) {
 			trainerList.get(1).setVisible();
+			Log.d("hallo", "Trainer 2 anzeigen pls");
 			isTrainerTwoInRange = true;
 			showFragmentForTrainer("Trainer", 1);
 		} else if (isTrainerThreeInRange == false
 				&& playerPosDetail.getDistanceToTrainer(2) < rangeTrainer) {
+			Log.d("hallo","Trainer 3 sichtbar");
 			trainerList.get(2).setVisible();
 			isTrainerThreeInRange = true;
+			Log.d("hallo","Fragment Trainer 3 anzeigen");
 			showFragmentForTrainer("Trainer", 2);
 		} else if (isTrainerFourInRange == false
 				&& playerPosDetail.getDistanceToTrainer(3) < rangeTrainer) {
