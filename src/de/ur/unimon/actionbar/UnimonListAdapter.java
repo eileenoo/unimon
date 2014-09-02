@@ -15,8 +15,6 @@ import de.ur.mi.android.excercises.starter.R;
 import de.ur.unimon.unimons.Unimon;
 
 public class UnimonListAdapter extends BaseAdapter {
-	
-	public static final String TAG = "Hoi";
 
 	private Context context;
 	LayoutInflater infalInflater;

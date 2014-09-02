@@ -9,6 +9,7 @@ public class Unimon {
 	public int skillPoints;
 	private int health, baseHealth, maxHealth;
 	public ArrayList<Spell> possibleSpells;
+	public ArrayList<Spell> notYetLearnedSpells;
 	public ArrayList<Spell> ownedSpells;
 	private boolean isAlive;
 	private boolean ownedByTrainer;
@@ -20,6 +21,7 @@ public class Unimon {
 		level = 1;
 		xp = 0;
 		possibleSpells = new ArrayList<Spell>();
+		notYetLearnedSpells = new ArrayList<Spell>();
 		ownedSpells = new ArrayList<Spell>();
 		setAlive(true);
 		this.ownedByTrainer = ownedByTrainer;
@@ -81,7 +83,7 @@ public class Unimon {
 	}
 	
 	private void calculateXpPerLevel() {
-		setXpPerLevel(100 + (int) Math.exp((level/2))+10);
+		setXpPerLevel(100 + (int) Math.exp((level/2d))+10);
 	}
 
 	public void setXp(int xp) {
@@ -126,7 +128,7 @@ public class Unimon {
 	}
 	
 	private void calculateMaxHealth(){
-		maxHealth = (int) (baseHealth + Math.exp((level/15))+10);
+		maxHealth = (int) (baseHealth + Math.exp((level/15d))+10);
 	}
 	
 	public void setHealth(int health){
@@ -174,6 +176,11 @@ public class Unimon {
 	
 	public void addPossibleSpell(Spell spell){
 		possibleSpells.add(spell);
+		notYetLearnedSpells.add(spell);
+	}
+	
+	public ArrayList<Spell> getNotYetLearnedSpellList(){
+		return notYetLearnedSpells;
 	}
 	
 	public ArrayList<Spell> getPossibleSpells() {
@@ -181,7 +188,13 @@ public class Unimon {
 	}
 	
 	public void learnSpell(Spell spell){
+		spell.levelUpSpell();
 		ownedSpells.add(spell);
+		for (int i=0; i<notYetLearnedSpells.size(); i++){
+			if (notYetLearnedSpells.get(i) == spell){
+				notYetLearnedSpells.remove(i);
+			}
+		}
 	}
 
 	public void setAlive(boolean isAlive) {

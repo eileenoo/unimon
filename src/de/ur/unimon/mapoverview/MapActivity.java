@@ -18,6 +18,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 import de.ur.mi.android.excercises.starter.R;
 import de.ur.unimon.actionbar.InventoryActivity;
 import de.ur.unimon.actionbar.UnimonListActivity;
@@ -33,7 +34,8 @@ import de.ur.unimon.navigation.PlayerPositionDetail;
 public class MapActivity extends Activity implements NavigationListener {
 
 	Button inventoryButton, unimonsButton, mapButton, movePlayerButton;
-	Bitmap map, player, trainer1, trainer2, trainer3, trainer4, trainer5, trainer6, trainerBoss;
+	Bitmap map, player, trainer1, trainer2, trainer3, trainer4, trainer5,
+			trainer6, trainerBoss;
 	public int playerXCoord, playerYCoord;
 	public int trainer1XCoord, trainer1YCoord;
 	public int trainer2XCoord, trainer2YCoord;
@@ -76,6 +78,7 @@ public class MapActivity extends Activity implements NavigationListener {
 	private boolean isTrainerBossInRange = false;
 
 	private ArrayList<Trainer> trainerList;
+	private Toast playerOutOfRange;
 
 	private FragmentManager fragmentManager;
 	EnterAlertFragment alertFragment;
@@ -85,12 +88,12 @@ public class MapActivity extends Activity implements NavigationListener {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		
+
 		setContentView(R.layout.map_activity);
 		playerXCoord = playerYCoord = 0;
 		builder = new AlertDialog.Builder(this);
 		trainerList = new TrainerList().getTrainerList();
-		
+
 		initUI();
 		initNavigation();
 		initFragmentManager();
@@ -240,26 +243,33 @@ public class MapActivity extends Activity implements NavigationListener {
 			super.onDraw(canvas);
 			canvas.drawBitmap(map, 0, 0, null);
 			canvas.drawBitmap(player, playerXCoord, playerYCoord, null);
-			if (trainerList.get(0).isSeen() == true){
-			canvas.drawBitmap(trainer1, trainer1XCoord , trainer1YCoord, null);
+			if (trainerList.get(0).isSeen() == true) {
+				canvas.drawBitmap(trainer1, trainer1XCoord, trainer1YCoord,
+						null);
 			}
-			if (trainerList.get(1).isSeen() == true){
-			canvas.drawBitmap(trainer2, trainer2XCoord , trainer2YCoord, null);
+			if (trainerList.get(1).isSeen() == true) {
+				canvas.drawBitmap(trainer2, trainer2XCoord, trainer2YCoord,
+						null);
 			}
-			if (trainerList.get(2).isSeen() == true){
-			canvas.drawBitmap(trainer3, trainer3XCoord , trainer3YCoord, null);
+			if (trainerList.get(2).isSeen() == true) {
+				canvas.drawBitmap(trainer3, trainer3XCoord, trainer3YCoord,
+						null);
 			}
-			if (trainerList.get(3).isSeen() == true){
-			canvas.drawBitmap(trainer4, trainer4XCoord , trainer4YCoord, null);
+			if (trainerList.get(3).isSeen() == true) {
+				canvas.drawBitmap(trainer4, trainer4XCoord, trainer4YCoord,
+						null);
 			}
-			if (trainerList.get(4).isSeen() == true){
-			canvas.drawBitmap(trainer5, trainer5XCoord , trainer5YCoord, null);
+			if (trainerList.get(4).isSeen() == true) {
+				canvas.drawBitmap(trainer5, trainer5XCoord, trainer5YCoord,
+						null);
 			}
-			if (trainerList.get(5).isSeen() == true){
-			canvas.drawBitmap(trainer6, trainer6XCoord , trainer6YCoord, null);
+			if (trainerList.get(5).isSeen() == true) {
+				canvas.drawBitmap(trainer6, trainer6XCoord, trainer6YCoord,
+						null);
 			}
-			if (trainerList.get(6).isSeen() == true){
-			canvas.drawBitmap(trainerBoss, trainerBossXCoord , trainerBossYCoord, null);
+			if (trainerList.get(6).isSeen() == true) {
+				canvas.drawBitmap(trainerBoss, trainerBossXCoord,
+						trainerBossYCoord, null);
 			}
 			invalidate();
 		}
@@ -268,23 +278,46 @@ public class MapActivity extends Activity implements NavigationListener {
 	@Override
 	public void onPlayerPositionDetailChanged(
 			PlayerPositionDetail playerPosDetail) {
-		double diffX = Math.abs(bottomRightCornerLongitude
-				- leftUpperCornerLongitude);
-		double helpVarX = diffX / PIXEL_X;
-		double diffY = Math.abs(bottomRightCornerLatitude
-				- leftUpperCornerLatitude);
-		double helpVarY = diffY / PIXEL_Y;
+
+		if (isPlayerInMapRange(playerPosDetail) == true) {
+
+			double diffX = Math.abs(bottomRightCornerLongitude
+					- leftUpperCornerLongitude);
+			double helpVarX = diffX / PIXEL_X;
+			double diffY = Math.abs(bottomRightCornerLatitude
+					- leftUpperCornerLatitude);
+			double helpVarY = diffY / PIXEL_Y;
+			playerLongitude = playerPosDetail.getLongitude();
+			playerLatitude = playerPosDetail.getLatitude();
+
+			playerXCoord = (int) (Math.abs(playerLongitude
+					- leftUpperCornerLongitude) / helpVarX);
+
+			playerYCoord = (int) (Math.abs(playerLatitude
+					- leftUpperCornerLatitude) / helpVarY);
+			// gettingAttacked();
+
+			checkRangeTrue(playerPosDetail);
+			checkRangeFalse(playerPosDetail);
+		}
+		else {
+			playerOutOfRange = Toast.makeText(getApplicationContext(),
+					getResources().getString(R.string.playerOutOfRange_info),
+					Toast.LENGTH_LONG);
+			playerOutOfRange.show();
+		}
+	}
+
+	private boolean isPlayerInMapRange(PlayerPositionDetail playerPosDetail) {
 		playerLongitude = playerPosDetail.getLongitude();
 		playerLatitude = playerPosDetail.getLatitude();
-		playerXCoord = (int) (Math.abs(playerLongitude
-				- leftUpperCornerLongitude) / helpVarX);
-
-		playerYCoord = (int) (Math
-				.abs(playerLatitude - leftUpperCornerLatitude) / helpVarY);
-//		 gettingAttacked();
-
-		checkRangeTrue(playerPosDetail);
-		checkRangeFalse(playerPosDetail);
+		if (leftUpperCornerLongitude > playerLongitude
+				|| bottomRightCornerLongitude < playerLongitude
+				|| leftUpperCornerLatitude < playerLatitude
+				|| bottomRightCornerLatitude > playerLatitude) {
+			return false;
+		}
+		return true;
 	}
 
 	public void getTrainerPositions() {
@@ -294,55 +327,66 @@ public class MapActivity extends Activity implements NavigationListener {
 		double diffY1 = Math.abs(bottomRightCornerLatitude
 				- leftUpperCornerLatitude);
 		double helpVarY1 = diffY1 / PIXEL_Y;
-		
-		
 
 		trainer1Longitude = trainerList.get(0).getLongitude();
 		trainer1Latitude = trainerList.get(0).getLatitude();
-		trainer1XCoord = (int) (Math.abs(trainer1Longitude - leftUpperCornerLongitude) / helpVarX1);
-		trainer1YCoord = (int) (Math.abs(trainer1Latitude - leftUpperCornerLatitude) / helpVarY1);
-		
+		trainer1XCoord = (int) (Math.abs(trainer1Longitude
+				- leftUpperCornerLongitude) / helpVarX1);
+		trainer1YCoord = (int) (Math.abs(trainer1Latitude
+				- leftUpperCornerLatitude) / helpVarY1);
+
 		trainer2Longitude = trainerList.get(1).getLongitude();
 		trainer2Latitude = trainerList.get(1).getLatitude();
-		trainer2XCoord = (int) (Math.abs(trainer2Longitude - leftUpperCornerLongitude) / helpVarX1);
-		trainer2YCoord = (int) (Math.abs(trainer2Latitude - leftUpperCornerLatitude) / helpVarY1);
-		
+		trainer2XCoord = (int) (Math.abs(trainer2Longitude
+				- leftUpperCornerLongitude) / helpVarX1);
+		trainer2YCoord = (int) (Math.abs(trainer2Latitude
+				- leftUpperCornerLatitude) / helpVarY1);
+
 		trainer3Longitude = trainerList.get(2).getLongitude();
 		trainer3Latitude = trainerList.get(2).getLatitude();
-		trainer3XCoord = (int) (Math.abs(trainer3Longitude - leftUpperCornerLongitude) / helpVarX1);
-		trainer3YCoord = (int) (Math.abs(trainer3Latitude - leftUpperCornerLatitude) / helpVarY1);
-		
+		trainer3XCoord = (int) (Math.abs(trainer3Longitude
+				- leftUpperCornerLongitude) / helpVarX1);
+		trainer3YCoord = (int) (Math.abs(trainer3Latitude
+				- leftUpperCornerLatitude) / helpVarY1);
+
 		trainer4Longitude = trainerList.get(3).getLongitude();
 		trainer4Latitude = trainerList.get(3).getLatitude();
-		trainer4XCoord = (int) (Math.abs(trainer4Longitude - leftUpperCornerLongitude) / helpVarX1);
-		trainer4YCoord = (int) (Math.abs(trainer4Latitude - leftUpperCornerLatitude) / helpVarY1);
-		
+		trainer4XCoord = (int) (Math.abs(trainer4Longitude
+				- leftUpperCornerLongitude) / helpVarX1);
+		trainer4YCoord = (int) (Math.abs(trainer4Latitude
+				- leftUpperCornerLatitude) / helpVarY1);
+
 		trainer5Longitude = trainerList.get(4).getLongitude();
 		trainer5Latitude = trainerList.get(4).getLatitude();
-		trainer5XCoord = (int) (Math.abs(trainer5Longitude - leftUpperCornerLongitude) / helpVarX1);
-		trainer5YCoord = (int) (Math.abs(trainer5Latitude - leftUpperCornerLatitude) / helpVarY1);
-		
+		trainer5XCoord = (int) (Math.abs(trainer5Longitude
+				- leftUpperCornerLongitude) / helpVarX1);
+		trainer5YCoord = (int) (Math.abs(trainer5Latitude
+				- leftUpperCornerLatitude) / helpVarY1);
+
 		trainer6Longitude = trainerList.get(5).getLongitude();
 		trainer6Latitude = trainerList.get(5).getLatitude();
-		trainer6XCoord = (int) (Math.abs(trainer6Longitude - leftUpperCornerLongitude) / helpVarX1);
-		trainer6YCoord = (int) (Math.abs(trainer6Latitude - leftUpperCornerLatitude) / helpVarY1);
-		
+		trainer6XCoord = (int) (Math.abs(trainer6Longitude
+				- leftUpperCornerLongitude) / helpVarX1);
+		trainer6YCoord = (int) (Math.abs(trainer6Latitude
+				- leftUpperCornerLatitude) / helpVarY1);
+
 		trainerBossLongitude = trainerList.get(6).getLongitude();
 		trainerBossLatitude = trainerList.get(6).getLatitude();
-		trainerBossXCoord = (int) (Math.abs(trainerBossLongitude - leftUpperCornerLongitude) / helpVarX1);
-		trainerBossYCoord = (int) (Math.abs(trainerBossLatitude - leftUpperCornerLatitude) / helpVarY1);
-		
+		trainerBossXCoord = (int) (Math.abs(trainerBossLongitude
+				- leftUpperCornerLongitude) / helpVarX1);
+		trainerBossYCoord = (int) (Math.abs(trainerBossLatitude
+				- leftUpperCornerLatitude) / helpVarY1);
 
 	}
 
-//	 private void gettingAttacked() {
-//	 int rand = rnd.nextInt(100);
-//	 if (rand == 0) {
-//	 Intent battleStart = new Intent(MapActivity.this,
-//	 ChooseBattleUnimonsActivity.class);
-//	 startActivity(battleStart);
-//	 }
-//	 }
+	// private void gettingAttacked() {
+	// int rand = rnd.nextInt(100);
+	// if (rand == 0) {
+	// Intent battleStart = new Intent(MapActivity.this,
+	// ChooseBattleUnimonsActivity.class);
+	// startActivity(battleStart);
+	// }
+	// }
 
 	private void checkRangeTrue(PlayerPositionDetail playerPosDetail) {
 		if (isShopInRange == true
