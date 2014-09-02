@@ -3,7 +3,7 @@
     android:layout_height="match_parent"
     android:layout_alignParentBottom="true"
     android:orientation="vertical" >
-   
+
     <TextView
         android:id="@+id/dompteur_text"
         android:layout_width="wrap_content"

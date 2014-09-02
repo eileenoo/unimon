@@ -125,7 +125,7 @@ public class BattleActivity extends Activity implements
 	// Is called, after each move (attack, escape, changeUnimon, useItem)
 	private void enemyFight() {
 		battleUnimon = battleController.enemyUnimonAttack();
-		if (battleUnimon.getHealth() >= 0) {
+		if (battleUnimon.getHealth() <= 0) {
 			gameWon = false;
 			fightEnd();
 		} else {
