@@ -80,15 +80,12 @@ public class MapActivity extends Activity implements NavigationListener {
 	private FragmentManager fragmentManager;
 	EnterAlertFragment alertFragment;
 
-	AlertDialog.Builder builder;
-
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		
 		setContentView(R.layout.map_activity);
 		playerXCoord = playerYCoord = 0;
-		builder = new AlertDialog.Builder(this);
 		trainerList = new TrainerList().getTrainerList();
 		
 		initUI();
