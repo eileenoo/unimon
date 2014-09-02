@@ -2,6 +2,8 @@ package de.ur.unimon.unimons;
 
 import java.util.Random;
 
+import android.util.Log;
+
 public class Spell {
 	
 	private String name;
@@ -14,8 +16,18 @@ public class Spell {
 		this.name = name;
 		this.spellNumber = spellNumber;
 		this.baseDamage = baseDamage;
-		spellLevel = 1;
+		spellLevel = 0;
 		isLearned = false;
+	}
+	
+	public int getDamageforDisplay(int level){
+		if (level == 0){
+			return 0;
+		} else return (int) (baseDamage + Math.exp((level/2d))+5);		
+	}
+	
+	public int getNextLevel(){
+		return spellLevel+1;
 	}
 	
 	public void learnSpell(){
@@ -70,7 +82,7 @@ public class Spell {
 	private void calculateSpellDamge() {
 		Random randomDmgCalculator = new Random();
 		
-		int tempDamage = (int) (baseDamage + Math.exp((spellLevel/2))+5);
+		int tempDamage = (int) (baseDamage + Math.exp((spellLevel/2d))+5);
 		int randomBonusDmg = randomDmgCalculator.nextInt((int) (tempDamage*0.2)+1);
 		int randomSign = randomDmgCalculator.nextInt(2);
 		if (randomSign == 0){

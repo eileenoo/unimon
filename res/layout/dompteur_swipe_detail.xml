@@ -5,72 +5,79 @@
     android:layout_height="match_parent" >
     
     <TextView 
-        android:id="@+id/inventory_unimon_name"
+        android:id="@+id/dompteur_unimon_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="50dp"
-        android:text="Käffchen"/>
+        android:text=""/>
     
     <ImageView 
-        android:id="@+id/inventory_unimon_image"
+        android:id="@+id/dompteur_unimon_image"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/inventory_unimon_name"
+        android:layout_below="@id/dompteur_unimon_name"
         android:layout_centerHorizontal="true"
         android:layout_margin="20dp"
         android:layout_centerVertical="true"
         android:src="@drawable/christian_wolff"/>
     
     <ProgressBar
-        android:id="@+id/inventory_healthBar"
+        android:id="@+id/dompteur_healthBar"
         style="?android:attr/progressBarStyleHorizontal"
         android:layout_width="150dp"
         android:layout_height="wrap_content"
-        android:layout_below="@id/inventory_unimon_image"
+        android:layout_below="@id/dompteur_unimon_image"
         android:layout_margin="5dp"
         android:layout_centerHorizontal="true"
         android:progress="0"/>
     
     
     <TextView
-        android:id="@+id/inventory_unimon_health"
+        android:id="@+id/dompteur_unimon_health"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/inventory_unimon_image"
+        android:layout_below="@id/dompteur_unimon_image"
         android:layout_margin="4dp"
-        android:layout_centerHorizontal="true"
-        android:text="100/100Hp" />
+        android:layout_centerHorizontal="true" />
     
     <TextView 
-        android:id="@+id/inventory_level"
+        android:id="@+id/dompteur_level"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/inventory_unimon_health"
+        android:layout_below="@id/dompteur_unimon_health"
         android:layout_margin="5dp"
-        android:layout_centerHorizontal="true"
-        android:text="Level: 1"/>/
+        android:layout_centerHorizontal="true"/>
+    
+    <TextView
+        android:id="@+id/dompteur_skillpoints"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/dompteur_level"   
+        android:layout_centerHorizontal="true"    
+        android:layout_margin="5dp"     
+        android:text="@string/skillpoint_text"/>
     
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true" 
-        android:layout_below="@id/inventory_level">
+        android:layout_below="@id/dompteur_skillpoints">
 
         <TextView
-            android:id="@+id/inventory_spell_headline"
+            android:id="@+id/dompteur_spell_headline"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
             android:text="@string/inventory_spell_headline" />
 
         <TextView
-            android:id="@+id/inventory_spell"
+            android:id="@+id/dompteur_spell"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="5dp" 
-            android:text="hi"/>
+            android:layout_margin="5dp" />
         
     </LinearLayout>
 
 </RelativeLayout>
+

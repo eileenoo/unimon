@@ -149,7 +149,12 @@ public static class SwipeFragment extends Fragment{
 		
 		unimonName.setText(ownedUnimonList.get(position).getName());
 		unimonLevel.setText("Level: "+ownedUnimonList.get(position).getLevel());
-		unimonSpell.setText("Spell: "+ownedUnimonList.get(position).getSpellBySpellNumber(0).getSpellName());
+		
+		String spellText = "";
+		for (int i = 0; i<ownedUnimonList.get(position).getOwnedSpells().size(); i++){
+			spellText += ownedUnimonList.get(position).getSpellBySpellNumber(i).getSpellName() + "\n";
+		}
+		unimonSpell.setText(spellText);
 				
 		int currentHealth = ownedUnimonList.get(position).getHealth();
 		int maxHealth = ownedUnimonList.get(position).getMaxHealth();
