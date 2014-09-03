@@ -95,8 +95,6 @@ public class Unimon {
 	}
 	
 	public void addXp(int amount){
-		xp += amount;
-	
 		if (xp + amount < getXpPerLevel()){
 			xp += amount;
 		}

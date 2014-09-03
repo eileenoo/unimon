@@ -5,13 +5,13 @@ import java.util.ArrayList;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import de.ur.mi.android.excercises.starter.R;
-import de.ur.unimon.startgame_logic.Player;
 import de.ur.unimon.startgame_logic.PlayerController;
 import de.ur.unimon.unimons.Unimon;
 
@@ -34,7 +34,6 @@ public class UnimonListActivity extends Activity{
 		unimons = playerController.getInstance().getUnimonList();
 		initListAdapter();
 		initListView();
-		
 		
 	}
 	

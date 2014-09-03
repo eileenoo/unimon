@@ -96,7 +96,7 @@ public class UnimonList {
 		catchableUnimonList = new ArrayList<Unimon>();
 		startUnimonList = new ArrayList<Unimon>();
 		
-		krisk = new Unimon("Krisk", 10, true);
+		krisk = new Unimon("Krisk", 90, true);
 		kriskSpell1 = new Spell("Kratzer", 1, 15);
 		kriskSpell2 = new Spell("Biss", 2, 20);
 		kriskSpell3 = new Spell("Kopfstoß",3,20);
@@ -110,9 +110,9 @@ public class UnimonList {
 		krisk.possibleSpells.add(kriskSpell5);
 		krisk.possibleSpells.add(kriskSpell6);
 		krisk.learnSpell(kriskSpell1);
-		krisk.setHealth(19);
+		krisk.setHealth(50);
 
-		neni = new Unimon("Neni", 30, true);
+		neni = new Unimon("Neni", 100, true);
 		neniSpell1 = new Spell ("bla",1,10);
 		neniSpell2 = new Spell ("bli",2,15);
 		neniSpell3 = new Spell ("blub",3,15);
@@ -126,9 +126,9 @@ public class UnimonList {
 		neni.addPossibleSpell(neniSpell5);
 		neni.addPossibleSpell(neniSpell6);
 		neni.learnSpell(neniSpell1);
-		neni.setHealth(5);
+		neni.setHealth(100);
 		
-		brunz = new Unimon("Brunz", 40, true);
+		brunz = new Unimon("Brunz", 70, true);
 		brunzSpell1 = new Spell ("bla",1,10);
 		brunzSpell2 = new Spell("Biss", 2, 20);
 		brunzSpell3 = new Spell ("mäp",3,15);
@@ -142,9 +142,9 @@ public class UnimonList {
 		brunz.addPossibleSpell(brunzSpell5);
 		brunz.addPossibleSpell(brunzSpell6);
 		brunz.learnSpell(brunzSpell1);
-		brunz.setHealth(20);
+		brunz.setHealth(70);
 		
-		lisa = new Unimon("Lisa", 20, true);
+		lisa = new Unimon("Lisa", 60, true);
 		lisaSpell1 =  new Spell ("möp",1,20);
 		lisaSpell2  = new Spell("Biss", 2, 20);
 		lisaSpell3  = new Spell("mip", 3, 20);
@@ -160,7 +160,7 @@ public class UnimonList {
 		lisa.learnSpell(lisaSpell1);
 		lisa.learnSpell(lisaSpell2);
 		lisaSpell1.setSpellLevel(2);
-		lisa.setHealth(15);
+		lisa.setHealth(lisa.getMaxHealth());
 		lisa.setLevel(20);
 		
 		wild1 = new Unimon("Wildie", 20, false);

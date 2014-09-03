@@ -1,18 +1,126 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/battle_activity_layout"
+    android:id="@+id/battle_activity_upper_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_gravity="bottom"
-    android:layout_weight="5"
-    android:gravity="bottom"
     android:orientation="vertical" >
-
-    <FrameLayout
-        android:layout_width="match_parent"
+    
+    <ImageView
+        android:id="@+id/enemy_unimon_image"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="#FFBB00" >
-    </FrameLayout>
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:src="@drawable/christian_wolff"/>
 
-</LinearLayout>
+    <TextView
+        android:id="@+id/enemy_unimon_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_toLeftOf="@id/enemy_unimon_image"
+        android:layout_marginRight="10dp"
+        android:layout_alignLeft="@+id/enemy_healthBar"
+        android:text="@string/name_text" 
+        android:textSize="15sp"/>
+
+    <TextView
+        android:id="@+id/enemy_unimon_level"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toLeftOf="@id/enemy_unimon_image"
+        android:layout_below="@id/enemy_unimon_name"
+        android:layout_alignLeft="@+id/enemy_healthBar"      
+        android:text="@string/level_text" />
+  	
+    
+    <ProgressBar
+        android:id="@+id/enemy_healthBar"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/enemy_unimon_level"
+        android:layout_toLeftOf="@id/enemy_unimon_image"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="5dp"/>
+    
+      <TextView
+        android:id="@+id/enemy_unimon_health"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/enemy_unimon_level"
+        android:layout_toLeftOf="@id/enemy_unimon_image"
+        android:layout_marginRight="80dp"
+        android:layout_marginTop="3dp"/>
+      
+      
+      
+      
+      <ImageView
+        android:id="@+id/own_unimon_image"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@id/enemy_unimon_image"
+        android:layout_marginTop="30dp"
+        android:src="@drawable/christian_wolff"/>
+
+    <TextView
+        android:id="@+id/own_unimon_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/own_unimon_image"
+        android:layout_above="@+id/own_unimon_level"
+        android:layout_marginLeft="10dp"
+        android:text="@string/name_text" 
+        android:textSize="15sp"/>
+
+    <TextView
+        android:id="@+id/own_unimon_level"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/own_unimon_image"
+        android:layout_above="@+id/own_healthBar"
+        android:layout_alignLeft="@id/own_unimon_name"  
+        android:text="@string/level_text" />
+  	
+    
+    <ProgressBar
+        android:id="@+id/own_healthBar"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@id/own_unimon_image"
+        android:layout_toRightOf="@id/own_unimon_image"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginBottom="10dp"/>
+    
+      <TextView
+        android:id="@+id/own_unimon_health"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@id/own_unimon_image"
+        android:layout_toRightOf="@id/own_unimon_image"
+        android:layout_marginLeft="80dp"
+        android:layout_marginBottom="10dp"
+        android:layout_marginTop="12dp"/>
+      
+	<LinearLayout
+	    android:id="@+id/battle_activity_layout"
+	    android:layout_width="match_parent"
+	    android:layout_height="match_parent"
+	    android:layout_gravity="bottom"
+	    android:gravity="bottom"
+	    android:orientation="vertical" >
+
+	    <FrameLayout
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content"
+	        android:background="#FFBB00" >
+	    </FrameLayout>
+	    
+	</LinearLayout>
+
+</RelativeLayout>
