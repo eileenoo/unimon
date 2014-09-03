@@ -21,15 +21,15 @@
         android:layout_alignParentRight="true"
         android:text="@string/next_button_text" />
     
-
     <TextView
         android:id="@+id/story_part_one"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/wulfman_img"
-        android:layout_centerHorizontal="true"
         android:layout_marginTop="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
         android:text="@string/story_part_one"
-        android:textSize="12sp" />
+        android:textSize="15sp" />
 
 </RelativeLayout>

@@ -299,8 +299,7 @@ public class MapActivity extends Activity implements NavigationListener {
 
 			checkRangeTrue(playerPosDetail);
 			checkRangeFalse(playerPosDetail);
-		}
-		else {
+		} else {
 			playerOutOfRange = Toast.makeText(getApplicationContext(),
 					getResources().getString(R.string.playerOutOfRange_info),
 					Toast.LENGTH_LONG);
@@ -398,7 +397,7 @@ public class MapActivity extends Activity implements NavigationListener {
 		else if (isDompteurInRange == true
 				&& playerPosDetail.getDistanceToBuilding(1) >= rangeBuildings) {
 			isDompteurInRange = false;
-			Log.d("hallo","Fragment Dompteur close");
+			Log.d("hallo", "Fragment Dompteur close");
 			closeFragment();
 		}
 
@@ -419,7 +418,7 @@ public class MapActivity extends Activity implements NavigationListener {
 		else if (isTrainerThreeInRange == true
 				&& playerPosDetail.getDistanceToTrainer(2) >= rangeTrainer) {
 			isTrainerThreeInRange = false;
-			Log.d("hallo","Fragment Trainer 3 close");
+			Log.d("hallo", "Fragment Trainer 3 close");
 			closeFragment();
 		}
 
@@ -485,10 +484,10 @@ public class MapActivity extends Activity implements NavigationListener {
 			showFragmentForTrainer("Trainer", 1);
 		} else if (isTrainerThreeInRange == false
 				&& playerPosDetail.getDistanceToTrainer(2) < rangeTrainer) {
-			Log.d("hallo","Trainer 3 sichtbar");
+			Log.d("hallo", "Trainer 3 sichtbar");
 			trainerList.get(2).setVisible();
 			isTrainerThreeInRange = true;
-			Log.d("hallo","Fragment Trainer 3 anzeigen");
+			Log.d("hallo", "Fragment Trainer 3 anzeigen");
 			showFragmentForTrainer("Trainer", 2);
 		} else if (isTrainerFourInRange == false
 				&& playerPosDetail.getDistanceToTrainer(3) < rangeTrainer) {

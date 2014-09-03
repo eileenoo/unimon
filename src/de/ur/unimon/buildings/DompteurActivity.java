@@ -143,6 +143,7 @@ public static class SwipeFragment extends Fragment{
 		TextView unimonSpell = (TextView) swipeView.findViewById(R.id.dompteur_spell);
 		TextView skillPoints = (TextView) swipeView.findViewById(R.id.dompteur_skillpoints);
 		ProgressBar healthBar = (ProgressBar) swipeView.findViewById(R.id.dompteur_healthBar);
+		ProgressBar xpBar = (ProgressBar) swipeView.findViewById(R.id.dompteur_xpBar);
 		ImageView unimonImage = (ImageView) swipeView.findViewById(R.id.dompteur_unimon_image);
 		
 		Bundle args = getArguments();
@@ -171,6 +172,16 @@ public static class SwipeFragment extends Fragment{
 		} else healthBar.setProgressDrawable(getResources().getDrawable(R.drawable.orange_progress));
 		
 		unimonHealth.setText(currentHealth+"/"+maxHealth);
+		
+		
+		ownedUnimonList.get(position).setXp(10);
+		int currentXp = ownedUnimonList.get(position).getXp();
+		int maxXpPerLevel = ownedUnimonList.get(position).getXpPerLevel();
+		
+		xpBar.setMax(maxXpPerLevel);
+		xpBar.setProgress(currentXp);
+	
+		xpBar.setProgressDrawable(getResources().getDrawable(R.drawable.purple_progress));
 		
 		skillPoints.setText("Skillpoints: "+ownedUnimonList.get(position).getSkillPoints());
 		return swipeView;

@@ -46,14 +46,32 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/dompteur_unimon_health"
-        android:layout_margin="5dp"
+        android:layout_marginTop="10dp"
         android:layout_centerHorizontal="true"/>
+    
+    <ProgressBar
+        android:id="@+id/dompteur_xpBar"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/dompteur_level"
+        android:layout_margin="5dp"
+        android:layout_centerHorizontal="true"
+        android:progress="0"/>
+    
+    <TextView
+        android:id="@+id/dompteur_unimon_xp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/dompteur_level"
+        android:layout_marginTop="4dp"
+        android:layout_centerHorizontal="true" />
     
     <TextView
         android:id="@+id/dompteur_skillpoints"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/dompteur_level"   
+        android:layout_below="@+id/dompteur_xpBar"   
         android:layout_centerHorizontal="true"    
         android:layout_margin="5dp"     
         android:text="@string/skillpoint_text"/>
