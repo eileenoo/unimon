@@ -34,8 +34,6 @@ public class NavigationController implements LocationListener {
 			NavigationListener navigationListener) {
 		this.navigationListener = navigationListener;
 		trainerList = new TrainerList();
-		trainerDistances = new ArrayList<Float>();
-		buildingDistances = new ArrayList<Float>();
 		init(context);
 	}
 
@@ -70,6 +68,8 @@ public class NavigationController implements LocationListener {
 	}
 
 	private void updateNavigationInformation() {
+		buildingDistances = new ArrayList<Float>();
+		trainerDistances = new ArrayList<Float>();
 		trainerList = new TrainerList();
 		trainerOne = new Location("");
 		trainerTwo = new Location("");

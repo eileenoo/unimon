@@ -2,6 +2,7 @@ package de.ur.unimon.battle;
 
 import java.util.Random;
 
+import android.util.Log;
 import de.ur.unimon.startgame_logic.Player;
 import de.ur.unimon.startgame_logic.PlayerController;
 import de.ur.unimon.unimons.Spell;
@@ -14,6 +15,8 @@ public class BattleController {
 	private Player player;
 	private PlayerController playerController;
 	private Random randomGenerator;
+	private boolean isSecondUnimonUsed = false;
+	private boolean isThirdUnimonUsed = false;
 
 	public BattleController(Unimon enemyUnimon, Unimon battleUnimon) {
 		initRandomGenerator();
@@ -66,13 +69,36 @@ public class BattleController {
 	public void unimonCatchSuccess() {
 		player.ownUnimonList.add(enemyUnimon);
 	}
+	
+	public int getXpSplit(){
+		if (isSecondUnimonUsed == true && isThirdUnimonUsed == true){
+			return 3;
+		} else if (isSecondUnimonUsed == false && isThirdUnimonUsed == false){
+			return 1;
+		} else return 2;
+	}
+	
+	public boolean isSecondUnimonUsed(){
+		return isSecondUnimonUsed;
+	}
+	
+	public boolean isThirdUnimonUsed(){
+		return isThirdUnimonUsed;
+	}
 
-	public void changeCurrentUnimon(Unimon chosenUnimon) {
+	public void changeCurrentUnimon(Unimon chosenUnimon, int index) {
+		if (index == 1){
+			isSecondUnimonUsed = true;
+		}  else if (index == 2){
+			isThirdUnimonUsed = true;
+		}
 		battleUnimon = chosenUnimon;
 	}
 	
 	public Unimon ownUnimonAttack(Spell spell) {
-		enemyUnimon.loseHealth(spell.getDamage());
+		int dmg = spell.getDamage();
+		enemyUnimon.loseHealth(dmg);
+		Log.d("hallo", "ownUnimon Damage: "+dmg);
 		return enemyUnimon;
 	}
 	
@@ -82,8 +108,9 @@ public class BattleController {
 	
 	public Unimon enemyUnimonAttack() {
 		int spellSize = enemyUnimon.ownedSpells.size();
-		battleUnimon.loseHealth(enemyUnimon.ownedSpells.get(
-				randomGenerator.nextInt(spellSize)).getDamage());
+		int dmg = enemyUnimon.ownedSpells.get(randomGenerator.nextInt(spellSize)).getDamage();
+		battleUnimon.loseHealth(dmg);
+		Log.d("hallo", "enemeyUnimon Damage: "+dmg);
 		return battleUnimon;
 	}
 }

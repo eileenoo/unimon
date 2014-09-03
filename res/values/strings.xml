@@ -97,5 +97,7 @@
 	<string name="inventory_use_healPot">Use HealPot</string>
 	<string name="inventory_use_revive">Revive</string>
 	<string name="inventory_spell_headline">Spells: </string>
+	
+	<string name="playerOutOfRange_info">You just do not find yourself on campus!</string>
 
 </resources>
