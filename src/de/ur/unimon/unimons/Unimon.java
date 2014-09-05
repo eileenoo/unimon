@@ -31,6 +31,17 @@ public class Unimon {
 		
 	}
 	
+	public void useHealpot(){
+		int newHealth = health + (int) (Math.round(maxHealth*0.20f));
+		if (newHealth > maxHealth){
+			health = maxHealth;
+		} else health = newHealth;
+	}
+	
+	public int getHealpotAmount(){
+		return (int) (Math.round(maxHealth*0.20f));
+	}
+	
 	public boolean ownedByTrainer(){
 		return ownedByTrainer;
 	}

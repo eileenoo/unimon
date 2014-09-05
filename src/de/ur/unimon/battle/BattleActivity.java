@@ -9,6 +9,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
+import android.view.animation.AlphaAnimation;
+import android.view.animation.Animation;
+import android.view.animation.Animation.AnimationListener;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -29,6 +32,7 @@ public class BattleActivity extends Activity implements
 	
 	private ImageView enemyUnimonImage, ownUnimonImage;
 	private TextView enemyUnimonName, ownUnimonName, enemyUnimonLevel, ownUnimonLevel, enemyUnimonHealth, ownUnimonHealth;
+	private TextView damageToEnemyUnimonDealt, damageToOwnUnimonDealt, showHealTextView;
 	private ProgressBar enemyUnimonHealthbar;
 	private ProgressBar ownUnimonHealthbar;
 
@@ -53,6 +57,14 @@ public class BattleActivity extends Activity implements
 	private FragmentTransaction fragmentTransaction;
 	
 	private int XP, money;
+	
+	final Animation toEnemyDamageTextIn = new AlphaAnimation(0.0f, 1.0f);
+	final Animation toOwnDamageTextIn = new AlphaAnimation(0.0f, 1.0f);
+	final Animation toEnemyDamageTextOut = new AlphaAnimation(1.0f, 0.0f);
+	final Animation toOwnDamageTextOut = new AlphaAnimation(1.0f, 0.0f);
+	final Animation showHealOut = new AlphaAnimation(1.0f, 0.0f);
+	final Animation showHealIn = new AlphaAnimation(0.0f, 1.0f);
+
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -62,11 +74,95 @@ public class BattleActivity extends Activity implements
 		initBattleController();
 		initUI();
 		createFirstFragment();
+		setUpAnimation();
 	}
 	
 	
 
+	private void setUpAnimation() {
+		toEnemyDamageTextIn.setDuration(1000);
+		toOwnDamageTextIn.setDuration(1000);
+		toEnemyDamageTextOut.setDuration(1000);
+		toEnemyDamageTextOut.setFillAfter(true);
+		toOwnDamageTextOut.setDuration(1000);
+		toOwnDamageTextOut.setFillAfter(true);
+		showHealIn.setDuration(1000);
+		showHealOut.setDuration(1000);
+		showHealOut.setFillAfter(true);
+		
+		toEnemyDamageTextIn.setAnimationListener(new AnimationListener() {
+			
+			@Override
+			public void onAnimationStart(Animation animation) {
+				damageToEnemyUnimonDealt.setText("-"+battleController.getToEnemyUnimonDamageDealt());
+			}
+			
+			@Override
+			public void onAnimationRepeat(Animation animation) {	
+			}
+			
+			@Override
+			public void onAnimationEnd(Animation animation) {
+				damageToEnemyUnimonDealt.startAnimation(toEnemyDamageTextOut);
+			}
+		});
+		
+		toOwnDamageTextIn.setAnimationListener(new AnimationListener() {
+			
+			@Override
+			public void onAnimationStart(Animation animation) {	
+				damageToOwnUnimonDealt.setText("-"+battleController.getToOwnUnimonDamageDealt());	
+			}
+			
+			@Override
+			public void onAnimationRepeat(Animation animation) {	
+			}
+			
+			@Override
+			public void onAnimationEnd(Animation animation) {
+				damageToOwnUnimonDealt.startAnimation(toOwnDamageTextOut);
+			}
+		});
+		
+		showHealIn.setAnimationListener(new AnimationListener() {
+			
+			@Override
+			public void onAnimationStart(Animation animation) {
+				showHealTextView.setText("+"+battleUnimon.getHealpotAmount());
+			}
+			
+			@Override
+			public void onAnimationRepeat(Animation animation) {
+			}
+			
+			@Override
+			public void onAnimationEnd(Animation animation) {
+				showHealTextView.startAnimation(showHealOut);
+			}
+		});
+	}
+	
+	private void showDamageDealtToOwnUnimon(){
+		damageToOwnUnimonDealt.startAnimation(toOwnDamageTextIn);		
+	}
+	
+	private void showDamageDealtToEnemyUnimon(){	
+		damageToEnemyUnimonDealt.startAnimation(toEnemyDamageTextIn);
+	}
+	
+	private void showHeal(){
+		showHealTextView.startAnimation(showHealIn);		
+	}
+	
+	
+
+
+
 	private void initUI() {
+		showHealTextView = (TextView) findViewById(R.id.heal_text);
+		damageToEnemyUnimonDealt = (TextView) findViewById(R.id.to_enemy_damage_dealt);
+		damageToOwnUnimonDealt = (TextView) findViewById(R.id.to_own_damage_dealt);
+		
 		enemyUnimonImage = (ImageView) findViewById(R.id.enemy_unimon_image);
 		ownUnimonImage = (ImageView) findViewById(R.id.own_unimon_image);
 		enemyUnimonName = (TextView) findViewById(R.id.enemy_unimon_name);
@@ -210,6 +306,7 @@ public class BattleActivity extends Activity implements
 	// Is called, after each move (attack, escape, changeUnimon, useItem)
 	private void enemyFight() {
 		battleUnimon = battleController.enemyUnimonAttack();
+		showDamageDealtToOwnUnimon();
 		updateOwnHealthUI();
 		if (battleUnimon.getHealth() <= 0) {
 			gameWon = false;
@@ -273,6 +370,7 @@ public class BattleActivity extends Activity implements
 	@Override
 	public void onSpellSelected(Spell chosenSpell) {
 		enemyUnimon = battleController.ownUnimonAttack(chosenSpell);
+		showDamageDealtToEnemyUnimon();
 		updateEnemeyHealthUI();
 		if (enemyUnimon.getHealth() <= 0) {
 			gameWon = true;
@@ -340,7 +438,10 @@ public class BattleActivity extends Activity implements
 	@Override
 	public void onHealpotUsedOnUnimon(Unimon unimon) {
 		player.getInventory().decreaseHealpots();
-		unimon.addHealth(50);
+		unimon.useHealpot();
+		if (unimon == battleUnimon){
+			showHeal();
+		}
 		updateOwnHealthUI();
 		showToast(R.string.battle_healpot_used);
 		playerStatus = false;
