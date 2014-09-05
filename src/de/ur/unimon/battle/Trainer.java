@@ -14,7 +14,7 @@ public class Trainer {
 	boolean isSeen;
 
 	public Trainer(int id, String name, double latitude, double longitude,
-			Unimon unimon, int expValue, int moneyValue) {
+			Unimon unimon, int expValue, int moneyValue, boolean isSeen) {
 		this.id = id;
 		this.name = name;
 		this.longitude = longitude;
@@ -22,7 +22,7 @@ public class Trainer {
 		this.unimon = unimon;
 		this.expValue = expValue;
 		this.moneyValue = moneyValue;
-		this.isSeen = false;
+		this.isSeen = isSeen;
 	}
 	
 	public boolean isSeen(){

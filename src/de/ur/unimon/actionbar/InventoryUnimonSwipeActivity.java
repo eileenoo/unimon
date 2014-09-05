@@ -1,8 +1,7 @@
-package de.ur.unimon.buildings;
+package de.ur.unimon.actionbar;
 
 import java.util.ArrayList;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
@@ -23,75 +22,76 @@ import de.ur.unimon.startgame_logic.Player;
 import de.ur.unimon.startgame_logic.PlayerController;
 import de.ur.unimon.unimons.Unimon;
 
-public class DompteurActivity extends FragmentActivity{
-
-	private static Player player;
-	private PlayerController playerController;
-	Button newSkill, improveSkill;
-	TextView dompteurText;
-	private static ArrayList <Unimon> ownedUnimonList;
+public class InventoryUnimonSwipeActivity extends FragmentActivity{
+	
 	UnimonFragmentPagerAdapter unimonFragmentPagerAdapter;
 	ViewPager viewPager;
-
-
-	protected void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		setContentView(R.layout.dompteur_activity);
-		
-		initUI();
-		initFragmentPagerAdapter();
-		initClickListener();
-	}
+	private  PlayerController playerController;
+	public static ArrayList<Unimon> ownedUnimonList;
+	Button useHealPot, revive;
+	public static Player player;
 	
 	@Override
-	protected void onResume() {
-		unimonFragmentPagerAdapter.notifyDataSetChanged();
-		super.onResume();
-	}
-
-	private void initUI() {
+	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.inventory_unimon_swipe_activity);
+		
 		player = playerController.getInstance();
 		ownedUnimonList = player.getUnimonList();
-		dompteurText = (TextView) findViewById(R.id.dompteur_text);
+				
+		initFragmentPagerAdapter();
+		initClickListener();
+
 	}
-	
+
 	private void initClickListener() {
-		newSkill = (Button) findViewById(R.id.dompteur_new_skill);
-		newSkill.setOnClickListener(new OnClickListener() {
-			
-			@Override
-			public void onClick(View v) {
-				int index = viewPager.getCurrentItem();			
-				if (ownedUnimonList.get(index).getSkillPoints() == 0) {
-					Toast toast = Toast.makeText(getApplicationContext(), "You dont have any Skillpoints!",
-							Toast.LENGTH_SHORT);
-					toast.show();
-				}
-				else {
-					Intent toLearnNewSkill = new Intent(DompteurActivity.this, DompteurSkillActivity.class);
-					toLearnNewSkill.putExtra("unimonPosition", index);
-					toLearnNewSkill.putExtra("skillType", "newSkill");
-					startActivity(toLearnNewSkill);
-				}
-			}
-		});
-		
-		improveSkill = (Button) findViewById(R.id.dompteur_improve_skill);
-		improveSkill.setOnClickListener(new OnClickListener() {
+		useHealPot = (Button) findViewById(R.id.inventory_use_healPot);
+		useHealPot.setOnClickListener(new OnClickListener() {
 			
 			@Override
 			public void onClick(View v) {
 				int index = viewPager.getCurrentItem();
-				if (ownedUnimonList.get(index).getSkillPoints() == 0) {
-					Toast toast = Toast.makeText(getApplicationContext(), "You dont have any Skillpoints!",
+				
+				if (player.getUnimonList().get(index).getHealth() != player.getUnimonList().get(index).getMaxHealth()) {
+					if (player.getInventory().healpotAvailable()){
+						player.takeHealpotOutOfInventory();				
+						ownedUnimonList.get(index).addHealth(30); 	// wo steht wieviel ein Healpot heilt??
+						unimonFragmentPagerAdapter.notifyDataSetChanged();
+					}
+					else {
+						Toast toast = Toast.makeText(getApplicationContext(), "You don´t have any Healpots left!",
+								Toast.LENGTH_SHORT);
+						toast.show();
+					}
+				} else {
+					Toast toast = Toast.makeText(getApplicationContext(), "This Unimon is already at maximum Health!",
 							Toast.LENGTH_SHORT);
 					toast.show();
 				}
-				else {
-					Intent toImproveSkill = new Intent(DompteurActivity.this, DompteurSkillActivity.class);
-					toImproveSkill.putExtra("unimonPosition", index);
-					toImproveSkill.putExtra("skillType", "improveSkill");
-					startActivity(toImproveSkill);
+			}
+		});
+		
+		revive = (Button) findViewById(R.id.inventory_use_revive);
+		revive.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				int index = viewPager.getCurrentItem();
+				if (!player.getUnimonList().get(index).isAlive()){
+					if (player.getInventory().reviveAvailable()){
+						player.takeReviveOutOfInventory();				
+						ownedUnimonList.get(index).setAlive(true);
+						ownedUnimonList.get(index).setToMaxHealth();
+						unimonFragmentPagerAdapter.notifyDataSetChanged();
+					} else {
+						Toast toast = Toast.makeText(getApplicationContext(), "You don´t have any Revives left!",
+								Toast.LENGTH_SHORT);
+						toast.show();
+					}
+				} else {
+					Toast toast = Toast.makeText(getApplicationContext(), "This Unimon is still alive",
+							Toast.LENGTH_SHORT);
+					toast.show();
 				}
 			}
 		});
@@ -100,7 +100,7 @@ public class DompteurActivity extends FragmentActivity{
 
 	private void initFragmentPagerAdapter() {
 		unimonFragmentPagerAdapter = new UnimonFragmentPagerAdapter(getSupportFragmentManager());
-		viewPager = (ViewPager) findViewById(R.id.dompteur_pager);
+		viewPager = (ViewPager) findViewById(R.id.inventory_pager);
 		viewPager.setAdapter(unimonFragmentPagerAdapter);
 	}
 
@@ -136,15 +136,14 @@ public static class SwipeFragment extends Fragment{
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
-		View swipeView = inflater.inflate(R.layout.dompteur_swipe_detail, container, false);
-		TextView unimonName = (TextView) swipeView.findViewById(R.id.dompteur_unimon_name);
-		TextView unimonHealth = (TextView) swipeView.findViewById(R.id.dompteur_unimon_health);
-		TextView unimonLevel = (TextView) swipeView.findViewById(R.id.dompteur_level);
-		TextView unimonSpell = (TextView) swipeView.findViewById(R.id.dompteur_spell);
-		TextView skillPoints = (TextView) swipeView.findViewById(R.id.dompteur_skillpoints);
-		ProgressBar healthBar = (ProgressBar) swipeView.findViewById(R.id.dompteur_healthBar);
-		ProgressBar xpBar = (ProgressBar) swipeView.findViewById(R.id.dompteur_xpBar);
-		ImageView unimonImage = (ImageView) swipeView.findViewById(R.id.dompteur_unimon_image);
+		View swipeView = inflater.inflate(R.layout.inventory_unimon_swipe_detail, container, false);
+		TextView unimonName = (TextView) swipeView.findViewById(R.id.inventory_unimon_name);
+		TextView unimonHealth = (TextView) swipeView.findViewById(R.id.inventory_unimon_health);
+		TextView unimonLevel = (TextView) swipeView.findViewById(R.id.inventory_level);
+		TextView unimonSpell = (TextView) swipeView.findViewById(R.id.inventory_spell);
+		ProgressBar healthBar = (ProgressBar) swipeView.findViewById(R.id.inventory_healthBar);
+		ProgressBar xpBar = (ProgressBar) swipeView.findViewById(R.id.inventory_xpBar);
+		ImageView unimonImage = (ImageView) swipeView.findViewById(R.id.inventory_unimon_image);
 		
 		Bundle args = getArguments();
 		int position = args.getInt("position");;
@@ -173,7 +172,6 @@ public static class SwipeFragment extends Fragment{
 		
 		unimonHealth.setText(currentHealth+"/"+maxHealth);
 		
-		
 		ownedUnimonList.get(position).setXp(10);
 		int currentXp = ownedUnimonList.get(position).getXp();
 		int maxXpPerLevel = ownedUnimonList.get(position).getXpPerLevel();
@@ -183,7 +181,6 @@ public static class SwipeFragment extends Fragment{
 	
 		xpBar.setProgressDrawable(getResources().getDrawable(R.drawable.purple_progress));
 		
-		skillPoints.setText("Skillpoints: "+ownedUnimonList.get(position).getSkillPoints());
 		return swipeView;
 	}
 	

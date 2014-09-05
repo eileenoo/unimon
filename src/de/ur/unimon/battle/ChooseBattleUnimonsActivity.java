@@ -1,6 +1,6 @@
 package de.ur.unimon.battle;
 
-import java.io.ObjectOutputStream.PutField;
+
 import java.util.ArrayList;
 
 import android.app.Activity;
@@ -10,14 +10,15 @@ import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
+import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 import de.ur.mi.android.excercises.starter.R;
 import de.ur.unimon.actionbar.UnimonListAdapter;
-import de.ur.unimon.mapoverview.MapActivity;
 import de.ur.unimon.startgame_logic.Player;
+import de.ur.unimon.startgame_logic.PlayerController;
 import de.ur.unimon.unimons.Unimon;
 
 public class ChooseBattleUnimonsActivity extends Activity {
@@ -28,10 +29,11 @@ public class ChooseBattleUnimonsActivity extends Activity {
 	Button confirmButton;
 	TextView chooseUnimonText;
 	ListAdapter listUnimons_adpater;
-	private ArrayList<Unimon> unimons;
-	private Unimon[] chosenUnimons;
+	private ArrayList<Unimon> ownedUnimons;
 	private String[] chosenUnimonsStringArray;
-	private int selectionStage, lastSelectonStage;
+	private int selectionStage, trainerID;
+	private Player player;
+	private PlayerController playerController;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -40,20 +42,26 @@ public class ChooseBattleUnimonsActivity extends Activity {
 		getTrainer();
 		initUI();
 	}
+	
+	@Override
+	public void onBackPressed() {
+	    //Hardware Zurückbutton disabled
+	}
+	
 
 	private void getTrainer() {
 		Bundle extras = getIntent().getExtras();
-		// Trainer trainer = (Trainer) extras.get("trainer");
+		trainerID = extras.getInt("trainerID");
 	}
 
 	private void initUI() {
-		Player player = de.ur.unimon.appstart.StartScreenActivity.player;
-		unimons = new ArrayList<Unimon>();
-		for (Unimon unimon : player.getUnimonList()) {
-			unimons.add((Unimon) unimon);
+		player = playerController.getInstance();
+		ownedUnimons = new ArrayList<Unimon>();
+		for (Unimon unimon: player.getUnimonList()) {
+			ownedUnimons.add((Unimon) unimon);
 		}
 		initListAdapter();
-		chosenUnimons = new Unimon[3];
+		chosenUnimonsStringArray = new String[3];
 		chooseUnimonText = (TextView) findViewById(R.id.choose_unimon_for_battle_textView);
 		initClickListener();
 
@@ -65,26 +73,21 @@ public class ChooseBattleUnimonsActivity extends Activity {
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view,
 					int position, long id) {
-
-				chosenUnimons[selectionStage] = unimons.get(position);
-				unimons.remove(position);
-
+				
+				chosenUnimonsStringArray[selectionStage] = ownedUnimons.get(position).getName();
+				ownedUnimons.remove(position);
+				((BaseAdapter) listUnimons_adpater).notifyDataSetChanged();
 				selectionStage++;
-				if (unimons.size() == 0) {
+				
+				if (ownedUnimons.size() == 0) {
 					selectionStage = 3;
 				}
 
 				if (selectionStage == 3) {
-					Intent toBattleActivity = new Intent(
-							ChooseBattleUnimonsActivity.this,
-							BattleActivity.class);
-
-					chosenUnimonsStringArray = new String[3];
-					for (int i = 0; i < chosenUnimons.length; i++) {
-						chosenUnimonsStringArray[i] = chosenUnimons[i].getName();
-					}
+					Intent toBattleActivity = new Intent(ChooseBattleUnimonsActivity.this, BattleActivity.class);
+					//toBattleActivity.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
+					toBattleActivity.putExtra("trainerID", trainerID);
 					toBattleActivity.putExtra("chosenUnimonStringArray", chosenUnimonsStringArray);
-					// toBattleActivity.outExtra("trainer", trainer);
 					startActivity(toBattleActivity);
 
 				} else if (selectionStage == 1) {
@@ -99,7 +102,7 @@ public class ChooseBattleUnimonsActivity extends Activity {
 
 	private void initListAdapter() {
 		listUnimons = (ListView) findViewById(R.id.choose_unimon_listView);
-		listUnimons_adpater = new UnimonListAdapter(this, unimons);
+		listUnimons_adpater = new UnimonListAdapter(this, ownedUnimons);
 		listUnimons.setAdapter(listUnimons_adpater);
 	}
 

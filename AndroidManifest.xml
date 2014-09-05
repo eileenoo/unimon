@@ -24,7 +24,6 @@
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -43,7 +42,7 @@
             android:label="@string/app_name" >
         </activity>
         <activity
-            android:name="de.ur.unimon.actionbar.InventoryUnimonListActivity"
+            android:name="de.ur.unimon.actionbar.InventoryUnimonSwipeActivity"
             android:label="@string/app_name" >
         </activity>
         <activity
@@ -71,7 +70,11 @@
             android:label="@string/app_name" >
         </activity>
         <activity
-            android:name="de.ur.unimon.buildings.DompteurUnimonListActivity"
+            android:name="de.ur.unimon.buildings.DompteurSkillActivity"
+            android:label="@string/app_name" >
+        </activity>
+         <activity
+            android:name="de.ur.unimon.buildings.DompteurSwipeUnimons"
             android:label="@string/app_name" >
         </activity>
         <activity

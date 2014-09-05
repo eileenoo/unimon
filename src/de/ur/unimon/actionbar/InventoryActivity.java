@@ -1,7 +1,5 @@
 package de.ur.unimon.actionbar;
 
-
-
 import java.util.ArrayList;
 
 import de.ur.mi.android.excercises.starter.R;
@@ -11,7 +9,6 @@ import de.ur.unimon.start.newgame.NewGameActivity;
 import de.ur.unimon.startgame_logic.Player;
 import de.ur.unimon.unimons.Unimon;
 
-
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -19,8 +16,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.TextView;
-
-
+import de.ur.unimon.startgame_logic.PlayerController;
 
 
 
@@ -29,9 +25,13 @@ public class InventoryActivity extends Activity{
 	private TextView money, healpotName, uniballName, reviveName,
 			protectorName, healpotCount, uniballCount, reviveCount,
 			protectorCount;
-	private Button healpotImage, uniballImage, reviveImage, protectorImage;
+
+	private Button useItemButton, healpotImage, uniballImage, reviveImage,
+			protectorImage;
 	Inventory inventory;
+
 	Player player;
+	PlayerController playerController;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -40,14 +40,24 @@ public class InventoryActivity extends Activity{
 		initUI();
 
 	}
+	
+	@Override
+	protected void onResume() {
+		healpotCount.setText(getResources().getString(R.string.item_count_text) + inventory.getHealpotCount());
+		uniballCount.setText(getResources().getString(R.string.item_count_text) + inventory.getUniballCount());
+		reviveCount.setText(getResources().getString(R.string.item_count_text) + inventory.getReviveCount());
+		protectorCount.setText(getResources().getString(R.string.item_count_text) + inventory.getProtectorCount());
+		super.onResume();
+	}
+	
 
 	private void initUI() {
 		
-		
-		player = de.ur.unimon.appstart.StartScreenActivity.player;
+		player = playerController.getInstance();
 		inventory = player.getInventory();
 		money = (TextView) findViewById(R.id.money);
-		money.setText(getResources().getString(R.string.money_text) + player.getMoney());
+		money.setText(getResources().getString(R.string.money_text)
+				+ player.getMoney());
 
 		if (inventory != null) {
 
@@ -57,7 +67,9 @@ public class InventoryActivity extends Activity{
 			healpotCount = (TextView) findViewById(R.id.item_healpot_count);
 
 			// healpotImage.setImageResource(R.drawable.ic_launcher);
-			healpotCount.setText(getResources().getString(R.string.item_count_text) + inventory.getHealpotCount());
+			healpotCount.setText(getResources().getString(
+					R.string.item_count_text)
+					+ inventory.getHealpotCount());
 
 			// Uniball
 			uniballImage = (Button) findViewById(R.id.uniball_image);
@@ -65,7 +77,9 @@ public class InventoryActivity extends Activity{
 			uniballCount = (TextView) findViewById(R.id.item_uniball_count);
 
 			// uniballImage.setImageResource(R.drawable.ic_launcher);
-			uniballCount.setText(getResources().getString(R.string.item_count_text) + inventory.getUniballCount());
+			uniballCount.setText(getResources().getString(
+					R.string.item_count_text)
+					+ inventory.getUniballCount());
 
 			// Revive
 			reviveImage = (Button) findViewById(R.id.revive_image);
@@ -73,7 +87,9 @@ public class InventoryActivity extends Activity{
 			reviveCount = (TextView) findViewById(R.id.item_revive_count);
 
 			// reviveImage.setImageResource(R.drawable.ic_launcher);
-			reviveCount.setText(getResources().getString(R.string.item_count_text) + inventory.getReviveCount());
+			reviveCount.setText(getResources().getString(
+					R.string.item_count_text)
+					+ inventory.getReviveCount());
 
 			// Protectors
 			protectorImage = (Button) findViewById(R.id.protectors_image);
@@ -81,7 +97,12 @@ public class InventoryActivity extends Activity{
 			protectorCount = (TextView) findViewById(R.id.item_protector_count);
 
 			// protectorImage.setImageResource(R.drawable.ic_launcher);
-			protectorCount.setText(getResources().getString(R.string.item_count_text) + inventory.getProtectorCount());
+			protectorCount.setText(getResources().getString(
+					R.string.item_count_text)
+					+ inventory.getProtectorCount());
+
+			// Use Item Button
+			useItemButton = (Button) findViewById(R.id.use_item_button);
 
 			setButtonsOnClick();
 
@@ -90,39 +111,16 @@ public class InventoryActivity extends Activity{
 	}
 
 	private void setButtonsOnClick() {
-		healpotImage.setOnClickListener(new OnClickListener() {
+
+		useItemButton.setOnClickListener(new OnClickListener() {
 			public void onClick(View v) {
-				Intent addHealpot = new Intent(InventoryActivity.this,
-						InventoryUnimonListActivity.class);
-				startActivity(addHealpot);
+				Intent useItem = new Intent(InventoryActivity.this,
+						InventoryUnimonSwipeActivity.class);
+				startActivity(useItem);
 			}
-		});
-
-		uniballImage.setOnClickListener(new OnClickListener() {
-			public void onClick(View v) {
-				Intent addUniball = new Intent(InventoryActivity.this,
-						InventoryUnimonListActivity.class);
-				startActivity(addUniball);
-			}
-		});
-
-		reviveImage.setOnClickListener(new OnClickListener() {
-			public void onClick(View v) {
-				Intent addRevive = new Intent(InventoryActivity.this,
-						InventoryUnimonListActivity.class);
-				startActivity(addRevive);
-			}
-		});
-
-		protectorImage.setOnClickListener(new OnClickListener() {
-			public void onClick(View v) {
-				Intent addProtector = new Intent(InventoryActivity.this,
-						InventoryUnimonListActivity.class);
-				startActivity(addProtector);
-			}
-		});
-
-	}
-
-
+		});}
 }
+
+		
+
+		

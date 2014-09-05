@@ -21,13 +21,14 @@ public class TrainerList {
 	public TrainerList(){
 		unimonList = new UnimonList().getUnimonList();
 		trainerList = new ArrayList<Trainer>();
-		trainer1 = new Trainer(1, "Wirtschaft", 48.9987501, 12.0936204, unimonList.get(0), 70, 70);
-		trainer2 = new Trainer(2, "Vielberth", 49.0004036, 12.0942936, unimonList.get(1), 150, 150);
-		trainer3 = new Trainer(3, "rechtsVonBib", 48.9979429, 12.0973199, unimonList.get(2), 250, 250);
-		trainer4 = new Trainer(4, "Brücke", 48.9971498, 12.0951285, unimonList.get(0), 350, 350);
-		trainer5 = new Trainer(5, "Chemie", 48.9956951, 12.0952814, unimonList.get(1), 150, 150);
-		trainer6 = new Trainer(6, "Mathe", 48.997165, 12.0934727, unimonList.get(2), 150, 150);
-		boss = new Trainer(7, "Stadion", 48.9933939, 12.0966834, unimonList.get(0), 150, 150);
+		trainer1 = new Trainer(1, "Wirtschaft", 48.9987501, 12.0936204, unimonList.get(0), 70, 70, false);
+		trainer2 = new Trainer(2, "Vielberth", 49.0004036, 12.0942936, unimonList.get(1), 150, 150, false);
+		trainer3 = new Trainer(3, "rechtsVonBib", 48.9979429, 12.0973199, unimonList.get(2), 250, 250, false);
+		//trainer3 = new Trainer(3, "Kugel", 48.998227, 12.095232, unimonList.get(2), 250, 250, false);
+		trainer4 = new Trainer(4, "Brücke", 48.9971498, 12.0951285, unimonList.get(0), 350, 350, false);
+		trainer5 = new Trainer(5, "Chemie", 48.9956951, 12.0952814, unimonList.get(1), 150, 150, false);
+		trainer6 = new Trainer(6, "Mathe", 48.997165, 12.0934727, unimonList.get(2), 150, 150, false);
+		boss = new Trainer(7, "Stadion", 48.9932459, 12.0966834, unimonList.get(0), 150, 150, false);
 		trainerList.add(trainer1);
 		trainerList.add(trainer2);
 		trainerList.add(trainer3);

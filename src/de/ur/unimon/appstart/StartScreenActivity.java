@@ -1,20 +1,22 @@
 package de.ur.unimon.appstart;
 
-import java.util.ArrayList;
-
 import android.app.Activity;
+
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import de.ur.mi.android.excercises.starter.R;
 import de.ur.unimon.actionbar.Inventory;
+import de.ur.unimon.database.AppDatabase;
+import de.ur.unimon.database.PlayerDatabase;
 import de.ur.unimon.mapoverview.MapActivity;
 import de.ur.unimon.start.newgame.NewGameActivity;
-import de.ur.unimon.startgame_logic.Player;
+import de.ur.unimon.startgame_logic.PlayerController;
 import de.ur.unimon.unimons.UnimonList;
 
 public class StartScreenActivity extends Activity {
@@ -25,14 +27,30 @@ public class StartScreenActivity extends Activity {
 	Button guide_button;
 	Context context;
 	UnimonList allUnimonsList;
-	public static Player player;
+	PlayerController playerController;
+	PlayerDatabase playerDb;
+	AlertDialog.Builder builder;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
+		builder = new AlertDialog.Builder(this);
+		context = this.getApplicationContext();
+		//initDatabase();
 		initUI();		
 	}
+	
+	/*@Override
+	protected void onDestroy() {
+		playerDb.close();
+		super.onDestroy();
+	}
+	
+	private void initDatabase() {
+		playerDb = new PlayerDatabase(this);
+		playerDb.open();
+	}*/
 	
 	
 	private void initUI(){
@@ -40,24 +58,45 @@ public class StartScreenActivity extends Activity {
     	resume_button = (Button) findViewById (R.id.resume_button);
     	options_button = (Button) findViewById (R.id.options_button);
     	guide_button = (Button) findViewById (R.id.guide_button);
-    	
-    	//braucht man hier nicht nur jetzt da für DBplayer erzeugung
-    	allUnimonsList = new UnimonList();
-    	
+
     	setButtonsOnClick();
     }
     
     private void setButtonsOnClick(){
     	newGame_button.setOnClickListener(new OnClickListener(){
     		public void onClick(View v) {
-    			player = new Player();
-    			Intent newGame = new Intent (StartScreenActivity.this, NewGameActivity.class);
-    			startActivity(newGame);
+    			playerController.getInstance();
+    			builder.setTitle(getResources().getString(R.string.newGame_alert_title));
+				builder.setMessage(getResources().getString(R.string.newGame_alert_message));
+
+				builder.setPositiveButton(getResources().getString(R.string.newGameButton_text),
+						new DialogInterface.OnClickListener() {
+
+							@Override
+							public void onClick(DialogInterface dialog,
+									int which) {
+								Intent newGame = new Intent (StartScreenActivity.this, NewGameActivity.class);
+				    			newGame.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
+				    			startActivity(newGame);
+								dialog.dismiss();
+							}
+						});
+				builder.setNegativeButton(getResources().getString(R.string.cancel),
+						new DialogInterface.OnClickListener() {
+
+							@Override
+							public void onClick(DialogInterface dialog,
+									int which) {									
+								dialog.dismiss();
+							}
+						});
+				AlertDialog alert = builder.create();
+				alert.show();
 			}
     	});
     	resume_button.setOnClickListener(new OnClickListener(){
     		public void onClick(View v) {	
-    			createPlayer();
+    			playerController.getInstanceFromDB();
     			Intent resume = new Intent (StartScreenActivity.this, MapActivity.class);
     			startActivity(resume);
 			}
@@ -77,12 +116,5 @@ public class StartScreenActivity extends Activity {
 			}
     	});
     }
-    
-    
-    private void createPlayer() {
-		Inventory inventory = new Inventory(4,5,5,4);
-		// nur für test, allUnimonList falsch, man braucht Liste aus DB);
-		player = new Player(200, allUnimonsList.getUnimonList(), inventory);
-	}
 
 }

@@ -15,15 +15,13 @@ import de.ur.mi.android.excercises.starter.R;
 import de.ur.unimon.unimons.Unimon;
 
 public class UnimonListAdapter extends BaseAdapter {
-	
-	public static final String TAG = "Hoi";
 
 	private Context context;
 	LayoutInflater infalInflater;
 	ArrayList<Unimon> unimons;
-	private TextView unimonName, unimonLevel, health;
+	private TextView unimonName, unimonLevel, health, unimonXp;
 	private Button unimonImage;
-	private ProgressBar healthBar;
+	private ProgressBar healthBar, xpBar;
 
 	public UnimonListAdapter(Context context, ArrayList<Unimon> unimons) {
 		this.context = context;
@@ -65,12 +63,19 @@ public class UnimonListAdapter extends BaseAdapter {
 					.findViewById(R.id.unimon_level);
 			healthBar = (ProgressBar) convertView.findViewById(R.id.healthBar);
 			health = (TextView) convertView.findViewById(R.id.unimon_health);
+			
+			xpBar = (ProgressBar) convertView.findViewById(R.id.xpBar);
+			unimonXp = (TextView) convertView.findViewById(R.id.unimon_xp);
+			
 
 			// unimonImage.setImageResource(R.drawable.ic_launcher);
 			unimonName.setText("" + unimon.getName());
 			unimonLevel.setText("" + unimon.getLevel());
 			healthBar.setMax(unimon.getMaxHealth());
 			healthBar.setProgress(unimon.getHealth());
+			xpBar.setMax(unimon.getXpPerLevel());
+			xpBar.setProgress(unimon.getXp());
+			
 			
 			int currentHealth = unimon.getHealth();
 			int maxHealth = unimon.getMaxHealth();
@@ -83,6 +88,14 @@ public class UnimonListAdapter extends BaseAdapter {
 			} else healthBar.setProgressDrawable(convertView.getResources().getDrawable(R.drawable.orange_progress));
 			
 			health.setText(currentHealth+"/"+maxHealth);
+			
+			unimon.setXp(10);
+			int currentXp = unimon.getXp();
+			int maxXpPerLevel = unimon.getXpPerLevel();			
+		
+			xpBar.setProgressDrawable(convertView.getResources().getDrawable(R.drawable.purple_progress));
+			
+			unimonXp.setText(currentXp+"/"+maxXpPerLevel);
 		}
 		return convertView;
 

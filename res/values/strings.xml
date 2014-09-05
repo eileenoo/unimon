@@ -4,7 +4,10 @@
     <string name="app_name">StarterProjekt</string>
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
+    
     <string name="newGameButton_text">New Game</string>
+    <string name="newGame_alert_title">New Game</string>
+    <string name="newGame_alert_message">Do you really want to start a new game? Old scores will be lost!</string>
     <string name="resumeButton_text">Resume</string>
     <string name="guideButton_text">Guide</string>
     <string name="optionsButton_text">Options</string>
@@ -13,13 +16,15 @@
     <string name="sound_off_text">Off</string>
     <string name="sound_on_text">On</string>
     <string name="english_text">English</string>
-    <string name="german_text">Deutsch</string>
+    <string name="german_text">German</string>
+    
     <string name="action_inventar">Inventory</string>
     <string name="action_unimons">Unimons</string>
     <string name="action_map_overview">Map</string>
-    <string name="story_part_one">Hallo my name is Dr. Wulfman! #Save the Students!!!</string>
-    <string name="story_part_two">Train your Unimons and fight!</string>
-    <string name="story_part_three">Have fun!</string>
+    <string name="story_part_one">Hello my name is Dr. Wulfman! A villain has placed a curse on the University of Regensburg, 
+        which states that all students only write bad grades.</string>
+    <string name="story_part_two">Now it is your task to defeat the bad guy! Collect enough skillpoints to be able to train your unimons!</string>
+    <string name="story_part_three">Choose your favourite Unimon with which you pull into the fight against the villain. Have fun! And save the students!</string>
     <string name="next_button_text">Next</string>
     <string name="back_button_text">Back</string>
     <string name="money_text">Money: </string>
@@ -27,14 +32,15 @@
     <string name="skillpoint_text">Skillpoints: </string>
     <string name="unimon_name_text">Name</string>
     <string name="current_skills_text">Current Skills</string>
-    <string name="dompteur_info_text">Welches Unimon moechtest du trainieren?</string>
+    <string name="dompteur_info_text">Which Unimon do you want to train?</string>
     
     
-    <string name="item_count_text">Anzahl: </string>
+    <string name="item_count_text">Number: </string>
     <string name="healpot_name">Healpot</string>
     <string name="uniball_name">Uniball</string>
     <string name="revive_name">Revive</string>
     <string name="protector_name">Protector</string>
+    <string name="use_item_button_text">Use Item</string>
     <string name="shop_name">Shop</string>
     <string name="dompteur_name">Dompteur</string>
     <string name="hospital_name">Hospital</string>
@@ -46,15 +52,16 @@
     <string name="name_text">Name: </string>
     <string name="level_text">Level: </string>
     <string name="unimon_image_text">Unimon Bild</string>
-    <string name="unimon_info_text">Ich bin ein Wassermon!</string>
+    <string name="unimon_info_text">I am a watermon!</string>
     <string name="escape_toast_text">Your escape was successful!</string>
     <string name="escape_not_successfull_toast_text">Your escape was not successful!</string>
     <string name="catch_unimon_success_text">You catched the Unimon! Yay!</string>
     <string name="catch_unimon_fail_text">Unimon catch failed!</string>
-    <string name="game_description_text">Der Endbösewicht hat einen Fluch über die Uni Regensburg gelegt, der besagt, dass alle Studenten nur noch schlechte Noten schreiben. Ziel des Spiels ist es, den Bösewicht zu besiegen und damit den Fluch aufzuheben. Um ihn bezwingen zu können, musst du genügend EXPs sammeln und deine Unimons trainieren. Dekan Wulfman beauftragt dich nun den Bösewicht zu besiegen, damit die Universität Regensburg im Landesvergleich wieder am Besten abschneidet. Da du bisher alle Vorlesungen und Seminare geschwänzt hast, konntest du nicht mit dem Fluch belegt werden. Damit du den Bösewicht besiegen kannst, übergibt dir der Dekan dein erstes Unimon, dabei darfst du zwischen drei verschiedenen Unimons auswählen.</string>
+    <string name="game_description_text">The endboss has placed a curse on the University of Regensburg, which states that all students only write bad grades. The aim of the game is to defeat the villain and thus lift the curse. To defeat him, you must collect enough skillpoints and thus train your Unimons. Dean Wulffman asked you now to defeat the villain, so the University of Regensburg again cut by local standards at best. 
+        Since you previously skipped all lectures and seminars, you might not be subject to the curse. In order to defeat the bad guy, you are on the dean your first unimon, while you may choose between three different Unimons.</string>
     <string name="game_description_title">Game-Description</string>
     <string name="tips_tricks_title">Tips and Tricks</string>
-    <string name="tips_tricks_text">Man kann ein Unimon nur fangen, wenn es ein wildes Unimon ist. Wenn es einem Trainer gehört kann man es nicht fangen. ---- Vermeide es Gebäude zu betreten, da das GPS-Signal dort Schwach oder nicht vorhanden. Das UnimonSpiel auf GPS basiert.</string>
+    <string name="tips_tricks_text">You can catch a unimon only if it is a wild unimon. If it belongs to a trainer you cannot catch it. ---- Avoid entering the building, otherwise you may experience problems with the gps signal. The unimon game is based on gps. </string>
     <string name="wulfman_img">Dr. Wulfman</string>
 
     <string name="dompteur_new_skill">Learn new skill</string>
@@ -77,16 +84,26 @@
     <string name="battle_unimon3_button_text">Select Unimon 3</string>
     <string name="battle_healpot_used">You used a healpot</string>
     <string name="battle_spell_button_text">Spell 1</string>
-    <string name="choose_primary_unimon">Wähle dein primäres Unimon für den Kampf aus!</string>
-    <string name="choose_second_unimon">Wähle ein Ersatzunimon!</string>
-    <string name="choose_third_unimon">Wähle ein weiteres Ersatzunimon!</string>    
+    <string name="choose_primary_unimon">Choose your primary Unimon for battle!</string>
+    <string name="choose_second_unimon">Choose a replacement unimon!</string>
+    <string name="choose_third_unimon">Choose another replacement unimon!</string>    
+    
     <string name="cancel">Cancel</string>
-    <string name="alert_money_warning_title">Achtung!</string>
-    <string name="alert_money_warning_message">Du brauchst mehr Geld, um dir das kaufen zu können!</string>
+    <string name="alert_money_warning_title">Attention!</string>
+    <string name="alert_money_warning_message">To purchase this item you need more money!</string>
     <string name="ok">OK</string>
     <string name="unimon_health_info_text">Health: </string>
     <string name="unimon_level_info_text">Level: </string>
 	<string name="left_parenthesis"> ( </string>
 	<string name="right_parenthesis"> ) </string>
+	
+	<string name="choose_that_unimon">Choose me!</string>
+	
+	<string name="inventory_use_item">Use Item</string>
+	<string name="inventory_use_healPot">Use HealPot</string>
+	<string name="inventory_use_revive">Revive</string>
+	<string name="inventory_spell_headline">Spells: </string>
+	
+	<string name="playerOutOfRange_info">You just do not find yourself on campus!</string>
 
 </resources>

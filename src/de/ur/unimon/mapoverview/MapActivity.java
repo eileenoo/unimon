@@ -1,5 +1,6 @@
 package de.ur.unimon.mapoverview;
 
+import java.util.ArrayList;
 import java.util.Random;
 
 import android.app.Activity;
@@ -17,11 +18,15 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 import de.ur.mi.android.excercises.starter.R;
 import de.ur.unimon.actionbar.InventoryActivity;
 import de.ur.unimon.actionbar.UnimonListActivity;
 import de.ur.unimon.battle.ChooseBattleUnimonsActivity;
+import de.ur.unimon.battle.Trainer;
+import de.ur.unimon.battle.TrainerList;
 import de.ur.unimon.buildings.DompteurActivity;
+import de.ur.unimon.buildings.ShopActivity;
 import de.ur.unimon.navigation.NavigationController;
 import de.ur.unimon.navigation.NavigationListener;
 import de.ur.unimon.navigation.PlayerPositionDetail;
@@ -29,23 +34,35 @@ import de.ur.unimon.navigation.PlayerPositionDetail;
 public class MapActivity extends Activity implements NavigationListener {
 
 	Button inventoryButton, unimonsButton, mapButton, movePlayerButton;
-	Bitmap map, player;
+	Bitmap map, player, trainer1, trainer2, trainer3, trainer4, trainer5,
+			trainer6, trainerBoss;
 	public int playerXCoord, playerYCoord;
+	public int trainer1XCoord, trainer1YCoord;
+	public int trainer2XCoord, trainer2YCoord;
+	public int trainer3XCoord, trainer3YCoord;
+	public int trainer4XCoord, trainer4YCoord;
+	public int trainer5XCoord, trainer5YCoord;
+	public int trainer6XCoord, trainer6YCoord;
+	public int trainerBossXCoord, trainerBossYCoord;
 
 	LinearLayout canvasLayout;
 	private Random rnd;
 	private NavigationController navigationController;
 	private double playerLatitude, playerLongitude;
+	private double trainer1Latitude, trainer1Longitude;
+	private double trainer2Latitude, trainer2Longitude;
+	private double trainer3Latitude, trainer3Longitude;
+	private double trainer4Latitude, trainer4Longitude;
+	private double trainer5Latitude, trainer5Longitude;
+	private double trainer6Latitude, trainer6Longitude;
+	private double trainerBossLatitude, trainerBossLongitude;
 	public static final double leftUpperCornerLongitude = 12.091562;
 	public static final double leftUpperCornerLatitude = 49.0010367;
-	public static final double bottomRightCornerLongitude = 12.09969;// x
-	public static final double bottomRightCornerLatitude = 48.99169; // Latitude
-																		// oben
-																		// unten
-																		// Breitengrad
-																		// y
+	public static final double bottomRightCornerLongitude = 12.09969;
+	public static final double bottomRightCornerLatitude = 48.99169;
+
 	private double rangeBuildings = 25;
-	private double rangeTrainer = 20;
+	private double rangeTrainer = 25;
 	public float PIXEL_X; // 1559; //1169
 	public float PIXEL_Y; // 2731; //2048
 
@@ -60,47 +77,47 @@ public class MapActivity extends Activity implements NavigationListener {
 	private boolean isTrainerSixInRange = false;
 	private boolean isTrainerBossInRange = false;
 
+	private ArrayList<Trainer> trainerList;
+	private Toast playerOutOfRange;
+
 	private FragmentManager fragmentManager;
 	EnterAlertFragment alertFragment;
-	FragmentTransaction transaction;
-
-	AlertDialog.Builder builder;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+
 		setContentView(R.layout.map_activity);
 		playerXCoord = playerYCoord = 0;
-		builder = new AlertDialog.Builder(this);
+		trainerList = new TrainerList().getTrainerList();
+
 		initUI();
 		initNavigation();
 		initFragmentManager();
+		getTrainerPositions();
 
 		// onPlayerPositionDetailChanged(new PlayerPositionDetail(12, 48, 100,
-		// 30, 1000, 100, 100, 100, 100, 100, 100, 100));
-		// onPlayerPositionDetailChanged(new PlayerPositionDetail(12, 48, 100,
-		// 26, 1000, 100, 100, 100, 100, 100, 100, 100));
-		// onPlayerPositionDetailChanged(new PlayerPositionDetail(12, 48, 100,
-		// 25, 1000, 100, 100, 100, 100, 100, 100, 100));
+		// 100, 1000, 5, 100, 100, 100, 100, 100, 100));
 		// onPlayerPositionDetailChanged(new PlayerPositionDetail(12, 48, 100,
 		// 25, 1000, 100, 100, 100, 100, 100, 100, 100));
 		// onPlayerPositionDetailChanged(new PlayerPositionDetail(12, 48, 100,
 		// 24, 1000, 100, 100, 100, 100, 100, 100, 100));
 		// onPlayerPositionDetailChanged(new PlayerPositionDetail(12, 48, 100,
 		// 13, 1000, 100, 100, 100, 100, 100, 100, 100));
+		// closeFragment();
 		// onPlayerPositionDetailChanged(new PlayerPositionDetail(12, 48, 100,
 		// 30, 1000, 100, 100, 100, 100, 100, 100, 100));
 		// onPlayerPositionDetailChanged(new PlayerPositionDetail(12, 48, 100,
-		// 35, 1000, 100, 100, 100, 100, 100, 100, 100));
+		// 15, 1000, 100, 100, 100, 100, 100, 100, 100));
 
 	}
 
 	private void initFragmentManager() {
 		fragmentManager = getFragmentManager();
 		alertFragment = new EnterAlertFragment();
-		transaction = fragmentManager.beginTransaction();
-		transaction.setCustomAnimations(R.animator.slide_in_bottom,
-				R.animator.slide_out_top);
+		// transaction = fragmentManager.beginTransaction();
+		// transaction.setCustomAnimations(R.animator.slide_in_bottom,
+		// R.animator.slide_out_top);
 	}
 
 	@Override
@@ -151,6 +168,7 @@ public class MapActivity extends Activity implements NavigationListener {
 			public void onClick(View v) {
 				Intent inventory = new Intent(MapActivity.this,
 						InventoryActivity.class);
+				inventory.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
 				startActivity(inventory);
 			}
 		});
@@ -165,6 +183,8 @@ public class MapActivity extends Activity implements NavigationListener {
 			public void onClick(View v) {
 				Intent startBattle = new Intent(MapActivity.this,
 						ChooseBattleUnimonsActivity.class);
+				startBattle.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
+				startBattle.putExtra("trainerID", 1);
 				startActivity(startBattle);
 			}
 		});
@@ -172,12 +192,15 @@ public class MapActivity extends Activity implements NavigationListener {
 		movePlayerButton.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
+
+				/*
+				 * Intent shop = new Intent(MapActivity.this,
+				 * ShopActivity.class); startActivity(shop);
+				 */
+
 				Intent dompteur = new Intent(MapActivity.this,
 						DompteurActivity.class);
 				startActivity(dompteur);
-				// playerXCoord += 20;
-				// playerYCoord += 50;
-
 			}
 		});
 	}
@@ -188,6 +211,28 @@ public class MapActivity extends Activity implements NavigationListener {
 			super(context);
 			player = BitmapFactory.decodeResource(getResources(),
 					R.drawable.blauer_punkt);
+
+			trainer1 = BitmapFactory.decodeResource(getResources(),
+					R.drawable.blauer_punkt);
+
+			trainer2 = BitmapFactory.decodeResource(getResources(),
+					R.drawable.blauer_punkt);
+
+			trainer3 = BitmapFactory.decodeResource(getResources(),
+					R.drawable.blauer_punkt);
+
+			trainer4 = BitmapFactory.decodeResource(getResources(),
+					R.drawable.blauer_punkt);
+
+			trainer5 = BitmapFactory.decodeResource(getResources(),
+					R.drawable.blauer_punkt);
+
+			trainer6 = BitmapFactory.decodeResource(getResources(),
+					R.drawable.blauer_punkt);
+
+			trainerBoss = BitmapFactory.decodeResource(getResources(),
+					R.drawable.blauer_punkt);
+
 		}
 
 		@Override
@@ -195,6 +240,34 @@ public class MapActivity extends Activity implements NavigationListener {
 			super.onDraw(canvas);
 			canvas.drawBitmap(map, 0, 0, null);
 			canvas.drawBitmap(player, playerXCoord, playerYCoord, null);
+			if (trainerList.get(0).isSeen() == true) {
+				canvas.drawBitmap(trainer1, trainer1XCoord, trainer1YCoord,
+						null);
+			}
+			if (trainerList.get(1).isSeen() == true) {
+				canvas.drawBitmap(trainer2, trainer2XCoord, trainer2YCoord,
+						null);
+			}
+			if (trainerList.get(2).isSeen() == true) {
+				canvas.drawBitmap(trainer3, trainer3XCoord, trainer3YCoord,
+						null);
+			}
+			if (trainerList.get(3).isSeen() == true) {
+				canvas.drawBitmap(trainer4, trainer4XCoord, trainer4YCoord,
+						null);
+			}
+			if (trainerList.get(4).isSeen() == true) {
+				canvas.drawBitmap(trainer5, trainer5XCoord, trainer5YCoord,
+						null);
+			}
+			if (trainerList.get(5).isSeen() == true) {
+				canvas.drawBitmap(trainer6, trainer6XCoord, trainer6YCoord,
+						null);
+			}
+			if (trainerList.get(6).isSeen() == true) {
+				canvas.drawBitmap(trainerBoss, trainerBossXCoord,
+						trainerBossYCoord, null);
+			}
 			invalidate();
 		}
 	}
@@ -202,152 +275,270 @@ public class MapActivity extends Activity implements NavigationListener {
 	@Override
 	public void onPlayerPositionDetailChanged(
 			PlayerPositionDetail playerPosDetail) {
-		double diffX = Math.abs(bottomRightCornerLongitude
-				- leftUpperCornerLongitude);
-		double helpVarX = diffX / PIXEL_X;
-		double diffY = Math.abs(bottomRightCornerLatitude
-				- leftUpperCornerLatitude);
-		double helpVarY = diffY / PIXEL_Y;
-		playerLongitude = playerPosDetail.getLongitude();
-		playerLatitude = playerPosDetail.getLatitude();
-		playerXCoord = (int) (Math.abs(playerLongitude
-				- leftUpperCornerLongitude) / helpVarX);
-		playerYCoord = (int) (Math
-				.abs(playerLatitude - leftUpperCornerLatitude) / helpVarY);
-//		gettingAttacked();
 
-		Log.d("bla", "" + isDompteurInRange);
+		if (isPlayerInMapRange(playerPosDetail) == true) {
 
-		checkRangeTrue(playerPosDetail);
-		checkRangeFalse(playerPosDetail);
+			double diffX = Math.abs(bottomRightCornerLongitude
+					- leftUpperCornerLongitude);
+			double helpVarX = diffX / PIXEL_X;
+			double diffY = Math.abs(bottomRightCornerLatitude
+					- leftUpperCornerLatitude);
+			double helpVarY = diffY / PIXEL_Y;
+			playerLongitude = playerPosDetail.getLongitude();
+			playerLatitude = playerPosDetail.getLatitude();
+
+			playerXCoord = (int) (Math.abs(playerLongitude
+					- leftUpperCornerLongitude) / helpVarX);
+
+			playerYCoord = (int) (Math.abs(playerLatitude
+					- leftUpperCornerLatitude) / helpVarY);
+			// gettingAttacked();
+
+			checkRangeTrue(playerPosDetail);
+			checkRangeFalse(playerPosDetail);
+		} else {
+			playerOutOfRange = Toast.makeText(getApplicationContext(),
+					getResources().getString(R.string.playerOutOfRange_info),
+					Toast.LENGTH_LONG);
+			playerOutOfRange.show();
+		}
 	}
 
-//	private void gettingAttacked() {
-//		int rand = rnd.nextInt(100);
-//		if (rand == 0) {
-//			Intent battleStart = new Intent(MapActivity.this,
-//					ChooseBattleUnimonsActivity.class);
-//			startActivity(battleStart);
-//		}
-//	}
+	private boolean isPlayerInMapRange(PlayerPositionDetail playerPosDetail) {
+		playerLongitude = playerPosDetail.getLongitude();
+		playerLatitude = playerPosDetail.getLatitude();
+		if (leftUpperCornerLongitude > playerLongitude
+				|| bottomRightCornerLongitude < playerLongitude
+				|| leftUpperCornerLatitude < playerLatitude
+				|| bottomRightCornerLatitude > playerLatitude) {
+			return false;
+		}
+		return true;
+	}
 
+	public void getTrainerPositions() {
+		double diffX1 = Math.abs(bottomRightCornerLongitude
+				- leftUpperCornerLongitude);
+		double helpVarX1 = diffX1 / PIXEL_X;
+		double diffY1 = Math.abs(bottomRightCornerLatitude
+				- leftUpperCornerLatitude);
+		double helpVarY1 = diffY1 / PIXEL_Y;
+
+		trainer1Longitude = trainerList.get(0).getLongitude();
+		trainer1Latitude = trainerList.get(0).getLatitude();
+		trainer1XCoord = (int) (Math.abs(trainer1Longitude
+				- leftUpperCornerLongitude) / helpVarX1);
+		trainer1YCoord = (int) (Math.abs(trainer1Latitude
+				- leftUpperCornerLatitude) / helpVarY1);
+
+		trainer2Longitude = trainerList.get(1).getLongitude();
+		trainer2Latitude = trainerList.get(1).getLatitude();
+		trainer2XCoord = (int) (Math.abs(trainer2Longitude
+				- leftUpperCornerLongitude) / helpVarX1);
+		trainer2YCoord = (int) (Math.abs(trainer2Latitude
+				- leftUpperCornerLatitude) / helpVarY1);
+
+		trainer3Longitude = trainerList.get(2).getLongitude();
+		trainer3Latitude = trainerList.get(2).getLatitude();
+		trainer3XCoord = (int) (Math.abs(trainer3Longitude
+				- leftUpperCornerLongitude) / helpVarX1);
+		trainer3YCoord = (int) (Math.abs(trainer3Latitude
+				- leftUpperCornerLatitude) / helpVarY1);
+
+		trainer4Longitude = trainerList.get(3).getLongitude();
+		trainer4Latitude = trainerList.get(3).getLatitude();
+		trainer4XCoord = (int) (Math.abs(trainer4Longitude
+				- leftUpperCornerLongitude) / helpVarX1);
+		trainer4YCoord = (int) (Math.abs(trainer4Latitude
+				- leftUpperCornerLatitude) / helpVarY1);
+
+		trainer5Longitude = trainerList.get(4).getLongitude();
+		trainer5Latitude = trainerList.get(4).getLatitude();
+		trainer5XCoord = (int) (Math.abs(trainer5Longitude
+				- leftUpperCornerLongitude) / helpVarX1);
+		trainer5YCoord = (int) (Math.abs(trainer5Latitude
+				- leftUpperCornerLatitude) / helpVarY1);
+
+		trainer6Longitude = trainerList.get(5).getLongitude();
+		trainer6Latitude = trainerList.get(5).getLatitude();
+		trainer6XCoord = (int) (Math.abs(trainer6Longitude
+				- leftUpperCornerLongitude) / helpVarX1);
+		trainer6YCoord = (int) (Math.abs(trainer6Latitude
+				- leftUpperCornerLatitude) / helpVarY1);
+
+		trainerBossLongitude = trainerList.get(6).getLongitude();
+		trainerBossLatitude = trainerList.get(6).getLatitude();
+		trainerBossXCoord = (int) (Math.abs(trainerBossLongitude
+				- leftUpperCornerLongitude) / helpVarX1);
+		trainerBossYCoord = (int) (Math.abs(trainerBossLatitude
+				- leftUpperCornerLatitude) / helpVarY1);
+
+	}
+
+	// private void gettingAttacked() {
+	// int rand = rnd.nextInt(100);
+	// if (rand == 0) {
+	// Intent battleStart = new Intent(MapActivity.this,
+	// ChooseBattleUnimonsActivity.class);
+	// startActivity(battleStart);
+	// }
+	// }
 
 	private void checkRangeTrue(PlayerPositionDetail playerPosDetail) {
 		if (isShopInRange == true
-				&& playerPosDetail.getDistanceShop() >= rangeBuildings) {
+				&& playerPosDetail.getDistanceToBuilding(0) >= rangeBuildings) {
 			isShopInRange = false;
-			transaction.remove(alertFragment).commit();
+			closeFragment();
 		}
 
 		else if (isDompteurInRange == true
-				&& playerPosDetail.getDistanceDompteur() >= rangeBuildings) {
+				&& playerPosDetail.getDistanceToBuilding(1) >= rangeBuildings) {
 			isDompteurInRange = false;
-			transaction.remove(alertFragment).commit();
+			Log.d("hallo", "Fragment Dompteur close");
+			closeFragment();
 		}
 
 		else if (isHospitalInRange == true
-				&& playerPosDetail.getDistanceHospital() >= rangeBuildings) {
+				&& playerPosDetail.getDistanceToBuilding(2) >= rangeBuildings) {
 			isHospitalInRange = false;
-			transaction.remove(alertFragment).commit();
+			closeFragment();
+		} else if (isTrainerOneInRange == true
+				&& playerPosDetail.getDistanceToTrainer(0) >= rangeTrainer) {
+			isTrainerOneInRange = false;
+			closeFragment();
+		} else if (isTrainerTwoInRange == true
+				&& playerPosDetail.getDistanceToTrainer(1) >= rangeTrainer) {
+			isTrainerTwoInRange = false;
+			closeFragment();
 		}
 
 		else if (isTrainerThreeInRange == true
-				&& playerPosDetail.getDistanceTrainerThree() >= rangeTrainer) {
+				&& playerPosDetail.getDistanceToTrainer(2) >= rangeTrainer) {
 			isTrainerThreeInRange = false;
+			Log.d("hallo", "Fragment Trainer 3 close");
+			closeFragment();
 		}
 
+		else if (isTrainerFourInRange == true
+				&& playerPosDetail.getDistanceToTrainer(3) >= rangeTrainer) {
+			isTrainerFourInRange = false;
+			closeFragment();
+		}
+
+		else if (isTrainerFiveInRange == true
+				&& playerPosDetail.getDistanceToTrainer(4) >= rangeTrainer) {
+			isTrainerFiveInRange = false;
+			closeFragment();
+		}
+
+		else if (isTrainerSixInRange == true
+				&& playerPosDetail.getDistanceToTrainer(5) >= rangeTrainer) {
+			isTrainerSixInRange = false;
+			closeFragment();
+		}
+
+		else if (isTrainerBossInRange == true
+				&& playerPosDetail.getDistanceToTrainer(6) >= rangeTrainer) {
+			isTrainerBossInRange = false;
+			closeFragment();
+		}
+
+	}
+
+	private void closeFragment() {
+		FragmentTransaction transaction = getFragmentManager()
+				.beginTransaction();
+		transaction.setCustomAnimations(R.animator.slide_in_bottom,
+				R.animator.slide_out_top);
+		transaction.remove(alertFragment).commit();
 	}
 
 	private void checkRangeFalse(PlayerPositionDetail playerPosDetail) {
 		if (isShopInRange == false
-				&& playerPosDetail.getDistanceShop() < rangeBuildings) {
-			// showShopAlert();
+				&& playerPosDetail.getDistanceToBuilding(0) < rangeBuildings) {
 			isShopInRange = true;
+
 			showFragmentForBuildings("Shop");
 		} else if (isDompteurInRange == false
-				&& playerPosDetail.getDistanceDompteur() < rangeBuildings) {
-			// showDompteurAlert();
+				&& playerPosDetail.getDistanceToBuilding(1) < rangeBuildings) {
 			isDompteurInRange = true;
+			Log.d("hallo", "sollte fragemnt anzeigen");
 			showFragmentForBuildings("Dompteur");
 		} else if (isHospitalInRange == false
-				&& playerPosDetail.getDistanceHospital() < rangeBuildings) {
-			// showHospitalAlert();
+				&& playerPosDetail.getDistanceToBuilding(2) < rangeBuildings) {
 			isHospitalInRange = true;
 			showFragmentForBuildings("Hospital");
 		} else if (isTrainerOneInRange == false
-				&& playerPosDetail.getDistanceTrainerOne() < rangeTrainer) {
-			// showHospitalAlert();
+				&& playerPosDetail.getDistanceToTrainer(0) < rangeTrainer) {
+			trainerList.get(0).setVisible();
 			isTrainerOneInRange = true;
-			Intent battleStart = new Intent(MapActivity.this,
-					ChooseBattleUnimonsActivity.class);
-			startActivity(battleStart);
+			showFragmentForTrainer("Trainer", 0);
 		} else if (isTrainerTwoInRange == false
-				&& playerPosDetail.getDistanceTrainerTwo() < rangeTrainer) {
-			// showHospitalAlert();
+				&& playerPosDetail.getDistanceToTrainer(1) < rangeTrainer) {
+			trainerList.get(1).setVisible();
+			Log.d("hallo", "Trainer 2 anzeigen pls");
 			isTrainerTwoInRange = true;
-			Intent battleStart = new Intent(MapActivity.this,
-					ChooseBattleUnimonsActivity.class);
-			startActivity(battleStart);
-		}
-
-		else if (isTrainerThreeInRange == false
-				&& playerPosDetail.getDistanceTrainerThree() < rangeTrainer) {
-			// showHospitalAlert();
+			showFragmentForTrainer("Trainer", 1);
+		} else if (isTrainerThreeInRange == false
+				&& playerPosDetail.getDistanceToTrainer(2) < rangeTrainer) {
+			Log.d("hallo", "Trainer 3 sichtbar");
+			trainerList.get(2).setVisible();
 			isTrainerThreeInRange = true;
-			Intent battleStart = new Intent(MapActivity.this,
-					ChooseBattleUnimonsActivity.class);
-			startActivity(battleStart);
-		}
-
-		else if (isTrainerFourInRange == false
-				&& playerPosDetail.getDistanceTrainerFour() < rangeTrainer) {
-			// showHospitalAlert();
+			Log.d("hallo", "Fragment Trainer 3 anzeigen");
+			showFragmentForTrainer("Trainer", 2);
+		} else if (isTrainerFourInRange == false
+				&& playerPosDetail.getDistanceToTrainer(3) < rangeTrainer) {
+			trainerList.get(3).setVisible();
 			isTrainerFourInRange = true;
-			Intent battleStart = new Intent(MapActivity.this,
-					ChooseBattleUnimonsActivity.class);
-			startActivity(battleStart);
-		}
-
-		else if (isTrainerFiveInRange == false
-				&& playerPosDetail.getDistanceTrainerFive() < rangeTrainer) {
-			// showHospitalAlert();
+			showFragmentForTrainer("Trainer", 3);
+		} else if (isTrainerFiveInRange == false
+				&& playerPosDetail.getDistanceToTrainer(4) < rangeTrainer) {
+			trainerList.get(4).setVisible();
 			isTrainerFiveInRange = true;
-			Intent battleStart = new Intent(MapActivity.this,
-					ChooseBattleUnimonsActivity.class);
-			startActivity(battleStart);
-		}
-
-		else if (isTrainerSixInRange == false
-				&& playerPosDetail.getDistanceTrainerSix() < rangeTrainer) {
-			// showHospitalAlert();
+			showFragmentForTrainer("Trainer", 4);
+		} else if (isTrainerSixInRange == false
+				&& playerPosDetail.getDistanceToTrainer(5) < rangeTrainer) {
+			trainerList.get(5).setVisible();
 			isTrainerSixInRange = true;
-			Intent battleStart = new Intent(MapActivity.this,
-					ChooseBattleUnimonsActivity.class);
-			startActivity(battleStart);
+			showFragmentForTrainer("Trainer", 5);
+		} else if (isTrainerBossInRange == false
+				&& playerPosDetail.getDistanceToTrainer(6) < rangeTrainer) {
+			trainerList.get(6).setVisible();
+			isTrainerBossInRange = true;
+			showFragmentForTrainer("Trainer", 6);
 		}
 
-		else if (isTrainerBossInRange == false
-				&& playerPosDetail.getDistanceTrainerBoss() < rangeTrainer) {
-			// showHospitalAlert();
-			isTrainerBossInRange = true;
-			Intent battleStart = new Intent(MapActivity.this,
-					ChooseBattleUnimonsActivity.class);
-			startActivity(battleStart);
-		}
 	}
 
-	private void showFragmentForBuildings(String building) {
-		// EnterAlertFragment alertFragment = new EnterAlertFragment();
-		// FragmentTransaction transaction = fragmentManager.beginTransaction();
-		// transaction.setCustomAnimations(R.animator.slide_in_bottom,
-		// R.animator.slide_out_top);
+	private void showFragmentForTrainer(String building, int trainerID) {
+		FragmentTransaction transaction = fragmentManager.beginTransaction();
+		transaction.setCustomAnimations(R.animator.slide_in_bottom,
+				R.animator.slide_out_top);
 		transaction.add(R.id.map_activity_layout, alertFragment,
 				"alertFragment");
 
 		Bundle extras = new Bundle();
 		if (alertFragment.getArguments() != null) {
 			extras = alertFragment.getArguments();
+			extras.clear();
+		}
+		extras.putString("building", building);
+		extras.putInt("trainerID", trainerID);
+		alertFragment.setArguments(extras);
+		transaction.commit();
+	}
 
+	private void showFragmentForBuildings(String building) {
+		// EnterAlertFragment alertFragment = new EnterAlertFragment();
+		FragmentTransaction transaction = fragmentManager.beginTransaction();
+		transaction.setCustomAnimations(R.animator.slide_in_bottom,
+				R.animator.slide_out_top);
+		transaction.add(R.id.map_activity_layout, alertFragment,
+				"alertFragment");
+
+		Bundle extras = new Bundle();
+		if (alertFragment.getArguments() != null) {
+			extras = alertFragment.getArguments();
 			extras.clear();
 		}
 		extras.putString("building", building);
@@ -355,87 +546,4 @@ public class MapActivity extends Activity implements NavigationListener {
 		alertFragment.setArguments(extras);
 		transaction.commit();
 	}
-
-	// Alert für Shop Activity
-
-	/*
-	 * private void showShopAlert() {
-	 * 
-	 * builder.setTitle(getResources().getString(R.string.shop_name));
-	 * builder.setMessage("Möchtest du den Shop betreten?");
-	 * 
-	 * builder.setPositiveButton(getResources().getString(R.string.ok), new
-	 * DialogInterface.OnClickListener() {
-	 * 
-	 * @Override public void onClick(DialogInterface dialog, int which) {
-	 * 
-	 * Intent shopActivity = new Intent(MapActivity.this, ShopActivity.class);
-	 * startActivity(shopActivity);
-	 * 
-	 * dialog.dismiss(); }
-	 * 
-	 * });
-	 * 
-	 * builder.setNegativeButton(getResources().getString(R.string.cancel), new
-	 * DialogInterface.OnClickListener() {
-	 * 
-	 * @Override public void onClick(DialogInterface dialog, int which) {
-	 * shopRangeChecked = true; dialog.dismiss(); } }); AlertDialog alert =
-	 * builder.create(); alert.show(); }
-	 * 
-	 * // Alert für Dompteur Activity
-	 * 
-	 * private void showDompteurAlert() {
-	 * builder.setTitle(getResources().getString(R.string.dompteur_name));
-	 * builder.setMessage("Möchtest du den Dompteur besuchen?");
-	 * 
-	 * builder.setPositiveButton(getResources().getString(R.string.ok), new
-	 * DialogInterface.OnClickListener() {
-	 * 
-	 * @Override public void onClick(DialogInterface dialog, int which) {
-	 * 
-	 * Intent dompteurActivity = new Intent(MapActivity.this,
-	 * DompteurActivity.class); startActivity(dompteurActivity);
-	 * 
-	 * dialog.dismiss(); }
-	 * 
-	 * });
-	 * 
-	 * builder.setNegativeButton(getResources().getString(R.string.cancel), new
-	 * DialogInterface.OnClickListener() {
-	 * 
-	 * @Override public void onClick(DialogInterface dialog, int which) {
-	 * dompteurRangeChecked = true; dialog.dismiss(); } }); AlertDialog alert =
-	 * builder.create(); alert.show();
-	 * 
-	 * }
-	 * 
-	 * // Alert für Hospital Activity
-	 * 
-	 * private void showHospitalAlert() {
-	 * builder.setTitle(getResources().getString(R.string.hospital_name));
-	 * builder.setMessage("Möchtest du das Hospital betreten?");
-	 * 
-	 * builder.setPositiveButton(getResources().getString(R.string.ok), new
-	 * DialogInterface.OnClickListener() {
-	 * 
-	 * @Override public void onClick(DialogInterface dialog, int which) {
-	 * 
-	 * Intent hospitalActivity = new Intent(MapActivity.this,
-	 * HospitalActivity.class); startActivity(hospitalActivity);
-	 * 
-	 * dialog.dismiss(); }
-	 * 
-	 * });
-	 * 
-	 * builder.setNegativeButton(getResources().getString(R.string.cancel), new
-	 * DialogInterface.OnClickListener() {
-	 * 
-	 * @Override public void onClick(DialogInterface dialog, int which) {
-	 * hospitalRangeChecked = true; dialog.dismiss(); } }); AlertDialog alert =
-	 * builder.create(); alert.show();
-	 * 
-	 * }
-	 */
-
 }
