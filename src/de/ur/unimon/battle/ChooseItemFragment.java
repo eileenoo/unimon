@@ -2,6 +2,7 @@ package de.ur.unimon.battle;
 
 import de.ur.mi.android.excercises.starter.R;
 import de.ur.unimon.battle.ChangeUnimonBattleFragment.OnUnimonChangedListener;
+import de.ur.unimon.unimons.Unimon;
 import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentTransaction;
@@ -16,6 +17,7 @@ public class ChooseItemFragment extends Fragment {
 
 	private OnChooseItemListener listener;
 	private Button healpotButton, uniballButton;
+
 
 	@Override
 	public void onAttach(Activity activity) {
@@ -48,12 +50,6 @@ public class ChooseItemFragment extends Fragment {
 		initButtons();
 		itemButtonClicked();
 	}
-	
-//	@Override
-//	public void onResume() {
-//		super.onResume();
-//		getFragmentManager().popBackStack();
-//	}
 
 	public interface OnChooseItemListener {
 		public boolean onHealpotAvailable();
@@ -61,6 +57,7 @@ public class ChooseItemFragment extends Fragment {
 		public boolean onUniballAvailable();
 
 		public void onUniballButtonClicked();
+
 	}
 
 	private void initButtons() {
@@ -88,10 +85,12 @@ public class ChooseItemFragment extends Fragment {
 			@Override
 			public void onClick(View v) {
 				ChooseUnimonForHealpotBattleFragment chooseUnimonForItemFragment = new ChooseUnimonForHealpotBattleFragment();
-				FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
+				FragmentTransaction fragmentTransaction = getFragmentManager()
+						.beginTransaction();
 				fragmentTransaction.replace(R.id.battle_activity_layout,
-						chooseUnimonForItemFragment, "ChooseUnimonForItemBattleFragment");
-				fragmentTransaction.addToBackStack(null);
+						chooseUnimonForItemFragment,
+						"ChooseUnimonForItemBattleFragment");
+				getFragmentManager().popBackStack();
 				fragmentTransaction.commit();
 			}
 		});
