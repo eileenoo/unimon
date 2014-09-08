@@ -1,8 +1,14 @@
-<?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<?xml version="1.0" encoding="utf-8"?><RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent" >
+
+    <TextView
+        android:id="@+id/battle_lost_textview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:text="Bla" />
 
     <TextView
         android:id="@+id/battle_end_moneywon_textview"
@@ -23,17 +29,17 @@
         android:id="@+id/battle_end_xpwon_textview"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="10dp"
         android:layout_below="@id/moneywon_textview"
+        android:layout_margin="10dp"
         android:text="@string/battle_won_XP_text" />
 
     <TextView
         android:id="@+id/xpwon_textview"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="10dp"
         android:layout_below="@id/moneywon_textview"
-         android:layout_toRightOf="@id/battle_end_xpwon_textview"
+        android:layout_margin="10dp"
+        android:layout_toRightOf="@id/battle_end_xpwon_textview"
         android:text="0" />
 
     <Button
@@ -42,5 +48,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/battle_end_xpwon_textview"
         android:text="@string/battle_end_button_text" />
+
+
 
 </RelativeLayout>

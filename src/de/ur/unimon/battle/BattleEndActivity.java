@@ -5,6 +5,7 @@ import de.ur.unimon.mapoverview.MapActivity;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -12,7 +13,7 @@ import android.widget.TextView;
 
 public class BattleEndActivity extends Activity{
 	
-	private TextView moneyEarned, xpEarned, moneyEarnedTextView, xpEarnedTextView;
+	private TextView moneyEarned, xpEarned, moneyEarnedTextView, xpEarnedTextView, battleLostTextView;
 	private Button backToMapButton;
 	private boolean isGameWon;
 	private int xp;
@@ -27,7 +28,8 @@ public class BattleEndActivity extends Activity{
 	}
 
 	private void getIntentValues() {
-		isGameWon = getIntent().getExtras().getBoolean("isGameWon");
+		isGameWon = getIntent().getExtras().getBoolean("IsGameWon");
+		Log.d("isGameWon= ", "" + isGameWon);
 		xp = getIntent().getExtras().getInt("XP");
 		money = getIntent().getExtras().getInt("Money");
 	}
@@ -37,12 +39,14 @@ public class BattleEndActivity extends Activity{
 		moneyEarned = (TextView) findViewById(R.id.moneywon_textview);
 		moneyEarnedTextView = (TextView) findViewById(R.id.battle_end_moneywon_textview);
 		xpEarnedTextView = (TextView) findViewById(R.id.battle_end_xpwon_textview);
+		battleLostTextView = (TextView) findViewById(R.id.battle_lost_textview);
 		
-		if (!isGameWon) {
+		if (isGameWon) {
 			moneyEarned.setText(" " + money);
 			xpEarned.setText(" " + xp);
+			battleLostTextView.setVisibility(View.GONE);
 		} else {
-			moneyEarnedTextView.setText("Du hast Verloren spasti.");
+			moneyEarnedTextView.setVisibility(View.GONE);
 			xpEarnedTextView.setVisibility(View.GONE);
 			xpEarned.setVisibility(View.GONE);
 			moneyEarned.setVisibility(View.GONE);
