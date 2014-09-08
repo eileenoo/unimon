@@ -86,7 +86,11 @@
     <string name="battle_spell_button_text">Spell 1</string>
     <string name="choose_primary_unimon">Choose your primary Unimon for battle!</string>
     <string name="choose_second_unimon">Choose a replacement unimon!</string>
-    <string name="choose_third_unimon">Choose another replacement unimon!</string>    
+    <string name="choose_third_unimon">Choose another replacement unimon!</string> 
+    
+    <string name="alert_random_unimon_battle_title">Wild Unimon battle</string>
+    <string name="alert_random_unimon_battle_message">You have to fight against a wild unimon!</string>
+    <string name="start_random_unimon_battle">Start Battle</string>
     
     <string name="cancel">Cancel</string>
     <string name="alert_money_warning_title">Attention!</string>
@@ -102,8 +106,8 @@
 	<string name="inventory_use_revive">Revive</string>
 	<string name="spells_headline">Spells:\u0020</string>
 	
-	<string name="battle_won_money_earend_text">Money earned:</string>
-	<string name="battle_won_XP_text">XP earned:</string>
+	<string name="battle_won_money_earend_text">Money earned:\u0020</string>
+	<string name="battle_won_XP_text">XP earned:\u0020</string>
 	<string name="battle_end_button_text">Back to map</string>
 	
 	<string name="enemy_fight_text_first_part">It\'s</string>

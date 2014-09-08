@@ -20,6 +20,7 @@
         android:layout_centerHorizontal="true"
         android:layout_margin="20dp"
         android:layout_centerVertical="true"
+        android:contentDescription="@string/unimon_image_text"
         android:src="@drawable/robomon"/>
     
     <TextView

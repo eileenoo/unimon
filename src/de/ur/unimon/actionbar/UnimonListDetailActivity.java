@@ -41,7 +41,7 @@ public class UnimonListDetailActivity extends Activity{
 		
 		unimonName = (TextView) findViewById(R.id.detail_unimon_name);
 		unimonHealth = (TextView) findViewById(R.id.detail_unimon_health);
-		//healthText = (TextView) findViewById(R.id.health_text);
+		healthText = (TextView) findViewById(R.id.health_text);
 				
 		chosenUnimonHealthBar = (ProgressBar) findViewById (R.id.detail_healthBar);
 		unimonLevel = (TextView) findViewById(R.id.detail_unimon_level);

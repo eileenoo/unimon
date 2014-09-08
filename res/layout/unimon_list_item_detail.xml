@@ -20,7 +20,8 @@
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
         android:layout_margin="20dp"
-        android:src="@drawable/christian_wolff" />
+        android:contentDescription="@string/unimon_image_text"
+        android:src="@drawable/robomon" />
     
     <TextView
         android:id="@+id/detail_unimon_level"
