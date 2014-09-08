@@ -1,34 +1,55 @@
-
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#2A56B2"
     android:orientation="vertical" >
+
+    <ImageView
+        android:id="@+id/unimon_logo_img"
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
+        android:contentDescription="@string/wulfman_img"
+        android:src="@drawable/UniMonStartLogo" />
 
     <Button
         android:id="@+id/newGame_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="5dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:background="@drawable/startbutton_shape"
         android:text="@string/newGameButton_text" />
 
     <Button
         android:id="@+id/resume_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="5dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:background="@drawable/startbutton_shape"
         android:text="@string/resumeButton_text" />
-        
-        <Button
+
+    <Button
         android:id="@+id/options_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="5dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:background="@drawable/startbutton_shape"
         android:text="@string/optionsButton_text" />
 
     <Button
         android:id="@+id/guide_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="5dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:background="@drawable/startbutton_shape"
         android:text="@string/guideButton_text" />
-
-
 
 </LinearLayout>
