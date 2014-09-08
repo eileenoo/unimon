@@ -8,6 +8,7 @@ import android.app.AlertDialog;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -22,6 +23,7 @@ import android.widget.Toast;
 import de.ur.mi.android.excercises.starter.R;
 import de.ur.unimon.actionbar.InventoryActivity;
 import de.ur.unimon.actionbar.UnimonListActivity;
+import de.ur.unimon.appstart.StartScreenActivity;
 import de.ur.unimon.battle.ChooseBattleUnimonsActivity;
 import de.ur.unimon.battle.Trainer;
 import de.ur.unimon.battle.TrainerList;
@@ -30,6 +32,7 @@ import de.ur.unimon.buildings.ShopActivity;
 import de.ur.unimon.navigation.NavigationController;
 import de.ur.unimon.navigation.NavigationListener;
 import de.ur.unimon.navigation.PlayerPositionDetail;
+import de.ur.unimon.start.newgame.NewGameActivity;
 
 public class MapActivity extends Activity implements NavigationListener {
 
@@ -83,6 +86,9 @@ public class MapActivity extends Activity implements NavigationListener {
 	private FragmentManager fragmentManager;
 	EnterAlertFragment alertFragment;
 
+	private int count;
+	AlertDialog.Builder builder;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -90,7 +96,9 @@ public class MapActivity extends Activity implements NavigationListener {
 		setContentView(R.layout.map_activity);
 		playerXCoord = playerYCoord = 0;
 		trainerList = new TrainerList().getTrainerList();
-
+		builder = new AlertDialog.Builder(this);
+		rnd = new Random();
+		
 		initUI();
 		initNavigation();
 		initFragmentManager();
@@ -148,6 +156,7 @@ public class MapActivity extends Activity implements NavigationListener {
 		MapView canvasMap = new MapView(this);
 
 		playerXCoord = playerYCoord = 0;
+		count = 0;
 
 		canvasLayout.addView(canvasMap, map.getWidth(), map.getHeight());
 
@@ -292,7 +301,8 @@ public class MapActivity extends Activity implements NavigationListener {
 
 			playerYCoord = (int) (Math.abs(playerLatitude
 					- leftUpperCornerLatitude) / helpVarY);
-			// gettingAttacked();
+
+			startRandomUnimonBattle(count);
 
 			checkRangeTrue(playerPosDetail);
 			checkRangeFalse(playerPosDetail);
@@ -302,7 +312,46 @@ public class MapActivity extends Activity implements NavigationListener {
 					Toast.LENGTH_LONG);
 			playerOutOfRange.show();
 		}
+		count++;
 	}
+	
+	private void startRandomUnimonBattle(int count) {
+		if (count % 50 == 0) {
+			gettingAttacked();
+		} else
+			return;
+	}
+
+	private void gettingAttacked() {
+		int rand = rnd.nextInt(40);
+		if (rand == 0) {
+			builder.setTitle(getResources().getString(
+					R.string.alert_random_unimon_battle_title));
+			builder.setMessage(getResources().getString(
+					R.string.alert_random_unimon_battle_message));
+			
+			builder.setPositiveButton(
+					getResources().getString(R.string.start_random_unimon_battle),
+					new DialogInterface.OnClickListener() {
+					
+
+						@Override
+						public void onClick(DialogInterface dialog, int which) {
+							Intent startRandomUnimonBattle = new Intent(
+									MapActivity.this,
+									ChooseBattleUnimonsActivity.class);						
+							startRandomUnimonBattle.putExtra("trainerID", 1);
+							startActivity(startRandomUnimonBattle);
+							dialog.dismiss();
+						}
+					});
+			AlertDialog randomUnimonBattleAlert = builder.create();
+			randomUnimonBattleAlert.show();
+			randomUnimonBattleAlert.setCancelable(false);
+
+		}
+	}
+
 
 	private boolean isPlayerInMapRange(PlayerPositionDetail playerPosDetail) {
 		playerLongitude = playerPosDetail.getLongitude();
@@ -374,15 +423,6 @@ public class MapActivity extends Activity implements NavigationListener {
 				- leftUpperCornerLatitude) / helpVarY1);
 
 	}
-
-	// private void gettingAttacked() {
-	// int rand = rnd.nextInt(100);
-	// if (rand == 0) {
-	// Intent battleStart = new Intent(MapActivity.this,
-	// ChooseBattleUnimonsActivity.class);
-	// startActivity(battleStart);
-	// }
-	// }
 
 	private void checkRangeTrue(PlayerPositionDetail playerPosDetail) {
 		if (isShopInRange == true

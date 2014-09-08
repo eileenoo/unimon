@@ -71,8 +71,8 @@ public class ChangeUnimonBattleFragment extends Fragment {
 		String unimonThreeButtonText = currentBattleUnimonList[2].getName();
 
 		String selectText = getString(R.string.battle_select_text);
-		String healthText = getString(R.string.unimon_health_info_text);
-		String levelText = getString(R.string.unimon_level_info_text);
+		String healthText = getString(R.string.health_text);
+		String levelText = getString(R.string.level_text);
 
 		unimonTwoButton.setText(selectText + " " + unimonTwoButtonText + " ( "
 				+ healthText + " " + currentBattleUnimonList[1].getHealth()

@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.ProgressBar;
@@ -18,6 +19,7 @@ import de.ur.unimon.unimons.Unimon;
 
 public class DompteurSkillActivity extends Activity {
 	private TextView name, level, skillPoints, health;
+	private ImageView unimonImage;
 	private ProgressBar healthBar;
 	private String skillType;
 	private int unimonPosition;
@@ -93,14 +95,16 @@ public class DompteurSkillActivity extends Activity {
 	}
 
 	private void initUI() {
+		unimonImage = (ImageView) findViewById(R.id.unimon_image);
 		name = (TextView) findViewById(R.id.unimon_name);
 		level = (TextView) findViewById(R.id.unimon_level);
 		skillPoints = (TextView) findViewById(R.id.unimon_skillpoints);
 		health = (TextView) findViewById(R.id.unimon_health);
 		healthBar = (ProgressBar) findViewById(R.id.healthBar);
+		unimonImage.setImageDrawable(getResources().getDrawable(R.drawable.robomon));
 		name.setText(unimon.getName());
-		level.setText("Level: " + unimon.getLevel());
-		skillPoints.setText("Skillpoints: " + unimon.getSkillPoints());
+		level.setText(getResources().getString(R.string.level_text) + unimon.getLevel());
+		skillPoints.setText(getResources().getString(R.string.skillpoint_text) + unimon.getSkillPoints());
 		health.setText(unimon.getHealth() + "/" + unimon.getMaxHealth());
 		healthBar.setMax(unimon.getMaxHealth());
 		healthBar.setProgress(unimon.getHealth());

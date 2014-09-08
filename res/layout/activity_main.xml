@@ -10,7 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="250dp"
         android:contentDescription="@string/wulfman_img"
-        android:src="@drawable/UniMonStartLogo" />
+        android:src="@drawable/unimon_logo" />
 
     <Button
         android:id="@+id/newGame_button"

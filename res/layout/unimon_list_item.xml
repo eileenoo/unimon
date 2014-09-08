@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent" >
 
-    <Button
+    <ImageView
         android:id="@+id/unimon_image"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -11,7 +11,8 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
         android:focusable="false"
-        android:text="@string/unimon_image_text" />
+        android:contentDescription="@string/unimon_image_text"
+        android:src="@drawable/robomon" />
 
     <TextView
         android:id="@+id/unimon_name"
@@ -36,37 +37,54 @@
         style="?android:attr/progressBarStyleHorizontal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/unimon_level"
         android:layout_alignParentRight="true"
+        android:layout_below="@+id/unimon_level"
         android:layout_marginTop="2dp"
-        android:layout_toRightOf="@+id/unimon_image"/>
+        android:layout_marginLeft="4dp"
+        android:layout_toRightOf="@+id/health_text" />
     
       <TextView
-        android:id="@+id/unimon_health"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/unimon_level"
-        android:layout_alignParentRight="true"
-        android:layout_toRightOf="@+id/unimon_image"
-        android:layout_marginLeft="100dp"/>
+          android:id="@+id/unimon_health"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_alignParentRight="true"
+          android:layout_below="@+id/unimon_level"
+          android:layout_marginLeft="80dp"
+          android:layout_toRightOf="@+id/health_text" />
+      
+       <TextView
+          android:id="@+id/health_text"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_below="@+id/unimon_level"
+          android:layout_toRightOf="@+id/unimon_image"
+          android:text="@string/health_text" />
       
       <ProgressBar
-        android:id="@+id/xpBar"
-        style="?android:attr/progressBarStyleHorizontal"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/unimon_health"
-        android:layout_marginTop="2dp"
-        android:layout_alignParentRight="true"
-        android:layout_toRightOf="@+id/unimon_image"/>
+          android:id="@+id/xpBar"
+          style="?android:attr/progressBarStyleHorizontal"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_alignLeft="@+id/healthBar"
+          android:layout_alignParentRight="true"
+          android:layout_below="@+id/unimon_health"
+          android:layout_marginTop="2dp" />
     
       <TextView
-        android:id="@+id/unimon_xp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/unimon_health"
-        android:layout_alignParentRight="true"
-        android:layout_toRightOf="@+id/unimon_image"
-        android:layout_marginLeft="100dp"/>
+          android:id="@+id/unimon_xp"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_alignBottom="@+id/xpBar"
+          android:layout_alignLeft="@+id/unimon_health"
+          android:layout_alignParentRight="true"
+          android:layout_below="@+id/unimon_health" />           
+
+      <TextView
+          android:id="@+id/xp_text"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_below="@+id/unimon_health"
+          android:layout_toRightOf="@+id/unimon_image"
+          android:text="@string/xp_text" />
 
 </RelativeLayout>

@@ -26,6 +26,11 @@ public class BattleEndActivity extends Activity{
 		getIntentValues();
 		initUI();
 	}
+	
+	@Override
+	public void onBackPressed() {
+	    //Hardware Zurückbutton disabled
+	}
 
 	private void getIntentValues() {
 		isGameWon = getIntent().getExtras().getBoolean("IsGameWon");
@@ -39,7 +44,7 @@ public class BattleEndActivity extends Activity{
 		moneyEarned = (TextView) findViewById(R.id.moneywon_textview);
 		moneyEarnedTextView = (TextView) findViewById(R.id.battle_end_moneywon_textview);
 		xpEarnedTextView = (TextView) findViewById(R.id.battle_end_xpwon_textview);
-		battleLostTextView = (TextView) findViewById(R.id.battle_lost_textview);
+//		battleLostTextView = (TextView) findViewById(R.id.battle_lost_textview);
 		
 		if (isGameWon) {
 			moneyEarned.setText(" " + money);
