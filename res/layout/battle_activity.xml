@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
         android:layout_alignParentTop="true"
-        android:src="@drawable/christian_wolff"/>
+        android:src="@drawable/robomon"/>
 
     <TextView
         android:id="@+id/enemy_unimon_name"
@@ -54,17 +54,25 @@
         android:layout_marginRight="80dp"
         android:layout_marginTop="3dp"/>
       
-      
-      
+      <TextView
+          android:id="@+id/to_enemy_damage_dealt"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_alignBottom="@id/enemy_unimon_image"
+          android:layout_toLeftOf="@id/enemy_unimon_image"
+          android:layout_marginRight="-40dp"
+          android:layout_marginBottom="-30dp"
+          android:textColor="@android:color/holo_red_light"
+          android:textSize="50sp" />
       
       <ImageView
         android:id="@+id/own_unimon_image"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
-        android:layout_below="@id/enemy_unimon_image"
-        android:layout_marginTop="30dp"
-        android:src="@drawable/christian_wolff"/>
+        android:layout_below="@id/enemy_healthBar"
+        android:layout_marginTop="60dp"
+        android:src="@drawable/robomon"/>
 
     <TextView
         android:id="@+id/own_unimon_name"
@@ -106,6 +114,28 @@
         android:layout_marginLeft="80dp"
         android:layout_marginBottom="10dp"
         android:layout_marginTop="12dp"/>
+      
+      <TextView
+          android:id="@+id/to_own_damage_dealt"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_alignTop="@id/own_unimon_image"
+          android:layout_toRightOf="@id/own_unimon_image"
+          android:layout_marginLeft="-40dp"
+          android:layout_marginTop="-30dp"
+          android:textColor="@android:color/holo_red_light"
+          android:textSize="50sp" />
+      
+      <TextView
+          android:id="@+id/heal_text"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_alignTop="@id/own_unimon_image"
+          android:layout_toRightOf="@id/own_unimon_image"
+          android:layout_marginLeft="-40dp"
+          android:layout_marginTop="-30dp"
+          android:textColor="@android:color/holo_green_light"
+          android:textSize="50sp" />
       
 	<LinearLayout
 	    android:id="@+id/battle_activity_layout"

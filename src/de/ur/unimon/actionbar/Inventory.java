@@ -99,7 +99,7 @@ public class Inventory {
 			healpots--;
 			return healpots;
 		} else {
-			return -1;
+			return 0;
 		}
 	}
 
@@ -108,7 +108,7 @@ public class Inventory {
 			uniballs--;
 			return uniballs;
 		} else {
-			return -1;
+			return 0;
 		}
 	}
 
@@ -117,7 +117,7 @@ public class Inventory {
 			revive--;
 			return revive;
 		} else {
-			return -1;
+			return 0;
 		}
 	}
 
@@ -126,7 +126,7 @@ public class Inventory {
 			protectors--;
 			return protectors;
 		} else {
-			return -1;
+			return 0;
 		}
 	}
 

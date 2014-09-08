@@ -52,7 +52,7 @@
     
     <string name="name_text">Name:\u0020</string>
     <string name="level_text">Level:\u0020</string>
-    <string name="unimon_image_text">Unimon Bild</string>
+    <string name="unimon_image_text">Unimon image</string>
     <string name="escape_toast_text">Your escape was successful!</string>
     <string name="escape_not_successfull_toast_text">Your escape was not successful!</string>
     <string name="catch_unimon_success_text">You catched the Unimon! Yay!</string>
@@ -101,6 +101,14 @@
 	<string name="inventory_use_healPot">Use HealPot</string>
 	<string name="inventory_use_revive">Revive</string>
 	<string name="spells_headline">Spells:\u0020</string>
+	
+	<string name="battle_won_money_earend_text">Money earned:</string>
+	<string name="battle_won_XP_text">XP earned:</string>
+	<string name="battle_end_button_text">Back to map</string>
+	
+	<string name="enemy_fight_text_first_part">It\'s</string>
+	<string name="enemy_fight_text_second_part">\'s turn!</string>
+	
 	
 	<string name="playerOutOfRange_info">You just do not find yourself on campus!</string>
 

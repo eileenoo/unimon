@@ -64,7 +64,7 @@ public class UnimonListActivity extends Activity{
 					chosenUnimonSpellText += unimons.get(position).getSpellBySpellNumber(i).getSpellName() + "\n";
 				}				
 
-			//	Image chosenUnimmonImage = chosenUnimon.getImage();
+				//ImageView chosenUnimmonImage = chosenUnimon.getImage();
 				unimonDetail.putExtra("chosen_unimon_name", chosenUnimonName);
 				unimonDetail.putExtra("chosen_unimon_health", chosenUnimonHealth);
 				unimonDetail.putExtra("chosen_unimon_max_health", chosenUnimonMaxHealth);
@@ -73,7 +73,7 @@ public class UnimonListActivity extends Activity{
 				unimonDetail.putExtra("chosen_unimon_max_xp_per_level", chosenUnimonMaxXpPerLevel);
 				unimonDetail.putExtra("chosen_unimon_spells", chosenUnimonSpellText);
 				unimonDetail.putExtra("chosen_unimon_skillPoints", chosenUnimonSkillPoints);
-			//	unimonDetail.putExtra("chosen_unimon_image", chosenUnimonImage);
+				//unimonDetail.putExtra("chosen_unimon_image", chosenUnimonImage);
 				startActivity(unimonDetail);								
 								
 				}

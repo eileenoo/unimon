@@ -17,6 +17,7 @@ public class BattleController {
 	private Random randomGenerator;
 	private boolean isSecondUnimonUsed = false;
 	private boolean isThirdUnimonUsed = false;
+	private int toOwnUnimonDamageDealt, toEnemyDamageDealt;
 
 	public BattleController(Unimon enemyUnimon, Unimon battleUnimon) {
 		initRandomGenerator();
@@ -96,9 +97,9 @@ public class BattleController {
 	}
 	
 	public Unimon ownUnimonAttack(Spell spell) {
-		int dmg = spell.getDamage();
-		enemyUnimon.loseHealth(dmg);
-		Log.d("hallo", "ownUnimon Damage: "+dmg);
+		toEnemyDamageDealt = spell.getDamage();
+		enemyUnimon.loseHealth(toEnemyDamageDealt);
+		Log.d("hallo", "ownUnimon Damage: "+toEnemyDamageDealt);
 		return enemyUnimon;
 	}
 	
@@ -108,9 +109,17 @@ public class BattleController {
 	
 	public Unimon enemyUnimonAttack() {
 		int spellSize = enemyUnimon.ownedSpells.size();
-		int dmg = enemyUnimon.ownedSpells.get(randomGenerator.nextInt(spellSize)).getDamage();
-		battleUnimon.loseHealth(dmg);
-		Log.d("hallo", "enemeyUnimon Damage: "+dmg);
+		toOwnUnimonDamageDealt = enemyUnimon.ownedSpells.get(randomGenerator.nextInt(spellSize)).getDamage();
+		battleUnimon.loseHealth(toOwnUnimonDamageDealt);
+		Log.d("hallo", "enemeyUnimon Damage: "+toOwnUnimonDamageDealt);
 		return battleUnimon;
+	}
+	
+	public int getToEnemyUnimonDamageDealt(){
+		return toEnemyDamageDealt;
+	}
+	
+	public int getToOwnUnimonDamageDealt(){
+		return toOwnUnimonDamageDealt;
 	}
 }

@@ -8,7 +8,9 @@ import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
-import android.util.Log;
+import android.view.animation.AlphaAnimation;
+import android.view.animation.Animation;
+import android.view.animation.Animation.AnimationListener;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -25,10 +27,16 @@ public class BattleActivity extends Activity implements
 		AttackBattleFragment.OnSpellSelectedListener,
 		ChangeUnimonBattleFragment.OnUnimonChangedListener,
 		ChooseItemFragment.OnChooseItemListener,
-		ChooseUnimonForHealpotBattleFragment.OnGetBattleUnimonsListListener {
-	
+		ChooseUnimonForHealpotBattleFragment.OnGetBattleUnimonsListListener,
+		EnemyFightFragment.OnGetEnemyInformationListener {
+
 	private ImageView enemyUnimonImage, ownUnimonImage;
-	private TextView enemyUnimonName, ownUnimonName, enemyUnimonLevel, ownUnimonLevel, enemyUnimonHealth, ownUnimonHealth;
+
+	private TextView enemyUnimonName, ownUnimonName, enemyUnimonLevel,
+			ownUnimonLevel, enemyUnimonHealth, ownUnimonHealth;
+	private TextView damageToEnemyUnimonDealt, damageToOwnUnimonDealt,
+			showHealTextView;
+
 	private ProgressBar enemyUnimonHealthbar;
 	private ProgressBar ownUnimonHealthbar;
 
@@ -51,8 +59,17 @@ public class BattleActivity extends Activity implements
 
 	private FragmentManager fragmentManager;
 	private FragmentTransaction fragmentTransaction;
-	
+	private AllOptionsBattleFragment allOptionsFragment;
+	private EnemyFightFragment enemyFragment;
+
 	private int XP, money;
+
+	final Animation toEnemyDamageTextIn = new AlphaAnimation(0.0f, 1.0f);
+	final Animation toOwnDamageTextIn = new AlphaAnimation(0.0f, 1.0f);
+	final Animation toEnemyDamageTextOut = new AlphaAnimation(1.0f, 0.0f);
+	final Animation toOwnDamageTextOut = new AlphaAnimation(1.0f, 0.0f);
+	final Animation showHealOut = new AlphaAnimation(1.0f, 0.0f);
+	final Animation showHealIn = new AlphaAnimation(0.0f, 1.0f);
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -62,11 +79,91 @@ public class BattleActivity extends Activity implements
 		initBattleController();
 		initUI();
 		createFirstFragment();
+		setUpAnimation();
 	}
-	
-	
+
+	private void setUpAnimation() {
+		toEnemyDamageTextIn.setDuration(1000);
+		toOwnDamageTextIn.setDuration(1000);
+		toEnemyDamageTextOut.setDuration(1000);
+		toEnemyDamageTextOut.setFillAfter(true);
+		toOwnDamageTextOut.setDuration(1000);
+		toOwnDamageTextOut.setFillAfter(true);
+		showHealIn.setDuration(1000);
+		showHealOut.setDuration(1000);
+		showHealOut.setFillAfter(true);
+
+		toEnemyDamageTextIn.setAnimationListener(new AnimationListener() {
+
+			@Override
+			public void onAnimationStart(Animation animation) {
+				damageToEnemyUnimonDealt.setText("-"
+						+ battleController.getToEnemyUnimonDamageDealt());
+			}
+
+			@Override
+			public void onAnimationRepeat(Animation animation) {
+			}
+
+			@Override
+			public void onAnimationEnd(Animation animation) {
+				damageToEnemyUnimonDealt.startAnimation(toEnemyDamageTextOut);
+			}
+		});
+
+		toOwnDamageTextIn.setAnimationListener(new AnimationListener() {
+
+			@Override
+			public void onAnimationStart(Animation animation) {
+				damageToOwnUnimonDealt.setText("-"
+						+ battleController.getToOwnUnimonDamageDealt());
+			}
+
+			@Override
+			public void onAnimationRepeat(Animation animation) {
+			}
+
+			@Override
+			public void onAnimationEnd(Animation animation) {
+				damageToOwnUnimonDealt.startAnimation(toOwnDamageTextOut);
+			}
+		});
+
+		showHealIn.setAnimationListener(new AnimationListener() {
+
+			@Override
+			public void onAnimationStart(Animation animation) {
+				showHealTextView.setText("+" + battleUnimon.getHealpotAmount());
+			}
+
+			@Override
+			public void onAnimationRepeat(Animation animation) {
+			}
+
+			@Override
+			public void onAnimationEnd(Animation animation) {
+				showHealTextView.startAnimation(showHealOut);
+			}
+		});
+	}
+
+	private void showDamageDealtToOwnUnimon() {
+		damageToOwnUnimonDealt.startAnimation(toOwnDamageTextIn);
+	}
+
+	private void showDamageDealtToEnemyUnimon() {
+		damageToEnemyUnimonDealt.startAnimation(toEnemyDamageTextIn);
+	}
+
+	private void showHeal() {
+		showHealTextView.startAnimation(showHealIn);
+	}
 
 	private void initUI() {
+		showHealTextView = (TextView) findViewById(R.id.heal_text);
+		damageToEnemyUnimonDealt = (TextView) findViewById(R.id.to_enemy_damage_dealt);
+		damageToOwnUnimonDealt = (TextView) findViewById(R.id.to_own_damage_dealt);
+
 		enemyUnimonImage = (ImageView) findViewById(R.id.enemy_unimon_image);
 		ownUnimonImage = (ImageView) findViewById(R.id.own_unimon_image);
 		enemyUnimonName = (TextView) findViewById(R.id.enemy_unimon_name);
@@ -77,61 +174,67 @@ public class BattleActivity extends Activity implements
 		ownUnimonHealth = (TextView) findViewById(R.id.own_unimon_health);
 		enemyUnimonHealthbar = (ProgressBar) findViewById(R.id.enemy_healthBar);
 		ownUnimonHealthbar = (ProgressBar) findViewById(R.id.own_healthBar);
-		
+
 		enemyUnimonName.setText(enemyUnimon.getName());
 		ownUnimonName.setText(battleUnimon.getName());
-		enemyUnimonLevel.setText("Level: "+enemyUnimon.getLevel());
-		ownUnimonLevel.setText("Level: "+battleUnimon.getLevel());
-		enemyUnimonHealth.setText(enemyUnimon.getHealth()+"/"+enemyUnimon.getMaxHealth());
-		ownUnimonHealth.setText(battleUnimon.getHealth()+"/"+battleUnimon.getMaxHealth());
-		
+		enemyUnimonLevel.setText("Level: " + enemyUnimon.getLevel());
+		ownUnimonLevel.setText("Level: " + battleUnimon.getLevel());
+		enemyUnimonHealth.setText(enemyUnimon.getHealth() + "/"
+				+ enemyUnimon.getMaxHealth());
+		ownUnimonHealth.setText(battleUnimon.getHealth() + "/"
+				+ battleUnimon.getMaxHealth());
+
 		enemyUnimonHealthbar.setMax(enemyUnimon.getMaxHealth());
 		ownUnimonHealthbar.setMax(battleUnimon.getMaxHealth());
 		enemyUnimonHealthbar.setProgress(enemyUnimon.getHealth());
 		ownUnimonHealthbar.setProgress(battleUnimon.getHealth());
 		getProgressDrawable(enemyUnimonHealthbar, enemyUnimon);
-		getProgressDrawable(ownUnimonHealthbar, battleUnimon);		
-		
-//		Bilder müssen noch dynmaisch gesetzt werden, so dann irgendwie
-//		enemyUnimonImage.setImageDrawable(enemyUnimon.getImage());
-//		ownUnimonImage.setImageDrawable(battleUnimon.getImage());
-		
+		getProgressDrawable(ownUnimonHealthbar, battleUnimon);
+
+		// Bilder müssen noch dynmaisch gesetzt werden, so dann irgendwie
+		// enemyUnimonImage.setImageDrawable(enemyUnimon.getImage());
+		// ownUnimonImage.setImageDrawable(battleUnimon.getImage());
+
 	}
-	
-	private void getProgressDrawable(ProgressBar healthbar,
-			Unimon unimon) {
-		double healthPercentage =((double) unimon.getHealth()) / unimon.getMaxHealth();
+
+	private void getProgressDrawable(ProgressBar healthbar, Unimon unimon) {
+		double healthPercentage = ((double) unimon.getHealth())
+				/ unimon.getMaxHealth();
 		if (healthPercentage >= 0.75) {
-			healthbar.setProgressDrawable(getResources().getDrawable(R.drawable.green_progress));
-		} else if (healthPercentage <= 0.25){
-			healthbar.setProgressDrawable(getResources().getDrawable(R.drawable.red_progress));;
-		} else healthbar.setProgressDrawable(getResources().getDrawable(R.drawable.orange_progress));	
+			healthbar.setProgressDrawable(getResources().getDrawable(
+					R.drawable.green_progress));
+		} else if (healthPercentage <= 0.25) {
+			healthbar.setProgressDrawable(getResources().getDrawable(
+					R.drawable.red_progress));
+			;
+		} else
+			healthbar.setProgressDrawable(getResources().getDrawable(
+					R.drawable.orange_progress));
 	}
 
-
-
-	private void updateUIForChangedUnimon(){
+	private void updateUIForChangedUnimon() {
 		ownUnimonName.setText(battleUnimon.getName());
-		ownUnimonLevel.setText("Level: "+battleUnimon.getLevel());
-		ownUnimonHealth.setText(battleUnimon.getHealth()+"/"+battleUnimon.getMaxHealth());
+		ownUnimonLevel.setText("Level: " + battleUnimon.getLevel());
+		ownUnimonHealth.setText(battleUnimon.getHealth() + "/"
+				+ battleUnimon.getMaxHealth());
 		ownUnimonHealthbar.setMax(battleUnimon.getMaxHealth());
 		ownUnimonHealthbar.setProgress(battleUnimon.getHealth());
 		getProgressDrawable(ownUnimonHealthbar, battleUnimon);
 	}
-	
+
 	private void updateEnemeyHealthUI() {
-		enemyUnimonHealth.setText(enemyUnimon.getHealth()+"/"+enemyUnimon.getMaxHealth());
+		enemyUnimonHealth.setText(enemyUnimon.getHealth() + "/"
+				+ enemyUnimon.getMaxHealth());
 		enemyUnimonHealthbar.setProgress(enemyUnimon.getHealth());
 		getProgressDrawable(enemyUnimonHealthbar, enemyUnimon);
 	}
-	
+
 	private void updateOwnHealthUI() {
-		ownUnimonHealth.setText(battleUnimon.getHealth()+"/"+battleUnimon.getMaxHealth());
+		ownUnimonHealth.setText(battleUnimon.getHealth() + "/"
+				+ battleUnimon.getMaxHealth());
 		ownUnimonHealthbar.setProgress(battleUnimon.getHealth());
 		getProgressDrawable(ownUnimonHealthbar, battleUnimon);
 	}
-
-
 
 	private void initInstances() {
 		map = new Intent(BattleActivity.this, MapActivity.class);
@@ -164,7 +267,7 @@ public class BattleActivity extends Activity implements
 	}
 
 	private void createFirstFragment() {
-		AllOptionsBattleFragment allOptionsFragment = new AllOptionsBattleFragment();
+		allOptionsFragment = new AllOptionsBattleFragment();
 
 		Bundle extra = new Bundle();
 		extra.putBoolean("CurrentUnimonListContent",
@@ -193,23 +296,36 @@ public class BattleActivity extends Activity implements
 	}
 
 	private void checkStatus() {
+		enemyFragment = new EnemyFightFragment();
+
 		if (playerStatus) {
-			// Fragment wieder klickable machen
+			fragmentTransaction = getFragmentManager().beginTransaction();
+			fragmentTransaction.replace(R.id.battle_activity_layout,
+					allOptionsFragment);
+			fragmentManager.popBackStack();
+			fragmentTransaction.commit();
+
 		} else {
-			// Fragment inklickbar machen
-			
-			 handler.postDelayed(new Runnable() { 
-				 @Override 
-				 public void run() { 
-					 enemyFight(); 
-					 } 
-				 }, 3000);	
+			fragmentTransaction = getFragmentManager().beginTransaction();
+
+			fragmentTransaction.replace(R.id.battle_activity_layout,
+					enemyFragment);
+			fragmentManager.popBackStack();
+			fragmentTransaction.commit();
+
+			handler.postDelayed(new Runnable() {
+				@Override
+				public void run() {
+					enemyFight();
+				}
+			}, 3000);
 		}
 	}
 
 	// Is called, after each move (attack, escape, changeUnimon, useItem)
 	private void enemyFight() {
 		battleUnimon = battleController.enemyUnimonAttack();
+		showDamageDealtToOwnUnimon();
 		updateOwnHealthUI();
 		if (battleUnimon.getHealth() <= 0) {
 			gameWon = false;
@@ -221,31 +337,42 @@ public class BattleActivity extends Activity implements
 	}
 
 	private void fightEnd() {
+		Intent toBattleEndActivity = new Intent(BattleActivity.this,
+				BattleEndActivity.class);
+
 		if (gameWon) {
 			XP = trainer.getExpValue();
 			money = trainer.getMoneyValue();
 			player.addMoney(money);
-			switch (battleController.getXpSplit()){
-			case 1: 
+			switch (battleController.getXpSplit()) {
+			case 1:
 				currentBattleUnimonList[0].addXp(XP);
 				break;
 			case 2:
-				currentBattleUnimonList[0].addXp(XP/2);
-				if (battleController.isSecondUnimonUsed()){
-					currentBattleUnimonList[1].addXp((int)(Math.round(XP/2d)));
-				} else currentBattleUnimonList[2].addXp((int) (Math.round(XP/2d))); 
+				currentBattleUnimonList[0].addXp(XP / 2);
+				if (battleController.isSecondUnimonUsed()) {
+					currentBattleUnimonList[1]
+							.addXp((int) (Math.round(XP / 2d)));
+				} else
+					currentBattleUnimonList[2]
+							.addXp((int) (Math.round(XP / 2d)));
 				break;
 			case 3:
-				currentBattleUnimonList[0].addXp((int) (Math.round(XP/3d)));
-				currentBattleUnimonList[1].addXp((int) (Math.round(XP/3d)));
-				currentBattleUnimonList[2].addXp((int) (Math.round(XP/3d)));
+				currentBattleUnimonList[0].addXp((int) (Math.round(XP / 3d)));
+				currentBattleUnimonList[1].addXp((int) (Math.round(XP / 3d)));
+				currentBattleUnimonList[2].addXp((int) (Math.round(XP / 3d)));
 				break;
 			}
-			showToast(R.string.battle_won);
+
+			// showToast(R.string.battle_won);
 		} else {
-			showToast(R.string.battle_lost);
+			// showToast(R.string.battle_lost);
 		}
-		startActivity(map);
+		toBattleEndActivity.putExtra("XP", XP);
+		toBattleEndActivity.putExtra("Money", money);
+		toBattleEndActivity.putExtra("IsGameWon", gameWon);
+		startActivity(toBattleEndActivity);
+		// startActivity(map);
 	}
 
 	// _____________________LISTENERS__________________
@@ -273,6 +400,7 @@ public class BattleActivity extends Activity implements
 	@Override
 	public void onSpellSelected(Spell chosenSpell) {
 		enemyUnimon = battleController.ownUnimonAttack(chosenSpell);
+		showDamageDealtToEnemyUnimon();
 		updateEnemeyHealthUI();
 		if (enemyUnimon.getHealth() <= 0) {
 			gameWon = true;
@@ -283,7 +411,6 @@ public class BattleActivity extends Activity implements
 			checkStatus();
 		}
 	}
-
 
 	@Override
 	public ArrayList<Spell> getSpellList() {
@@ -340,10 +467,18 @@ public class BattleActivity extends Activity implements
 	@Override
 	public void onHealpotUsedOnUnimon(Unimon unimon) {
 		player.getInventory().decreaseHealpots();
-		unimon.addHealth(50);
+		unimon.useHealpot();
+		if (unimon == battleUnimon) {
+			showHeal();
+		}
 		updateOwnHealthUI();
 		showToast(R.string.battle_healpot_used);
 		playerStatus = false;
 		checkStatus();
+	}
+
+	@Override
+	public String onGetEnemyName() {
+		return enemyUnimon.getName();
 	}
 }

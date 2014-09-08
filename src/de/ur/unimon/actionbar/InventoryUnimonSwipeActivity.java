@@ -55,7 +55,7 @@ public class InventoryUnimonSwipeActivity extends FragmentActivity{
 				if (player.getUnimonList().get(index).getHealth() != player.getUnimonList().get(index).getMaxHealth()) {
 					if (player.getInventory().healpotAvailable()){
 						player.takeHealpotOutOfInventory();				
-						ownedUnimonList.get(index).addHealth(30); 	// wo steht wieviel ein Healpot heilt??
+						ownedUnimonList.get(index).useHealpot();
 						unimonFragmentPagerAdapter.notifyDataSetChanged();
 					}
 					else {

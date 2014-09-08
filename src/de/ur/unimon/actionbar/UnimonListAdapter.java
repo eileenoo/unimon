@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import de.ur.mi.android.excercises.starter.R;
@@ -20,7 +21,7 @@ public class UnimonListAdapter extends BaseAdapter {
 	LayoutInflater infalInflater;
 	ArrayList<Unimon> unimons;
 	private TextView unimonName, unimonLevel, health, unimonXp, xpText;
-	private Button unimonImage;
+	private ImageView unimonImage;
 	private ProgressBar healthBar, xpBar;
 
 	public UnimonListAdapter(Context context, ArrayList<Unimon> unimons) {
@@ -57,7 +58,7 @@ public class UnimonListAdapter extends BaseAdapter {
 		Unimon unimon = (Unimon) getItem(position);
 
 		if (unimon != null) {
-			unimonImage = (Button) convertView.findViewById(R.id.unimon_image);
+			unimonImage = (ImageView) convertView.findViewById(R.id.unimon_image);
 			unimonName = (TextView) convertView.findViewById(R.id.unimon_name);
 			unimonLevel = (TextView) convertView
 					.findViewById(R.id.unimon_level);
@@ -68,7 +69,7 @@ public class UnimonListAdapter extends BaseAdapter {
 			unimonXp = (TextView) convertView.findViewById(R.id.unimon_xp);
 			xpText = (TextView) convertView.findViewById(R.id.xp_text);
 
-			// unimonImage.setImageResource(R.drawable.ic_launcher);
+			unimonImage.setImageResource(R.drawable.robomon);
 			unimonName.setText("Name: " + unimon.getName());
 			unimonLevel.setText("Level: " + unimon.getLevel());
 			healthBar.setMax(unimon.getMaxHealth());
