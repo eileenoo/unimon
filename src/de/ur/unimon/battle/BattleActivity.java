@@ -8,7 +8,6 @@ import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
-import android.util.Log;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.view.animation.Animation.AnimationListener;
@@ -239,7 +238,6 @@ public class BattleActivity extends Activity implements
 
 	private void initInstances() {
 		map = new Intent(BattleActivity.this, MapActivity.class);
-//		gameWon = false;
 		playerStatus = true;
 		player = playerController.getInstance();
 	}
@@ -251,7 +249,6 @@ public class BattleActivity extends Activity implements
 		ArrayList<Trainer> trainerList = new TrainerList().getTrainerList();
 		trainer = trainerList.get(getIntent().getExtras().getInt("trainerID"));
 		enemyUnimon = trainer.getUnimon();
-		enemyUnimon.setHealth(10);
 
 		String battleUnimonName = battleUnimonListStringArray[0];
 		String secondBattleUnimonName = battleUnimonListStringArray[1];
