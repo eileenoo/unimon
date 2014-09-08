@@ -20,7 +20,7 @@
         android:layout_centerHorizontal="true"
         android:layout_margin="20dp"
         android:layout_centerVertical="true"
-        android:src="@drawable/christian_wolff"/>
+        android:src="@drawable/robomon"/>
     
     <ProgressBar
         android:id="@+id/choose_healthBar"
