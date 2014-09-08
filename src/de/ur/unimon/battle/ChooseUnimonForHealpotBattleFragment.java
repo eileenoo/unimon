@@ -91,6 +91,7 @@ public class ChooseUnimonForHealpotBattleFragment extends Fragment {
 			@Override
 			public void onClick(View arg0) {
 				listener.onHealpotUsedOnUnimon(unimonBattlelist[0]);
+				getFragmentManager().popBackStack();
 			}
 		});
 		
@@ -99,6 +100,7 @@ public class ChooseUnimonForHealpotBattleFragment extends Fragment {
 			@Override
 			public void onClick(View arg0) {
 				listener.onHealpotUsedOnUnimon(unimonBattlelist[1]);
+				getFragmentManager().popBackStack();
 			}
 		});
 		
@@ -107,6 +109,8 @@ public class ChooseUnimonForHealpotBattleFragment extends Fragment {
 			@Override
 			public void onClick(View arg0) {
 				listener.onHealpotUsedOnUnimon(unimonBattlelist[2]);
+//				getFragmentManager().popBackStack();
+				getFragmentManager().popBackStack("allOptionsFragment", 0);
 			}
 		});
 	}

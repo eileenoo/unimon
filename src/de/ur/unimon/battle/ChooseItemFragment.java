@@ -48,6 +48,12 @@ public class ChooseItemFragment extends Fragment {
 		initButtons();
 		itemButtonClicked();
 	}
+	
+//	@Override
+//	public void onResume() {
+//		super.onResume();
+//		getFragmentManager().popBackStack();
+//	}
 
 	public interface OnChooseItemListener {
 		public boolean onHealpotAvailable();
@@ -87,7 +93,6 @@ public class ChooseItemFragment extends Fragment {
 						chooseUnimonForItemFragment, "ChooseUnimonForItemBattleFragment");
 				fragmentTransaction.addToBackStack(null);
 				fragmentTransaction.commit();
-				// getFragmentManager().popBackStack();
 			}
 		});
 
