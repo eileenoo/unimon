@@ -67,15 +67,15 @@ public class ChooseItemFragment extends Fragment {
 				R.id.battle_uniball_button);
 
 		if (listener.onHealpotAvailable()) {
-			healpotButton.setClickable(true);
+			healpotButton.setEnabled(true);
 		} else {
-			healpotButton.setClickable(false);
+			healpotButton.setEnabled(false);
 		}
 
 		if (listener.onUniballAvailable()) {
-			uniballButton.setClickable(true);
+			uniballButton.setEnabled(true);
 		} else {
-			uniballButton.setClickable(false);
+			uniballButton.setEnabled(false);
 		}
 	}
 
