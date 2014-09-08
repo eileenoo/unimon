@@ -19,7 +19,7 @@ public class UnimonListAdapter extends BaseAdapter {
 	private Context context;
 	LayoutInflater infalInflater;
 	ArrayList<Unimon> unimons;
-	private TextView unimonName, unimonLevel, health, unimonXp;
+	private TextView unimonName, unimonLevel, health, unimonXp, xpText;
 	private Button unimonImage;
 	private ProgressBar healthBar, xpBar;
 
@@ -66,11 +66,11 @@ public class UnimonListAdapter extends BaseAdapter {
 			
 			xpBar = (ProgressBar) convertView.findViewById(R.id.xpBar);
 			unimonXp = (TextView) convertView.findViewById(R.id.unimon_xp);
-			
+			xpText = (TextView) convertView.findViewById(R.id.xp_text);
 
 			// unimonImage.setImageResource(R.drawable.ic_launcher);
-			unimonName.setText("" + unimon.getName());
-			unimonLevel.setText("" + unimon.getLevel());
+			unimonName.setText("Name: " + unimon.getName());
+			unimonLevel.setText("Level: " + unimon.getLevel());
 			healthBar.setMax(unimon.getMaxHealth());
 			healthBar.setProgress(unimon.getHealth());
 			xpBar.setMax(unimon.getXpPerLevel());
@@ -89,7 +89,6 @@ public class UnimonListAdapter extends BaseAdapter {
 			
 			health.setText(currentHealth+"/"+maxHealth);
 			
-			unimon.setXp(10);
 			int currentXp = unimon.getXp();
 			int maxXpPerLevel = unimon.getXpPerLevel();			
 		

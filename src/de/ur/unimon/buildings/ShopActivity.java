@@ -44,7 +44,7 @@ public class ShopActivity extends Activity {
 	private void initUI() {
 		inventory = player.getInventory();
 		money = (TextView) findViewById(R.id.money);
-		money.setText(getResources().getString(R.string.money_text) + player.getMoney());
+		money.setText(getResources().getString(R.string.money_text) + player.getMoney() + "€");
 
 		// Healpot
 		healpot_Price = 100;
@@ -55,7 +55,7 @@ public class ShopActivity extends Activity {
 
 		// healpotImage.setImageResource(R.drawable.ic_launcher);
 		healpotCount.setText(getResources().getString(R.string.item_count_text) + inventory.getHealpotCount());
-		healpotPrice.setText("" + healpot_Price);
+		healpotPrice.setText("" + healpot_Price + "€");
 
 		// Uniball
 		uniball_Price = 50;
@@ -66,7 +66,7 @@ public class ShopActivity extends Activity {
 
 		// uniballImage.setImageResource(R.drawable.ic_launcher);
 		uniballCount.setText(getResources().getString(R.string.item_count_text) + inventory.getUniballCount());
-		uniballPrice.setText("" + uniball_Price);
+		uniballPrice.setText("" + uniball_Price + "€");
 
 		// Revive
 		revive_Price = 400;
@@ -77,7 +77,7 @@ public class ShopActivity extends Activity {
 
 		// reviveImage.setImageResource(R.drawable.ic_launcher);
 		reviveCount.setText(getResources().getString(R.string.item_count_text) + inventory.getReviveCount());
-		revivePrice.setText("" + revive_Price);
+		revivePrice.setText("" + revive_Price + "€");
 
 		// Protectors
 		protector_Price = 850;
@@ -88,7 +88,7 @@ public class ShopActivity extends Activity {
 
 		// protectorImage.setImageResource(R.drawable.ic_launcher);
 		protectorCount.setText(getResources().getString(R.string.item_count_text) + inventory.getProtectorCount());
-		protectorPrice.setText("" + protector_Price);
+		protectorPrice.setText("" + protector_Price + "€");
 
 		setButtonsOnClick();
 

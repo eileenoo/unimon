@@ -99,8 +99,8 @@ public class DompteurSkillActivity extends Activity {
 		health = (TextView) findViewById(R.id.unimon_health);
 		healthBar = (ProgressBar) findViewById(R.id.healthBar);
 		name.setText(unimon.getName());
-		level.setText("Level: " + unimon.getLevel());
-		skillPoints.setText("Skillpoints: " + unimon.getSkillPoints());
+		level.setText(getResources().getString(R.string.level_text) + unimon.getLevel());
+		skillPoints.setText(getResources().getString(R.string.skillpoint_text) + unimon.getSkillPoints());
 		health.setText(unimon.getHealth() + "/" + unimon.getMaxHealth());
 		healthBar.setMax(unimon.getMaxHealth());
 		healthBar.setProgress(unimon.getHealth());

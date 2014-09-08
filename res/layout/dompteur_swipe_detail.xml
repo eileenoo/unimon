@@ -10,7 +10,7 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="50dp"
-        android:text=""/>
+        android:textSize="20sp"/>
     
     <ImageView 
         android:id="@+id/dompteur_unimon_image"
@@ -18,16 +18,33 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/dompteur_unimon_name"
         android:layout_centerHorizontal="true"
-        android:layout_margin="20dp"
         android:layout_centerVertical="true"
+        android:layout_margin="20dp"        
         android:src="@drawable/christian_wolff"/>
+    
+    <TextView
+        android:id="@+id/dompteur_unimon_level"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/dompteur_unimon_image"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="5dp" />
+    
+     <TextView
+        android:id="@+id/dompteur_health_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/dompteur_unimon_level"
+        android:layout_marginTop="5dp"
+        android:text="@string/health_text" />
     
     <ProgressBar
         android:id="@+id/dompteur_healthBar"
         style="?android:attr/progressBarStyleHorizontal"
         android:layout_width="150dp"
         android:layout_height="wrap_content"
-        android:layout_below="@id/dompteur_unimon_image"
+        android:layout_below="@id/dompteur_health_text"
         android:layout_margin="5dp"
         android:layout_centerHorizontal="true"
         android:progress="0"/>
@@ -37,24 +54,25 @@
         android:id="@+id/dompteur_unimon_health"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/dompteur_unimon_image"
+        android:layout_below="@id/dompteur_health_text"
         android:layout_margin="4dp"
         android:layout_centerHorizontal="true" />
     
-    <TextView 
-        android:id="@+id/dompteur_level"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/dompteur_unimon_health"
-        android:layout_marginTop="10dp"
-        android:layout_centerHorizontal="true"/>
+    <TextView
+          android:id="@+id/dompteur_xp_text"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_below="@+id/dompteur_unimon_health"
+          android:layout_centerHorizontal="true"
+          android:layout_marginTop ="5dp"
+          android:text="@string/xp_text" />
     
     <ProgressBar
         android:id="@+id/dompteur_xpBar"
         style="?android:attr/progressBarStyleHorizontal"
         android:layout_width="150dp"
         android:layout_height="wrap_content"
-        android:layout_below="@id/dompteur_level"
+        android:layout_below="@id/dompteur_xp_text"
         android:layout_margin="5dp"
         android:layout_centerHorizontal="true"
         android:progress="0"/>
@@ -63,7 +81,7 @@
         android:id="@+id/dompteur_unimon_xp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/dompteur_level"
+        android:layout_below="@id/dompteur_xp_text"
         android:layout_marginTop="4dp"
         android:layout_centerHorizontal="true" />
     
@@ -87,7 +105,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
-            android:text="@string/inventory_spell_headline" />
+            android:text="@string/spells_headline" />
 
         <TextView
             android:id="@+id/dompteur_spell"

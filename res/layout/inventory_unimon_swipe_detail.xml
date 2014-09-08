@@ -9,7 +9,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="50dp"/>
+        android:layout_marginTop="50dp"
+        android:textSize="20sp"/>
     
     <ImageView 
         android:id="@+id/inventory_unimon_image"
@@ -21,12 +22,29 @@
         android:layout_centerVertical="true"
         android:src="@drawable/christian_wolff"/>
     
+    <TextView
+        android:id="@+id/inventory_unimon_level"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/inventory_unimon_image"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="5dp" />
+    
+    <TextView
+        android:id="@+id/inventory_health_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/inventory_unimon_level"
+        android:layout_marginTop="5dp"
+        android:text="@string/health_text" />
+    
     <ProgressBar
         android:id="@+id/inventory_healthBar"
         style="?android:attr/progressBarStyleHorizontal"
         android:layout_width="150dp"
         android:layout_height="wrap_content"
-        android:layout_below="@id/inventory_unimon_image"
+        android:layout_below="@id/inventory_health_text"
         android:layout_margin="5dp"
         android:layout_centerHorizontal="true"
         android:progress="0"/>
@@ -36,27 +54,36 @@
         android:id="@+id/inventory_unimon_health"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/inventory_unimon_image"
+        android:layout_below="@id/inventory_health_text"
         android:layout_margin="4dp"
         android:layout_centerHorizontal="true" />
     
-    <TextView 
-        android:id="@+id/inventory_level"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/inventory_unimon_health"
-        android:layout_marginTop="10dp"
-        android:layout_centerHorizontal="true"/>
+    <TextView
+          android:id="@+id/inventory_xp_text"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_below="@+id/inventory_unimon_health"
+          android:layout_centerHorizontal="true"
+          android:layout_marginTop ="5dp"
+          android:text="@string/xp_text" />
         
      <ProgressBar
         android:id="@+id/inventory_xpBar"
         style="?android:attr/progressBarStyleHorizontal"
         android:layout_width="150dp"
         android:layout_height="wrap_content"
-        android:layout_below="@id/inventory_level"
+        android:layout_below="@id/inventory_xp_text"
         android:layout_margin="5dp"
         android:layout_centerHorizontal="true"
         android:progress="0"/>
+     
+     <TextView
+        android:id="@+id/inventory_unimon_xp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/inventory_xp_text"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="4dp" />
     
     <LinearLayout
         android:layout_width="wrap_content"
@@ -69,7 +96,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
-            android:text="@string/inventory_spell_headline" />
+            android:text="@string/spells_headline" />
 
         <TextView
             android:id="@+id/inventory_spell"
