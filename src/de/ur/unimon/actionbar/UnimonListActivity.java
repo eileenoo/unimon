@@ -9,10 +9,14 @@ import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
+import android.widget.ImageView;
 import android.widget.ListAdapter;
 import android.widget.ListView;
+import android.widget.ProgressBar;
+import android.widget.TextView;
 import de.ur.mi.android.excercises.starter.R;
 import de.ur.unimon.startgame_logic.PlayerController;
+import de.ur.unimon.unimons.Spell;
 import de.ur.unimon.unimons.Unimon;
 
 public class UnimonListActivity extends Activity{
@@ -46,11 +50,30 @@ public class UnimonListActivity extends Activity{
 				
 				Intent unimonDetail = new Intent(UnimonListActivity.this,
 						UnimonListDetailActivity.class);			
-				Unimon chosenUnimon = (Unimon) listUnimons.getItemAtPosition(position);
+				Unimon chosenUnimon = (Unimon) listUnimons.getItemAtPosition(position);				
 				String chosenUnimonName = chosenUnimon.getName();
-			//	Image chosenUnimmonImage = chosenUnimon.getImage();
+				int chosenUnimonHealth = chosenUnimon.getHealth();
+				int chosenUnimonMaxHealth = chosenUnimon.getMaxHealth();		
+				int chosenUnimonLevel = chosenUnimon.getLevel();
+				int chosenUnimonCurrentXp = chosenUnimon.getXp();
+				int chosenUnimonMaxXpPerLevel = chosenUnimon.getXpPerLevel();
+				int chosenUnimonSkillPoints = chosenUnimon.getSkillPoints();
+				
+				String chosenUnimonSpellText = "";
+				for (int i = 0; i< unimons.get(position).getOwnedSpells().size(); i++){
+					chosenUnimonSpellText += unimons.get(position).getSpellBySpellNumber(i).getSpellName() + "\n";
+				}				
+
+				//ImageView chosenUnimmonImage = chosenUnimon.getImage();
 				unimonDetail.putExtra("chosen_unimon_name", chosenUnimonName);
-			//	unimonDetail.putExtra("chosen_unimon_image", chosenUnimonImage);
+				unimonDetail.putExtra("chosen_unimon_health", chosenUnimonHealth);
+				unimonDetail.putExtra("chosen_unimon_max_health", chosenUnimonMaxHealth);
+				unimonDetail.putExtra("chosen_unimon_level", chosenUnimonLevel);
+				unimonDetail.putExtra("chosen_unimon_current_xp", chosenUnimonCurrentXp);
+				unimonDetail.putExtra("chosen_unimon_max_xp_per_level", chosenUnimonMaxXpPerLevel);
+				unimonDetail.putExtra("chosen_unimon_spells", chosenUnimonSpellText);
+				unimonDetail.putExtra("chosen_unimon_skillPoints", chosenUnimonSkillPoints);
+				//unimonDetail.putExtra("chosen_unimon_image", chosenUnimonImage);
 				startActivity(unimonDetail);								
 								
 				}

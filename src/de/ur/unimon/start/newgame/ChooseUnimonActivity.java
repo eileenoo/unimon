@@ -94,8 +94,8 @@ public static class SwipeFragment extends Fragment{
 		View swipeView = inflater.inflate(R.layout.choose_unimon_detail, container, false);
 		TextView unimonName = (TextView) swipeView.findViewById(R.id.choose_unimon_name);
 		TextView unimonHealth = (TextView) swipeView.findViewById(R.id.choose_unimon_health);
-		TextView unimonLevel = (TextView) swipeView.findViewById(R.id.choose_level);
-		TextView unimonSpell = (TextView) swipeView.findViewById(R.id.choose_spell);
+		TextView unimonLevel = (TextView) swipeView.findViewById(R.id.choose_unimon_level);
+		TextView unimonSpell = (TextView) swipeView.findViewById(R.id.choose_unimon_spell_headline);
 		ProgressBar healthBar = (ProgressBar) swipeView.findViewById(R.id.choose_healthBar);
 		ImageView unimonImage = (ImageView) swipeView.findViewById(R.id.choose_unimon_image);
 		
@@ -104,8 +104,8 @@ public static class SwipeFragment extends Fragment{
 		
 		unimonName.setText(startUnimonList.get(position).getName());
 		unimonHealth.setText(startUnimonList.get(position).getMaxHealth()+"/"+startUnimonList.get(position).getMaxHealth());
-		unimonLevel.setText("Level: "+startUnimonList.get(position).getLevel());
-		unimonSpell.setText("Spell: "+startUnimonList.get(position).getSpellBySpellNumber(0).getSpellName()+" ("+startUnimonList.get(position).getSpellBySpellNumber(0).getBaseDamage()+")");
+		unimonLevel.setText(getResources().getString(R.string.level_text)+startUnimonList.get(position).getLevel());
+		unimonSpell.setText(getResources().getString(R.string.spells_headline)+startUnimonList.get(position).getSpellBySpellNumber(0).getSpellName()+" (damage: "+startUnimonList.get(position).getSpellBySpellNumber(0).getBaseDamage()+")");
 		healthBar.setMax(startUnimonList.get(position).getMaxHealth());
 		healthBar.setProgress(startUnimonList.get(position).getMaxHealth());
 		healthBar.setProgressDrawable(getResources().getDrawable(R.drawable.green_progress));

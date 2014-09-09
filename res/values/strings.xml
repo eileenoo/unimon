@@ -27,15 +27,16 @@
     <string name="story_part_three">Choose your favourite Unimon with which you pull into the fight against the villain. Have fun! And save the students!</string>
     <string name="next_button_text">Next</string>
     <string name="back_button_text">Back</string>
-    <string name="money_text">Money: </string>
-    <string name="xp_text">XP: </string>
-    <string name="skillpoint_text">Skillpoints: </string>
+    <string name="money_text">Money:\u0020</string>
+    <string name="xp_text">XP:\u0020</string>
+    <string name="health_text">Health:\u0020</string>
+    <string name="skillpoint_text">Skillpoints:\u0020</string>
     <string name="unimon_name_text">Name</string>
     <string name="current_skills_text">Current Skills</string>
     <string name="dompteur_info_text">Which Unimon do you want to train?</string>
     
     
-    <string name="item_count_text">Number: </string>
+    <string name="item_count_text">Number:\u0020</string>
     <string name="healpot_name">Healpot</string>
     <string name="uniball_name">Uniball</string>
     <string name="revive_name">Revive</string>
@@ -49,10 +50,9 @@
     <string name="take_text">-> nehmen</string>
     <string name="image_text">Bild von Item</string>
     
-    <string name="name_text">Name: </string>
-    <string name="level_text">Level: </string>
-    <string name="unimon_image_text">Unimon Bild</string>
-    <string name="unimon_info_text">I am a watermon!</string>
+    <string name="name_text">Name:\u0020</string>
+    <string name="level_text">Level:\u0020</string>
+    <string name="unimon_image_text">Unimon image</string>
     <string name="escape_toast_text">Your escape was successful!</string>
     <string name="escape_not_successfull_toast_text">Your escape was not successful!</string>
     <string name="catch_unimon_success_text">You catched the Unimon! Yay!</string>
@@ -77,7 +77,7 @@
     <string name="battle_use_item_button_text">Use Item</string>
     <string name="battle_healpot_button_text">Use healpot</string>
     <string name="battle_uniball_button_text">Use uniball</string>
-    <string name="battle_select_text">Select: </string>
+    <string name="battle_select_text">Select:\u0020</string>
     <string name="battle_enemyunimon_lost_health_text">Enemy Unimon lost health.</string>
     <string name="battle_unimon1_button_text">Select Unimon 1</string>
     <string name="battle_unimon2_button_text">Select Unimon 2</string>
@@ -86,14 +86,16 @@
     <string name="battle_spell_button_text">Spell 1</string>
     <string name="choose_primary_unimon">Choose your primary Unimon for battle!</string>
     <string name="choose_second_unimon">Choose a replacement unimon!</string>
-    <string name="choose_third_unimon">Choose another replacement unimon!</string>    
+    <string name="choose_third_unimon">Choose another replacement unimon!</string> 
+    
+    <string name="alert_random_unimon_battle_title">Wild Unimon battle</string>
+    <string name="alert_random_unimon_battle_message">You have to fight against a wild unimon!</string>
+    <string name="start_random_unimon_battle">Start Battle</string>
     
     <string name="cancel">Cancel</string>
     <string name="alert_money_warning_title">Attention!</string>
     <string name="alert_money_warning_message">To purchase this item you need more money!</string>
     <string name="ok">OK</string>
-    <string name="unimon_health_info_text">Health: </string>
-    <string name="unimon_level_info_text">Level: </string>
 	<string name="left_parenthesis"> ( </string>
 	<string name="right_parenthesis"> ) </string>
 	
@@ -102,7 +104,15 @@
 	<string name="inventory_use_item">Use Item</string>
 	<string name="inventory_use_healPot">Use HealPot</string>
 	<string name="inventory_use_revive">Revive</string>
-	<string name="inventory_spell_headline">Spells: </string>
+	<string name="spells_headline">Spells:\u0020</string>
+	
+	<string name="battle_won_money_earend_text">Money earned:\u0020</string>
+	<string name="battle_won_XP_text">XP earned:\u0020</string>
+	<string name="battle_end_button_text">Back to map</string>
+
+	<string name="enemy_fight_text_first_part">It\'s</string>
+	<string name="enemy_fight_text_second_part">\'s turn!</string>
+	
 	
 	<string name="playerOutOfRange_info">You just do not find yourself on campus!</string>
 

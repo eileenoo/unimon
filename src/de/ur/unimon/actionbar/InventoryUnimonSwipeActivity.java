@@ -138,9 +138,12 @@ public static class SwipeFragment extends Fragment{
 			Bundle savedInstanceState) {
 		View swipeView = inflater.inflate(R.layout.inventory_unimon_swipe_detail, container, false);
 		TextView unimonName = (TextView) swipeView.findViewById(R.id.inventory_unimon_name);
+		TextView healthText = (TextView) swipeView.findViewById(R.id.inventory_health_text);
 		TextView unimonHealth = (TextView) swipeView.findViewById(R.id.inventory_unimon_health);
-		TextView unimonLevel = (TextView) swipeView.findViewById(R.id.inventory_level);
+		TextView unimonLevel = (TextView) swipeView.findViewById(R.id.inventory_unimon_level);
 		TextView unimonSpell = (TextView) swipeView.findViewById(R.id.inventory_spell);
+		TextView unimonXp = (TextView) swipeView.findViewById(R.id.inventory_unimon_xp);
+		TextView xpText = (TextView) swipeView.findViewById(R.id.inventory_xp_text);
 		ProgressBar healthBar = (ProgressBar) swipeView.findViewById(R.id.inventory_healthBar);
 		ProgressBar xpBar = (ProgressBar) swipeView.findViewById(R.id.inventory_xpBar);
 		ImageView unimonImage = (ImageView) swipeView.findViewById(R.id.inventory_unimon_image);
@@ -149,7 +152,7 @@ public static class SwipeFragment extends Fragment{
 		int position = args.getInt("position");;
 		
 		unimonName.setText(ownedUnimonList.get(position).getName());
-		unimonLevel.setText("Level: "+ownedUnimonList.get(position).getLevel());
+		unimonLevel.setText(getResources().getString(R.string.level_text) + ownedUnimonList.get(position).getLevel());
 		
 		String spellText = "";
 		for (int i = 0; i<ownedUnimonList.get(position).getOwnedSpells().size(); i++){
@@ -172,7 +175,6 @@ public static class SwipeFragment extends Fragment{
 		
 		unimonHealth.setText(currentHealth+"/"+maxHealth);
 		
-		ownedUnimonList.get(position).setXp(10);
 		int currentXp = ownedUnimonList.get(position).getXp();
 		int maxXpPerLevel = ownedUnimonList.get(position).getXpPerLevel();
 		
@@ -180,6 +182,7 @@ public static class SwipeFragment extends Fragment{
 		xpBar.setProgress(currentXp);
 	
 		xpBar.setProgressDrawable(getResources().getDrawable(R.drawable.purple_progress));
+		unimonXp.setText(currentXp+"/"+maxXpPerLevel);
 		
 		return swipeView;
 	}
