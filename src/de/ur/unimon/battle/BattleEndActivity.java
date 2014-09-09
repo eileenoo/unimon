@@ -57,9 +57,10 @@ public class BattleEndActivity extends Activity{
 		backToMapButton.setOnClickListener(new OnClickListener() {
 			
 			@Override
-			public void onClick(View v) {
+			public void onClick(View v) {				
 				Intent toMapActivity = new Intent (BattleEndActivity.this, MapActivity.class);
 				startActivity(toMapActivity);
+				toMapActivity.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
 			}
 		});
 		

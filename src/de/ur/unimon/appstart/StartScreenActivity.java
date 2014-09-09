@@ -1,11 +1,11 @@
 package de.ur.unimon.appstart;
 
 import android.app.Activity;
-
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -30,6 +30,7 @@ public class StartScreenActivity extends Activity {
 	PlayerController playerController;
 	PlayerDatabase playerDb;
 	AlertDialog.Builder builder;
+	public static MediaPlayer mediaPlayer;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +38,8 @@ public class StartScreenActivity extends Activity {
 		setContentView(R.layout.activity_main);
 		builder = new AlertDialog.Builder(this);
 		context = this.getApplicationContext();
+		SoundPlayer(this,R.raw.unimon_music);
+		
 		//initDatabase();
 		initUI();		
 	}
@@ -52,7 +55,15 @@ public class StartScreenActivity extends Activity {
 		playerDb.open();
 	}*/
 	
+    public static void SoundPlayer(Context context,int raw_id){
+    	mediaPlayer = MediaPlayer.create(context, raw_id);
+    	mediaPlayer.setLooping(true); // Set looping    	
+        //mediaPlayer.release();
+    	mediaPlayer.start();
+        }
+
 	
+
 	private void initUI(){
     	newGame_button = (Button) findViewById (R.id.newGame_button);
     	resume_button = (Button) findViewById (R.id.resume_button);
@@ -111,7 +122,7 @@ public class StartScreenActivity extends Activity {
 		guide_button.setOnClickListener(new OnClickListener() {
 			public void onClick(View v) {
 				Intent guide = new Intent(StartScreenActivity.this,
-						GuideScreenActivity.class);
+						GuideScreenActivity.class);				
 				startActivity(guide);
 			}
     	});

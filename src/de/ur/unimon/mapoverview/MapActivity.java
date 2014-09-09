@@ -127,6 +127,11 @@ public class MapActivity extends Activity implements NavigationListener {
 		// transaction.setCustomAnimations(R.animator.slide_in_bottom,
 		// R.animator.slide_out_top);
 	}
+	
+	@Override
+	public void onBackPressed() {
+	    //Hardware Zurückbutton disabled
+	}
 
 	@Override
 	protected void onResume() {
