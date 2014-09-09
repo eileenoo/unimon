@@ -343,6 +343,7 @@ public class BattleActivity extends Activity implements
 			showToast(R.string.battle_lost);
 		}
 		startActivity(map);
+	
 	}
 
 	// _____________________LISTENERS__________________

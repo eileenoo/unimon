@@ -112,7 +112,7 @@ public class UnimonList {
 		krisk.learnSpell(kriskSpell1);
 		krisk.setHealth(50);
 
-		neni = new Unimon("Neni", 100, true);
+		neni = new Unimon("Neni", 100, false);
 		neniSpell1 = new Spell ("bla",1,10);
 		neniSpell2 = new Spell ("bli",2,15);
 		neniSpell3 = new Spell ("blub",3,15);

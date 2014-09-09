@@ -96,20 +96,6 @@ public class MapActivity extends Activity implements NavigationListener {
 		initFragmentManager();
 		getTrainerPositions();
 
-		// onPlayerPositionDetailChanged(new PlayerPositionDetail(12, 48, 100,
-		// 100, 1000, 5, 100, 100, 100, 100, 100, 100));
-		// onPlayerPositionDetailChanged(new PlayerPositionDetail(12, 48, 100,
-		// 25, 1000, 100, 100, 100, 100, 100, 100, 100));
-		// onPlayerPositionDetailChanged(new PlayerPositionDetail(12, 48, 100,
-		// 24, 1000, 100, 100, 100, 100, 100, 100, 100));
-		// onPlayerPositionDetailChanged(new PlayerPositionDetail(12, 48, 100,
-		// 13, 1000, 100, 100, 100, 100, 100, 100, 100));
-		// closeFragment();
-		// onPlayerPositionDetailChanged(new PlayerPositionDetail(12, 48, 100,
-		// 30, 1000, 100, 100, 100, 100, 100, 100, 100));
-		// onPlayerPositionDetailChanged(new PlayerPositionDetail(12, 48, 100,
-		// 15, 1000, 100, 100, 100, 100, 100, 100, 100));
-
 	}
 
 	private void initFragmentManager() {
