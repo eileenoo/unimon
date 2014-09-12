@@ -22,7 +22,7 @@ import de.ur.unimon.unimons.Unimon;
 public class UnimonListActivity extends Activity{
 	
 	ListView listUnimons;
-	ListAdapter listUnimons_adpater;
+	ListAdapter listUnimons_adapter;
 	private ArrayList <Unimon> unimons;
 	PlayerController playerController;
 	
@@ -83,8 +83,8 @@ public class UnimonListActivity extends Activity{
 	
 	private void initListAdapter() {
 		listUnimons = (ListView) findViewById(R.id.listView_unimons);
-		listUnimons_adpater = new UnimonListAdapter(this, unimons);
-		listUnimons.setAdapter(listUnimons_adpater);
+		listUnimons_adapter = new UnimonListAdapter(this, unimons);
+		listUnimons.setAdapter(listUnimons_adapter);
 	}
 	
 

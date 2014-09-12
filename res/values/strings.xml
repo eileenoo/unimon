@@ -20,7 +20,7 @@
     
     <string name="action_inventar">Inventory</string>
     <string name="action_unimons">Unimons</string>
-    <string name="action_map_overview">Map</string>
+    <string name="action_menu">Menu</string>
     <string name="story_part_one">Hello my name is Dr. Wulfman! A villain has placed a curse on the University of Regensburg, 
         which states that all students only write bad grades.</string>
     <string name="story_part_two">Now it is your task to defeat the bad guy! Collect enough skillpoints to be able to train your unimons!</string>
@@ -38,7 +38,9 @@
     
     <string name="item_count_text">Number:\u0020</string>
     <string name="healpot_name">Healpot</string>
+    <string name="healpot_info_text">Heals your Unimon by 20%</string>
     <string name="uniball_name">Uniball</string>
+    <string name="uniball_info_text">Try to catch a Unimon!</string>
     <string name="revive_name">Revive</string>
     <string name="protector_name">Protector</string>
     <string name="use_item_button_text">Use Item</string>
@@ -99,7 +101,9 @@
 	<string name="left_parenthesis"> ( </string>
 	<string name="right_parenthesis"> ) </string>
 	
+	<string name="swipe_unimons_info_text">Swipe to change your Unimon</string>
 	<string name="choose_that_unimon">Choose me!</string>
+	
 	
 	<string name="inventory_use_item">Use Item</string>
 	<string name="inventory_use_healPot">Use HealPot</string>
@@ -109,7 +113,7 @@
 	<string name="battle_won_money_earend_text">Money earned:\u0020</string>
 	<string name="battle_won_XP_text">XP earned:\u0020</string>
 	<string name="battle_end_button_text">Back to map</string>
-	
+
 	<string name="enemy_fight_text_first_part">It\'s</string>
 	<string name="enemy_fight_text_second_part">\'s turn!</string>
 	

@@ -238,7 +238,6 @@ public class BattleActivity extends Activity implements
 
 	private void initInstances() {
 		map = new Intent(BattleActivity.this, MapActivity.class);
-		gameWon = false;
 		playerStatus = true;
 		player = playerController.getInstance();
 	}
@@ -337,42 +336,34 @@ public class BattleActivity extends Activity implements
 	}
 
 	private void fightEnd() {
+		XP = trainer.getExpValue();
+		money = trainer.getMoneyValue();
+		player.addMoney(money);
+		switch (battleController.getXpSplit()) {
+		case 1:
+			currentBattleUnimonList[0].addXp(XP);
+			break;
+		case 2:
+			currentBattleUnimonList[0].addXp(XP / 2);
+			if (battleController.isSecondUnimonUsed()) {
+				currentBattleUnimonList[1].addXp((int) (Math.round(XP / 2d)));
+			} else
+				currentBattleUnimonList[2].addXp((int) (Math.round(XP / 2d)));
+			break;
+		case 3:
+			currentBattleUnimonList[0].addXp((int) (Math.round(XP / 3d)));
+			currentBattleUnimonList[1].addXp((int) (Math.round(XP / 3d)));
+			currentBattleUnimonList[2].addXp((int) (Math.round(XP / 3d)));
+			break;
+		}
+		
 		Intent toBattleEndActivity = new Intent(BattleActivity.this,
 				BattleEndActivity.class);
-
-		if (gameWon) {
-			XP = trainer.getExpValue();
-			money = trainer.getMoneyValue();
-			player.addMoney(money);
-			switch (battleController.getXpSplit()) {
-			case 1:
-				currentBattleUnimonList[0].addXp(XP);
-				break;
-			case 2:
-				currentBattleUnimonList[0].addXp(XP / 2);
-				if (battleController.isSecondUnimonUsed()) {
-					currentBattleUnimonList[1]
-							.addXp((int) (Math.round(XP / 2d)));
-				} else
-					currentBattleUnimonList[2]
-							.addXp((int) (Math.round(XP / 2d)));
-				break;
-			case 3:
-				currentBattleUnimonList[0].addXp((int) (Math.round(XP / 3d)));
-				currentBattleUnimonList[1].addXp((int) (Math.round(XP / 3d)));
-				currentBattleUnimonList[2].addXp((int) (Math.round(XP / 3d)));
-				break;
-			}
-
-			// showToast(R.string.battle_won);
-		} else {
-			// showToast(R.string.battle_lost);
-		}
+		
 		toBattleEndActivity.putExtra("XP", XP);
 		toBattleEndActivity.putExtra("Money", money);
 		toBattleEndActivity.putExtra("IsGameWon", gameWon);
 		startActivity(toBattleEndActivity);
-		// startActivity(map);
 	}
 
 	// _____________________LISTENERS__________________

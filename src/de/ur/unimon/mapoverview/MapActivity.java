@@ -36,7 +36,7 @@ import de.ur.unimon.start.newgame.NewGameActivity;
 
 public class MapActivity extends Activity implements NavigationListener {
 
-	Button inventoryButton, unimonsButton, mapButton, movePlayerButton;
+	Button inventoryButton, unimonsButton, menuButton;
 	Bitmap map, player, trainer1, trainer2, trainer3, trainer4, trainer5,
 			trainer6, trainerBoss;
 	public int playerXCoord, playerYCoord;
@@ -104,20 +104,6 @@ public class MapActivity extends Activity implements NavigationListener {
 		initFragmentManager();
 		getTrainerPositions();
 
-		// onPlayerPositionDetailChanged(new PlayerPositionDetail(12, 48, 100,
-		// 100, 1000, 5, 100, 100, 100, 100, 100, 100));
-		// onPlayerPositionDetailChanged(new PlayerPositionDetail(12, 48, 100,
-		// 25, 1000, 100, 100, 100, 100, 100, 100, 100));
-		// onPlayerPositionDetailChanged(new PlayerPositionDetail(12, 48, 100,
-		// 24, 1000, 100, 100, 100, 100, 100, 100, 100));
-		// onPlayerPositionDetailChanged(new PlayerPositionDetail(12, 48, 100,
-		// 13, 1000, 100, 100, 100, 100, 100, 100, 100));
-		// closeFragment();
-		// onPlayerPositionDetailChanged(new PlayerPositionDetail(12, 48, 100,
-		// 30, 1000, 100, 100, 100, 100, 100, 100, 100));
-		// onPlayerPositionDetailChanged(new PlayerPositionDetail(12, 48, 100,
-		// 15, 1000, 100, 100, 100, 100, 100, 100, 100));
-
 	}
 
 	private void initFragmentManager() {
@@ -155,8 +141,7 @@ public class MapActivity extends Activity implements NavigationListener {
 		canvasLayout = (LinearLayout) findViewById(R.id.canvas_layout);
 		inventoryButton = (Button) findViewById(R.id.inventory);
 		unimonsButton = (Button) findViewById(R.id.unimons);
-		mapButton = (Button) findViewById(R.id.map_overview);
-		movePlayerButton = (Button) findViewById(R.id.move_player_test_button);
+		menuButton = (Button) findViewById(R.id.back_to_start_screen);
 		map = BitmapFactory.decodeResource(getResources(), R.drawable.map);
 		MapView canvasMap = new MapView(this);
 
@@ -193,30 +178,15 @@ public class MapActivity extends Activity implements NavigationListener {
 				startActivity(unimons);
 			}
 		});
-		mapButton.setOnClickListener(new OnClickListener() {
+		menuButton.setOnClickListener(new OnClickListener() {
 			public void onClick(View v) {
-				Intent startBattle = new Intent(MapActivity.this,
-						ChooseBattleUnimonsActivity.class);
-				startBattle.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
-				startBattle.putExtra("trainerID", 1);
-				startActivity(startBattle);
+				Intent backToStart = new Intent(MapActivity.this,
+						StartScreenActivity.class);
+				backToStart.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);				
+				startActivity(backToStart);
 			}
 		});
 
-		movePlayerButton.setOnClickListener(new OnClickListener() {
-			@Override
-			public void onClick(View v) {
-
-				/*
-				 * Intent shop = new Intent(MapActivity.this,
-				 * ShopActivity.class); startActivity(shop);
-				 */
-
-				Intent dompteur = new Intent(MapActivity.this,
-						DompteurActivity.class);
-				startActivity(dompteur);
-			}
-		});
 	}
 
 	private class MapView extends View {

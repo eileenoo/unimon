@@ -129,4 +129,22 @@
         android:layout_alignParentRight="true"
         android:text="@string/use_item_button_text" />
 
+    <TextView
+        android:id="@+id/healpot_info"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/healpot_image"
+        android:layout_alignParentRight="true"
+        android:layout_toRightOf="@+id/healpot_image"
+        android:text="@string/healpot_info_text" />
+
+    <TextView
+        android:id="@+id/uniball_info"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/uniball_image"
+        android:layout_alignParentRight="true"
+        android:layout_toRightOf="@+id/uniball_image"
+        android:text="@string/uniball_info_text" />
+
 </RelativeLayout>
