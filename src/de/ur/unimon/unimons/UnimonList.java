@@ -86,15 +86,17 @@ public class UnimonList {
 	private static Spell start3Spell6;
 	
 
-	public ArrayList<Unimon> unimonList;
-	public ArrayList<Unimon> catchableUnimonList;
-	public ArrayList<Unimon> startUnimonList;
+	public ArrayList<Unimon> allUnimonsList;
+	public ArrayList<Unimon> wildUnimonsList;
+	public ArrayList<Unimon> startUnimonsList;
+	public ArrayList<Unimon> trainerUnimonsList;
 
 	public UnimonList() {
 		
-		unimonList = new ArrayList<Unimon>();
-		catchableUnimonList = new ArrayList<Unimon>();
-		startUnimonList = new ArrayList<Unimon>();
+		allUnimonsList = new ArrayList<Unimon>();
+		wildUnimonsList = new ArrayList<Unimon>();
+		startUnimonsList = new ArrayList<Unimon>();
+		trainerUnimonsList = new ArrayList<Unimon>();
 		
 		krisk = new Unimon("Krisk", 90, true);
 		kriskSpell1 = new Spell("Scratch", 1, 15);
@@ -255,29 +257,49 @@ public class UnimonList {
 		start3.learnSpell(start3Spell1);
 		
 		
-		unimonList.add(krisk);
-		unimonList.add(neni);
-		unimonList.add(brunz);
-		unimonList.add(lisa);
+		allUnimonsList.add(krisk);
+		allUnimonsList.add(neni);
+		allUnimonsList.add(brunz);
+		allUnimonsList.add(lisa);
+		allUnimonsList.add(wild1);
+		allUnimonsList.add(wild2);
+		allUnimonsList.add(wild3);
+		allUnimonsList.add(start1);
+		allUnimonsList.add(start2);
+		allUnimonsList.add(start3);
 		
-		catchableUnimonList.add(wild1);
-		catchableUnimonList.add(wild2);
-		catchableUnimonList.add(wild3);
+		wildUnimonsList.add(wild1);
+		wildUnimonsList.add(wild2);
+		wildUnimonsList.add(wild3);
 		
-		startUnimonList.add(start1);
-		startUnimonList.add(start2);
-		startUnimonList.add(start3);
-	}
-	public ArrayList<Unimon> getUnimonList(){
-		return unimonList;
+		startUnimonsList.add(start1);
+		startUnimonsList.add(start2);
+		startUnimonsList.add(start3);
+		
+		trainerUnimonsList.add(krisk);
+		trainerUnimonsList.add(neni);
+		trainerUnimonsList.add(lisa);
+		trainerUnimonsList.add(brunz);
 	}
 	
-	public ArrayList<Unimon> getCatchableUnimonList(){
-		return catchableUnimonList;
+	// gibt ArrayListe mit allen existierenden Unimons zurück
+	public ArrayList<Unimon> getAllUnimonsList(){
+		return allUnimonsList;
 	}
 	
+	// gibt ArrayListe mit allen wilden Unimons zurück
+	public ArrayList<Unimon> getWildUnimonsList(){
+		return wildUnimonsList;
+	}
+	
+	// gibt ArrayListe mit den 3 Unimons zurück, die bei Spielbeginn ausgewählt werden können
 	public ArrayList<Unimon> getStartUnimonList(){
-		return startUnimonList;
+		return startUnimonsList;
+	}
+	
+	// gibt ArrayListe mit allen Unimons der Trainer zurück
+	public ArrayList<Unimon> getTrainerUnimonsList() {
+		return trainerUnimonsList;
 	}
 
 }

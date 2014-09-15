@@ -28,16 +28,16 @@ import de.ur.unimon.battle.ChooseBattleUnimonsActivity;
 import de.ur.unimon.battle.Trainer;
 import de.ur.unimon.battle.TrainerList;
 import de.ur.unimon.buildings.DompteurActivity;
-import de.ur.unimon.buildings.ShopActivity;
+import de.ur.unimon.database.DatabaseController;
 import de.ur.unimon.navigation.NavigationController;
 import de.ur.unimon.navigation.NavigationListener;
 import de.ur.unimon.navigation.PlayerPositionDetail;
-import de.ur.unimon.start.newgame.NewGameActivity;
+import de.ur.unimon.startgame_logic.PlayerController;
 
 public class MapActivity extends Activity implements NavigationListener,
 		RangeListener {
 
-	Button inventoryButton, unimonsButton, menuButton;
+	Button inventoryButton, unimonsButton, menuButton, saveButton;
 	Bitmap map, player, trainer1, trainer2, trainer3, trainer4, trainer5,
 			trainer6, trainerBoss;
 	public int playerXCoord, playerYCoord;
@@ -76,10 +76,13 @@ public class MapActivity extends Activity implements NavigationListener,
 
 	private int count;
 	AlertDialog.Builder builder;
+
 	RangeChecker rangeChecker;
 
 	FragmentManager fragmentManager;
-	EnterAlertFragment alertFragment;
+	EnterAlertFragment alertFragment;	
+	DatabaseController controller;
+
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -96,6 +99,8 @@ public class MapActivity extends Activity implements NavigationListener,
 		initNavigation();
 		initFragmentManager();
 		getTrainerPositions();
+		
+		controller = new DatabaseController(this);
 
 	}
 
@@ -135,6 +140,7 @@ public class MapActivity extends Activity implements NavigationListener,
 		inventoryButton = (Button) findViewById(R.id.inventory);
 		unimonsButton = (Button) findViewById(R.id.unimons);
 		menuButton = (Button) findViewById(R.id.back_to_start_screen);
+		saveButton = (Button) findViewById(R.id.save_button);
 		map = BitmapFactory.decodeResource(getResources(), R.drawable.map);
 		MapView canvasMap = new MapView(this);
 
@@ -170,6 +176,7 @@ public class MapActivity extends Activity implements NavigationListener,
 						UnimonListActivity.class);
 				startActivity(unimons);
 			}
+				
 		});
 		menuButton.setOnClickListener(new OnClickListener() {
 			public void onClick(View v) {
@@ -179,7 +186,12 @@ public class MapActivity extends Activity implements NavigationListener,
 				startActivity(backToStart);
 			}
 		});
-
+		saveButton.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				controller.save(PlayerController.getInstance());
+			}
+		});
 	}
 
 	private class MapView extends View {

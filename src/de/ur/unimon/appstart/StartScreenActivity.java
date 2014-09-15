@@ -7,12 +7,12 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.media.MediaPlayer;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import de.ur.mi.android.excercises.starter.R;
-import de.ur.unimon.actionbar.Inventory;
-import de.ur.unimon.database.AppDatabase;
+import de.ur.unimon.database.DatabaseController;
 import de.ur.unimon.database.PlayerDatabase;
 import de.ur.unimon.mapoverview.MapActivity;
 import de.ur.unimon.start.newgame.NewGameActivity;
@@ -21,15 +21,17 @@ import de.ur.unimon.unimons.UnimonList;
 
 public class StartScreenActivity extends Activity {
 
+
 	Button newGame_button;
 	Button resume_button;
 	Button options_button;
 	Button guide_button;
-	Context context;
 	UnimonList allUnimonsList;
 	PlayerController playerController;
 	PlayerDatabase playerDb;
 	AlertDialog.Builder builder;
+	private Context context;
+	private DatabaseController dbController;
 	public static MediaPlayer mediaPlayer;
 
 	@Override
@@ -37,12 +39,19 @@ public class StartScreenActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 		builder = new AlertDialog.Builder(this);
+		
+		dbController = new DatabaseController(this);
+		
+		//löscht alle Daten aus der Datenbank
+//		dbController.clearDB();
+
 		context = this.getApplicationContext();
 		SoundPlayer(this,R.raw.unimon_music);
-		
+
 		//initDatabase();
 		initUI();		
 	}
+	
 	
 	/*@Override
 	protected void onResume(){
@@ -80,40 +89,53 @@ public class StartScreenActivity extends Activity {
     }
     
     private void setButtonsOnClick(){
+    	
+    	resume_button.setEnabled(!dbController.isDbEmpty());
+   	
     	newGame_button.setOnClickListener(new OnClickListener(){
     		public void onClick(View v) {
     			playerController.getInstance();
-    			builder.setTitle(getResources().getString(R.string.newGame_alert_title));
-				builder.setMessage(getResources().getString(R.string.newGame_alert_message));
+				final Intent newGame = new Intent(StartScreenActivity.this,
+						NewGameActivity.class);
+				newGame.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
+    			if (!dbController.isDbEmpty()){
+					builder.setTitle(getResources().getString(
+							R.string.newGame_alert_title));
+					builder.setMessage(getResources().getString(
+							R.string.newGame_alert_message));
 
-				builder.setPositiveButton(getResources().getString(R.string.newGameButton_text),
-						new DialogInterface.OnClickListener() {
+					builder.setPositiveButton(
+							getResources().getString(
+									R.string.newGameButton_text),
+							new DialogInterface.OnClickListener() {
 
-							@Override
-							public void onClick(DialogInterface dialog,
-									int which) {
-								Intent newGame = new Intent (StartScreenActivity.this, NewGameActivity.class);
-				    			newGame.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
-				    			startActivity(newGame);
-								dialog.dismiss();
-							}
-						});
-				builder.setNegativeButton(getResources().getString(R.string.cancel),
-						new DialogInterface.OnClickListener() {
+								@Override
+								public void onClick(DialogInterface dialog,
+										int which) {															
+									startActivity(newGame);
+									dialog.dismiss();
+								}
+							});
+					builder.setNegativeButton(
+							getResources().getString(R.string.cancel),
+							new DialogInterface.OnClickListener() {
 
-							@Override
-							public void onClick(DialogInterface dialog,
-									int which) {									
-								dialog.dismiss();
-							}
-						});
-				AlertDialog alert = builder.create();
-				alert.show();
+								@Override
+								public void onClick(DialogInterface dialog,
+										int which) {
+									dialog.dismiss();
+								}
+							});
+					AlertDialog alert = builder.create();
+					alert.show();
+    			}
+    			else startActivity(newGame);
 			}
     	});
     	resume_button.setOnClickListener(new OnClickListener(){
     		public void onClick(View v) {	
-    			playerController.getInstanceFromDB();
+    			//playerController.getInstanceFromDB(context);
+    			playerController.setInstance(dbController.getPlayer());
     			Intent resume = new Intent (StartScreenActivity.this, MapActivity.class);
     			startActivity(resume);
 			}
