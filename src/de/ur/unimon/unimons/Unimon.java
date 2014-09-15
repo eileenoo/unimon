@@ -113,6 +113,11 @@ public class Unimon {
 			xp = (xp + amount) - getXpPerLevel();
 			levelUp();
 		}
+		while (xp > getXpPerLevel()){
+			int xpOverflow = xp - getXpPerLevel();
+			levelUp();
+			xp = xpOverflow;
+		}
 	}
 	
 	public void setBaseHealth(int baseHealth){

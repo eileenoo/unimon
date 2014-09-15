@@ -45,6 +45,12 @@ public class StartScreenActivity extends Activity {
 	}
 	
 	/*@Override
+	protected void onResume(){
+		mediaPlayer.stop();
+		SoundPlayer(this,R.raw.unimon_music);
+	}*/
+	
+	/*@Override
 	protected void onDestroy() {
 		playerDb.close();
 		super.onDestroy();
