@@ -24,6 +24,10 @@ public final class PlayerController{
 		return player;
 	}
 	
+	public static void reset() {
+	    player = new Player();
+	}
+	
 	public static Player setInstance(Player p){
 		player = p;
 		return player;

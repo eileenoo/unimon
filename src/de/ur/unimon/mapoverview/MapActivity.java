@@ -34,7 +34,8 @@ import de.ur.unimon.navigation.NavigationListener;
 import de.ur.unimon.navigation.PlayerPositionDetail;
 import de.ur.unimon.startgame_logic.PlayerController;
 
-public class MapActivity extends Activity implements NavigationListener {
+public class MapActivity extends Activity implements NavigationListener,
+		RangeListener {
 
 	Button inventoryButton, unimonsButton, menuButton, saveButton;
 	Bitmap map, player, trainer1, trainer2, trainer3, trainer4, trainer5,
@@ -59,37 +60,29 @@ public class MapActivity extends Activity implements NavigationListener {
 	private double trainer5Latitude, trainer5Longitude;
 	private double trainer6Latitude, trainer6Longitude;
 	private double trainerBossLatitude, trainerBossLongitude;
+
+
 	public static final double leftUpperCornerLongitude = 12.091562;
 	public static final double leftUpperCornerLatitude = 49.0010367;
 	public static final double bottomRightCornerLongitude = 12.09969;
 	public static final double bottomRightCornerLatitude = 48.99169;
 
-	private double rangeBuildings = 25;
-	private double rangeTrainer = 25;
 	public float PIXEL_X; // 1559; //1169
 	public float PIXEL_Y; // 2731; //2048
 
-	private boolean isShopInRange = false;
-	private boolean isDompteurInRange = false;
-	private boolean isHospitalInRange = false;
-	private boolean isTrainerOneInRange = false;
-	private boolean isTrainerTwoInRange = false;
-	private boolean isTrainerThreeInRange = false;
-	private boolean isTrainerFourInRange = false;
-	private boolean isTrainerFiveInRange = false;
-	private boolean isTrainerSixInRange = false;
-	private boolean isTrainerBossInRange = false;
+	private Toast toast;
 
 	private ArrayList<Trainer> trainerList;
-	private Toast playerOutOfRange;
-
-	private FragmentManager fragmentManager;
-	EnterAlertFragment alertFragment;
 
 	private int count;
 	AlertDialog.Builder builder;
-	
+
+	RangeChecker rangeChecker;
+
+	FragmentManager fragmentManager;
+	EnterAlertFragment alertFragment;	
 	DatabaseController controller;
+
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -100,7 +93,8 @@ public class MapActivity extends Activity implements NavigationListener {
 		trainerList = new TrainerList().getTrainerList();
 		builder = new AlertDialog.Builder(this);
 		rnd = new Random();
-		
+		rangeChecker = new RangeChecker();
+
 		initUI();
 		initNavigation();
 		initFragmentManager();
@@ -113,14 +107,12 @@ public class MapActivity extends Activity implements NavigationListener {
 	private void initFragmentManager() {
 		fragmentManager = getFragmentManager();
 		alertFragment = new EnterAlertFragment();
-		// transaction = fragmentManager.beginTransaction();
-		// transaction.setCustomAnimations(R.animator.slide_in_bottom,
-		// R.animator.slide_out_top);
+
 	}
-	
+
 	@Override
 	public void onBackPressed() {
-	    //Hardware Zurückbutton disabled
+		// Hardware Zurückbutton disabled
 	}
 
 	@Override
@@ -142,6 +134,8 @@ public class MapActivity extends Activity implements NavigationListener {
 	}
 
 	private void initUI() {
+		rangeChecker.setOnRangeChecker(this);
+
 		canvasLayout = (LinearLayout) findViewById(R.id.canvas_layout);
 		inventoryButton = (Button) findViewById(R.id.inventory);
 		unimonsButton = (Button) findViewById(R.id.unimons);
@@ -188,7 +182,7 @@ public class MapActivity extends Activity implements NavigationListener {
 			public void onClick(View v) {
 				Intent backToStart = new Intent(MapActivity.this,
 						StartScreenActivity.class);
-				backToStart.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);				
+				backToStart.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
 				startActivity(backToStart);
 			}
 		});
@@ -271,8 +265,8 @@ public class MapActivity extends Activity implements NavigationListener {
 	public void onPlayerPositionDetailChanged(
 			PlayerPositionDetail playerPosDetail) {
 
-		if (isPlayerInMapRange(playerPosDetail) == true) {
-
+		if (rangeChecker.isPlayerInMapRange(playerPosDetail) == true) {
+			Log.d("hallo", "onPlayerPositionDetailChanged aufgerufen");
 			double diffX = Math.abs(bottomRightCornerLongitude
 					- leftUpperCornerLongitude);
 			double helpVarX = diffX / PIXEL_X;
@@ -289,43 +283,47 @@ public class MapActivity extends Activity implements NavigationListener {
 					- leftUpperCornerLatitude) / helpVarY);
 
 			startRandomUnimonBattle(count);
+			
+			rangeChecker.isPlayerInTrainerRange(playerPosDetail);
+			rangeChecker.onBuildingIsInRange(playerPosDetail);
+			rangeChecker.onBuildingIsNotInRange(playerPosDetail);
+			rangeChecker.onPlayerIsInBattleRange(playerPosDetail);
+			rangeChecker.onPlayerIsNotInBattleRange(playerPosDetail);
 
-			checkRangeTrue(playerPosDetail);
-			checkRangeFalse(playerPosDetail);
 		} else {
-			playerOutOfRange = Toast.makeText(getApplicationContext(),
-					getResources().getString(R.string.playerOutOfRange_info),
-					Toast.LENGTH_LONG);
-			playerOutOfRange.show();
+			showToast(R.string.playerOutOfRange_info);
 		}
 		count++;
+		Log.d("hallo", "Count: " + count);
 	}
-	
+
 	private void startRandomUnimonBattle(int count) {
-		if (count % 50 == 0) {
+		Log.d("hallo", "startRandomUnimonBattle");
+		if (count % 24 == 0) {
 			gettingAttacked();
 		} else
 			return;
 	}
 
 	private void gettingAttacked() {
-		int rand = rnd.nextInt(40);
-		if (rand == 0) {
+		int rand = rnd.nextInt(10);
+		if (rand == 1 && InventoryActivity.isProtectorActive == false) {
+			Log.d("hallo", "Kampf start");
 			builder.setTitle(getResources().getString(
 					R.string.alert_random_unimon_battle_title));
 			builder.setMessage(getResources().getString(
 					R.string.alert_random_unimon_battle_message));
-			
+
 			builder.setPositiveButton(
-					getResources().getString(R.string.start_random_unimon_battle),
+					getResources().getString(
+							R.string.start_random_unimon_battle),
 					new DialogInterface.OnClickListener() {
-					
 
 						@Override
 						public void onClick(DialogInterface dialog, int which) {
 							Intent startRandomUnimonBattle = new Intent(
 									MapActivity.this,
-									ChooseBattleUnimonsActivity.class);						
+									ChooseBattleUnimonsActivity.class);
 							startRandomUnimonBattle.putExtra("trainerID", 1);
 							startActivity(startRandomUnimonBattle);
 							dialog.dismiss();
@@ -334,21 +332,11 @@ public class MapActivity extends Activity implements NavigationListener {
 			AlertDialog randomUnimonBattleAlert = builder.create();
 			randomUnimonBattleAlert.show();
 			randomUnimonBattleAlert.setCancelable(false);
-
+		} else if (rand == 1 && InventoryActivity.isProtectorActive == true) {
+			Log.d("hallo", "Kampf abgewehrt");
+			showToast(R.string.protector_used_toast);
+			InventoryActivity.isProtectorActive = false;
 		}
-	}
-
-
-	private boolean isPlayerInMapRange(PlayerPositionDetail playerPosDetail) {
-		playerLongitude = playerPosDetail.getLongitude();
-		playerLatitude = playerPosDetail.getLatitude();
-		if (leftUpperCornerLongitude > playerLongitude
-				|| bottomRightCornerLongitude < playerLongitude
-				|| leftUpperCornerLatitude < playerLatitude
-				|| bottomRightCornerLatitude > playerLatitude) {
-			return false;
-		}
-		return true;
 	}
 
 	public void getTrainerPositions() {
@@ -410,151 +398,15 @@ public class MapActivity extends Activity implements NavigationListener {
 
 	}
 
-	private void checkRangeTrue(PlayerPositionDetail playerPosDetail) {
-		if (isShopInRange == true
-				&& playerPosDetail.getDistanceToBuilding(0) >= rangeBuildings) {
-			isShopInRange = false;
-			closeFragment();
-		}
-
-		else if (isDompteurInRange == true
-				&& playerPosDetail.getDistanceToBuilding(1) >= rangeBuildings) {
-			isDompteurInRange = false;
-			Log.d("hallo", "Fragment Dompteur close");
-			closeFragment();
-		}
-
-		else if (isHospitalInRange == true
-				&& playerPosDetail.getDistanceToBuilding(2) >= rangeBuildings) {
-			isHospitalInRange = false;
-			closeFragment();
-		} else if (isTrainerOneInRange == true
-				&& playerPosDetail.getDistanceToTrainer(0) >= rangeTrainer) {
-			isTrainerOneInRange = false;
-			closeFragment();
-		} else if (isTrainerTwoInRange == true
-				&& playerPosDetail.getDistanceToTrainer(1) >= rangeTrainer) {
-			isTrainerTwoInRange = false;
-			closeFragment();
-		}
-
-		else if (isTrainerThreeInRange == true
-				&& playerPosDetail.getDistanceToTrainer(2) >= rangeTrainer) {
-			isTrainerThreeInRange = false;
-			Log.d("hallo", "Fragment Trainer 3 close");
-			closeFragment();
-		}
-
-		else if (isTrainerFourInRange == true
-				&& playerPosDetail.getDistanceToTrainer(3) >= rangeTrainer) {
-			isTrainerFourInRange = false;
-			closeFragment();
-		}
-
-		else if (isTrainerFiveInRange == true
-				&& playerPosDetail.getDistanceToTrainer(4) >= rangeTrainer) {
-			isTrainerFiveInRange = false;
-			closeFragment();
-		}
-
-		else if (isTrainerSixInRange == true
-				&& playerPosDetail.getDistanceToTrainer(5) >= rangeTrainer) {
-			isTrainerSixInRange = false;
-			closeFragment();
-		}
-
-		else if (isTrainerBossInRange == true
-				&& playerPosDetail.getDistanceToTrainer(6) >= rangeTrainer) {
-			isTrainerBossInRange = false;
-			closeFragment();
-		}
-
+	private void showToast(int toastText) {
+		int duration = Toast.LENGTH_LONG;
+		toast = Toast.makeText(this, toastText, duration);
+		toast.show();
 	}
 
-	private void closeFragment() {
-		FragmentTransaction transaction = getFragmentManager()
-				.beginTransaction();
-		transaction.setCustomAnimations(R.animator.slide_in_bottom,
-				R.animator.slide_out_top);
-		transaction.remove(alertFragment).commit();
-	}
-
-	private void checkRangeFalse(PlayerPositionDetail playerPosDetail) {
-		if (isShopInRange == false
-				&& playerPosDetail.getDistanceToBuilding(0) < rangeBuildings) {
-			isShopInRange = true;
-
-			showFragmentForBuildings("Shop");
-		} else if (isDompteurInRange == false
-				&& playerPosDetail.getDistanceToBuilding(1) < rangeBuildings) {
-			isDompteurInRange = true;
-			Log.d("hallo", "sollte fragemnt anzeigen");
-			showFragmentForBuildings("Dompteur");
-		} else if (isHospitalInRange == false
-				&& playerPosDetail.getDistanceToBuilding(2) < rangeBuildings) {
-			isHospitalInRange = true;
-			showFragmentForBuildings("Hospital");
-		} else if (isTrainerOneInRange == false
-				&& playerPosDetail.getDistanceToTrainer(0) < rangeTrainer) {
-			trainerList.get(0).setVisible();
-			isTrainerOneInRange = true;
-			showFragmentForTrainer("Trainer", 0);
-		} else if (isTrainerTwoInRange == false
-				&& playerPosDetail.getDistanceToTrainer(1) < rangeTrainer) {
-			trainerList.get(1).setVisible();
-			Log.d("hallo", "Trainer 2 anzeigen pls");
-			isTrainerTwoInRange = true;
-			showFragmentForTrainer("Trainer", 1);
-		} else if (isTrainerThreeInRange == false
-				&& playerPosDetail.getDistanceToTrainer(2) < rangeTrainer) {
-			Log.d("hallo", "Trainer 3 sichtbar");
-			trainerList.get(2).setVisible();
-			isTrainerThreeInRange = true;
-			Log.d("hallo", "Fragment Trainer 3 anzeigen");
-			showFragmentForTrainer("Trainer", 2);
-		} else if (isTrainerFourInRange == false
-				&& playerPosDetail.getDistanceToTrainer(3) < rangeTrainer) {
-			trainerList.get(3).setVisible();
-			isTrainerFourInRange = true;
-			showFragmentForTrainer("Trainer", 3);
-		} else if (isTrainerFiveInRange == false
-				&& playerPosDetail.getDistanceToTrainer(4) < rangeTrainer) {
-			trainerList.get(4).setVisible();
-			isTrainerFiveInRange = true;
-			showFragmentForTrainer("Trainer", 4);
-		} else if (isTrainerSixInRange == false
-				&& playerPosDetail.getDistanceToTrainer(5) < rangeTrainer) {
-			trainerList.get(5).setVisible();
-			isTrainerSixInRange = true;
-			showFragmentForTrainer("Trainer", 5);
-		} else if (isTrainerBossInRange == false
-				&& playerPosDetail.getDistanceToTrainer(6) < rangeTrainer) {
-			trainerList.get(6).setVisible();
-			isTrainerBossInRange = true;
-			showFragmentForTrainer("Trainer", 6);
-		}
-
-	}
-
-	private void showFragmentForTrainer(String building, int trainerID) {
-		FragmentTransaction transaction = fragmentManager.beginTransaction();
-		transaction.setCustomAnimations(R.animator.slide_in_bottom,
-				R.animator.slide_out_top);
-		transaction.add(R.id.map_activity_layout, alertFragment,
-				"alertFragment");
-
-		Bundle extras = new Bundle();
-		if (alertFragment.getArguments() != null) {
-			extras = alertFragment.getArguments();
-			extras.clear();
-		}
-		extras.putString("building", building);
-		extras.putInt("trainerID", trainerID);
-		alertFragment.setArguments(extras);
-		transaction.commit();
-	}
-
-	private void showFragmentForBuildings(String building) {
+	@Override
+	public void onShowFragmentForBuilding(String building) {
+		Log.d("hallo", "onShowFragmentForBuilding");
 		// EnterAlertFragment alertFragment = new EnterAlertFragment();
 		FragmentTransaction transaction = fragmentManager.beginTransaction();
 		transaction.setCustomAnimations(R.animator.slide_in_bottom,
@@ -572,4 +424,41 @@ public class MapActivity extends Activity implements NavigationListener {
 		alertFragment.setArguments(extras);
 		transaction.commit();
 	}
+
+	@Override
+	public void onShowFragmentForTrainer(String building, int trainerID) {
+		FragmentTransaction transaction = fragmentManager.beginTransaction();
+		transaction.setCustomAnimations(R.animator.slide_in_bottom,
+				R.animator.slide_out_top);
+		transaction.add(R.id.map_activity_layout, alertFragment,
+				"alertFragment");
+
+		Bundle extras = new Bundle();
+		if (alertFragment.getArguments() != null) {
+			extras = alertFragment.getArguments();
+			extras.clear();
+		}
+		extras.putString("building", building);
+		extras.putInt("trainerID", trainerID);
+		alertFragment.setArguments(extras);
+		transaction.commit();
+
+	}
+
+	@Override
+	public void onCloseFragment() {
+		FragmentTransaction transaction = getFragmentManager()
+				.beginTransaction();
+		transaction.setCustomAnimations(R.animator.slide_in_bottom,
+				R.animator.slide_out_top);
+		transaction.remove(alertFragment).commit();
+
+	}
+
+	@Override
+	public void onTrainerVisibilityChanged(ArrayList<Trainer> trainerList) {
+		Log.d("hallo", "onvisi");
+			this.trainerList = trainerList;
+	}
+
 }

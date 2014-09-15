@@ -8,40 +8,69 @@ public class UnimonList {
 	
 	public static final String TAG = "Hoi";
 
-	private static Unimon krisk;
-	private static Unimon neni;
-	private static Unimon brunz;
-	private static Unimon lisa;
+	private static Unimon schleimi;
+	private static Unimon kaeffchen;
+	private static Unimon robotaer;
+	private static Unimon hentaicha;
+	private static Unimon hydroxyethan;
+	private static Unimon asymptoterus;
+	private static Unimon legdayskipper;
+	
 	private static Unimon wild1;
 	private static Unimon wild2;
 	private static Unimon wild3;
 	private static Unimon start1;
 	private static Unimon start2;
 	private static Unimon start3;
-	private static Spell kriskSpell1;
-	private static Spell kriskSpell2;
-	private static Spell kriskSpell3;
-	private static Spell kriskSpell4;
-	private static Spell kriskSpell5;
-	private static Spell kriskSpell6;
-	private static Spell neniSpell1;
-	private static Spell neniSpell2;
-	private static Spell neniSpell3;
-	private static Spell neniSpell4;
-	private static Spell neniSpell5;
-	private static Spell neniSpell6;
-	private static Spell brunzSpell1;
-	private static Spell brunzSpell2;
-	private static Spell brunzSpell3;
-	private static Spell brunzSpell4;
-	private static Spell brunzSpell5;
-	private static Spell brunzSpell6;
-	private static Spell lisaSpell1;
-	private static Spell lisaSpell2;
-	private static Spell lisaSpell3;
-	private static Spell lisaSpell4;
-	private static Spell lisaSpell5;
-	private static Spell lisaSpell6;
+	
+	private static Spell schleimiSpell1;
+	private static Spell schleimiSpell2;
+	private static Spell schleimiSpell3;
+	private static Spell schleimiSpell4;
+	private static Spell schleimiSpell5;
+	private static Spell schleimiSpell6;
+	
+	private static Spell kaeffchenSpell1;
+	private static Spell kaeffchenSpell2;
+	private static Spell kaeffchenSpell3;
+	private static Spell kaeffchenSpell4;
+	private static Spell kaeffchenSpell5;
+	private static Spell kaeffchenSpell6;
+	
+	private static Spell hydroxyethanSpell1;
+	private static Spell hydroxyethanSpell2;
+	private static Spell hydroxyethanSpell3;
+	private static Spell hydroxyethanSpell4;
+	private static Spell hydroxyethanSpell5;
+	private static Spell hydroxyethanSpell6;
+	
+	private static Spell hentaichaSpell1;
+	private static Spell hentaichaSpell2;
+	private static Spell hentaichaSpell3;
+	private static Spell hentaichaSpell4;
+	private static Spell hentaichaSpell5;
+	private static Spell hentaichaSpell6;
+	
+	private static Spell robotaerSpell1;
+	private static Spell robotaerSpell2;
+	private static Spell robotaerSpell3;
+	private static Spell robotaerSpell4;
+	private static Spell robotaerSpell5;
+	private static Spell robotaerSpell6;
+	
+	private static Spell asymptoterusSpell1;
+	private static Spell asymptoterusSpell2;
+	private static Spell asymptoterusSpell3;
+	private static Spell asymptoterusSpell4;
+	private static Spell asymptoterusSpell5;
+	private static Spell asymptoterusSpell6;
+	
+	private static Spell legdayskipperSpell1;
+	private static Spell legdayskipperSpell2;
+	private static Spell legdayskipperSpell3;
+	private static Spell legdayskipperSpell4;
+	private static Spell legdayskipperSpell5;
+	private static Spell legdayskipperSpell6;
 	
 	private static Spell wild1Spell1;
 	private static Spell wild1Spell2;
@@ -98,80 +127,145 @@ public class UnimonList {
 		startUnimonsList = new ArrayList<Unimon>();
 		trainerUnimonsList = new ArrayList<Unimon>();
 		
-		krisk = new Unimon("Krisk", 90, true);
-		kriskSpell1 = new Spell("Scratch", 1, 15);
-		kriskSpell2 = new Spell("Bite", 2, 20);
-		kriskSpell3 = new Spell("Headbutt",3,20);
-		kriskSpell4 = new Spell("Punch",4,15);
-		kriskSpell5 = new Spell ("Kick",5,20);
-		kriskSpell6 = new Spell ("Tackle",6,20);
-		krisk.possibleSpells.add(kriskSpell1);
-		krisk.possibleSpells.add(kriskSpell2);
-		krisk.possibleSpells.add(kriskSpell3);
-		krisk.possibleSpells.add(kriskSpell4);
-		krisk.possibleSpells.add(kriskSpell5);
-		krisk.possibleSpells.add(kriskSpell6);
-		krisk.learnSpell(kriskSpell1);
-		krisk.setHealth(50);
 
-		neni = new Unimon("Neni", 100, true);
-		neniSpell1 = new Spell ("Take Down",1,10);
-		neniSpell2 = new Spell ("Flamethrower",2,15);
-		neniSpell3 = new Spell ("Low Kick",3,15);
-		neniSpell4 = new Spell ("Rock Throw",4,15);
-		neniSpell5 = new Spell ("Glare",5,15);
-		neniSpell6 = new Spell ("Blizzard",6,20);
-		neni.addPossibleSpell(neniSpell1);
-		neni.addPossibleSpell(neniSpell2);
-		neni.addPossibleSpell(neniSpell3);
-		neni.addPossibleSpell(neniSpell4);
-		neni.addPossibleSpell(neniSpell5);
-		neni.addPossibleSpell(neniSpell6);
-		neni.learnSpell(neniSpell1);
-		neni.setHealth(100);
 		
-		brunz = new Unimon("Brunz", 70, true);
-		brunzSpell1 = new Spell ("Cross Chop",1,10);
-		brunzSpell2 = new Spell("Bite", 2, 20);
-		brunzSpell3 = new Spell ("Explosion",3,15);
-		brunzSpell4 = new Spell ("Tackle",4,20);
-		brunzSpell5 = new Spell("Dynamic Punch",5,15);
-		brunzSpell6 = new Spell ("Wood Hammer",6,50);
-		brunz.addPossibleSpell(brunzSpell1);
-		brunz.addPossibleSpell(brunzSpell2);
-		brunz.addPossibleSpell(brunzSpell3);
-		brunz.addPossibleSpell(brunzSpell4);
-		brunz.addPossibleSpell(brunzSpell5);
-		brunz.addPossibleSpell(brunzSpell6);
-		brunz.learnSpell(brunzSpell1);
-		brunz.setHealth(70);
+		// ausgeglichen
+		schleimi = new Unimon("Schleimi", 123, true);
+		schleimiSpell1 = new Spell("Scratch", 1, 15);
+		schleimiSpell2 = new Spell("Bite", 2, 25);
+		schleimiSpell3 = new Spell("Headbutt",3,35);
+		schleimiSpell4 = new Spell("Punch",4,45);
+		schleimiSpell5 = new Spell ("Kick",5,55);
+		schleimiSpell6 = new Spell ("Earthquake",6,65);
+		schleimi.possibleSpells.add(schleimiSpell1);
+		schleimi.possibleSpells.add(schleimiSpell2);
+		schleimi.possibleSpells.add(schleimiSpell3);
+		schleimi.possibleSpells.add(schleimiSpell4);
+		schleimi.possibleSpells.add(schleimiSpell5);
+		schleimi.possibleSpells.add(schleimiSpell6);
+		schleimi.learnSpell(schleimiSpell1);
+		schleimi.setHealth(schleimi.getMaxHealth());
+
+		//defensiver
+		kaeffchen = new Unimon("Käffchen", 182, true);
+		kaeffchenSpell1 = new Spell ("Take Down",1,10);
+		kaeffchenSpell2 = new Spell ("Flamethrower",2,15);
+		kaeffchenSpell3 = new Spell ("Low Kick",3,20);
+		kaeffchenSpell4 = new Spell ("Rock Throw",4,25);
+		kaeffchenSpell5 = new Spell ("Glare",5,35);
+		kaeffchenSpell6 = new Spell ("Blizzard",6,40);
+		kaeffchen.addPossibleSpell(kaeffchenSpell1);
+		kaeffchen.addPossibleSpell(kaeffchenSpell2);
+		kaeffchen.addPossibleSpell(kaeffchenSpell3);
+		kaeffchen.addPossibleSpell(kaeffchenSpell4);
+		kaeffchen.addPossibleSpell(kaeffchenSpell5);
+		kaeffchen.addPossibleSpell(kaeffchenSpell6);
+		kaeffchen.learnSpell(kaeffchenSpell1);
+		kaeffchen.setHealth(kaeffchen.getMaxHealth());
+
+		//offensiver
+		robotaer = new Unimon("Robotär", 93, true);
+		robotaerSpell1 = new Spell ("Kick",1,30);
+		robotaerSpell2 = new Spell("Take Down", 2, 40);
+		robotaerSpell3 = new Spell ("Ice Shard",3,45);
+		robotaerSpell4 = new Spell ("Head Smash",4,60);
+		robotaerSpell5 = new Spell("Dynamic Punch",5,65);
+		robotaerSpell6 = new Spell ("Machinegun",6,80);
+		robotaer.addPossibleSpell(robotaerSpell1);
+		robotaer.addPossibleSpell(robotaerSpell2);
+		robotaer.addPossibleSpell(robotaerSpell3);
+		robotaer.addPossibleSpell(robotaerSpell4);
+		robotaer.addPossibleSpell(robotaerSpell5);
+		robotaer.addPossibleSpell(robotaerSpell6);
+		robotaer.learnSpell(robotaerSpell1);
+		robotaer.setHealth(robotaer.getMaxHealth());
+
 		
-		lisa = new Unimon("Lisa", 60, true);
-		lisaSpell1 =  new Spell ("Wood Hammer",1,20);
-		lisaSpell2  = new Spell("Bite", 2, 20);
-		lisaSpell3  = new Spell("Icicle Spear", 3, 20);
-		lisaSpell4  = new Spell("Beat Up", 4, 20);
-		lisaSpell5  = new Spell("Sucker Punch", 5, 20);
-		lisaSpell6  = new Spell("Poison Fang", 6, 20);
-		lisa.addPossibleSpell(lisaSpell1);
-		lisa.addPossibleSpell(lisaSpell2);
-		lisa.addPossibleSpell(lisaSpell3);
-		lisa.addPossibleSpell(lisaSpell4);
-		lisa.addPossibleSpell(lisaSpell5);
-		lisa.addPossibleSpell(lisaSpell6);
-		lisa.learnSpell(lisaSpell1);
-		lisa.learnSpell(lisaSpell2);
-		lisaSpell1.setSpellLevel(2);
-		lisa.setHealth(lisa.getMaxHealth());
-		lisa.setLevel(20);
+		//ausgeglichen
+		hentaicha = new Unimon("Hentaicha", 113, true);
+		hentaichaSpell1 =  new Spell ("Wood Hammer",1,16);
+		hentaichaSpell2  = new Spell("Bite", 2, 24);
+		hentaichaSpell3  = new Spell("Icicle Spear", 3, 34);
+		hentaichaSpell4  = new Spell("Beat Up", 4, 47);
+		hentaichaSpell5  = new Spell("Sucker Punch", 5, 55);
+		hentaichaSpell6  = new Spell("Poison Fang", 6, 63);
+		hentaicha.addPossibleSpell(hentaichaSpell1);
+		hentaicha.addPossibleSpell(hentaichaSpell2);
+		hentaicha.addPossibleSpell(hentaichaSpell3);
+		hentaicha.addPossibleSpell(hentaichaSpell4);
+		hentaicha.addPossibleSpell(hentaichaSpell5);
+		hentaicha.addPossibleSpell(hentaichaSpell6);
+		hentaicha.learnSpell(hentaichaSpell1);
+		hentaicha.learnSpell(hentaichaSpell2);
+		//hentaichaSpell1.setSpellLevel(2);
+		hentaicha.setHealth(hentaicha.getMaxHealth());
+		//hentaicha.setLevel(20);
 		
-		wild1 = new Unimon("Wildie", 20, false);
-		wild1Spell1 =  new Spell ("Giga Impact",1,20);
-		wild1Spell2  = new Spell("Ice Shard", 2, 20);
-		wild1Spell3  = new Spell("Bite", 3, 20);
-		wild1Spell4  = new Spell("Double Hit", 4, 20);
-		wild1Spell5  = new Spell("Slap in the Face", 5, 20);
-		wild1Spell6  = new Spell("Head Smash", 6, 20);
+
+		// sehr defensiv
+		hydroxyethan = new Unimon("Hydroxyethan", 260, true);
+		hydroxyethanSpell1 = new Spell ("Sucker Punch",1,11);
+		hydroxyethanSpell2 = new Spell("Bite", 2, 22);
+		hydroxyethanSpell3 = new Spell ("Explosion",3,33);
+		hydroxyethanSpell4 = new Spell ("Low Kick",4,44);
+		hydroxyethanSpell5 = new Spell("Flamethrower",5,50);
+		hydroxyethanSpell6 = new Spell ("Headbutt",6,55);
+		hydroxyethan.addPossibleSpell(hydroxyethanSpell1);
+		hydroxyethan.addPossibleSpell(hydroxyethanSpell2);
+		hydroxyethan.addPossibleSpell(hydroxyethanSpell3);
+		hydroxyethan.addPossibleSpell(hydroxyethanSpell4);
+		hydroxyethan.addPossibleSpell(hydroxyethanSpell5);
+		hydroxyethan.addPossibleSpell(hydroxyethanSpell6);
+		hydroxyethan.learnSpell(hydroxyethanSpell1);
+		hydroxyethan.setHealth(hydroxyethan.getMaxHealth());
+		
+		
+		
+		//sehr offensiv und hält relativ viel aus
+		asymptoterus = new Unimon("Asymptoterus", 124, true);
+		asymptoterusSpell1 = new Spell ("Giga Impact",1,32);
+		asymptoterusSpell2 = new Spell("Icicle Spear", 2, 43);
+		asymptoterusSpell3 = new Spell ("Explosion",3,54);
+		asymptoterusSpell4 = new Spell ("Blizzard",4,65);
+		asymptoterusSpell5 = new Spell("Flamethrower",5,74);
+		asymptoterusSpell6 = new Spell ("Head Smash",6,85);
+		asymptoterus.addPossibleSpell(asymptoterusSpell1);
+		asymptoterus.addPossibleSpell(asymptoterusSpell2);
+		asymptoterus.addPossibleSpell(asymptoterusSpell3);
+		asymptoterus.addPossibleSpell(asymptoterusSpell4);
+		asymptoterus.addPossibleSpell(asymptoterusSpell5);
+		asymptoterus.addPossibleSpell(asymptoterusSpell6);
+		asymptoterus.learnSpell(asymptoterusSpell1);
+		asymptoterus.setHealth(asymptoterus.getMaxHealth());
+		
+		
+		//oberboss stark defensiv+offensiv
+		legdayskipper = new Unimon("Legdayskipper", 210, true);
+		legdayskipperSpell1 = new Spell ("Giga Impact",1,33);
+		legdayskipperSpell2 = new Spell("Take Down", 2, 44);
+		legdayskipperSpell3 = new Spell ("Low Kick",3,55);
+		legdayskipperSpell4 = new Spell ("Punch",4,66);
+		legdayskipperSpell5 = new Spell("Jump Kick",5,77);
+		legdayskipperSpell6 = new Spell ("Tail Whip",6,88);
+		legdayskipper.addPossibleSpell(legdayskipperSpell1);
+		legdayskipper.addPossibleSpell(legdayskipperSpell2);
+		legdayskipper.addPossibleSpell(legdayskipperSpell3);
+		legdayskipper.addPossibleSpell(legdayskipperSpell4);
+		legdayskipper.addPossibleSpell(legdayskipperSpell5);
+		legdayskipper.addPossibleSpell(legdayskipperSpell6);
+		legdayskipper.learnSpell(legdayskipperSpell1);
+		legdayskipper.setHealth(legdayskipper.getMaxHealth());
+		
+		
+		
+		//sehr offensiv
+		wild1 = new Unimon("Wildie", 130, false);
+		wild1Spell1 =  new Spell ("Giga Impact",1,31);
+		wild1Spell2  = new Spell("Ice Shard", 2, 42);
+		wild1Spell3  = new Spell("Bite", 3, 53);
+		wild1Spell4  = new Spell("Double Hit", 4, 64);
+		wild1Spell5  = new Spell("Slap in the Face", 5, 75);
+		wild1Spell6  = new Spell("Head Smash", 6, 86);
 		wild1.addPossibleSpell(wild1Spell1);
 		wild1.addPossibleSpell(wild1Spell2);
 		wild1.addPossibleSpell(wild1Spell3);
@@ -179,14 +273,16 @@ public class UnimonList {
 		wild1.addPossibleSpell(wild1Spell5);
 		wild1.addPossibleSpell(wild1Spell6);
 		wild1.learnSpell(wild1Spell1);
-		
-		wild2 = new Unimon("Wildie2", 20, false);
-		wild2Spell1 =  new Spell ("Mud Bomb",1,20);
-		wild2Spell2  = new Spell("Head Smash", 2, 20);
-		wild2Spell3  = new Spell("Electro Ball", 3, 20);
-		wild2Spell4  = new Spell("Fling", 4, 20);
-		wild2Spell5  = new Spell("Machinegun", 5, 20);
-		wild2Spell6  = new Spell("Blow of an Ax", 6, 20);
+		wild1.setHealth(wild1.getMaxHealth());
+
+		//defensiv
+		wild2 = new Unimon("Wildie2", 210, false);
+		wild2Spell1 =  new Spell ("Mud Bomb",1,15);
+		wild2Spell2  = new Spell("Head Smash", 2, 26);
+		wild2Spell3  = new Spell("Electro Ball", 3, 33);
+		wild2Spell4  = new Spell("Fling", 4, 47);
+		wild2Spell5  = new Spell("Machinegun", 5, 55);
+		wild2Spell6  = new Spell("Blow of an Ax", 6, 63);
 		wild2.addPossibleSpell(wild2Spell1);
 		wild2.addPossibleSpell(wild2Spell2);
 		wild2.addPossibleSpell(wild2Spell3);
@@ -194,14 +290,16 @@ public class UnimonList {
 		wild2.addPossibleSpell(wild2Spell5);
 		wild2.addPossibleSpell(wild2Spell6);
 		wild2.learnSpell(wild2Spell1);
-		
-		wild3 = new Unimon("Wildie3", 20, false);
-		wild3Spell1 =  new Spell ("Tail Whip",1,20);
-		wild3Spell2  = new Spell("Gunshot", 2, 20);
-		wild3Spell3  = new Spell("huhu", 3, 20);
-		wild3Spell4  = new Spell("Fling", 4, 20);
-		wild3Spell5  = new Spell("Double Hit", 5, 20);
-		wild3Spell6  = new Spell("Sand Attack", 6, 20);
+		wild2.setHealth(wild2.getMaxHealth());
+
+		//ausgeglichen
+		wild3 = new Unimon("Wildie3", 130, false);
+		wild3Spell1 =  new Spell ("Tail Whip",1,15);
+		wild3Spell2  = new Spell("Gunshot", 2, 25);
+		wild3Spell3  = new Spell("Storm", 3, 35);
+		wild3Spell4  = new Spell("Fling", 4, 45);
+		wild3Spell5  = new Spell("Double Hit", 5, 55);
+		wild3Spell6  = new Spell("Sand Attack", 6, 65);
 		wild3.addPossibleSpell(wild3Spell1);
 		wild3.addPossibleSpell(wild3Spell2);
 		wild3.addPossibleSpell(wild3Spell3);
@@ -209,15 +307,17 @@ public class UnimonList {
 		wild3.addPossibleSpell(wild3Spell5);
 		wild3.addPossibleSpell(wild3Spell6);
 		wild3.learnSpell(wild3Spell1);
+		wild3.setHealth(wild3.getMaxHealth());
 
-		
+
+		//neutral
 		start1 = new Unimon("Dickman", 100, false);
-		start1Spell1 =  new Spell ("Jump Kick",1,20);
-		start1Spell2 =  new Spell ("hihi",1,20);
-		start1Spell3 =  new Spell ("Mega Punch",1,20);
-		start1Spell4 =  new Spell ("Electro Ball",1,20);
-		start1Spell5 =  new Spell ("Dizzy Punch",1,20);
-		start1Spell6 =  new Spell ("Beat Up",1,20);
+		start1Spell1 =  new Spell ("Jump Kick",1,15);
+		start1Spell2 =  new Spell ("Overdrive",1,25);
+		start1Spell3 =  new Spell ("Mega Punch",1,35);
+		start1Spell4 =  new Spell ("Electro Ball",1,45);
+		start1Spell5 =  new Spell ("Dizzy Punch",1,55);
+		start1Spell6 =  new Spell ("Beat Up",1,65);
 		start1.addPossibleSpell(start1Spell1);
 		start1.addPossibleSpell(start1Spell2);
 		start1.addPossibleSpell(start1Spell3);
@@ -225,14 +325,16 @@ public class UnimonList {
 		start1.addPossibleSpell(start1Spell5);
 		start1.addPossibleSpell(start1Spell6);
 		start1.learnSpell(start1Spell1);
+		start1.setHealth(start1.getMaxHealth());
 		
+		//offensiv
 		start2 = new Unimon("Dickachu", 90, false);
-		start2Spell1 =  new Spell ("Karate Chop",1,25);
-		start2Spell2 =  new Spell ("Cut",1,20);
-		start2Spell3 =  new Spell ("Fire Spin",1,20);
-		start2Spell4 =  new Spell ("Arm Thrust",1,20);
-		start2Spell5 =  new Spell ("Thunder Punch",1,20);
-		start2Spell6 =  new Spell ("Rock Blast",1,20);
+		start2Spell1 =  new Spell ("Karate Chop",1,17);
+		start2Spell2 =  new Spell ("Cut",1,27);
+		start2Spell3 =  new Spell ("Fire Spin",1,37);
+		start2Spell4 =  new Spell ("Arm Thrust",1,47);
+		start2Spell5 =  new Spell ("Thunder Punch",1,57);
+		start2Spell6 =  new Spell ("Rock Blast",1,67);
 		start2.addPossibleSpell(start2Spell1);
 		start2.addPossibleSpell(start2Spell2);
 		start2.addPossibleSpell(start2Spell3);
@@ -240,27 +342,35 @@ public class UnimonList {
 		start2.addPossibleSpell(start2Spell5);
 		start2.addPossibleSpell(start2Spell6);
 		start2.learnSpell(start2Spell1);
+		start2.setHealth(start2.getMaxHealth());
 		
+		//defensiv
 		start3 = new Unimon("Dicktator", 110, false);
-		start3Spell1 =  new Spell ("Power Trick",1,15);
-		start3Spell2 =  new Spell ("Poison Sting",1,20);
-		start3Spell3 =  new Spell ("Electro Ball",1,20);
-		start3Spell4 =  new Spell ("Noble Roar",1,20);
-		start3Spell5 =  new Spell ("Jump Kick",1,20);
-		start3Spell6 =  new Spell ("Wild Charge",1,20);
+		start3Spell1 =  new Spell ("Power Trick",1,13);
+		start3Spell2 =  new Spell ("Poison Sting",1,23);
+		start3Spell3 =  new Spell ("Electro Ball",1,33);
+		start3Spell4 =  new Spell ("Noble Roar",1,43);
+		start3Spell5 =  new Spell ("Jump Kick",1,53);
+		start3Spell6 =  new Spell ("Wild Charge",1,63);
 		start3.addPossibleSpell(start3Spell1);
 		start3.addPossibleSpell(start3Spell2);
 		start3.addPossibleSpell(start3Spell3);
 		start3.addPossibleSpell(start3Spell4);
 		start3.addPossibleSpell(start3Spell5);
 		start3.addPossibleSpell(start3Spell6);
-		start3.learnSpell(start3Spell1);
+		start3.setHealth(start3.getMaxHealth());
 		
 		
-		allUnimonsList.add(krisk);
-		allUnimonsList.add(neni);
-		allUnimonsList.add(brunz);
-		allUnimonsList.add(lisa);
+		
+		
+		
+		allUnimonsList.add(schleimi);
+		allUnimonsList.add(kaeffchen);
+		allUnimonsList.add(robotaer);
+		allUnimonsList.add(hentaicha);
+		allUnimonsList.add(hydroxyethan);
+		allUnimonsList.add(asymptoterus);
+		allUnimonsList.add(legdayskipper);
 		allUnimonsList.add(wild1);
 		allUnimonsList.add(wild2);
 		allUnimonsList.add(wild3);
@@ -276,10 +386,14 @@ public class UnimonList {
 		startUnimonsList.add(start2);
 		startUnimonsList.add(start3);
 		
-		trainerUnimonsList.add(krisk);
-		trainerUnimonsList.add(neni);
-		trainerUnimonsList.add(lisa);
-		trainerUnimonsList.add(brunz);
+		trainerUnimonsList.add(schleimi);
+		trainerUnimonsList.add(kaeffchen);
+		trainerUnimonsList.add(robotaer);
+		trainerUnimonsList.add(hentaicha);
+		trainerUnimonsList.add(hydroxyethan);
+		trainerUnimonsList.add(asymptoterus);
+		trainerUnimonsList.add(legdayskipper);
+		
 	}
 	
 	// gibt ArrayListe mit allen existierenden Unimons zurück

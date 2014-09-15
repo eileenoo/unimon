@@ -54,6 +54,12 @@ public class StartScreenActivity extends Activity {
 	
 	
 	/*@Override
+	protected void onResume(){
+		mediaPlayer.stop();
+		SoundPlayer(this,R.raw.unimon_music);
+	}*/
+	
+	/*@Override
 	protected void onDestroy() {
 		playerDb.close();
 		super.onDestroy();
@@ -88,7 +94,7 @@ public class StartScreenActivity extends Activity {
    	
     	newGame_button.setOnClickListener(new OnClickListener(){
     		public void onClick(View v) {
-    			playerController.getInstance();
+    			playerController.reset();
 				final Intent newGame = new Intent(StartScreenActivity.this,
 						NewGameActivity.class);
 				newGame.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
