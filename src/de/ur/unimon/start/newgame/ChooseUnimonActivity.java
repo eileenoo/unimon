@@ -92,6 +92,7 @@ public static class SwipeFragment extends Fragment{
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 		View swipeView = inflater.inflate(R.layout.choose_unimon_detail, container, false);
+		TextView swipeUnimonsInfo = (TextView) swipeView.findViewById(R.id.swipe_unimons_info);
 		TextView unimonName = (TextView) swipeView.findViewById(R.id.choose_unimon_name);
 		TextView unimonHealth = (TextView) swipeView.findViewById(R.id.choose_unimon_health);
 		TextView unimonLevel = (TextView) swipeView.findViewById(R.id.choose_unimon_level);
@@ -102,6 +103,7 @@ public static class SwipeFragment extends Fragment{
 		Bundle args = getArguments();
 		int position = args.getInt("position");;
 		
+		swipeUnimonsInfo.setText(getResources().getString(R.string.swipe_unimons_info_text));
 		unimonName.setText(startUnimonList.get(position).getName());
 		unimonHealth.setText(startUnimonList.get(position).getMaxHealth()+"/"+startUnimonList.get(position).getMaxHealth());
 		unimonLevel.setText(getResources().getString(R.string.level_text)+startUnimonList.get(position).getLevel());

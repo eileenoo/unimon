@@ -23,6 +23,7 @@ import android.widget.Toast;
 import de.ur.mi.android.excercises.starter.R;
 import de.ur.unimon.actionbar.InventoryActivity;
 import de.ur.unimon.actionbar.UnimonListActivity;
+import de.ur.unimon.appstart.StartScreenActivity;
 import de.ur.unimon.battle.ChooseBattleUnimonsActivity;
 import de.ur.unimon.battle.Trainer;
 import de.ur.unimon.battle.TrainerList;
@@ -35,7 +36,7 @@ import de.ur.unimon.startgame_logic.PlayerController;
 
 public class MapActivity extends Activity implements NavigationListener {
 
-	Button inventoryButton, unimonsButton, mapButton, movePlayerButton;
+	Button inventoryButton, unimonsButton, menuButton, saveButton;
 	Bitmap map, player, trainer1, trainer2, trainer3, trainer4, trainer5,
 			trainer6, trainerBoss;
 	public int playerXCoord, playerYCoord;
@@ -116,6 +117,11 @@ public class MapActivity extends Activity implements NavigationListener {
 		// transaction.setCustomAnimations(R.animator.slide_in_bottom,
 		// R.animator.slide_out_top);
 	}
+	
+	@Override
+	public void onBackPressed() {
+	    //Hardware Zurückbutton disabled
+	}
 
 	@Override
 	protected void onResume() {
@@ -139,8 +145,8 @@ public class MapActivity extends Activity implements NavigationListener {
 		canvasLayout = (LinearLayout) findViewById(R.id.canvas_layout);
 		inventoryButton = (Button) findViewById(R.id.inventory);
 		unimonsButton = (Button) findViewById(R.id.unimons);
-		mapButton = (Button) findViewById(R.id.map_overview);
-		movePlayerButton = (Button) findViewById(R.id.move_player_test_button);
+		menuButton = (Button) findViewById(R.id.back_to_start_screen);
+		saveButton = (Button) findViewById(R.id.save_button);
 		map = BitmapFactory.decodeResource(getResources(), R.drawable.map);
 		MapView canvasMap = new MapView(this);
 
@@ -178,30 +184,17 @@ public class MapActivity extends Activity implements NavigationListener {
 			}
 				
 		});
-		mapButton.setOnClickListener(new OnClickListener() {
+		menuButton.setOnClickListener(new OnClickListener() {
 			public void onClick(View v) {
-				Intent startBattle = new Intent(MapActivity.this,
-						ChooseBattleUnimonsActivity.class);
-				startBattle.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
-				startBattle.putExtra("trainerID", 1);
-				startActivity(startBattle);
-				
-				
+				Intent backToStart = new Intent(MapActivity.this,
+						StartScreenActivity.class);
+				backToStart.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);				
+				startActivity(backToStart);
 			}
 		});
-
-		movePlayerButton.setOnClickListener(new OnClickListener() {
+		saveButton.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-
-				
-//				 Intent shop = new Intent(MapActivity.this,
-//				ShopActivity.class); startActivity(shop);
-				
-
-//				Intent dompteur = new Intent(MapActivity.this,
-//						DompteurActivity.class);
-//				startActivity(dompteur);
 				controller.save(PlayerController.getInstance());
 			}
 		});

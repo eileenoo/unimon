@@ -5,6 +5,7 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -20,6 +21,7 @@ import de.ur.unimon.unimons.UnimonList;
 
 public class StartScreenActivity extends Activity {
 
+
 	Button newGame_button;
 	Button resume_button;
 	Button options_button;
@@ -30,21 +32,26 @@ public class StartScreenActivity extends Activity {
 	AlertDialog.Builder builder;
 	private Context context;
 	private DatabaseController dbController;
+	public static MediaPlayer mediaPlayer;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 		builder = new AlertDialog.Builder(this);
+		
 		dbController = new DatabaseController(this);
 		
 		//löscht alle Daten aus der Datenbank
 //		dbController.clearDB();
-		
-		context = this;
+
+		context = this.getApplicationContext();
+		SoundPlayer(this,R.raw.unimon_music);
+
 		//initDatabase();
 		initUI();		
 	}
+	
 	
 	/*@Override
 	protected void onDestroy() {
@@ -57,7 +64,15 @@ public class StartScreenActivity extends Activity {
 		playerDb.open();
 	}*/
 	
+    public static void SoundPlayer(Context context,int raw_id){
+    	mediaPlayer = MediaPlayer.create(context, raw_id);
+    	mediaPlayer.setLooping(true); // Set looping    	
+        //mediaPlayer.release();
+    	mediaPlayer.start();
+        }
+
 	
+
 	private void initUI(){
     	newGame_button = (Button) findViewById (R.id.newGame_button);
     	resume_button = (Button) findViewById (R.id.resume_button);
@@ -129,7 +144,7 @@ public class StartScreenActivity extends Activity {
 		guide_button.setOnClickListener(new OnClickListener() {
 			public void onClick(View v) {
 				Intent guide = new Intent(StartScreenActivity.this,
-						GuideScreenActivity.class);
+						GuideScreenActivity.class);				
 				startActivity(guide);
 			}
     	});
