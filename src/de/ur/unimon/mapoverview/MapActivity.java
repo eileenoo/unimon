@@ -23,16 +23,15 @@ import android.widget.Toast;
 import de.ur.mi.android.excercises.starter.R;
 import de.ur.unimon.actionbar.InventoryActivity;
 import de.ur.unimon.actionbar.UnimonListActivity;
-import de.ur.unimon.appstart.StartScreenActivity;
 import de.ur.unimon.battle.ChooseBattleUnimonsActivity;
 import de.ur.unimon.battle.Trainer;
 import de.ur.unimon.battle.TrainerList;
 import de.ur.unimon.buildings.DompteurActivity;
-import de.ur.unimon.buildings.ShopActivity;
+import de.ur.unimon.database.DatabaseController;
 import de.ur.unimon.navigation.NavigationController;
 import de.ur.unimon.navigation.NavigationListener;
 import de.ur.unimon.navigation.PlayerPositionDetail;
-import de.ur.unimon.start.newgame.NewGameActivity;
+import de.ur.unimon.startgame_logic.PlayerController;
 
 public class MapActivity extends Activity implements NavigationListener {
 
@@ -88,6 +87,8 @@ public class MapActivity extends Activity implements NavigationListener {
 
 	private int count;
 	AlertDialog.Builder builder;
+	
+	DatabaseController controller;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -103,6 +104,8 @@ public class MapActivity extends Activity implements NavigationListener {
 		initNavigation();
 		initFragmentManager();
 		getTrainerPositions();
+		
+		controller = new DatabaseController(this);
 
 	}
 
@@ -173,6 +176,7 @@ public class MapActivity extends Activity implements NavigationListener {
 						UnimonListActivity.class);
 				startActivity(unimons);
 			}
+				
 		});
 		mapButton.setOnClickListener(new OnClickListener() {
 			public void onClick(View v) {
@@ -181,6 +185,8 @@ public class MapActivity extends Activity implements NavigationListener {
 				startBattle.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
 				startBattle.putExtra("trainerID", 1);
 				startActivity(startBattle);
+				
+				
 			}
 		});
 
@@ -188,14 +194,15 @@ public class MapActivity extends Activity implements NavigationListener {
 			@Override
 			public void onClick(View v) {
 
-				/*
-				 * Intent shop = new Intent(MapActivity.this,
-				 * ShopActivity.class); startActivity(shop);
-				 */
+				
+//				 Intent shop = new Intent(MapActivity.this,
+//				ShopActivity.class); startActivity(shop);
+				
 
-				Intent dompteur = new Intent(MapActivity.this,
-						DompteurActivity.class);
-				startActivity(dompteur);
+//				Intent dompteur = new Intent(MapActivity.this,
+//						DompteurActivity.class);
+//				startActivity(dompteur);
+				controller.save(PlayerController.getInstance());
 			}
 		});
 	}

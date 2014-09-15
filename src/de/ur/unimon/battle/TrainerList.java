@@ -19,7 +19,7 @@ public class TrainerList {
 	private ArrayList<Unimon> unimonList;
 
 	public TrainerList(){
-		unimonList = new UnimonList().getUnimonList();
+		unimonList = new UnimonList().getTrainerUnimonsList();
 		trainerList = new ArrayList<Trainer>();
 		trainer1 = new Trainer(1, "Wirtschaft", 48.9987501, 12.0936204, unimonList.get(0), 70, 70, false);
 		trainer2 = new Trainer(2, "Vielberth", 49.0004036, 12.0942936, unimonList.get(1), 150, 150, false);
