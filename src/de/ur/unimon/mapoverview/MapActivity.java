@@ -25,14 +25,13 @@ import de.ur.unimon.actionbar.InventoryActivity;
 import de.ur.unimon.actionbar.UnimonListActivity;
 import de.ur.unimon.appstart.StartScreenActivity;
 import de.ur.unimon.battle.ChooseBattleUnimonsActivity;
-import de.ur.unimon.battle.Trainer;
-import de.ur.unimon.battle.TrainerList;
-import de.ur.unimon.buildings.DompteurActivity;
 import de.ur.unimon.database.DatabaseController;
 import de.ur.unimon.navigation.NavigationController;
 import de.ur.unimon.navigation.NavigationListener;
 import de.ur.unimon.navigation.PlayerPositionDetail;
-import de.ur.unimon.startgame_logic.PlayerController;
+import de.ur.unimon.player.PlayerController;
+import de.ur.unimon.trainer.Trainer;
+import de.ur.unimon.trainer.TrainerListController;
 
 public class MapActivity extends Activity implements NavigationListener,
 		RangeListener {
@@ -73,6 +72,7 @@ public class MapActivity extends Activity implements NavigationListener,
 	private Toast toast;
 
 	private ArrayList<Trainer> trainerList;
+	private TrainerListController trainerListController;
 
 	private int count;
 	AlertDialog.Builder builder;
@@ -90,7 +90,7 @@ public class MapActivity extends Activity implements NavigationListener,
 
 		setContentView(R.layout.map_activity);
 		playerXCoord = playerYCoord = 0;
-		trainerList = new TrainerList().getTrainerList();
+		trainerList = trainerListController.getInstance().getTrainerList();
 		builder = new AlertDialog.Builder(this);
 		rnd = new Random();
 		rangeChecker = new RangeChecker();

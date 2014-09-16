@@ -10,7 +10,9 @@ import android.database.sqlite.SQLiteDatabase.CursorFactory;
 import android.database.sqlite.SQLiteOpenHelper;
 import de.ur.unimon.actionbar.Inventory;
 import de.ur.unimon.config.UnimonAppConfig;
-import de.ur.unimon.startgame_logic.Player;
+import de.ur.unimon.player.Player;
+import de.ur.unimon.trainer.Trainer;
+import de.ur.unimon.trainer.TrainerList;
 import de.ur.unimon.unimons.Unimon;
 import de.ur.unimon.unimons.UnimonList;
 
@@ -86,7 +88,7 @@ public class AppDatabase {
 	public ArrayList<Unimon> getDetailToUnimons(ArrayList<Unimon> unimonList, int index){
 		int id = index +1;
 		String selectQuery = "SELECT * FROM " + UnimonAppConfig.Data.DATABASE_TABLE_UNIMONS 
-				+ " WHERE " + UnimonAppConfig.Data.KEY_ID + " = " + id;
+				+ " WHERE " + UnimonAppConfig.Data.KEY_UNIMONS_ID + " = " + id;
 		
 		Cursor c = db.rawQuery(selectQuery, null);
 		if (c != null)
@@ -123,6 +125,22 @@ public class AppDatabase {
 		
 	}
 	
+	public TrainerList getTrainerVisibility(TrainerList trainerList, int index) {
+		int id = index +1;
+		String selectQuery = "SELECT * FROM " + UnimonAppConfig.Data.DATABASE_TABLE_TRAINER_VISIBILITY
+				+ " WHERE " + UnimonAppConfig.Data.KEY_TRAINER_ID + " = " + id;
+		
+		Cursor c = db.rawQuery(selectQuery, null);
+		if (c != null)
+            c.moveToFirst();
+		
+		if (c.getInt(c.getColumnIndex(UnimonAppConfig.Data.KEY_TRAINER_VISIBLE)) == 1) {
+			trainerList.getTrainerList().get(index).setVisible();
+		}
+	
+		return trainerList;
+	}
+	
 	public long insertPlayerIntoDataBase(Player currentPlayer) {
 		ContentValues values = new ContentValues();
 		values.put(UnimonAppConfig.Data.KEY_PLAYER_MONEY, currentPlayer.getMoney());
@@ -135,14 +153,11 @@ public class AppDatabase {
 		return tag_id;
 	}	
 	
-	public void removePlayerFromDatabase() {
-		db.delete(UnimonAppConfig.Data.DATABASE_TABLE_PLAYER, null, null);
-	}
-	
 	public long insertUnimonsIntoDataBase(ArrayList<Unimon> unimons){
+		long tag_id = 0;
 		ContentValues values = new ContentValues();
 		for (int i=0; i<unimons.size(); i++) {
-			values.put(UnimonAppConfig.Data.KEY_ID, i+1);
+			values.put(UnimonAppConfig.Data.KEY_UNIMONS_ID, i+1);
 			values.put(UnimonAppConfig.Data.KEY_UNIMONS_NAME, unimons.get(i).getName());
 			values.put(UnimonAppConfig.Data.KEY_UNIMONS_LEVEL, unimons.get(i).getLevel());
 			values.put(UnimonAppConfig.Data.KEY_UNIMONS_XP, unimons.get(i).getXp());
@@ -159,13 +174,35 @@ public class AppDatabase {
 			values.put(UnimonAppConfig.Data.KEY_UNIMONS_SPELL_4_Level, unimons.get(i).getSpellBySpellNumber(3).getSpellLevel());
 			values.put(UnimonAppConfig.Data.KEY_UNIMONS_SPELL_5_Level, unimons.get(i).getSpellBySpellNumber(4).getSpellLevel());
 			values.put(UnimonAppConfig.Data.KEY_UNIMONS_SPELL_6_Level, unimons.get(i).getSpellBySpellNumber(5).getSpellLevel());
-		}
-		long tag_id = db.insert(UnimonAppConfig.Data.DATABASE_TABLE_UNIMONS, null, values);	
+			
+			tag_id = db.insert(UnimonAppConfig.Data.DATABASE_TABLE_UNIMONS, null, values);	
+		} 
 		return tag_id;
+	}
+	
+	public long insertTrainerVisibilityIntoDataBase(ArrayList<Trainer> trainerList) {
+		long tag_id=0;
+		ContentValues values = new ContentValues();
+		for (int i=0; i<trainerList.size(); i++) {
+			values.put(UnimonAppConfig.Data.KEY_TRAINER_ID, i+1);
+			values.put(UnimonAppConfig.Data.KEY_TRAINER_VISIBLE, trainerList.get(i).isSeen()? 1:0);
+			tag_id = db.insert(UnimonAppConfig.Data.DATABASE_TABLE_TRAINER_VISIBILITY, null, values);
+		}
+		
+		return tag_id;
+	}
+	
+	
+	public void removePlayerFromDatabase() {
+		db.delete(UnimonAppConfig.Data.DATABASE_TABLE_PLAYER, null, null);
 	}
 	
 	public void removeUnimonsFromDatabase() {
 		db.delete(UnimonAppConfig.Data.DATABASE_TABLE_UNIMONS, null, null);
+	}
+	
+	public void removeTrainerVisibilityFromDataBase() {
+		db.delete(UnimonAppConfig.Data.DATABASE_TABLE_TRAINER_VISIBILITY, null, null);
 	}
 	
 	public boolean checkIfIsEmpty(){
@@ -190,7 +227,7 @@ public class AppDatabase {
 				+ UnimonAppConfig.Data.KEY_PLAYER_PROTECTORS + " integer);";
 		
 		public static final String CREATE_TABLE_UNIMONS = "CREATE TABLE "+ UnimonAppConfig.Data.DATABASE_TABLE_UNIMONS  + " ("
-				+ UnimonAppConfig.Data.KEY_ID + " integer primary key, "
+				+ UnimonAppConfig.Data.KEY_UNIMONS_ID + " integer primary key, "
 				+ UnimonAppConfig.Data.KEY_UNIMONS_NAME + " text not null, "
 				+ UnimonAppConfig.Data.KEY_UNIMONS_LEVEL + " integer, "
 				+ UnimonAppConfig.Data.KEY_UNIMONS_XP + " integer, "
@@ -207,6 +244,11 @@ public class AppDatabase {
 				+ UnimonAppConfig.Data.KEY_UNIMONS_SPELL_4_Level + " integer, "
 				+ UnimonAppConfig.Data.KEY_UNIMONS_SPELL_5_Level + " integer, "
 				+ UnimonAppConfig.Data.KEY_UNIMONS_SPELL_6_Level + " integer);";
+		
+		public static final String CREATE_TABLE_TRAINER_VISIBILITY ="CREATE TABLE " + UnimonAppConfig.Data.DATABASE_TABLE_TRAINER_VISIBILITY + " ("
+				+ UnimonAppConfig.Data.KEY_TRAINER_ID + " integer primary key, "
+				+ UnimonAppConfig.Data.KEY_TRAINER_VISIBLE + " integer);";
+				
 
 		
 		public AppDatabaseHelper(Context context, String name,
@@ -218,6 +260,7 @@ public class AppDatabase {
 		public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
 			db.execSQL("DROP TABLE IF EXISTS " + UnimonAppConfig.Data.DATABASE_TABLE_PLAYER);
 			db.execSQL("DROP TABLE IF EXISTS " + UnimonAppConfig.Data.DATABASE_TABLE_UNIMONS);
+			db.execSQL("DROP TABLE IF EXISTS " + UnimonAppConfig.Data.DATABASE_TABLE_TRAINER_VISIBILITY);
 			onCreate(db);
 		}
 
@@ -225,6 +268,7 @@ public class AppDatabase {
 		public void onCreate(SQLiteDatabase db) {
 			db.execSQL(CREATE_TABLE_PLAYER);
 			db.execSQL(CREATE_TABLE_UNIMONS);
+			db.execSQL(CREATE_TABLE_TRAINER_VISIBILITY);
 		}
 
 	}

@@ -2,8 +2,8 @@ package de.ur.unimon.mapoverview;
 
 import java.util.ArrayList;
 
-import de.ur.unimon.battle.Trainer;
 import de.ur.unimon.navigation.PlayerPositionDetail;
+import de.ur.unimon.trainer.Trainer;
 
 public interface RangeListener {	
 

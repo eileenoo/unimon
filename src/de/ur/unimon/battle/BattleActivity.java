@@ -17,8 +17,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 import de.ur.mi.android.excercises.starter.R;
 import de.ur.unimon.mapoverview.MapActivity;
-import de.ur.unimon.startgame_logic.Player;
-import de.ur.unimon.startgame_logic.PlayerController;
+import de.ur.unimon.player.Player;
+import de.ur.unimon.player.PlayerController;
+import de.ur.unimon.trainer.Trainer;
+import de.ur.unimon.trainer.TrainerListController;
 import de.ur.unimon.unimons.Spell;
 import de.ur.unimon.unimons.Unimon;
 
@@ -47,6 +49,7 @@ public class BattleActivity extends Activity implements
 	private Unimon[] currentBattleUnimonList;
 	private String[] battleUnimonListStringArray;
 	private Trainer trainer;
+	private TrainerListController trainerListController;
 	private Player player;
 	private PlayerController playerController;
 	private BattleController battleController;
@@ -240,15 +243,14 @@ public class BattleActivity extends Activity implements
 		map = new Intent(BattleActivity.this, MapActivity.class);
 		playerStatus = true;
 		player = playerController.getInstance();
+		ArrayList<Trainer> trainerList = trainerListController.getInstance().getTrainerList();
+		trainer = trainerList.get(getIntent().getExtras().getInt("trainerID"));
+		enemyUnimon = trainer.getUnimon();
 	}
 
 	private void initBattleController() {
 		battleUnimonListStringArray = getIntent().getStringArrayExtra(
 				"chosenUnimonStringArray");
-
-		ArrayList<Trainer> trainerList = new TrainerList().getTrainerList();
-		trainer = trainerList.get(getIntent().getExtras().getInt("trainerID"));
-		enemyUnimon = trainer.getUnimon();
 
 		String battleUnimonName = battleUnimonListStringArray[0];
 		String secondBattleUnimonName = battleUnimonListStringArray[1];

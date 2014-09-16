@@ -13,10 +13,10 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import de.ur.mi.android.excercises.starter.R;
 import de.ur.unimon.database.DatabaseController;
-import de.ur.unimon.database.PlayerDatabase;
 import de.ur.unimon.mapoverview.MapActivity;
+import de.ur.unimon.player.PlayerController;
 import de.ur.unimon.start.newgame.NewGameActivity;
-import de.ur.unimon.startgame_logic.PlayerController;
+import de.ur.unimon.trainer.TrainerListController;
 import de.ur.unimon.unimons.UnimonList;
 
 public class StartScreenActivity extends Activity {
@@ -27,8 +27,8 @@ public class StartScreenActivity extends Activity {
 	Button options_button;
 	Button guide_button;
 	UnimonList allUnimonsList;
-	PlayerController playerController;
-	PlayerDatabase playerDb;
+	private PlayerController playerController;
+	private TrainerListController trainerListController;
 	AlertDialog.Builder builder;
 	private Context context;
 	private DatabaseController dbController;
@@ -48,8 +48,16 @@ public class StartScreenActivity extends Activity {
 		context = this.getApplicationContext();
 		SoundPlayer(this,R.raw.unimon_music);
 
-		//initDatabase();
 		initUI();		
+	}
+	
+	@Override
+	public void onBackPressed(){
+		Intent intent = new Intent(Intent.ACTION_MAIN);
+		   intent.addCategory(Intent.CATEGORY_HOME);
+		   intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+		   startActivity(intent);
+		finish();
 	}
 	
 	
@@ -57,17 +65,6 @@ public class StartScreenActivity extends Activity {
 	protected void onResume(){
 		mediaPlayer.stop();
 		SoundPlayer(this,R.raw.unimon_music);
-	}*/
-	
-	/*@Override
-	protected void onDestroy() {
-		playerDb.close();
-		super.onDestroy();
-	}
-	
-	private void initDatabase() {
-		playerDb = new PlayerDatabase(this);
-		playerDb.open();
 	}*/
 	
     public static void SoundPlayer(Context context,int raw_id){
@@ -95,6 +92,7 @@ public class StartScreenActivity extends Activity {
     	newGame_button.setOnClickListener(new OnClickListener(){
     		public void onClick(View v) {
     			playerController.reset();
+    			trainerListController.reset();
 				final Intent newGame = new Intent(StartScreenActivity.this,
 						NewGameActivity.class);
 				newGame.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
@@ -136,6 +134,7 @@ public class StartScreenActivity extends Activity {
     		public void onClick(View v) {	
     			//playerController.getInstanceFromDB(context);
     			playerController.setInstance(dbController.getPlayer());
+    			trainerListController.setInstance(dbController.getTrainerList());
     			Intent resume = new Intent (StartScreenActivity.this, MapActivity.class);
     			startActivity(resume);
 			}

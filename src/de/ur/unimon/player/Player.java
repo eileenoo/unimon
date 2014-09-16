@@ -1,4 +1,4 @@
-package de.ur.unimon.startgame_logic;
+package de.ur.unimon.player;
 
 import java.util.ArrayList;
 
