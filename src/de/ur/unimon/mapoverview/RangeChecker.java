@@ -12,7 +12,7 @@ import de.ur.unimon.battle.TrainerList;
 import de.ur.unimon.navigation.PlayerPositionDetail;
 
 public class RangeChecker {
-
+ 
 
 	private ArrayList<Trainer> trainerList = new TrainerList().getTrainerList();
 	RangeListener rangeListener;

@@ -22,10 +22,7 @@ import de.ur.unimon.unimons.UnimonList;
 public class StartScreenActivity extends Activity {
 
 
-	Button newGame_button;
-	Button resume_button;
-	Button options_button;
-	Button guide_button;
+	Button newGame_button, resume_button, options_button, guide_button;
 	UnimonList allUnimonsList;
 	PlayerController playerController;
 	PlayerDatabase playerDb;
@@ -46,18 +43,29 @@ public class StartScreenActivity extends Activity {
 //		dbController.clearDB();
 
 		context = this.getApplicationContext();
-		SoundPlayer(this,R.raw.unimon_music);
-
+		initSound();
 		//initDatabase();
 		initUI();		
 	}
 	
-	
-	/*@Override
-	protected void onResume(){
-		mediaPlayer.stop();
+	private void initSound() {
+		if(mediaPlayer == null){
 		SoundPlayer(this,R.raw.unimon_music);
-	}*/
+		}
+		else return;
+	
+	}
+
+	@Override
+	public void onBackPressed(){
+		Intent intent = new Intent(Intent.ACTION_MAIN);
+		   intent.addCategory(Intent.CATEGORY_HOME);
+		   intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+		   startActivity(intent);
+		   mediaPlayer.stop();
+		finish();
+	}
+
 	
 	/*@Override
 	protected void onDestroy() {

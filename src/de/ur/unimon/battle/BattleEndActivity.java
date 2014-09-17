@@ -2,6 +2,7 @@ package de.ur.unimon.battle;
 
 import de.ur.mi.android.excercises.starter.R;
 import de.ur.unimon.actionbar.UnimonListAdapter;
+import de.ur.unimon.appstart.OptionsScreenActivity;
 import de.ur.unimon.mapoverview.MapActivity;
 import android.app.Activity;
 import android.content.Intent;
@@ -48,6 +49,9 @@ public class BattleEndActivity extends Activity{
 		battleLostTextView = (TextView) findViewById(R.id.battle_lost_textview);
 		
 		if (isGameWon) {
+			if (OptionsScreenActivity.soundOnButtonChecked == true){
+				
+			}
 			moneyEarned.setText(" " + money);
 			xpEarned.setText(" " + xp);
 			battleLostTextView.setVisibility(View.GONE);

@@ -128,8 +128,8 @@ public class InventoryActivity extends Activity {
 
 		useProtectorButton.setOnClickListener(new OnClickListener() {
 			public void onClick(View v) {
-				showToast(R.string.use_protector_toast);
 				if(player.getInventory().protectorAvailable()){
+					showToast(R.string.use_protector_toast);
 					player.getInventory().reduceProtector();
 					protectorCount.setText(getResources().getString(
 							R.string.item_count_text)

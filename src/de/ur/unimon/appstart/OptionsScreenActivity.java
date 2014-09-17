@@ -17,6 +17,7 @@ public class OptionsScreenActivity extends Activity{
 	RadioButton soundOff;
 	RadioButton languageEnglish;
 	RadioButton languageGerman;
+	public static boolean soundOnButtonChecked;
 				
 	
 	@Override
@@ -47,12 +48,14 @@ public class OptionsScreenActivity extends Activity{
 	            if (checked)	
 	            StartScreenActivity.SoundPlayer(this,R.raw.unimon_music);
 	            StartScreenActivity.mediaPlayer.start();
-	            StartScreenActivity.mediaPlayer.setLooping(true);    
+	            StartScreenActivity.mediaPlayer.setLooping(true);
+	            soundOnButtonChecked = true;
 	            break;
 	        case R.id.sound_off_radio:
 	            if (checked)
 	            	if (StartScreenActivity.mediaPlayer.isPlaying()){
 	            		StartScreenActivity.mediaPlayer.stop();
+	            		soundOnButtonChecked = false;
 	            	}	            
 	            break;
 	    }
