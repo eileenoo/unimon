@@ -20,7 +20,7 @@
     
     <string name="action_inventar">Inventory</string>
     <string name="action_unimons">Unimons</string>
-    <string name="action_map_overview">Map</string>
+    <string name="action_menu">Menu</string>
     <string name="story_part_one">Hello my name is Dr. Wulfman! A villain has placed a curse on the University of Regensburg, 
         which states that all students only write bad grades.</string>
     <string name="story_part_two">Now it is your task to defeat the bad guy! Collect enough skillpoints to be able to train your unimons!</string>
@@ -38,10 +38,18 @@
     
     <string name="item_count_text">Number:\u0020</string>
     <string name="healpot_name">Healpot</string>
+    <string name="healpot_info_text">Heals your Unimon by 20%</string>
     <string name="uniball_name">Uniball</string>
+    <string name="uniball_info_text">Use an Uniball during a battle to catch the opposing Unimon!</string>
     <string name="revive_name">Revive</string>
+    <string name="revive_info_text">Revives your dead Unimon.</string>
     <string name="protector_name">Protector</string>
-    <string name="use_item_button_text">Use Item</string>
+    <string name="protector_info_text">Protects you from one wild Unimon.</string>
+    <string name="protector_toast">You don\'t have any Protectors left!</string>
+    <string name="protector_used_toast">You were protected from a wild Unimon!</string>
+    <string name="use_item_button_text">Use Healpot/Revive</string>
+    <string name="use_protector_button_text">Use Protector</string>
+    <string name="use_protector_toast">Now you\'re safe from one wild unimon</string>
     <string name="shop_name">Shop</string>
     <string name="dompteur_name">Dompteur</string>
     <string name="hospital_name">Hospital</string>
@@ -99,7 +107,9 @@
 	<string name="left_parenthesis"> ( </string>
 	<string name="right_parenthesis"> ) </string>
 	
+	<string name="swipe_unimons_info_text">Swipe to change your Unimon</string>
 	<string name="choose_that_unimon">Choose me!</string>
+	
 	
 	<string name="inventory_use_item">Use Item</string>
 	<string name="inventory_use_healPot">Use HealPot</string>

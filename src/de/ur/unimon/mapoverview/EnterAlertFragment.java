@@ -16,11 +16,11 @@ import android.widget.Button;
 import android.widget.TextView;
 import de.ur.mi.android.excercises.starter.R;
 import de.ur.unimon.battle.ChooseBattleUnimonsActivity;
-import de.ur.unimon.battle.Trainer;
-import de.ur.unimon.battle.TrainerList;
 import de.ur.unimon.buildings.DompteurActivity;
 import de.ur.unimon.buildings.HospitalActivity;
 import de.ur.unimon.buildings.ShopActivity;
+import de.ur.unimon.trainer.Trainer;
+import de.ur.unimon.trainer.TrainerListController;
 
 public class EnterAlertFragment extends Fragment {
 	
@@ -29,6 +29,7 @@ public class EnterAlertFragment extends Fragment {
 	String building, questionText;
 	int trainerID;
 	private ArrayList<Trainer> trainerList;
+	private TrainerListController trainerListController;
 
 	@Override
 	public void onAttach(Activity activity) {
@@ -52,7 +53,7 @@ public class EnterAlertFragment extends Fragment {
 	@Override
 	public void onActivityCreated(Bundle savedInstanceState) {
 		super.onActivityCreated(savedInstanceState);
-		trainerList = new TrainerList().getTrainerList();
+		trainerList = trainerListController.getInstance().getTrainerList();
 		Bundle extras = getArguments();
 		building = extras.getString("building");
 		if (building == "Shop" || building == "Hospital" || building == "Dompteur"){

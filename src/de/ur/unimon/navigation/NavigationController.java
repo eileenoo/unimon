@@ -2,7 +2,6 @@ package de.ur.unimon.navigation;
 
 import java.util.ArrayList;
 
-import de.ur.unimon.battle.TrainerList;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.location.Location;
@@ -11,6 +10,8 @@ import android.location.LocationManager;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Toast;
+import de.ur.unimon.trainer.TrainerList;
+import de.ur.unimon.trainer.TrainerListController;
 
 public class NavigationController implements LocationListener {
 
@@ -24,6 +25,7 @@ public class NavigationController implements LocationListener {
 			trainerFour, trainerFive, trainerSix, trainerBoss;
 	ArrayList<Float> trainerDistances, buildingDistances;
 	TrainerList trainerList;
+	private TrainerListController trainerListController;
 
 	private NavigationListener navigationListener;
 	PlayerPositionDetail playerPosDetail;
@@ -33,7 +35,7 @@ public class NavigationController implements LocationListener {
 	public NavigationController(Context context,
 			NavigationListener navigationListener) {
 		this.navigationListener = navigationListener;
-		trainerList = new TrainerList();
+		trainerList = trainerListController.getInstance();
 		init(context);
 	}
 
@@ -70,7 +72,7 @@ public class NavigationController implements LocationListener {
 	private void updateNavigationInformation() {
 		buildingDistances = new ArrayList<Float>();
 		trainerDistances = new ArrayList<Float>();
-		trainerList = new TrainerList();
+		trainerList = trainerListController.getInstance();
 		trainerOne = new Location("");
 		trainerTwo = new Location("");
 		trainerThree = new Location("");

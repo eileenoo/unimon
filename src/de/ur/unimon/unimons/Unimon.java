@@ -17,6 +17,7 @@ public class Unimon {
 	public Unimon(String name, int baseHealth, boolean ownedByTrainer){
 		this.name = name;	
 		this.baseHealth = baseHealth;
+		maxHealth = 0;
 		health = getMaxHealth();
 		level = 1;
 		xp = 0;
@@ -113,6 +114,11 @@ public class Unimon {
 			xp = (xp + amount) - getXpPerLevel();
 			levelUp();
 		}
+		while (xp > getXpPerLevel()){
+			int xpOverflow = xp - getXpPerLevel();
+			levelUp();
+			xp = xpOverflow;
+		}
 	}
 	
 	public void setBaseHealth(int baseHealth){
@@ -137,7 +143,8 @@ public class Unimon {
 	}
 	
 	private void calculateMaxHealth(){
-		maxHealth = (int) (baseHealth + Math.exp((level/15d))+10);
+//		setMaxHealth((int) (baseHealth + Math.exp((level/15d))+10));
+		maxHealth = (int) (baseHealth + level*17+level*7);
 	}
 	
 	public void setHealth(int health){
@@ -198,6 +205,7 @@ public class Unimon {
 	
 	public void learnSpell(Spell spell){
 		spell.levelUpSpell();
+		spell.learnSpell();
 		ownedSpells.add(spell);
 		for (int i=0; i<notYetLearnedSpells.size(); i++){
 			if (notYetLearnedSpells.get(i) == spell){

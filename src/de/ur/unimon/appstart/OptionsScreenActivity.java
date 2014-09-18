@@ -3,6 +3,7 @@ package de.ur.unimon.appstart;
 
 import de.ur.mi.android.excercises.starter.R;
 import android.app.Activity;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.RadioButton;
@@ -16,8 +17,7 @@ public class OptionsScreenActivity extends Activity{
 	RadioButton soundOff;
 	RadioButton languageEnglish;
 	RadioButton languageGerman;
-	
-	
+				
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +36,7 @@ public class OptionsScreenActivity extends Activity{
 		
 	}
 	
+	
 	public void onRadioButtonClicked(View v) {
 	    // Is the button now checked?
 	    boolean checked = ((RadioButton)v).isChecked();
@@ -43,12 +44,16 @@ public class OptionsScreenActivity extends Activity{
 	    // Check which radio button was clicked
 	    switch(v.getId()) {
 	        case R.id.sound_on_radio:
-	            if (checked)
-	                
+	            if (checked)	
+	            StartScreenActivity.SoundPlayer(this,R.raw.unimon_music);
+	            StartScreenActivity.mediaPlayer.start();
+	            StartScreenActivity.mediaPlayer.setLooping(true);    
 	            break;
 	        case R.id.sound_off_radio:
 	            if (checked)
-	                
+	            	if (StartScreenActivity.mediaPlayer.isPlaying()){
+	            		StartScreenActivity.mediaPlayer.stop();
+	            	}	            
 	            break;
 	    }
 	}

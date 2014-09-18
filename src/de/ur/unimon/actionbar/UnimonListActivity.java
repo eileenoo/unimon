@@ -15,14 +15,14 @@ import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import de.ur.mi.android.excercises.starter.R;
-import de.ur.unimon.startgame_logic.PlayerController;
+import de.ur.unimon.player.PlayerController;
 import de.ur.unimon.unimons.Spell;
 import de.ur.unimon.unimons.Unimon;
 
 public class UnimonListActivity extends Activity{
 	
 	ListView listUnimons;
-	ListAdapter listUnimons_adpater;
+	ListAdapter listUnimons_adapter;
 	private ArrayList <Unimon> unimons;
 	PlayerController playerController;
 	
@@ -83,8 +83,8 @@ public class UnimonListActivity extends Activity{
 	
 	private void initListAdapter() {
 		listUnimons = (ListView) findViewById(R.id.listView_unimons);
-		listUnimons_adpater = new UnimonListAdapter(this, unimons);
-		listUnimons.setAdapter(listUnimons_adpater);
+		listUnimons_adapter = new UnimonListAdapter(this, unimons);
+		listUnimons.setAdapter(listUnimons_adapter);
 	}
 	
 

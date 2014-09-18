@@ -50,29 +50,20 @@
             android:text="@string/action_unimons"
             android:textSize="16sp" />
 
-        <!--
         <Button
-            android:id="@+id/back_to_map_button"
+            android:id="@+id/back_to_start_screen"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Back to Startscreen"
-            android:textSize="16sp" /> -->
-
-        <Button
-            android:id="@+id/map_overview"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="@string/action_map_overview"
+            android:text="@string/action_menu"
             android:textSize="16sp" />
 
         <Button
-            android:id="@+id/move_player_test_button"
+            android:id="@+id/save_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Move"
+            android:text="Save"
             android:textSize="16sp" />
     </LinearLayout>
 

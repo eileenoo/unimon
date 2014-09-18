@@ -19,7 +19,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import de.ur.mi.android.excercises.starter.R;
 import de.ur.unimon.mapoverview.MapActivity;
-import de.ur.unimon.startgame_logic.PlayerController;
+import de.ur.unimon.player.PlayerController;
 import de.ur.unimon.unimons.Unimon;
 import de.ur.unimon.unimons.UnimonList;
 
@@ -92,6 +92,7 @@ public static class SwipeFragment extends Fragment{
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 		View swipeView = inflater.inflate(R.layout.choose_unimon_detail, container, false);
+		TextView swipeUnimonsInfo = (TextView) swipeView.findViewById(R.id.swipe_unimons_info);
 		TextView unimonName = (TextView) swipeView.findViewById(R.id.choose_unimon_name);
 		TextView unimonHealth = (TextView) swipeView.findViewById(R.id.choose_unimon_health);
 		TextView unimonLevel = (TextView) swipeView.findViewById(R.id.choose_unimon_level);
@@ -102,10 +103,11 @@ public static class SwipeFragment extends Fragment{
 		Bundle args = getArguments();
 		int position = args.getInt("position");;
 		
+		swipeUnimonsInfo.setText(getResources().getString(R.string.swipe_unimons_info_text));
 		unimonName.setText(startUnimonList.get(position).getName());
 		unimonHealth.setText(startUnimonList.get(position).getMaxHealth()+"/"+startUnimonList.get(position).getMaxHealth());
 		unimonLevel.setText(getResources().getString(R.string.level_text)+startUnimonList.get(position).getLevel());
-		unimonSpell.setText(getResources().getString(R.string.spells_headline)+startUnimonList.get(position).getSpellBySpellNumber(0).getSpellName()+" (damage: "+startUnimonList.get(position).getSpellBySpellNumber(0).getBaseDamage()+")");
+		unimonSpell.setText(getResources().getString(R.string.spells_headline)+startUnimonList.get(position).getSpellBySpellNumber(1).getSpellName()+" (damage: "+startUnimonList.get(position).getSpellBySpellNumber(1).getBaseDamage()+")");
 		healthBar.setMax(startUnimonList.get(position).getMaxHealth());
 		healthBar.setProgress(startUnimonList.get(position).getMaxHealth());
 		healthBar.setProgressDrawable(getResources().getDrawable(R.drawable.green_progress));

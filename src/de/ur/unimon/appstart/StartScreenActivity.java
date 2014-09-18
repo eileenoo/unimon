@@ -1,58 +1,81 @@
 package de.ur.unimon.appstart;
 
 import android.app.Activity;
-
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import de.ur.mi.android.excercises.starter.R;
-import de.ur.unimon.actionbar.Inventory;
-import de.ur.unimon.database.AppDatabase;
-import de.ur.unimon.database.PlayerDatabase;
+import de.ur.unimon.database.DatabaseController;
 import de.ur.unimon.mapoverview.MapActivity;
+import de.ur.unimon.player.PlayerController;
 import de.ur.unimon.start.newgame.NewGameActivity;
-import de.ur.unimon.startgame_logic.PlayerController;
+import de.ur.unimon.trainer.TrainerListController;
 import de.ur.unimon.unimons.UnimonList;
 
 public class StartScreenActivity extends Activity {
+
 
 	Button newGame_button;
 	Button resume_button;
 	Button options_button;
 	Button guide_button;
-	Context context;
 	UnimonList allUnimonsList;
-	PlayerController playerController;
-	PlayerDatabase playerDb;
+	private PlayerController playerController;
+	private TrainerListController trainerListController;
 	AlertDialog.Builder builder;
+	private Context context;
+	private DatabaseController dbController;
+	public static MediaPlayer mediaPlayer;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 		builder = new AlertDialog.Builder(this);
+		
+		dbController = new DatabaseController(this);
+		
+		//löscht alle Daten aus der Datenbank
+//		dbController.clearDB();
+
 		context = this.getApplicationContext();
-		//initDatabase();
+		SoundPlayer(this,R.raw.unimon_music);
+
 		initUI();		
 	}
 	
-	/*@Override
-	protected void onDestroy() {
-		playerDb.close();
-		super.onDestroy();
+	@Override
+	public void onBackPressed(){
+		Intent intent = new Intent(Intent.ACTION_MAIN);
+		   intent.addCategory(Intent.CATEGORY_HOME);
+		   intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+		   startActivity(intent);
+		finish();
 	}
 	
-	private void initDatabase() {
-		playerDb = new PlayerDatabase(this);
-		playerDb.open();
+	
+	/*@Override
+	protected void onResume(){
+		mediaPlayer.stop();
+		SoundPlayer(this,R.raw.unimon_music);
 	}*/
 	
+    public static void SoundPlayer(Context context,int raw_id){
+    	mediaPlayer = MediaPlayer.create(context, raw_id);
+    	mediaPlayer.setLooping(true); // Set looping    	
+        //mediaPlayer.release();
+    	mediaPlayer.start();
+        }
+
 	
+
 	private void initUI(){
     	newGame_button = (Button) findViewById (R.id.newGame_button);
     	resume_button = (Button) findViewById (R.id.resume_button);
@@ -63,40 +86,55 @@ public class StartScreenActivity extends Activity {
     }
     
     private void setButtonsOnClick(){
+    	
+    	resume_button.setEnabled(!dbController.isDbEmpty());
+   	
     	newGame_button.setOnClickListener(new OnClickListener(){
     		public void onClick(View v) {
-    			playerController.getInstance();
-    			builder.setTitle(getResources().getString(R.string.newGame_alert_title));
-				builder.setMessage(getResources().getString(R.string.newGame_alert_message));
+    			playerController.reset();
+    			trainerListController.reset();
+				final Intent newGame = new Intent(StartScreenActivity.this,
+						NewGameActivity.class);
+				newGame.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
+    			if (!dbController.isDbEmpty()){
+					builder.setTitle(getResources().getString(
+							R.string.newGame_alert_title));
+					builder.setMessage(getResources().getString(
+							R.string.newGame_alert_message));
 
-				builder.setPositiveButton(getResources().getString(R.string.newGameButton_text),
-						new DialogInterface.OnClickListener() {
+					builder.setPositiveButton(
+							getResources().getString(
+									R.string.newGameButton_text),
+							new DialogInterface.OnClickListener() {
 
-							@Override
-							public void onClick(DialogInterface dialog,
-									int which) {
-								Intent newGame = new Intent (StartScreenActivity.this, NewGameActivity.class);
-				    			newGame.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
-				    			startActivity(newGame);
-								dialog.dismiss();
-							}
-						});
-				builder.setNegativeButton(getResources().getString(R.string.cancel),
-						new DialogInterface.OnClickListener() {
+								@Override
+								public void onClick(DialogInterface dialog,
+										int which) {															
+									startActivity(newGame);
+									dialog.dismiss();
+								}
+							});
+					builder.setNegativeButton(
+							getResources().getString(R.string.cancel),
+							new DialogInterface.OnClickListener() {
 
-							@Override
-							public void onClick(DialogInterface dialog,
-									int which) {									
-								dialog.dismiss();
-							}
-						});
-				AlertDialog alert = builder.create();
-				alert.show();
+								@Override
+								public void onClick(DialogInterface dialog,
+										int which) {
+									dialog.dismiss();
+								}
+							});
+					AlertDialog alert = builder.create();
+					alert.show();
+    			}
+    			else startActivity(newGame);
 			}
     	});
     	resume_button.setOnClickListener(new OnClickListener(){
     		public void onClick(View v) {	
-    			playerController.getInstanceFromDB();
+    			//playerController.getInstanceFromDB(context);
+    			playerController.setInstance(dbController.getPlayer());
+    			trainerListController.setInstance(dbController.getTrainerList());
     			Intent resume = new Intent (StartScreenActivity.this, MapActivity.class);
     			startActivity(resume);
 			}
@@ -111,7 +149,7 @@ public class StartScreenActivity extends Activity {
 		guide_button.setOnClickListener(new OnClickListener() {
 			public void onClick(View v) {
 				Intent guide = new Intent(StartScreenActivity.this,
-						GuideScreenActivity.class);
+						GuideScreenActivity.class);				
 				startActivity(guide);
 			}
     	});
