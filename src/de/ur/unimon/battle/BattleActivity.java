@@ -249,6 +249,7 @@ public class BattleActivity extends Activity implements
 		ArrayList<Trainer> trainerList = new TrainerList().getTrainerList();
 		trainer = trainerList.get(getIntent().getExtras().getInt("trainerID"));
 		enemyUnimon = trainer.getUnimon();
+		enemyUnimon.setHealth(10);
 
 		String battleUnimonName = battleUnimonListStringArray[0];
 		String secondBattleUnimonName = battleUnimonListStringArray[1];

@@ -37,6 +37,7 @@ import de.ur.unimon.start.newgame.NewGameActivity;
 public class MapActivity extends Activity implements NavigationListener {
 
 	Button inventoryButton, unimonsButton, mapButton, movePlayerButton;
+	Button backToStartScreenButton;
 	Bitmap map, player, trainer1, trainer2, trainer3, trainer4, trainer5,
 			trainer6, trainerBoss;
 	public int playerXCoord, playerYCoord;
@@ -152,6 +153,7 @@ public class MapActivity extends Activity implements NavigationListener {
 		unimonsButton = (Button) findViewById(R.id.unimons);
 		mapButton = (Button) findViewById(R.id.map_overview);
 		movePlayerButton = (Button) findViewById(R.id.move_player_test_button);
+//		backToStartScreenButton = (Button) findViewById(R.id.back_to_map_button);
 		map = BitmapFactory.decodeResource(getResources(), R.drawable.map);
 		MapView canvasMap = new MapView(this);
 
@@ -197,6 +199,14 @@ public class MapActivity extends Activity implements NavigationListener {
 				startActivity(startBattle);
 			}
 		});
+		
+//		backToStartScreenButton.setOnClickListener(new OnClickListener() {
+//			public void onClick(View v) {
+//				Intent startScreen = new Intent(MapActivity.this,
+//						StartScreenActivity.class);
+//				startActivity(startScreen);
+//			}
+//		});
 
 		movePlayerButton.setOnClickListener(new OnClickListener() {
 			@Override
@@ -586,4 +596,12 @@ public class MapActivity extends Activity implements NavigationListener {
 		alertFragment.setArguments(extras);
 		transaction.commit();
 	}
+	
+	@Override
+	public void onBackPressed() {
+	    //Hardware Zurückbutton disabled
+	}
+	
 }
+
+

@@ -1,36 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/map_activity_layout"
     android:layout_width="wrap_content"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:layout_alignParentBottom="true" 
-    android:id="@+id/map_activity_layout">"
+    android:layout_alignParentBottom="true"
+    android:orientation="vertical" >
 
-   
     <ScrollView
-	   android:layout_alignParentTop="true"
-	   android:layout_width="wrap_content"
-	   android:layout_height="wrap_content"
-	   android:id="@+id/scrollview"
-	   android:layout_above="@+id/inner_Llayout">
-	   
-        <HorizontalScrollView 
-			android:layout_width="match_parent"
-			android:layout_height="match_parent"
-			android:fillViewport="true">
-	   
-		   	<LinearLayout
-		        android:id="@+id/canvas_layout"
-		        android:layout_width="match_parent"
-		        android:layout_height="wrap_content"
-			   	android:orientation="vertical"/>
-		   	
-		   	</HorizontalScrollView>
-	   
-	</ScrollView>
+        android:id="@+id/scrollview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/inner_Llayout"
+        android:layout_alignParentTop="true" >
 
-    
-    
+        <HorizontalScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fillViewport="true" >
+
+            <LinearLayout
+                android:id="@+id/canvas_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical" />
+        </HorizontalScrollView>
+    </ScrollView>
+
     <LinearLayout
         android:id="@+id/inner_Llayout"
         android:layout_width="fill_parent"
@@ -38,39 +33,47 @@
         android:layout_alignParentBottom="true"
         android:orientation="horizontal"
         android:weightSum="4" >
-    
-	    <Button
-	        android:id="@+id/inventory"
-	        android:layout_width="wrap_content"
-	        android:layout_height="wrap_content"
-	        android:layout_weight="1"
-	        android:text="@string/action_inventar"
-	        android:textSize="16sp" />
-	
-	    <Button
-	        android:id="@+id/unimons"
-	        android:layout_width="wrap_content"
-	        android:layout_height="wrap_content"
-	        android:layout_weight="1"
-	        android:text="@string/action_unimons"
-	        android:textSize="16sp" />
-	
-	    <Button
-	        android:id="@+id/map_overview"
-	        android:layout_width="wrap_content"
-	        android:layout_height="wrap_content"
-	        android:layout_weight="1"
-	        android:text="@string/action_map_overview" 
-	        android:textSize="16sp"/>
-	    
-	    <Button
-	        android:id="@+id/move_player_test_button"
-	        android:layout_width="wrap_content"
-	        android:layout_height="wrap_content"
-	        android:layout_weight="1"
-	        android:text="Move" 
-	        android:textSize="16sp"/>
-	    
-	    </LinearLayout>
-	    
+
+        <Button
+            android:id="@+id/inventory"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/action_inventar"
+            android:textSize="16sp" />
+
+        <Button
+            android:id="@+id/unimons"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/action_unimons"
+            android:textSize="16sp" />
+
+        <!--
+        <Button
+            android:id="@+id/back_to_map_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Back to Startscreen"
+            android:textSize="16sp" /> -->
+
+        <Button
+            android:id="@+id/map_overview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/action_map_overview"
+            android:textSize="16sp" />
+
+        <Button
+            android:id="@+id/move_player_test_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Move"
+            android:textSize="16sp" />
+    </LinearLayout>
+
 </RelativeLayout>
