@@ -33,17 +33,19 @@ public final class R {
         public static final int button_selector_battleend=0x7f020004;
         public static final int christian_wolff=0x7f020005;
         public static final int green_progress=0x7f020006;
-        public static final int ic_launcher=0x7f020007;
-        public static final int map=0x7f020008;
-        public static final int orange_progress=0x7f020009;
-        public static final int player=0x7f02000a;
-        public static final int purple_progress=0x7f02000b;
-        public static final int red_progress=0x7f02000c;
-        public static final int robomon=0x7f02000d;
-        public static final int startbutton_shape=0x7f02000e;
-        public static final int uniball=0x7f02000f;
-        public static final int unimon_logo=0x7f020010;
-        public static final int win_logo=0x7f020011;
+        public static final int healpot=0x7f020007;
+        public static final int ic_launcher=0x7f020008;
+        public static final int map=0x7f020009;
+        public static final int orange_progress=0x7f02000a;
+        public static final int player=0x7f02000b;
+        public static final int purple_progress=0x7f02000c;
+        public static final int red_progress=0x7f02000d;
+        public static final int robomon=0x7f02000e;
+        public static final int startbutton_shape=0x7f02000f;
+        public static final int uniball=0x7f020010;
+        public static final int unimon_logo=0x7f020011;
+        public static final int win_logo=0x7f020012;
+        public static final int you_lost_screen=0x7f020013;
     }
     public static final class id {
         public static final int action_settings=0x7f0a00a2;
