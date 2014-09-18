@@ -4,24 +4,24 @@ import java.util.ArrayList;
 
 import android.content.Context;
 import de.ur.unimon.actionbar.Inventory;
-import de.ur.unimon.startgame_logic.Player;
+import de.ur.unimon.player.Player;
+import de.ur.unimon.trainer.Trainer;
+import de.ur.unimon.trainer.TrainerList;
+import de.ur.unimon.trainer.TrainerListController;
 import de.ur.unimon.unimons.Unimon;
 
 public class DatabaseController {
-	
-	private ArrayList<DatabaseListener> dbListeners = new ArrayList<DatabaseListener>();
+
 	private AppDatabase dataBase;
 	private Inventory inventory;
 	private ArrayList<Unimon> ownedUnimons;
 	private Player player;
+	private TrainerListController trainerListController;
+	private ArrayList<Trainer> trainerList;
 	
 	
 	public DatabaseController(Context context){
 		dataBase = new AppDatabase(context);
-	}
-	
-	public void setOnDbControlllistener(DatabaseListener listener){
-		dbListeners.add(listener);
 	}
 	
 	public Player getPlayer(){
@@ -33,35 +33,44 @@ public class DatabaseController {
 			ownedUnimons = dataBase.getDetailToUnimons(ownedUnimons, i);			
 		}
 		player = new Player(money, ownedUnimons, inventory);
-		for (DatabaseListener dbL: dbListeners) {
-			dbL.onPlayerFromDbRecieved(player);
-			dbL.onVisibilityforTrainerRecieved(ownedUnimons);
-		}
+		
 		dataBase.close();
 		return player;
+	}
+	
+	public TrainerList getTrainerList() {
+		dataBase.getReadableDB();
+		TrainerList trainerList = new TrainerList();
+		for (int i=0; i<trainerList.getTrainerList().size(); i++){
+			trainerList = dataBase.getTrainerVisibility(trainerList, i);
+		}
+				
+		dataBase.close();
+		return trainerList;
 	}
 	
 	public void clearDB(){
 		dataBase.open();
 		dataBase.removePlayerFromDatabase();
 		dataBase.removeUnimonsFromDatabase();
+		dataBase.removeTrainerVisibilityFromDataBase();
 		dataBase.close();
 	}
 	
 	public void save(Player player){
+		trainerList = trainerListController.getInstance().getTrainerList();
+		
 		dataBase.open();
 		
 		dataBase.removePlayerFromDatabase();
 		dataBase.removeUnimonsFromDatabase();
+		dataBase.removeTrainerVisibilityFromDataBase();
 		
 		dataBase.insertPlayerIntoDataBase(player);
 		dataBase.insertUnimonsIntoDataBase(player.getUnimonList());
+		dataBase.insertTrainerVisibilityIntoDataBase(trainerList);
 		
 		dataBase.close();
-		
-		for (DatabaseListener dbL: dbListeners) {
-			dbL.onSaveToDataBaseComplete();
-		}
 	}
 	
 	public boolean isDbEmpty(){

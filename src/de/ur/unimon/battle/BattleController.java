@@ -3,8 +3,8 @@ package de.ur.unimon.battle;
 import java.util.Random;
 
 import android.util.Log;
-import de.ur.unimon.startgame_logic.Player;
-import de.ur.unimon.startgame_logic.PlayerController;
+import de.ur.unimon.player.Player;
+import de.ur.unimon.player.PlayerController;
 import de.ur.unimon.unimons.Spell;
 import de.ur.unimon.unimons.Unimon;
 

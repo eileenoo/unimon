@@ -13,8 +13,8 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 import de.ur.mi.android.excercises.starter.R;
-import de.ur.unimon.startgame_logic.Player;
-import de.ur.unimon.startgame_logic.PlayerController;
+import de.ur.unimon.player.Player;
+import de.ur.unimon.player.PlayerController;
 import de.ur.unimon.unimons.Unimon;
 
 public class DompteurSkillActivity extends Activity {

@@ -41,7 +41,7 @@ public final class R {
         public static final int unimon_logo=0x7f02000c;
     }
     public static final class id {
-        public static final int action_settings=0x7f0a00a1;
+        public static final int action_settings=0x7f0a00a5;
         public static final int back_to_map_button=0x7f0a001e;
         public static final int back_to_start_screen=0x7f0a0080;
         public static final int battle_activity_layout=0x7f0a0018;
@@ -61,6 +61,10 @@ public final class R {
         public static final int battle_unimon_two_button=0x7f0a001f;
         public static final int battle_use_item_button=0x7f0a0006;
         public static final int button_healAll=0x7f0a0052;
+        public static final int buy_healpot_button=0x7f0a008e;
+        public static final int buy_protector_button=0x7f0a0091;
+        public static final int buy_revive_button=0x7f0a0090;
+        public static final int buy_uniball_button=0x7f0a008f;
         public static final int canvas_layout=0x7f0a007d;
         public static final int choose_healthBar=0x7f0a002a;
         public static final int choose_that_unimon_button=0x7f0a0024;
@@ -73,17 +77,17 @@ public final class R {
         public static final int choose_unimon_name=0x7f0a0026;
         public static final int choose_unimon_spell_headline=0x7f0a002d;
         public static final int current_spell_damage=0x7f0a003c;
-        public static final int detail_healthBar=0x7f0a009a;
-        public static final int detail_health_text=0x7f0a0099;
-        public static final int detail_spell=0x7f0a00a0;
-        public static final int detail_spell_headline=0x7f0a009f;
-        public static final int detail_unimon_health=0x7f0a009b;
-        public static final int detail_unimon_image=0x7f0a0097;
-        public static final int detail_unimon_level=0x7f0a0098;
-        public static final int detail_unimon_name=0x7f0a0096;
-        public static final int detail_unimon_skillpoints=0x7f0a009e;
-        public static final int detail_unimon_xp=0x7f0a009d;
-        public static final int detail_xpBar=0x7f0a009c;
+        public static final int detail_healthBar=0x7f0a009e;
+        public static final int detail_health_text=0x7f0a009d;
+        public static final int detail_spell=0x7f0a00a4;
+        public static final int detail_spell_headline=0x7f0a00a3;
+        public static final int detail_unimon_health=0x7f0a009f;
+        public static final int detail_unimon_image=0x7f0a009b;
+        public static final int detail_unimon_level=0x7f0a009c;
+        public static final int detail_unimon_name=0x7f0a009a;
+        public static final int detail_unimon_skillpoints=0x7f0a00a2;
+        public static final int detail_unimon_xp=0x7f0a00a1;
+        public static final int detail_xpBar=0x7f0a00a0;
         public static final int do_not_enter=0x7f0a0054;
         public static final int dompteur_healthBar=0x7f0a0042;
         public static final int dompteur_health_text=0x7f0a0041;
@@ -138,16 +142,16 @@ public final class R {
         public static final int inventory_xp_text=0x7f0a0073;
         public static final int item_healpot=0x7f0a0059;
         public static final int item_healpot_count=0x7f0a0057;
-        public static final int item_healpot_price=0x7f0a008e;
+        public static final int item_healpot_price=0x7f0a0092;
         public static final int item_protector=0x7f0a0064;
         public static final int item_protector_count=0x7f0a0063;
-        public static final int item_protector_price=0x7f0a0091;
+        public static final int item_protector_price=0x7f0a0095;
         public static final int item_revive=0x7f0a0060;
         public static final int item_revive_count=0x7f0a005f;
-        public static final int item_revive_price=0x7f0a0090;
+        public static final int item_revive_price=0x7f0a0094;
         public static final int item_uniball=0x7f0a005c;
         public static final int item_uniball_count=0x7f0a005b;
-        public static final int item_uniball_price=0x7f0a008f;
+        public static final int item_uniball_price=0x7f0a0093;
         public static final int language=0x7f0a0088;
         public static final int language_english_radio=0x7f0a0089;
         public static final int language_german_radio=0x7f0a008a;
@@ -177,7 +181,7 @@ public final class R {
         public static final int sound=0x7f0a0085;
         public static final int sound_off_radio=0x7f0a0087;
         public static final int sound_on_radio=0x7f0a0086;
-        public static final int spell_damage=0x7f0a0092;
+        public static final int spell_damage=0x7f0a0096;
         public static final int spell_list_view=0x7f0a0009;
         public static final int spell_name=0x7f0a003a;
         public static final int story_part_one=0x7f0a0084;
@@ -194,14 +198,14 @@ public final class R {
         public static final int unimon_logo_img=0x7f0a0000;
         public static final int unimon_name=0x7f0a0034;
         public static final int unimon_skillpoints=0x7f0a0036;
-        public static final int unimon_xp=0x7f0a0094;
+        public static final int unimon_xp=0x7f0a0098;
         public static final int unimons=0x7f0a007f;
         public static final int use_item_button=0x7f0a0067;
         public static final int use_protector_button=0x7f0a0068;
         public static final int want_to_enter_text=0x7f0a0053;
         public static final int wulfman_img=0x7f0a0082;
-        public static final int xpBar=0x7f0a0093;
-        public static final int xp_text=0x7f0a0095;
+        public static final int xpBar=0x7f0a0097;
+        public static final int xp_text=0x7f0a0099;
         public static final int xpwon_textview=0x7f0a001d;
     }
     public static final class layout {

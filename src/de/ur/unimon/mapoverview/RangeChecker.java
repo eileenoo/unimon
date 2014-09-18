@@ -2,19 +2,16 @@ package de.ur.unimon.mapoverview;
 
 import java.util.ArrayList;
 
-import android.app.FragmentManager;
-import android.app.FragmentTransaction;
-import android.os.Bundle;
 import android.util.Log;
-import de.ur.mi.android.excercises.starter.R;
-import de.ur.unimon.battle.Trainer;
-import de.ur.unimon.battle.TrainerList;
 import de.ur.unimon.navigation.PlayerPositionDetail;
+import de.ur.unimon.trainer.Trainer;
+import de.ur.unimon.trainer.TrainerListController;
 
 public class RangeChecker {
  
 
-	private ArrayList<Trainer> trainerList = new TrainerList().getTrainerList();
+	private ArrayList<Trainer> trainerList;
+	private TrainerListController trainerListController;
 	RangeListener rangeListener;
 	
 	private double playerLongitude, playerLatitude;
@@ -34,7 +31,8 @@ public class RangeChecker {
 	private double rangeTrainerBattle = 25;
 	private double rangeBuildings = 25;
 
-	public RangeChecker() {		
+	public RangeChecker() {
+		trainerList = trainerListController.getInstance().getTrainerList();
 	}
 	
 	public void setOnRangeChecker(RangeListener rangeListener){

@@ -1,14 +1,4 @@
-package de.ur.unimon.startgame_logic;
-
-import java.util.ArrayList;
-
-import android.content.Context;
-import android.util.Log;
-import de.ur.unimon.actionbar.Inventory;
-import de.ur.unimon.database.DatabaseController;
-import de.ur.unimon.database.DatabaseListener;
-import de.ur.unimon.unimons.Unimon;
-import de.ur.unimon.unimons.UnimonList;
+package de.ur.unimon.player;
 
 public final class PlayerController{
 	private static Player player;

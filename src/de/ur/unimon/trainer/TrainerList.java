@@ -1,4 +1,4 @@
- package de.ur.unimon.battle;
+ package de.ur.unimon.trainer;
 
 
 import java.util.ArrayList;
