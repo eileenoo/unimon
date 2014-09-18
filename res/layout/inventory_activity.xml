@@ -10,7 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/money_text"
-        android:textSize="20sp" />
+        android:textAppearance="?android:attr/textAppearanceLarge" />
     
     <TextView
         android:id="@+id/item_healpot_count"
@@ -145,12 +145,13 @@
         android:layout_alignParentLeft="true"
         android:layout_below="@+id/money"
         android:layout_marginTop="14dp"
+        android:layout_toLeftOf="@+id/item_uniball"
         android:adjustViewBounds="true"
         android:contentDescription="@string/image_text"
         android:maxHeight="60dp"
         android:maxWidth="60dp"
         android:scaleType="fitCenter"
-        android:src="@drawable/uniball" />
+        android:src="@drawable/healpot" />
 
     <ImageView
         android:id="@+id/uniball_image"
@@ -158,7 +159,6 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/healpot_image"
         android:layout_marginTop="14dp"
-        android:layout_toLeftOf="@+id/item_revive"
         android:adjustViewBounds="true"
         android:contentDescription="@string/image_text"
         android:maxHeight="60dp"

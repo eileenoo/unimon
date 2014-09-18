@@ -36,7 +36,8 @@ import de.ur.unimon.trainer.TrainerListController;
 public class MapActivity extends Activity implements NavigationListener,
 		RangeListener {
 
-	Button inventoryButton, unimonsButton, menuButton, saveButton;
+
+	Button inventoryButton, unimonsButton, menuButton, saveButton, mapButton, movePlayerButton;
 	Bitmap map, player, trainer1, trainer2, trainer3, trainer4, trainer5,
 			trainer6, trainerBoss;
 	public int playerXCoord, playerYCoord;
@@ -138,6 +139,10 @@ public class MapActivity extends Activity implements NavigationListener,
 		canvasLayout = (LinearLayout) findViewById(R.id.canvas_layout);
 		inventoryButton = (Button) findViewById(R.id.inventory);
 		unimonsButton = (Button) findViewById(R.id.unimons);
+
+//		mapButton = (Button) findViewById(R.id.map_overview);
+//		movePlayerButton = (Button) findViewById(R.id.move_player_test_button);
+//		backToStartScreenButton = (Button) findViewById(R.id.back_to_map_button);
 		menuButton = (Button) findViewById(R.id.back_to_start_screen);
 		saveButton = (Button) findViewById(R.id.save_button);
 		map = BitmapFactory.decodeResource(getResources(), R.drawable.map);
@@ -185,6 +190,17 @@ public class MapActivity extends Activity implements NavigationListener,
 				startActivity(backToStart);
 			}
 		});
+		
+//		backToStartScreenButton.setOnClickListener(new OnClickListener() {
+//			public void onClick(View v) {
+//				Intent startScreen = new Intent(MapActivity.this,
+//						StartScreenActivity.class);
+//				startActivity(startScreen);
+//			}
+//		});
+
+//		movePlayerButton.setOnClickListener(new OnClickListener() {
+
 		saveButton.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
@@ -424,6 +440,7 @@ public class MapActivity extends Activity implements NavigationListener,
 		transaction.commit();
 	}
 
+
 	@Override
 	public void onShowFragmentForTrainer(String building, int trainerID) {
 		FragmentTransaction transaction = fragmentManager.beginTransaction();
@@ -459,5 +476,6 @@ public class MapActivity extends Activity implements NavigationListener,
 		Log.d("hallo", "onvisi");
 			this.trainerList = trainerList;
 	}
-
 }
+
+

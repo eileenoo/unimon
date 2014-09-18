@@ -72,7 +72,7 @@ public class InventoryActivity extends Activity {
 			healpotName = (TextView) findViewById(R.id.item_healpot);
 			healpotCount = (TextView) findViewById(R.id.item_healpot_count);
 
-			healpotImage.setImageResource(R.drawable.uniball);
+			healpotImage.setImageResource(R.drawable.healpot);
 			healpotCount.setText(getResources().getString(
 					R.string.item_count_text)
 					+ inventory.getHealpotCount());

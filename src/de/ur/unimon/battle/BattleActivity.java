@@ -20,6 +20,7 @@ import de.ur.unimon.mapoverview.MapActivity;
 import de.ur.unimon.player.Player;
 import de.ur.unimon.player.PlayerController;
 import de.ur.unimon.trainer.Trainer;
+import de.ur.unimon.trainer.TrainerList;
 import de.ur.unimon.trainer.TrainerListController;
 import de.ur.unimon.unimons.Spell;
 import de.ur.unimon.unimons.Unimon;
@@ -251,6 +252,12 @@ public class BattleActivity extends Activity implements
 	private void initBattleController() {
 		battleUnimonListStringArray = getIntent().getStringArrayExtra(
 				"chosenUnimonStringArray");
+
+		ArrayList<Trainer> trainerList = new TrainerList().getTrainerList();
+		trainer = trainerList.get(getIntent().getExtras().getInt("trainerID"));
+		enemyUnimon = trainer.getUnimon();
+		enemyUnimon.setHealth(10);
+
 
 		String battleUnimonName = battleUnimonListStringArray[0];
 		String secondBattleUnimonName = battleUnimonListStringArray[1];

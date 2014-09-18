@@ -11,12 +11,14 @@ import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 public class BattleEndActivity extends Activity{
 	
 	private TextView moneyEarned, xpEarned, moneyEarnedTextView, xpEarnedTextView, battleLostTextView;
 	private Button backToMapButton;
+	private ImageView battleEndImage;
 	private boolean isGameWon;
 	private int xp;
 	private int money;
@@ -45,21 +47,19 @@ public class BattleEndActivity extends Activity{
 		xpEarned = (TextView) findViewById(R.id.xpwon_textview);
 		moneyEarned = (TextView) findViewById(R.id.moneywon_textview);
 		moneyEarnedTextView = (TextView) findViewById(R.id.battle_end_moneywon_textview);
-		xpEarnedTextView = (TextView) findViewById(R.id.battle_end_xpwon_textview);
-		battleLostTextView = (TextView) findViewById(R.id.battle_lost_textview);
+		xpEarnedTextView = (TextView) findViewById(R.id.battle_end_xpwon_textview);		
+		battleEndImage = (ImageView) findViewById(R.id.battle_end_img);
 		
 		if (isGameWon) {
-			if (OptionsScreenActivity.soundOnButtonChecked == true){
-				
-			}
 			moneyEarned.setText(" " + money);
 			xpEarned.setText(" " + xp);
-			battleLostTextView.setVisibility(View.GONE);
+			
+			battleEndImage.setImageResource(R.drawable.win_logo);
+			
 		} else {
-			moneyEarnedTextView.setVisibility(View.GONE);
-			xpEarnedTextView.setVisibility(View.GONE);
-			xpEarned.setVisibility(View.GONE);
-			moneyEarned.setVisibility(View.GONE);
+			moneyEarned.setText(" " + 0);
+			xpEarned.setText(" " + 0);
+			battleEndImage.setImageResource(R.drawable.you_lost_screen);
 		}
 
 		backToMapButton = (Button) findViewById(R.id.back_to_map_button);

@@ -56,7 +56,7 @@ public class ShopActivity extends Activity {
 		healpotCount = (TextView) findViewById(R.id.item_healpot_count);
 		healpotPrice = (TextView) findViewById(R.id.item_healpot_price);
 
-		healpotImage.setImageResource(R.drawable.uniball);
+		healpotImage.setImageResource(R.drawable.healpot);
 		healpotCount.setText(getResources().getString(R.string.item_count_text) + inventory.getHealpotCount());
 		healpotPrice.setText("" + healpot_Price + "€");
 		

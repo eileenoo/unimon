@@ -39,7 +39,7 @@ public class StartScreenActivity extends Activity {
 		dbController = new DatabaseController(this);
 
 		// löscht alle Daten aus der Datenbank
-		// dbController.clearDB();
+		 dbController.clearDB();
 
 		context = this.getApplicationContext();
 
