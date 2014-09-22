@@ -2,6 +2,7 @@ package de.ur.unimon.unimons;
 
 import java.util.ArrayList;
 
+import de.ur.mi.android.excercises.starter.R;
 import android.util.Log;
 
 public class UnimonList {
@@ -130,7 +131,7 @@ public class UnimonList {
 
 		
 		// ausgeglichen
-		schleimi = new Unimon("Schleimi", 123, true);
+		schleimi = new Unimon("Schleimi", 123, true, R.drawable.robomon);
 		schleimiSpell1 = new Spell("Scratch", 1, 15);
 		schleimiSpell2 = new Spell("Bite", 2, 25);
 		schleimiSpell3 = new Spell("Headbutt",3,35);
@@ -145,9 +146,10 @@ public class UnimonList {
 		schleimi.possibleSpells.add(schleimiSpell6);
 		schleimi.learnSpell(schleimiSpell1);
 		schleimi.setHealth(schleimi.getMaxHealth());
+		
 
 		//defensiver
-		kaeffchen = new Unimon("Käffchen", 182, true);
+		kaeffchen = new Unimon("Käffchen", 182, true, R.drawable.kaeffchen);
 		kaeffchenSpell1 = new Spell ("Take Down",1,10);
 		kaeffchenSpell2 = new Spell ("Flamethrower",2,15);
 		kaeffchenSpell3 = new Spell ("Low Kick",3,20);
@@ -164,7 +166,7 @@ public class UnimonList {
 		kaeffchen.setHealth(kaeffchen.getMaxHealth());
 
 		//offensiver
-		robotaer = new Unimon("Robotär", 93, true);
+		robotaer = new Unimon("Robotär", 93, true, R.drawable.robomon);
 		robotaerSpell1 = new Spell ("Kick",1,30);
 		robotaerSpell2 = new Spell("Take Down", 2, 40);
 		robotaerSpell3 = new Spell ("Ice Shard",3,45);
@@ -182,7 +184,7 @@ public class UnimonList {
 
 		
 		//ausgeglichen
-		hentaicha = new Unimon("Hentaicha", 113, true);
+		hentaicha = new Unimon("Hentaicha", 113, true, R.drawable.kraki);
 		hentaichaSpell1 =  new Spell ("Wood Hammer",1,16);
 		hentaichaSpell2  = new Spell("Bite", 2, 24);
 		hentaichaSpell3  = new Spell("Icicle Spear", 3, 34);
@@ -203,7 +205,7 @@ public class UnimonList {
 		
 
 		// sehr defensiv
-		hydroxyethan = new Unimon("Hydroxyethan", 260, true);
+		hydroxyethan = new Unimon("Hydroxyethan", 260, true, R.drawable.robomon);
 		hydroxyethanSpell1 = new Spell ("Sucker Punch",1,11);
 		hydroxyethanSpell2 = new Spell("Bite", 2, 22);
 		hydroxyethanSpell3 = new Spell ("Explosion",3,33);
@@ -222,7 +224,7 @@ public class UnimonList {
 		
 		
 		//sehr offensiv und hält relativ viel aus
-		asymptoterus = new Unimon("Asymptoterus", 124, true);
+		asymptoterus = new Unimon("Asymptoterus", 124, true, R.drawable.robomon);
 		asymptoterusSpell1 = new Spell ("Giga Impact",1,32);
 		asymptoterusSpell2 = new Spell("Icicle Spear", 2, 43);
 		asymptoterusSpell3 = new Spell ("Explosion",3,54);
@@ -240,7 +242,7 @@ public class UnimonList {
 		
 		
 		//oberboss stark defensiv+offensiv
-		legdayskipper = new Unimon("Legdayskipper", 210, true);
+		legdayskipper = new Unimon("Legdayskipper", 210, true, R.drawable.robomon);
 		legdayskipperSpell1 = new Spell ("Giga Impact",1,33);
 		legdayskipperSpell2 = new Spell("Take Down", 2, 44);
 		legdayskipperSpell3 = new Spell ("Low Kick",3,55);
@@ -259,7 +261,7 @@ public class UnimonList {
 		
 		
 		//sehr offensiv
-		wild1 = new Unimon("Wildie", 130, false);
+		wild1 = new Unimon("Wildie", 130, false, R.drawable.robomon);
 		wild1Spell1 =  new Spell ("Giga Impact",1,31);
 		wild1Spell2  = new Spell("Ice Shard", 2, 42);
 		wild1Spell3  = new Spell("Bite", 3, 53);
@@ -276,7 +278,7 @@ public class UnimonList {
 		wild1.setHealth(wild1.getMaxHealth());
 
 		//defensiv
-		wild2 = new Unimon("Wildie2", 210, false);
+		wild2 = new Unimon("Wildie2", 210, false, R.drawable.robomon);
 		wild2Spell1 =  new Spell ("Mud Bomb",1,15);
 		wild2Spell2  = new Spell("Head Smash", 2, 26);
 		wild2Spell3  = new Spell("Electro Ball", 3, 33);
@@ -293,7 +295,7 @@ public class UnimonList {
 		wild2.setHealth(wild2.getMaxHealth());
 
 		//ausgeglichen
-		wild3 = new Unimon("Wildie3", 130, false);
+		wild3 = new Unimon("Wildie3", 130, false, R.drawable.robomon);
 		wild3Spell1 =  new Spell ("Tail Whip",1,15);
 		wild3Spell2  = new Spell("Gunshot", 2, 25);
 		wild3Spell3  = new Spell("Storm", 3, 35);
@@ -311,7 +313,7 @@ public class UnimonList {
 
 
 		//neutral
-		start1 = new Unimon("Dickman", 100, false);
+		start1 = new Unimon("Dickman", 100, false, R.drawable.robomon);
 		start1Spell1 =  new Spell ("Jump Kick",1,15);
 		start1Spell2 =  new Spell ("Overdrive",1,25);
 		start1Spell3 =  new Spell ("Mega Punch",1,35);
@@ -328,7 +330,7 @@ public class UnimonList {
 		start1.setHealth(start1.getMaxHealth());
 		
 		//offensiv
-		start2 = new Unimon("Dickachu", 90, false);
+		start2 = new Unimon("Dickachu", 90, false, R.drawable.kaeffchen);
 		start2Spell1 =  new Spell ("Karate Chop",1,17);
 		start2Spell2 =  new Spell ("Cut",1,27);
 		start2Spell3 =  new Spell ("Fire Spin",1,37);
@@ -345,7 +347,7 @@ public class UnimonList {
 		start2.setHealth(start2.getMaxHealth());
 		
 		//defensiv
-		start3 = new Unimon("Dicktator", 110, false);
+		start3 = new Unimon("Dicktator", 110, false, R.drawable.kraki);
 		start3Spell1 =  new Spell ("Power Trick",1,13);
 		start3Spell2 =  new Spell ("Poison Sting",1,23);
 		start3Spell3 =  new Spell ("Electro Ball",1,33);

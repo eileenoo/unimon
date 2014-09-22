@@ -17,6 +17,8 @@ import android.widget.ListView;
 import android.widget.TextView;
 import de.ur.mi.android.excercises.starter.R;
 import de.ur.unimon.actionbar.UnimonListAdapter;
+import de.ur.unimon.appstart.StartScreenActivity;
+import de.ur.unimon.mapoverview.MapActivity;
 import de.ur.unimon.player.Player;
 import de.ur.unimon.player.PlayerController;
 import de.ur.unimon.unimons.Unimon;
@@ -31,7 +33,7 @@ public class ChooseBattleUnimonsActivity extends Activity {
 	ListAdapter listUnimons_adpater;
 	private ArrayList<Unimon> ownedUnimons;
 	private String[] chosenUnimonsStringArray;
-	private int selectionStage, trainerID;
+	private int selectionStage, trainerID, wildieID;
 	private Player player;
 	private PlayerController playerController;
 
@@ -48,10 +50,21 @@ public class ChooseBattleUnimonsActivity extends Activity {
 	    //Hardware Zurückbutton disabled
 	}
 	
+	@Override
+	protected void onDestroy() {		
+		Log.d("hallo", "onDestroy");
+		if (StartScreenActivity.mediaPlayer.isPlaying()) {
+			StartScreenActivity.mediaPlayer.stop();
+		}
+		finish();
+		super.onDestroy();
+	}
+	
 
 	private void getTrainer() {
 		Bundle extras = getIntent().getExtras();
 		trainerID = extras.getInt("trainerID");
+		wildieID = extras.getInt("wildieID");
 	}
 
 	private void initUI() {
@@ -86,9 +99,18 @@ public class ChooseBattleUnimonsActivity extends Activity {
 				if (selectionStage == 3) {
 					Intent toBattleActivity = new Intent(ChooseBattleUnimonsActivity.this, BattleActivity.class);
 					//toBattleActivity.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
-					toBattleActivity.putExtra("trainerID", trainerID);
+					Log.d("hallo", "boolean startRandomBattle " + MapActivity.startRandomBattle);
+					if(MapActivity.startRandomBattle == false){
+						toBattleActivity.putExtra("trainerID", trainerID);
 					toBattleActivity.putExtra("chosenUnimonStringArray", chosenUnimonsStringArray);
 					startActivity(toBattleActivity);
+					}
+					else if (MapActivity.startRandomBattle == true){
+						toBattleActivity.putExtra("wildieID", wildieID);
+						toBattleActivity.putExtra("chosenUnimonStringArray", chosenUnimonsStringArray);
+						startActivity(toBattleActivity);
+					}
+					
 
 				} else if (selectionStage == 1) {
 					chooseUnimonText.setText(R.string.choose_second_unimon);

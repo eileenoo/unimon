@@ -24,6 +24,7 @@ import de.ur.unimon.trainer.TrainerList;
 import de.ur.unimon.trainer.TrainerListController;
 import de.ur.unimon.unimons.Spell;
 import de.ur.unimon.unimons.Unimon;
+import de.ur.unimon.unimons.UnimonList;
 
 public class BattleActivity extends Activity implements
 		AllOptionsBattleFragment.OnOptionsSelectorListener,
@@ -49,6 +50,7 @@ public class BattleActivity extends Activity implements
 	private Unimon enemyUnimon;
 	private Unimon[] currentBattleUnimonList;
 	private String[] battleUnimonListStringArray;
+	private UnimonList wildUnimonList;
 	private Trainer trainer;
 	private TrainerListController trainerListController;
 	private Player player;
@@ -178,7 +180,9 @@ public class BattleActivity extends Activity implements
 		ownUnimonHealth = (TextView) findViewById(R.id.own_unimon_health);
 		enemyUnimonHealthbar = (ProgressBar) findViewById(R.id.enemy_healthBar);
 		ownUnimonHealthbar = (ProgressBar) findViewById(R.id.own_healthBar);
-
+		
+		enemyUnimonImage.setImageResource(enemyUnimon.getImage());
+		ownUnimonImage.setImageResource(battleUnimon.getImage());
 		enemyUnimonName.setText(enemyUnimon.getName());
 		ownUnimonName.setText(battleUnimon.getName());
 		enemyUnimonLevel.setText("Level: " + enemyUnimon.getLevel());
@@ -194,10 +198,6 @@ public class BattleActivity extends Activity implements
 		ownUnimonHealthbar.setProgress(battleUnimon.getHealth());
 		getProgressDrawable(enemyUnimonHealthbar, enemyUnimon);
 		getProgressDrawable(ownUnimonHealthbar, battleUnimon);
-
-		// Bilder müssen noch dynmaisch gesetzt werden, so dann irgendwie
-		// enemyUnimonImage.setImageDrawable(enemyUnimon.getImage());
-		// ownUnimonImage.setImageDrawable(battleUnimon.getImage());
 
 	}
 
@@ -217,6 +217,7 @@ public class BattleActivity extends Activity implements
 	}
 
 	private void updateUIForChangedUnimon() {
+		ownUnimonImage.setImageResource(battleUnimon.getImage());
 		ownUnimonName.setText(battleUnimon.getName());
 		ownUnimonLevel.setText("Level: " + battleUnimon.getLevel());
 		ownUnimonHealth.setText(battleUnimon.getHealth() + "/"
@@ -242,22 +243,36 @@ public class BattleActivity extends Activity implements
 
 	private void initInstances() {
 		map = new Intent(BattleActivity.this, MapActivity.class);
+		wildUnimonList = new UnimonList();
 		playerStatus = true;
 		player = playerController.getInstance();
 		ArrayList<Trainer> trainerList = trainerListController.getInstance().getTrainerList();
-		trainer = trainerList.get(getIntent().getExtras().getInt("trainerID"));
-		enemyUnimon = trainer.getUnimon();
+			
+			if(MapActivity.startRandomBattle == true){				
+				enemyUnimon = wildUnimonList.getWildUnimonsList().get(getIntent().getExtras().getInt("wildieID"));
+			}
+			else if (MapActivity.startRandomBattle == false){				
+				trainer = trainerList.get(getIntent().getExtras().getInt("trainerID"));
+				enemyUnimon = trainer.getUnimon();
+			}					
 	}
 
 	private void initBattleController() {
 		battleUnimonListStringArray = getIntent().getStringArrayExtra(
 				"chosenUnimonStringArray");
-
-		ArrayList<Trainer> trainerList = new TrainerList().getTrainerList();
-		trainer = trainerList.get(getIntent().getExtras().getInt("trainerID"));
-		enemyUnimon = trainer.getUnimon();
-		enemyUnimon.setHealth(10);
-
+		
+		if (MapActivity.startRandomBattle == true){
+			ArrayList<Unimon> wildUnimonList = new UnimonList().getWildUnimonsList();
+			enemyUnimon = wildUnimonList.get(getIntent().getExtras().getInt("wildieID"));
+			enemyUnimon.setToMaxHealth();
+		}
+		
+		else if (MapActivity.startRandomBattle == false){
+			ArrayList<Trainer> trainerList = new TrainerList().getTrainerList();
+			trainer = trainerList.get(getIntent().getExtras().getInt("trainerID"));
+			enemyUnimon = trainer.getUnimon();
+			enemyUnimon.setToMaxHealth();
+		}
 
 		String battleUnimonName = battleUnimonListStringArray[0];
 		String secondBattleUnimonName = battleUnimonListStringArray[1];
@@ -345,8 +360,16 @@ public class BattleActivity extends Activity implements
 	}
 
 	private void fightEnd() {
-		XP = trainer.getExpValue();
-		money = trainer.getMoneyValue();
+		if (MapActivity.startRandomBattle == true){
+			XP = 100;
+			money = 200;
+			MapActivity.startRandomBattle = false;
+		}
+		else{
+			XP = trainer.getExpValue();
+			money = trainer.getMoneyValue();
+		}
+		
 		player.addMoney(money);
 		switch (battleController.getXpSplit()) {
 		case 1:

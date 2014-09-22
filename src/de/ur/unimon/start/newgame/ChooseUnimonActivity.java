@@ -103,6 +103,7 @@ public static class SwipeFragment extends Fragment{
 		Bundle args = getArguments();
 		int position = args.getInt("position");;
 		
+		unimonImage.setImageResource(startUnimonList.get(position).getImage());
 		swipeUnimonsInfo.setText(getResources().getString(R.string.swipe_unimons_info_text));
 		unimonName.setText(startUnimonList.get(position).getName());
 		unimonHealth.setText(startUnimonList.get(position).getMaxHealth()+"/"+startUnimonList.get(position).getMaxHealth());

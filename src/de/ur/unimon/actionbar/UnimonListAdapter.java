@@ -69,7 +69,7 @@ public class UnimonListAdapter extends BaseAdapter {
 			unimonXp = (TextView) convertView.findViewById(R.id.unimon_xp);
 			xpText = (TextView) convertView.findViewById(R.id.xp_text);
 
-			unimonImage.setImageResource(R.drawable.robomon);
+			unimonImage.setImageResource(unimon.getImage());
 			unimonName.setText("Name: " + unimon.getName());
 			unimonLevel.setText("Level: " + unimon.getLevel());
 			healthBar.setMax(unimon.getMaxHealth());

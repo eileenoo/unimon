@@ -101,7 +101,7 @@ public class DompteurSkillActivity extends Activity {
 		skillPoints = (TextView) findViewById(R.id.unimon_skillpoints);
 		health = (TextView) findViewById(R.id.unimon_health);
 		healthBar = (ProgressBar) findViewById(R.id.healthBar);
-		unimonImage.setImageDrawable(getResources().getDrawable(R.drawable.robomon));
+		unimonImage.setImageResource(unimon.getImage());
 		name.setText(unimon.getName());
 		level.setText(getResources().getString(R.string.level_text) + unimon.getLevel());
 		skillPoints.setText(getResources().getString(R.string.skillpoint_text) + unimon.getSkillPoints());

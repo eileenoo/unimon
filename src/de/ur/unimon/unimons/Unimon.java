@@ -2,6 +2,8 @@ package de.ur.unimon.unimons;
 
 import java.util.ArrayList;
 
+import android.widget.ImageView;
+
 public class Unimon {
 	
 	private String name;
@@ -13,10 +15,12 @@ public class Unimon {
 	public ArrayList<Spell> ownedSpells;
 	private boolean isAlive;
 	private boolean ownedByTrainer;
+	private int image;
 	
-	public Unimon(String name, int baseHealth, boolean ownedByTrainer){
+	public Unimon(String name, int baseHealth, boolean ownedByTrainer, int image){
 		this.name = name;	
 		this.baseHealth = baseHealth;
+		this.image = image;
 		maxHealth = 0;
 		health = getMaxHealth();
 		level = 1;
@@ -217,5 +221,13 @@ public class Unimon {
 	public void setAlive(boolean isAlive) {
 		this.isAlive = isAlive;
 	}
-
+	
+	public void setImageResource(int image){
+		this.image = image;
+	}
+	
+	public int getImage(){
+		return image;
+	}
+	
 }
