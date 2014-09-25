@@ -101,7 +101,6 @@ public class MapActivity extends Activity implements NavigationListener,
 		getTrainerPositions();
 		
 		controller = new DatabaseController(this);
-
 	}
 
 	private void initFragmentManager() {
@@ -324,7 +323,7 @@ public class MapActivity extends Activity implements NavigationListener,
 							Intent startRandomUnimonBattle = new Intent(
 									MapActivity.this,
 									ChooseBattleUnimonsActivity.class);
-							startRandomUnimonBattle.putExtra("trainerID", 1);
+							startRandomUnimonBattle.putExtra("trainerID", 99);
 							startActivity(startRandomUnimonBattle);
 							dialog.dismiss();
 						}

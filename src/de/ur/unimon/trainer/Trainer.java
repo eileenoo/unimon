@@ -25,6 +25,13 @@ public class Trainer {
 		this.isSeen = isSeen;
 	}
 	
+	public Trainer (int id, Unimon unimon, int expValue, int moneyValue) {
+		this.id = id;
+		this.unimon = unimon;
+		this.expValue = expValue;
+		this.moneyValue = moneyValue;
+	}
+	
 	public boolean isSeen(){
 		return isSeen;
 	}

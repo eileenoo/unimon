@@ -272,7 +272,6 @@ public class UnimonList {
 		wild1.addPossibleSpell(wild1Spell4);
 		wild1.addPossibleSpell(wild1Spell5);
 		wild1.addPossibleSpell(wild1Spell6);
-		wild1.learnSpell(wild1Spell1);
 		wild1.setHealth(wild1.getMaxHealth());
 
 		//defensiv
@@ -289,7 +288,6 @@ public class UnimonList {
 		wild2.addPossibleSpell(wild2Spell4);
 		wild2.addPossibleSpell(wild2Spell5);
 		wild2.addPossibleSpell(wild2Spell6);
-		wild2.learnSpell(wild2Spell1);
 		wild2.setHealth(wild2.getMaxHealth());
 
 		//ausgeglichen
@@ -306,7 +304,6 @@ public class UnimonList {
 		wild3.addPossibleSpell(wild3Spell4);
 		wild3.addPossibleSpell(wild3Spell5);
 		wild3.addPossibleSpell(wild3Spell6);
-		wild3.learnSpell(wild3Spell1);
 		wild3.setHealth(wild3.getMaxHealth());
 
 

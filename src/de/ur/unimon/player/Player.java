@@ -78,4 +78,14 @@ public class Player {
 	public Inventory getInventory() {
 		return inventory;
 	}
+	
+	public int getHigheslevelOfUnimnon(){
+		int highestLevel = 0;
+		for (Unimon u : ownUnimonList){
+			if (highestLevel < u.getLevel()){
+				highestLevel = u.getLevel();
+			}
+		}
+		return highestLevel;
+	}
 }
