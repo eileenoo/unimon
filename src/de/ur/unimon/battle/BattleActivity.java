@@ -21,10 +21,13 @@ import de.ur.unimon.mapoverview.MapActivity;
 import de.ur.unimon.player.Player;
 import de.ur.unimon.player.PlayerController;
 import de.ur.unimon.trainer.Trainer;
+import de.ur.unimon.trainer.TrainerList;
 import de.ur.unimon.trainer.TrainerListController;
 import de.ur.unimon.unimons.Spell;
 import de.ur.unimon.unimons.Unimon;
 import de.ur.wildlings.WildlingCreator;
+import de.ur.unimon.unimons.UnimonList;
+
 
 public class BattleActivity extends Activity implements
 		AllOptionsBattleFragment.OnOptionsSelectorListener,
@@ -180,7 +183,9 @@ public class BattleActivity extends Activity implements
 		ownUnimonHealth = (TextView) findViewById(R.id.own_unimon_health);
 		enemyUnimonHealthbar = (ProgressBar) findViewById(R.id.enemy_healthBar);
 		ownUnimonHealthbar = (ProgressBar) findViewById(R.id.own_healthBar);
-
+		
+		enemyUnimonImage.setImageResource(enemyUnimon.getImage());
+		ownUnimonImage.setImageResource(battleUnimon.getImage());
 		enemyUnimonName.setText(enemyUnimon.getName());
 		ownUnimonName.setText(battleUnimon.getName());
 		enemyUnimonLevel.setText("Level: " + enemyUnimon.getLevel());
@@ -196,10 +201,6 @@ public class BattleActivity extends Activity implements
 		ownUnimonHealthbar.setProgress(battleUnimon.getHealth());
 		getProgressDrawable(enemyUnimonHealthbar, enemyUnimon);
 		getProgressDrawable(ownUnimonHealthbar, battleUnimon);
-
-		// Bilder müssen noch dynmaisch gesetzt werden, so dann irgendwie
-		// enemyUnimonImage.setImageDrawable(enemyUnimon.getImage());
-		// ownUnimonImage.setImageDrawable(battleUnimon.getImage());
 
 	}
 
@@ -219,6 +220,7 @@ public class BattleActivity extends Activity implements
 	}
 
 	private void updateUIForChangedUnimon() {
+		ownUnimonImage.setImageResource(battleUnimon.getImage());
 		ownUnimonName.setText(battleUnimon.getName());
 		ownUnimonLevel.setText("Level: " + battleUnimon.getLevel());
 		ownUnimonHealth.setText(battleUnimon.getHealth() + "/"
@@ -248,6 +250,7 @@ public class BattleActivity extends Activity implements
 		player = playerController.getInstance();
 		wildlingCreator = new WildlingCreator();
 		ArrayList<Trainer> trainerList = trainerListController.getInstance().getTrainerList();
+
 		int trainerID = getIntent().getExtras().getInt("trainerID");
 		if (trainerID == 99) {
 			wildlingCreator.createWildUnimon();

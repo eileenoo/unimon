@@ -1,7 +1,8 @@
 package de.ur.unimon.actionbar;
 
-import android.app.Activity;
+import java.util.ArrayList;
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -16,9 +17,9 @@ public class UnimonListDetailActivity extends Activity{
 	ProgressBar chosenUnimonHealthBar, chosenUnimonXpBar;
 	ImageView unimonImage;
 	private String chosenUnimonName, chosenUnimonSpells;
-	private int chosenUnimonLevel, chosenUnimonSkillPoints;
+	private int  chosenUnimonLevel, chosenUnimonSkillPoints, unimonImageResource;
 	private int maxHealth, health, chosenUnimonCurrentXp, chosenUnimonMaxXpPerLevel;
-	private Bundle extras;
+	private Bundle extras;	
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +31,9 @@ public class UnimonListDetailActivity extends Activity{
 	}
 
 	private void initUI() {
+		
+		
+		unimonImageResource = extras.getInt("chosen_unimon_image");
 		chosenUnimonName = extras.getString("chosen_unimon_name");
 		health = extras.getInt("chosen_unimon_health");
 		maxHealth = extras.getInt("chosen_unimon_max_health");
@@ -52,11 +56,13 @@ public class UnimonListDetailActivity extends Activity{
 		unimonSpells = (TextView) findViewById(R.id.detail_spell);
 		unimonImage = (ImageView) findViewById(R.id.detail_unimon_image);
 		
+		unimonImage.setImageResource(unimonImageResource);
 		unimonName.setText(chosenUnimonName);
 		unimonHealth.setText(health + "/" + maxHealth);
 		unimonLevel.setText(getResources().getString(R.string.level_text) + chosenUnimonLevel);
 		skillPoints.setText(getResources().getString(R.string.skillpoint_text) + chosenUnimonSkillPoints);
 		unimonSpells.setText(chosenUnimonSpells);
+		
 		
 		chosenUnimonHealthBar.setMax(maxHealth);
 		chosenUnimonHealthBar.setProgress(health);

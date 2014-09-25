@@ -36,7 +36,8 @@ import de.ur.unimon.trainer.TrainerListController;
 public class MapActivity extends Activity implements NavigationListener,
 		RangeListener {
 
-	Button inventoryButton, unimonsButton, menuButton, saveButton;
+	Button inventoryButton, unimonsButton, menuButton, saveButton, mapButton,
+			movePlayerButton;
 	Bitmap map, player, trainer1, trainer2, trainer3, trainer4, trainer5,
 			trainer6, trainerBoss;
 	public int playerXCoord, playerYCoord;
@@ -60,7 +61,6 @@ public class MapActivity extends Activity implements NavigationListener,
 	private double trainer6Latitude, trainer6Longitude;
 	private double trainerBossLatitude, trainerBossLongitude;
 
-
 	public static final double leftUpperCornerLongitude = 12.091562;
 	public static final double leftUpperCornerLatitude = 49.0010367;
 	public static final double bottomRightCornerLongitude = 12.09969;
@@ -80,9 +80,8 @@ public class MapActivity extends Activity implements NavigationListener,
 	RangeChecker rangeChecker;
 
 	FragmentManager fragmentManager;
-	EnterAlertFragment alertFragment;	
+	EnterAlertFragment alertFragment;
 	DatabaseController controller;
-
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -99,7 +98,7 @@ public class MapActivity extends Activity implements NavigationListener,
 		initNavigation();
 		initFragmentManager();
 		getTrainerPositions();
-		
+
 		controller = new DatabaseController(this);
 	}
 
@@ -111,7 +110,6 @@ public class MapActivity extends Activity implements NavigationListener,
 
 	@Override
 	public void onBackPressed() {
-		// Hardware Zurückbutton disabled
 	}
 
 	@Override
@@ -138,6 +136,12 @@ public class MapActivity extends Activity implements NavigationListener,
 		canvasLayout = (LinearLayout) findViewById(R.id.canvas_layout);
 		inventoryButton = (Button) findViewById(R.id.inventory);
 		unimonsButton = (Button) findViewById(R.id.unimons);
+
+		// mapButton = (Button) findViewById(R.id.map_overview);
+		// movePlayerButton = (Button)
+		// findViewById(R.id.move_player_test_button);
+		// backToStartScreenButton = (Button)
+		// findViewById(R.id.back_to_map_button);
 		menuButton = (Button) findViewById(R.id.back_to_start_screen);
 		saveButton = (Button) findViewById(R.id.save_button);
 		map = BitmapFactory.decodeResource(getResources(), R.drawable.map);
@@ -175,7 +179,7 @@ public class MapActivity extends Activity implements NavigationListener,
 						UnimonListActivity.class);
 				startActivity(unimons);
 			}
-				
+
 		});
 		menuButton.setOnClickListener(new OnClickListener() {
 			public void onClick(View v) {
@@ -185,6 +189,17 @@ public class MapActivity extends Activity implements NavigationListener,
 				startActivity(backToStart);
 			}
 		});
+
+		// backToStartScreenButton.setOnClickListener(new OnClickListener() {
+		// public void onClick(View v) {
+		// Intent startScreen = new Intent(MapActivity.this,
+		// StartScreenActivity.class);
+		// startActivity(startScreen);
+		// }
+		// });
+
+		// movePlayerButton.setOnClickListener(new OnClickListener() {
+
 		saveButton.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
@@ -282,7 +297,7 @@ public class MapActivity extends Activity implements NavigationListener,
 					- leftUpperCornerLatitude) / helpVarY);
 
 			startRandomUnimonBattle(count);
-			
+
 			rangeChecker.isPlayerInTrainerRange(playerPosDetail);
 			rangeChecker.onBuildingIsInRange(playerPosDetail);
 			rangeChecker.onBuildingIsNotInRange(playerPosDetail);
@@ -457,7 +472,6 @@ public class MapActivity extends Activity implements NavigationListener,
 	@Override
 	public void onTrainerVisibilityChanged(ArrayList<Trainer> trainerList) {
 		Log.d("hallo", "onvisi");
-			this.trainerList = trainerList;
+		this.trainerList = trainerList;
 	}
-
 }

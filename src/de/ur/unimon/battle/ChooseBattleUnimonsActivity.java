@@ -17,6 +17,8 @@ import android.widget.ListView;
 import android.widget.TextView;
 import de.ur.mi.android.excercises.starter.R;
 import de.ur.unimon.actionbar.UnimonListAdapter;
+import de.ur.unimon.appstart.StartScreenActivity;
+import de.ur.unimon.mapoverview.MapActivity;
 import de.ur.unimon.player.Player;
 import de.ur.unimon.player.PlayerController;
 import de.ur.unimon.unimons.Unimon;
@@ -48,10 +50,20 @@ public class ChooseBattleUnimonsActivity extends Activity {
 	    //Hardware Zurückbutton disabled
 	}
 	
+	@Override
+	protected void onDestroy() {		
+		Log.d("hallo", "onDestroy");
+		if (StartScreenActivity.mediaPlayer.isPlaying()) {
+			StartScreenActivity.mediaPlayer.stop();
+		}
+		finish();
+		super.onDestroy();
+	}
+	
 
 	private void getTrainer() {
 		Bundle extras = getIntent().getExtras();
-		trainerID = extras.getInt("trainerID");
+		trainerID = extras.getInt("trainerID");;
 	}
 
 	private void initUI() {
@@ -89,7 +101,7 @@ public class ChooseBattleUnimonsActivity extends Activity {
 					toBattleActivity.putExtra("trainerID", trainerID);
 					toBattleActivity.putExtra("chosenUnimonStringArray", chosenUnimonsStringArray);
 					startActivity(toBattleActivity);
-
+					
 				} else if (selectionStage == 1) {
 					chooseUnimonText.setText(R.string.choose_second_unimon);
 				} else if (selectionStage == 2) {

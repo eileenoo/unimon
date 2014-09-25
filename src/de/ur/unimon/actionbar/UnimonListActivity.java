@@ -2,6 +2,7 @@ package de.ur.unimon.actionbar;
 
 import java.util.ArrayList;
 
+
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -50,7 +51,9 @@ public class UnimonListActivity extends Activity{
 				
 				Intent unimonDetail = new Intent(UnimonListActivity.this,
 						UnimonListDetailActivity.class);			
-				Unimon chosenUnimon = (Unimon) listUnimons.getItemAtPosition(position);				
+				Unimon chosenUnimon = (Unimon) listUnimons.getItemAtPosition(position);					
+				
+				int chosenUnimonImage = chosenUnimon.getImage();
 				String chosenUnimonName = chosenUnimon.getName();
 				int chosenUnimonHealth = chosenUnimon.getHealth();
 				int chosenUnimonMaxHealth = chosenUnimon.getMaxHealth();		
@@ -64,7 +67,7 @@ public class UnimonListActivity extends Activity{
 					chosenUnimonSpellText += unimons.get(position).getSpellBySpellNumber(i).getSpellName() + "\n";
 				}				
 
-				//ImageView chosenUnimmonImage = chosenUnimon.getImage();
+				unimonDetail.putExtra("chosen_unimon_image", chosenUnimonImage);
 				unimonDetail.putExtra("chosen_unimon_name", chosenUnimonName);
 				unimonDetail.putExtra("chosen_unimon_health", chosenUnimonHealth);
 				unimonDetail.putExtra("chosen_unimon_max_health", chosenUnimonMaxHealth);
@@ -73,7 +76,6 @@ public class UnimonListActivity extends Activity{
 				unimonDetail.putExtra("chosen_unimon_max_xp_per_level", chosenUnimonMaxXpPerLevel);
 				unimonDetail.putExtra("chosen_unimon_spells", chosenUnimonSpellText);
 				unimonDetail.putExtra("chosen_unimon_skillPoints", chosenUnimonSkillPoints);
-				//unimonDetail.putExtra("chosen_unimon_image", chosenUnimonImage);
 				startActivity(unimonDetail);								
 								
 				}

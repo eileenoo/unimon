@@ -2,6 +2,7 @@ package de.ur.unimon.trainer;
 
 import java.util.Random;
 
+import android.widget.ImageView;
 import de.ur.unimon.unimons.Unimon;
 
 public class Trainer {
@@ -67,5 +68,7 @@ public class Trainer {
 	public Unimon getUnimon() {
 		return unimon;
 	}
+	
+	
 
 }

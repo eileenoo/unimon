@@ -153,6 +153,7 @@ public static class SwipeFragment extends Fragment{
 		
 		unimonName.setText(ownedUnimonList.get(position).getName());
 		unimonLevel.setText(getResources().getString(R.string.level_text) + ownedUnimonList.get(position).getLevel());
+		unimonImage.setImageResource(ownedUnimonList.get(position).getImage());
 		
 		String spellText = "";
 		for (int i = 0; i<ownedUnimonList.get(position).getOwnedSpells().size(); i++){

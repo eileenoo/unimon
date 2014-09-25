@@ -8,7 +8,7 @@ import de.ur.unimon.trainer.Trainer;
 import de.ur.unimon.trainer.TrainerListController;
 
 public class RangeChecker {
-
+ 
 
 	private ArrayList<Trainer> trainerList;
 	private TrainerListController trainerListController;

@@ -7,6 +7,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 import de.ur.mi.android.excercises.starter.R;
@@ -20,9 +22,10 @@ public class ShopActivity extends Activity {
 			protectorName, healpotPrice, uniballPrice, revivePrice,
 			protectorPrice, healpotCount, uniballCount, reviveCount,
 			protectorCount;
-	private Button healpotImage, uniballImage, reviveImage, protectorImage;
+	private ImageView healpotImage, uniballImage, reviveImage, protectorImage;
 	private int currentMoney, healpot_Price, uniball_Price, revive_Price,
 			protector_Price;
+	ImageButton buyHealpotButton, buyUniballButton, buyReviveButton, buyProtectorButton;
 
 	Inventory inventory;
 	private Player player;
@@ -40,7 +43,7 @@ public class ShopActivity extends Activity {
 		initUI();
 
 	}
-
+	
 	private void initUI() {
 		inventory = player.getInventory();
 		money = (TextView) findViewById(R.id.money);
@@ -48,54 +51,62 @@ public class ShopActivity extends Activity {
 
 		// Healpot
 		healpot_Price = 100;
-		healpotImage = (Button) findViewById(R.id.healpot_image);
+		healpotImage = (ImageView) findViewById(R.id.healpot_image);
 		healpotName = (TextView) findViewById(R.id.item_healpot);
 		healpotCount = (TextView) findViewById(R.id.item_healpot_count);
 		healpotPrice = (TextView) findViewById(R.id.item_healpot_price);
 
-		// healpotImage.setImageResource(R.drawable.ic_launcher);
+		healpotImage.setImageResource(R.drawable.healpot);
 		healpotCount.setText(getResources().getString(R.string.item_count_text) + inventory.getHealpotCount());
 		healpotPrice.setText("" + healpot_Price + "€");
+		
+		buyHealpotButton = (ImageButton) findViewById(R.id.buy_healpot_button);
 
 		// Uniball
 		uniball_Price = 50;
-		uniballImage = (Button) findViewById(R.id.uniball_image);
+		uniballImage = (ImageView) findViewById(R.id.uniball_image);
 		uniballName = (TextView) findViewById(R.id.item_uniball);
 		uniballCount = (TextView) findViewById(R.id.item_uniball_count);
 		uniballPrice = (TextView) findViewById(R.id.item_uniball_price);
 
-		// uniballImage.setImageResource(R.drawable.ic_launcher);
+		uniballImage.setImageResource(R.drawable.uniball);
 		uniballCount.setText(getResources().getString(R.string.item_count_text) + inventory.getUniballCount());
 		uniballPrice.setText("" + uniball_Price + "€");
+		
+		buyUniballButton = (ImageButton) findViewById(R.id.buy_uniball_button);
 
 		// Revive
 		revive_Price = 400;
-		reviveImage = (Button) findViewById(R.id.revive_image);
+		reviveImage = (ImageView) findViewById(R.id.revive_image);
 		reviveName = (TextView) findViewById(R.id.item_revive);
 		reviveCount = (TextView) findViewById(R.id.item_revive_count);
 		revivePrice = (TextView) findViewById(R.id.item_revive_price);
 
-		// reviveImage.setImageResource(R.drawable.ic_launcher);
+		reviveImage.setImageResource(R.drawable.uniball);
 		reviveCount.setText(getResources().getString(R.string.item_count_text) + inventory.getReviveCount());
 		revivePrice.setText("" + revive_Price + "€");
+		
+		buyReviveButton = (ImageButton) findViewById(R.id.buy_revive_button);		
 
 		// Protectors
 		protector_Price = 850;
-		protectorImage = (Button) findViewById(R.id.protectors_image);
+		protectorImage = (ImageView) findViewById(R.id.protectors_image);
 		protectorName = (TextView) findViewById(R.id.item_protector);
 		protectorCount = (TextView) findViewById(R.id.item_protector_count);
 		protectorPrice = (TextView) findViewById(R.id.item_protector_price);
 
-		// protectorImage.setImageResource(R.drawable.ic_launcher);
+		protectorImage.setImageResource(R.drawable.uniball);
 		protectorCount.setText(getResources().getString(R.string.item_count_text) + inventory.getProtectorCount());
 		protectorPrice.setText("" + protector_Price + "€");
+		
+		buyProtectorButton = (ImageButton) findViewById(R.id.buy_protector_button);		
 
 		setButtonsOnClick();
 
 	}
 
 	private void setButtonsOnClick() {
-		healpotImage.setOnClickListener(new OnClickListener() {
+		buyHealpotButton.setOnClickListener(new OnClickListener() {
 			public void onClick(View v) {
 				currentMoney = player.getMoney();
 				if (currentMoney >= healpot_Price) {
@@ -133,7 +144,7 @@ public class ShopActivity extends Activity {
 			}
 		});
 
-		uniballImage.setOnClickListener(new OnClickListener() {
+		buyUniballButton.setOnClickListener(new OnClickListener() {
 			public void onClick(View v) {
 				currentMoney = player.getMoney();
 				if (currentMoney >= uniball_Price) {
@@ -170,7 +181,7 @@ public class ShopActivity extends Activity {
 			}
 		});
 
-		reviveImage.setOnClickListener(new OnClickListener() {
+		buyReviveButton.setOnClickListener(new OnClickListener() {
 			public void onClick(View v) {
 				currentMoney = player.getMoney();
 				if (currentMoney >= revive_Price) {
@@ -207,7 +218,7 @@ public class ShopActivity extends Activity {
 			}
 		});
 
-		protectorImage.setOnClickListener(new OnClickListener() {
+		buyProtectorButton.setOnClickListener(new OnClickListener() {
 			public void onClick(View v) {
 				currentMoney = player.getMoney();
 				if (currentMoney >= protector_Price) {

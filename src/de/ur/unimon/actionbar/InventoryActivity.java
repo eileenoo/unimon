@@ -72,7 +72,7 @@ public class InventoryActivity extends Activity {
 			healpotName = (TextView) findViewById(R.id.item_healpot);
 			healpotCount = (TextView) findViewById(R.id.item_healpot_count);
 
-			healpotImage.setImageResource(R.drawable.uniball);
+			healpotImage.setImageResource(R.drawable.healpot);
 			healpotCount.setText(getResources().getString(
 					R.string.item_count_text)
 					+ inventory.getHealpotCount());
@@ -128,8 +128,8 @@ public class InventoryActivity extends Activity {
 
 		useProtectorButton.setOnClickListener(new OnClickListener() {
 			public void onClick(View v) {
-				showToast(R.string.use_protector_toast);
 				if(player.getInventory().protectorAvailable()){
+					showToast(R.string.use_protector_toast);
 					player.getInventory().reduceProtector();
 					protectorCount.setText(getResources().getString(
 							R.string.item_count_text)
