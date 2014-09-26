@@ -49,7 +49,7 @@ public class NavigationController implements LocationListener {
 				|| locationManager
 						.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
 			Toast toast = Toast.makeText(context, gps_lost_info,
-					Toast.LENGTH_LONG);
+					Toast.LENGTH_SHORT);
 			toast.show();
 			locationManager.removeUpdates((LocationListener) this);
 		}

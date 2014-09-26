@@ -22,7 +22,7 @@ public class TrainerList {
 		unimonList = new UnimonList().getTrainerUnimonsList();
 		trainerList = new ArrayList<Trainer>();
 		trainer1 = new Trainer(1, "Schleimi", 48.9987501, 12.0936204, unimonList.get(0), 70, 70, false); //Wirtschaft
-		trainer2 = new Trainer(2, "Käffchen", 49.0004036, 12.0942936, unimonList.get(1), 150, 150, false); //Vielberth
+		trainer2 = new Trainer(2, "Käffchen", 49.0004036, 12.0942936, unimonList.get(1), 150, 150, false); //Vielberth stattdessen vielleicht bei Kugel --> zentraler oder direkt vor vielberth Gebäude
 		trainer3 = new Trainer(3, "Robomon", 48.9979429, 12.0973199, unimonList.get(2), 250, 250, false); //rechtsNebenBib
 		//trainer3 = new Trainer(3, "Kugel", 48.998227, 12.095232, unimonList.get(2), 250, 250, false);
 		trainer4 = new Trainer(4, "Hentaicha", 48.9971498, 12.0951285, unimonList.get(3), 350, 350, false); //Brücke

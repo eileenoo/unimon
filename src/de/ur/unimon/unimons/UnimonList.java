@@ -224,7 +224,7 @@ public class UnimonList {
 		
 		
 		//sehr offensiv und hält relativ viel aus
-		asymptoterus = new Unimon("Asymptoterus", 124, true, R.drawable.robomon);
+		asymptoterus = new Unimon("Asymptoterus", 124, true, R.drawable.kiffi);
 		asymptoterusSpell1 = new Spell ("Giga Impact",1,32);
 		asymptoterusSpell2 = new Spell("Icicle Spear", 2, 43);
 		asymptoterusSpell3 = new Spell ("Explosion",3,54);
@@ -313,7 +313,7 @@ public class UnimonList {
 
 
 		//neutral
-		start1 = new Unimon("Dickman", 100, false, R.drawable.robomon);
+		start1 = new Unimon("Dickman", 100, false, R.drawable.eimerchen);
 		start1Spell1 =  new Spell ("Jump Kick",1,15);
 		start1Spell2 =  new Spell ("Overdrive",1,25);
 		start1Spell3 =  new Spell ("Mega Punch",1,35);

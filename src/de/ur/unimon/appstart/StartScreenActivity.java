@@ -26,7 +26,7 @@ public class StartScreenActivity extends Activity {
 	private PlayerController playerController;
 	private TrainerListController trainerListController;
 	AlertDialog.Builder builder;
-	private Context context;
+	Context context;
 	private DatabaseController dbController;
 	public static MediaPlayer mediaPlayer;
 
