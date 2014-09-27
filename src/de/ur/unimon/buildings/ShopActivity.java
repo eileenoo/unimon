@@ -13,6 +13,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 import de.ur.mi.android.excercises.starter.R;
 import de.ur.unimon.actionbar.Inventory;
+import de.ur.unimon.database.DatabaseController;
 import de.ur.unimon.player.Player;
 import de.ur.unimon.player.PlayerController;
 
@@ -42,6 +43,13 @@ public class ShopActivity extends Activity {
 		builder = new AlertDialog.Builder(this);
 		initUI();
 
+	}
+	
+	@Override
+	protected void onDestroy() {
+		DatabaseController databaseController = new DatabaseController(this);
+		databaseController.save();
+		super.onDestroy();
 	}
 	
 	private void initUI() {

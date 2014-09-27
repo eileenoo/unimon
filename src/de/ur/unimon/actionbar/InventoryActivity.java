@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import de.ur.mi.android.excercises.starter.R;
 import de.ur.unimon.appstart.StartScreenActivity;
+import de.ur.unimon.database.DatabaseController;
 import de.ur.unimon.mapoverview.MapActivity;
 import de.ur.unimon.player.Player;
 import de.ur.unimon.player.PlayerController;
@@ -55,6 +56,13 @@ public class InventoryActivity extends Activity {
 				R.string.item_count_text)
 				+ inventory.getProtectorCount());
 		super.onResume();
+	}
+	
+	@Override
+	protected void onDestroy() {
+		DatabaseController databaseController = new DatabaseController(this);
+		databaseController.save();
+		super.onDestroy();
 	}
 
 	private void initUI() {

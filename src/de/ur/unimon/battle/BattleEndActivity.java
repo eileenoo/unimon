@@ -3,6 +3,7 @@ package de.ur.unimon.battle;
 import de.ur.mi.android.excercises.starter.R;
 import de.ur.unimon.actionbar.UnimonListAdapter;
 import de.ur.unimon.appstart.OptionsScreenActivity;
+import de.ur.unimon.database.DatabaseController;
 import de.ur.unimon.mapoverview.MapActivity;
 import android.app.Activity;
 import android.content.Intent;
@@ -34,6 +35,13 @@ public class BattleEndActivity extends Activity{
 	@Override
 	public void onBackPressed() {
 	    //Hardware Zurückbutton disabled
+	}
+	
+	@Override
+	protected void onDestroy() {
+		DatabaseController databaseController = new DatabaseController(this);
+		databaseController.save();
+		super.onDestroy();
 	}
 
 	private void getIntentValues() {

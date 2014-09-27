@@ -36,7 +36,7 @@ import de.ur.unimon.trainer.TrainerListController;
 public class MapActivity extends Activity implements NavigationListener,
 		RangeListener {
 
-	Button inventoryButton, unimonsButton, menuButton, saveButton, mapButton,
+	Button inventoryButton, unimonsButton, menuButton, mapButton,
 			movePlayerButton;
 	Bitmap map, player, trainer1, trainer2, trainer3, trainer4, trainer5,
 			trainer6, trainerBoss;
@@ -113,6 +113,12 @@ public class MapActivity extends Activity implements NavigationListener,
 	}
 
 	@Override
+	protected void onDestroy() {
+		controller.save();
+		super.onDestroy();
+	}
+	
+	@Override
 	protected void onResume() {
 		navigationController.start();
 		super.onResume();
@@ -143,7 +149,6 @@ public class MapActivity extends Activity implements NavigationListener,
 		// backToStartScreenButton = (Button)
 		// findViewById(R.id.back_to_map_button);
 		menuButton = (Button) findViewById(R.id.back_to_start_screen);
-		saveButton = (Button) findViewById(R.id.save_button);
 		map = BitmapFactory.decodeResource(getResources(), R.drawable.map);
 		MapView canvasMap = new MapView(this);
 
@@ -183,6 +188,7 @@ public class MapActivity extends Activity implements NavigationListener,
 		});
 		menuButton.setOnClickListener(new OnClickListener() {
 			public void onClick(View v) {
+				controller.save();
 				Intent backToStart = new Intent(MapActivity.this,
 						StartScreenActivity.class);
 				backToStart.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
@@ -199,13 +205,6 @@ public class MapActivity extends Activity implements NavigationListener,
 		// });
 
 		// movePlayerButton.setOnClickListener(new OnClickListener() {
-
-		saveButton.setOnClickListener(new OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				controller.save(PlayerController.getInstance());
-			}
-		});
 	}
 
 	private class MapView extends View {

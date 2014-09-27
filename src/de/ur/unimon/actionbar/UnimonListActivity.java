@@ -3,6 +3,7 @@ package de.ur.unimon.actionbar;
 import java.util.ArrayList;
 
 
+
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -16,6 +17,7 @@ import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import de.ur.mi.android.excercises.starter.R;
+import de.ur.unimon.database.DatabaseController;
 import de.ur.unimon.player.PlayerController;
 import de.ur.unimon.unimons.Spell;
 import de.ur.unimon.unimons.Unimon;
@@ -33,6 +35,13 @@ public class UnimonListActivity extends Activity{
 		setContentView(R.layout.unimon_list_activity);
 		initUI();
 
+	}
+	
+	@Override
+	protected void onDestroy() {
+		DatabaseController databaseController = new DatabaseController(this);
+		databaseController.save();
+		super.onDestroy();
 	}
 
 	private void initUI() {
