@@ -5,7 +5,8 @@
     android:padding="4dip"
     android:gravity="center_horizontal"
     android:layout_width="match_parent" 
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="#99B8FA">
 
     <android.support.v4.view.ViewPager
         android:id="@+id/pager"

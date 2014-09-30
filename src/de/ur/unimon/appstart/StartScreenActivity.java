@@ -98,9 +98,9 @@ public class StartScreenActivity extends Activity {
 	@Override
 	protected void onDestroy() {		
 		Log.d("hallo", "onDestroy");
-		if (mediaPlayer.isPlaying()) {
-			mediaPlayer.stop();
-		}
+//		if (mediaPlayer.isPlaying()) {
+//			mediaPlayer.stop();
+//		}
 		finish();
 		super.onDestroy();
 	}

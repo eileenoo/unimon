@@ -212,7 +212,7 @@ public class MapActivity extends Activity implements NavigationListener,
 		public MapView(Context context) {
 			super(context);
 			player = BitmapFactory.decodeResource(getResources(),
-					R.drawable.blauer_punkt);
+					R.drawable.player);
 
 			trainer1 = BitmapFactory.decodeResource(getResources(),
 					R.drawable.blauer_punkt);

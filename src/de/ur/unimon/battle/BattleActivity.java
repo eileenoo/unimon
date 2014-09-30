@@ -72,6 +72,7 @@ public class BattleActivity extends Activity implements
 	private EnemyFightFragment enemyFragment;
 
 	private int XP, money;
+	private boolean isUnimonCaught = false;
 
 	final Animation toEnemyDamageTextIn = new AlphaAnimation(0.0f, 1.0f);
 	final Animation toOwnDamageTextIn = new AlphaAnimation(0.0f, 1.0f);
@@ -309,29 +310,32 @@ public class BattleActivity extends Activity implements
 	}
 
 	private void checkStatus() {
-		enemyFragment = new EnemyFightFragment();
-
-		if (playerStatus) {
-			fragmentTransaction = getFragmentManager().beginTransaction();
-			fragmentTransaction.replace(R.id.battle_activity_layout,
-					allOptionsFragment);
-			fragmentManager.popBackStack();
-			fragmentTransaction.commit();
-
-		} else {
-			fragmentTransaction = getFragmentManager().beginTransaction();
-
-			fragmentTransaction.replace(R.id.battle_activity_layout,
-					enemyFragment);
-			fragmentManager.popBackStack();
-			fragmentTransaction.commit();
-
-			handler.postDelayed(new Runnable() {
-				@Override
-				public void run() {
-					enemyFight();
-				}
-			}, 3000);
+		if (!isUnimonCaught) {
+		
+			enemyFragment = new EnemyFightFragment();
+	
+			if (playerStatus) {
+				fragmentTransaction = getFragmentManager().beginTransaction();
+				fragmentTransaction.replace(R.id.battle_activity_layout,
+						allOptionsFragment);
+				fragmentManager.popBackStack();
+				fragmentTransaction.commit();
+	
+			} else {
+				fragmentTransaction = getFragmentManager().beginTransaction();
+	
+				fragmentTransaction.replace(R.id.battle_activity_layout,
+						enemyFragment);
+				fragmentManager.popBackStack();
+				fragmentTransaction.commit();
+	
+				handler.postDelayed(new Runnable() {
+					@Override
+					public void run() {
+						enemyFight();
+					}
+				}, 3000);
+			}
 		}
 	}
 
@@ -352,6 +356,7 @@ public class BattleActivity extends Activity implements
 	private void fightEnd() {
 		XP = trainer.getExpValue();
 		money = trainer.getMoneyValue();
+		enemyUnimon.setHealth(enemyUnimon.getMaxHealth());
 		if (gameWon){
 			player.addMoney(money);
 			switch (battleController.getXpSplit()) {
@@ -455,13 +460,14 @@ public class BattleActivity extends Activity implements
 	public void onUniballButtonClicked() {
 		player.getInventory().decreaseUniball();
 		if (battleController.ableToCatchUnimon()) {
+			isUnimonCaught = true;
 			battleController.unimonCatchSuccess();
 			showToast(R.string.catch_unimon_success_text);
 			startActivity(map);
 		} else {
 			showToast(R.string.catch_unimon_fail_text);
+			playerStatus = false;
 		}
-		playerStatus = false;
 		checkStatus();
 
 	}
