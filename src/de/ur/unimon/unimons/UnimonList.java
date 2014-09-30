@@ -131,7 +131,7 @@ public class UnimonList {
 
 		
 		// ausgeglichen
-		schleimi = new Unimon("Schleimi", 123, true, R.drawable.robomon);
+		schleimi = new Unimon("Kiffi", 123, true, R.drawable.kiffi);
 		schleimiSpell1 = new Spell("Scratch", 1, 15);
 		schleimiSpell2 = new Spell("Bite", 2, 25);
 		schleimiSpell3 = new Spell("Headbutt",3,35);
