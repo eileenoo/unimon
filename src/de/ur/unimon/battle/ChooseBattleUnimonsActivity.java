@@ -33,7 +33,7 @@ public class ChooseBattleUnimonsActivity extends Activity {
 	ListAdapter listUnimons_adpater;
 	private ArrayList<Unimon> ownedUnimons;
 	private String[] chosenUnimonsStringArray;
-	private int selectionStage, trainerID, wildieID;
+	private int selectionStage, trainerID;
 	private Player player;
 	private PlayerController playerController;
 
@@ -63,8 +63,7 @@ public class ChooseBattleUnimonsActivity extends Activity {
 
 	private void getTrainer() {
 		Bundle extras = getIntent().getExtras();
-		trainerID = extras.getInt("trainerID");
-		wildieID = extras.getInt("wildieID");
+		trainerID = extras.getInt("trainerID");;
 	}
 
 	private void initUI() {
@@ -99,19 +98,10 @@ public class ChooseBattleUnimonsActivity extends Activity {
 				if (selectionStage == 3) {
 					Intent toBattleActivity = new Intent(ChooseBattleUnimonsActivity.this, BattleActivity.class);
 					//toBattleActivity.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
-					Log.d("hallo", "boolean startRandomBattle " + MapActivity.startRandomBattle);
-					if(MapActivity.startRandomBattle == false){
-						toBattleActivity.putExtra("trainerID", trainerID);
+					toBattleActivity.putExtra("trainerID", trainerID);
 					toBattleActivity.putExtra("chosenUnimonStringArray", chosenUnimonsStringArray);
 					startActivity(toBattleActivity);
-					}
-					else if (MapActivity.startRandomBattle == true){
-						toBattleActivity.putExtra("wildieID", wildieID);
-						toBattleActivity.putExtra("chosenUnimonStringArray", chosenUnimonsStringArray);
-						startActivity(toBattleActivity);
-					}
 					
-
 				} else if (selectionStage == 1) {
 					chooseUnimonText.setText(R.string.choose_second_unimon);
 				} else if (selectionStage == 2) {

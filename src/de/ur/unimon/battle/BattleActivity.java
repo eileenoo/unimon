@@ -8,6 +8,7 @@ import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.view.animation.Animation.AnimationListener;
@@ -24,7 +25,9 @@ import de.ur.unimon.trainer.TrainerList;
 import de.ur.unimon.trainer.TrainerListController;
 import de.ur.unimon.unimons.Spell;
 import de.ur.unimon.unimons.Unimon;
+import de.ur.wildlings.WildlingCreator;
 import de.ur.unimon.unimons.UnimonList;
+
 
 public class BattleActivity extends Activity implements
 		AllOptionsBattleFragment.OnOptionsSelectorListener,
@@ -50,11 +53,11 @@ public class BattleActivity extends Activity implements
 	private Unimon enemyUnimon;
 	private Unimon[] currentBattleUnimonList;
 	private String[] battleUnimonListStringArray;
-	private UnimonList wildUnimonList;
 	private Trainer trainer;
 	private TrainerListController trainerListController;
 	private Player player;
 	private PlayerController playerController;
+	private WildlingCreator wildlingCreator;
 	private BattleController battleController;
 	private final Handler handler = new Handler();
 
@@ -86,6 +89,11 @@ public class BattleActivity extends Activity implements
 		initUI();
 		createFirstFragment();
 		setUpAnimation();
+	}
+	
+	@Override
+	public void onBackPressed() {
+	    //Hardware Zurückbutton disabled
 	}
 
 	private void setUpAnimation() {
@@ -243,36 +251,23 @@ public class BattleActivity extends Activity implements
 
 	private void initInstances() {
 		map = new Intent(BattleActivity.this, MapActivity.class);
-		wildUnimonList = new UnimonList();
 		playerStatus = true;
 		player = playerController.getInstance();
+		wildlingCreator = new WildlingCreator();
 		ArrayList<Trainer> trainerList = trainerListController.getInstance().getTrainerList();
-			
-			if(MapActivity.startRandomBattle == true){				
-				enemyUnimon = wildUnimonList.getWildUnimonsList().get(getIntent().getExtras().getInt("wildieID"));
-			}
-			else if (MapActivity.startRandomBattle == false){				
-				trainer = trainerList.get(getIntent().getExtras().getInt("trainerID"));
-				enemyUnimon = trainer.getUnimon();
-			}					
+
+		int trainerID = getIntent().getExtras().getInt("trainerID");
+		if (trainerID == 99) {
+			wildlingCreator.createWildUnimon();
+			trainer = wildlingCreator.getTrainer();
+		}
+		else { trainer = trainerList.get(trainerID); }
+		enemyUnimon = trainer.getUnimon();		
 	}
 
 	private void initBattleController() {
 		battleUnimonListStringArray = getIntent().getStringArrayExtra(
 				"chosenUnimonStringArray");
-		
-		if (MapActivity.startRandomBattle == true){
-			ArrayList<Unimon> wildUnimonList = new UnimonList().getWildUnimonsList();
-			enemyUnimon = wildUnimonList.get(getIntent().getExtras().getInt("wildieID"));
-			enemyUnimon.setToMaxHealth();
-		}
-		
-		else if (MapActivity.startRandomBattle == false){
-			ArrayList<Trainer> trainerList = new TrainerList().getTrainerList();
-			trainer = trainerList.get(getIntent().getExtras().getInt("trainerID"));
-			enemyUnimon = trainer.getUnimon();
-			enemyUnimon.setToMaxHealth();
-		}
 
 		String battleUnimonName = battleUnimonListStringArray[0];
 		String secondBattleUnimonName = battleUnimonListStringArray[1];
@@ -360,33 +355,27 @@ public class BattleActivity extends Activity implements
 	}
 
 	private void fightEnd() {
-		if (MapActivity.startRandomBattle == true){
-			XP = 100;
-			money = 200;
-			MapActivity.startRandomBattle = false;
-		}
-		else{
-			XP = trainer.getExpValue();
-			money = trainer.getMoneyValue();
-		}
-		
-		player.addMoney(money);
-		switch (battleController.getXpSplit()) {
-		case 1:
-			currentBattleUnimonList[0].addXp(XP);
-			break;
-		case 2:
-			currentBattleUnimonList[0].addXp(XP / 2);
-			if (battleController.isSecondUnimonUsed()) {
-				currentBattleUnimonList[1].addXp((int) (Math.round(XP / 2d)));
-			} else
-				currentBattleUnimonList[2].addXp((int) (Math.round(XP / 2d)));
-			break;
-		case 3:
-			currentBattleUnimonList[0].addXp((int) (Math.round(XP / 3d)));
-			currentBattleUnimonList[1].addXp((int) (Math.round(XP / 3d)));
-			currentBattleUnimonList[2].addXp((int) (Math.round(XP / 3d)));
-			break;
+		XP = trainer.getExpValue();
+		money = trainer.getMoneyValue();
+		if (gameWon){
+			player.addMoney(money);
+			switch (battleController.getXpSplit()) {
+			case 1:
+				currentBattleUnimonList[0].addXp(XP);
+				break;
+			case 2:
+				currentBattleUnimonList[0].addXp(XP / 2);
+				if (battleController.isSecondUnimonUsed()) {
+					currentBattleUnimonList[1].addXp((int) (Math.round(XP / 2d)));
+				} else
+					currentBattleUnimonList[2].addXp((int) (Math.round(XP / 2d)));
+				break;
+			case 3:
+				currentBattleUnimonList[0].addXp((int) (Math.round(XP / 3d)));
+				currentBattleUnimonList[1].addXp((int) (Math.round(XP / 3d)));
+				currentBattleUnimonList[2].addXp((int) (Math.round(XP / 3d)));
+				break;
+			}
 		}
 		
 		Intent toBattleEndActivity = new Intent(BattleActivity.this,

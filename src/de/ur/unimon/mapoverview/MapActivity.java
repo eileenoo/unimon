@@ -32,7 +32,6 @@ import de.ur.unimon.navigation.PlayerPositionDetail;
 import de.ur.unimon.player.PlayerController;
 import de.ur.unimon.trainer.Trainer;
 import de.ur.unimon.trainer.TrainerListController;
-import de.ur.unimon.unimons.Unimon;
 
 public class MapActivity extends Activity implements NavigationListener,
 		RangeListener {
@@ -66,7 +65,6 @@ public class MapActivity extends Activity implements NavigationListener,
 	public static final double leftUpperCornerLatitude = 49.0010367;
 	public static final double bottomRightCornerLongitude = 12.09969;
 	public static final double bottomRightCornerLatitude = 48.99169;
-	public static boolean startRandomBattle;
 
 	public float PIXEL_X; // 1559; //1169
 	public float PIXEL_Y; // 2731; //2048
@@ -95,7 +93,6 @@ public class MapActivity extends Activity implements NavigationListener,
 		builder = new AlertDialog.Builder(this);
 		rnd = new Random();
 		rangeChecker = new RangeChecker();
-		startRandomBattle = false;
 
 		initUI();
 		initNavigation();
@@ -103,7 +100,6 @@ public class MapActivity extends Activity implements NavigationListener,
 		getTrainerPositions();
 
 		controller = new DatabaseController(this);
-
 	}
 
 	private void initFragmentManager() {
@@ -326,8 +322,6 @@ public class MapActivity extends Activity implements NavigationListener,
 	private void gettingAttacked() {
 		int rand = rnd.nextInt(10);
 		if (rand == 1 && InventoryActivity.isProtectorActive == false) {
-			startRandomBattle = true;
-			final int getRandomUnimon = rnd.nextInt(2);
 			Log.d("hallo", "Kampf start");
 			builder.setTitle(getResources().getString(
 					R.string.alert_random_unimon_battle_title));
@@ -344,8 +338,7 @@ public class MapActivity extends Activity implements NavigationListener,
 							Intent startRandomUnimonBattle = new Intent(
 									MapActivity.this,
 									ChooseBattleUnimonsActivity.class);
-							startRandomUnimonBattle.putExtra("wildieID",
-									getRandomUnimon);
+							startRandomUnimonBattle.putExtra("trainerID", 99);
 							startActivity(startRandomUnimonBattle);
 							dialog.dismiss();
 						}

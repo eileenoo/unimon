@@ -99,7 +99,7 @@ public class Unimon {
 	}
 	
 	private void calculateXpPerLevel() {
-		setXpPerLevel(100 + (int) Math.exp((level/2d))+10);
+		setXpPerLevel((int) (100 + ((level*level/1.5)+10)));
 	}
 
 	public void setXp(int xp) {
@@ -148,7 +148,7 @@ public class Unimon {
 	
 	private void calculateMaxHealth(){
 //		setMaxHealth((int) (baseHealth + Math.exp((level/15d))+10));
-		maxHealth = (int) (baseHealth + level*17+level*7);
+		maxHealth = (int) (baseHealth + level*24);
 	}
 	
 	public void setHealth(int health){
