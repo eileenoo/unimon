@@ -34,6 +34,10 @@ public class Spell {
 		isLearned = true;
 	}
 	
+	public void forgetSpell() {
+		isLearned = false;
+	}
+	
 	public boolean isLearned(){
 		return isLearned;
 	}

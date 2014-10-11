@@ -108,7 +108,7 @@ public static class SwipeFragment extends Fragment{
 		unimonName.setText(startUnimonList.get(position).getName());
 		unimonHealth.setText(startUnimonList.get(position).getMaxHealth()+"/"+startUnimonList.get(position).getMaxHealth());
 		unimonLevel.setText(getResources().getString(R.string.level_text)+startUnimonList.get(position).getLevel());
-		unimonSpell.setText(getResources().getString(R.string.spells_headline)+startUnimonList.get(position).getSpellBySpellNumber(1).getSpellName()+" (damage: "+startUnimonList.get(position).getSpellBySpellNumber(1).getBaseDamage()+")");
+		unimonSpell.setText(getResources().getString(R.string.spells_headline)+startUnimonList.get(position).getSpellBySpellNumber(0).getSpellName()+" (damage: "+startUnimonList.get(position).getSpellBySpellNumber(0).getBaseDamage()+")");
 		healthBar.setMax(startUnimonList.get(position).getMaxHealth());
 		healthBar.setProgress(startUnimonList.get(position).getMaxHealth());
 		healthBar.setProgressDrawable(getResources().getDrawable(R.drawable.green_progress));

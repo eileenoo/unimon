@@ -3,6 +3,7 @@ package de.ur.unimon.database;
 import java.util.ArrayList;
 
 import android.content.Context;
+import android.util.Log;
 import de.ur.unimon.actionbar.Inventory;
 import de.ur.unimon.player.Player;
 import de.ur.unimon.player.PlayerController;
@@ -32,6 +33,7 @@ public class DatabaseController {
 		int money = dataBase.getMoney();
 		ownedUnimons = dataBase.getRawUnimons();
 		for (int i=0; i<ownedUnimons.size(); i++){
+			ownedUnimons.get(i).reset();
 			ownedUnimons = dataBase.getDetailToUnimons(ownedUnimons, i);			
 		}
 		player = new Player(money, ownedUnimons, inventory);
