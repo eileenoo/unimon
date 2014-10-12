@@ -131,7 +131,7 @@ public class UnimonList {
 
 		
 		// ausgeglichen
-		schleimi = new Unimon("Schleimi", 123, true, R.drawable.robomon);
+		schleimi = new Unimon("Kiffi", 123, true, R.drawable.kiffi);
 		schleimiSpell1 = new Spell("Scratch", 1, 15);
 		schleimiSpell2 = new Spell("Bite", 2, 25);
 		schleimiSpell3 = new Spell("Headbutt",3,35);
@@ -144,7 +144,10 @@ public class UnimonList {
 		schleimi.possibleSpells.add(schleimiSpell4);
 		schleimi.possibleSpells.add(schleimiSpell5);
 		schleimi.possibleSpells.add(schleimiSpell6);
+		schleimi.setLevel(3);
 		schleimi.learnSpell(schleimiSpell1);
+		schleimi.getSpellBySpellNumber(0).setSpellLevel(2);
+		schleimi.learnSpell(schleimiSpell2);
 		schleimi.setHealth(schleimi.getMaxHealth());
 		
 
@@ -163,6 +166,13 @@ public class UnimonList {
 		kaeffchen.addPossibleSpell(kaeffchenSpell5);
 		kaeffchen.addPossibleSpell(kaeffchenSpell6);
 		kaeffchen.learnSpell(kaeffchenSpell1);
+		kaeffchen.learnSpell(kaeffchenSpell2);
+		kaeffchen.learnSpell(kaeffchenSpell3);
+		kaeffchen.learnSpell(kaeffchenSpell4);
+		kaeffchen.setLevel(9);
+		kaeffchen.getSpellBySpellNumber(0).setSpellLevel(2);
+		kaeffchen.getSpellBySpellNumber(1).setSpellLevel(2);
+		kaeffchen.getSpellBySpellNumber(2).setSpellLevel(4);
 		kaeffchen.setHealth(kaeffchen.getMaxHealth());
 
 		//offensiver
@@ -179,7 +189,15 @@ public class UnimonList {
 		robotaer.addPossibleSpell(robotaerSpell4);
 		robotaer.addPossibleSpell(robotaerSpell5);
 		robotaer.addPossibleSpell(robotaerSpell6);
+		robotaer.setLevel(12);
 		robotaer.learnSpell(robotaerSpell1);
+		robotaer.learnSpell(robotaerSpell2);
+		robotaer.learnSpell(robotaerSpell3);
+		robotaer.learnSpell(robotaerSpell4);
+		robotaer.getSpellBySpellNumber(0).setSpellLevel(2);
+		robotaer.getSpellBySpellNumber(1).setSpellLevel(2);
+		robotaer.getSpellBySpellNumber(2).setSpellLevel(4);
+		robotaer.getSpellBySpellNumber(3).setSpellLevel(4);
 		robotaer.setHealth(robotaer.getMaxHealth());
 
 		
@@ -198,10 +216,7 @@ public class UnimonList {
 		hentaicha.addPossibleSpell(hentaichaSpell5);
 		hentaicha.addPossibleSpell(hentaichaSpell6);
 		hentaicha.learnSpell(hentaichaSpell1);
-		hentaicha.learnSpell(hentaichaSpell2);
-		//hentaichaSpell1.setSpellLevel(2);
 		hentaicha.setHealth(hentaicha.getMaxHealth());
-		//hentaicha.setLevel(20);
 		
 
 		// sehr defensiv
@@ -218,7 +233,17 @@ public class UnimonList {
 		hydroxyethan.addPossibleSpell(hydroxyethanSpell4);
 		hydroxyethan.addPossibleSpell(hydroxyethanSpell5);
 		hydroxyethan.addPossibleSpell(hydroxyethanSpell6);
+		hydroxyethan.setLevel(16);
 		hydroxyethan.learnSpell(hydroxyethanSpell1);
+		hydroxyethan.learnSpell(hydroxyethanSpell2);
+		hydroxyethan.learnSpell(hydroxyethanSpell3);
+		hydroxyethan.learnSpell(hydroxyethanSpell4);
+		hydroxyethan.learnSpell(hydroxyethanSpell5);
+		hydroxyethan.getSpellBySpellNumber(0).setSpellLevel(2);
+		hydroxyethan.getSpellBySpellNumber(1).setSpellLevel(2);
+		hydroxyethan.getSpellBySpellNumber(2).setSpellLevel(4);
+		hydroxyethan.getSpellBySpellNumber(3).setSpellLevel(5);
+		hydroxyethan.getSpellBySpellNumber(4).setSpellLevel(3);
 		hydroxyethan.setHealth(hydroxyethan.getMaxHealth());
 		
 		
@@ -237,7 +262,12 @@ public class UnimonList {
 		asymptoterus.addPossibleSpell(asymptoterusSpell4);
 		asymptoterus.addPossibleSpell(asymptoterusSpell5);
 		asymptoterus.addPossibleSpell(asymptoterusSpell6);
+		asymptoterus.setLevel(5);
 		asymptoterus.learnSpell(asymptoterusSpell1);
+		asymptoterus.learnSpell(asymptoterusSpell2);
+		asymptoterus.learnSpell(asymptoterusSpell3);
+		asymptoterus.getSpellBySpellNumber(0).setSpellLevel(2);
+		asymptoterus.getSpellBySpellNumber(1).setSpellLevel(2);
 		asymptoterus.setHealth(asymptoterus.getMaxHealth());
 		
 		
@@ -255,13 +285,25 @@ public class UnimonList {
 		legdayskipper.addPossibleSpell(legdayskipperSpell4);
 		legdayskipper.addPossibleSpell(legdayskipperSpell5);
 		legdayskipper.addPossibleSpell(legdayskipperSpell6);
+		legdayskipper.setLevel(20);
 		legdayskipper.learnSpell(legdayskipperSpell1);
+		legdayskipper.learnSpell(legdayskipperSpell2);
+		legdayskipper.learnSpell(legdayskipperSpell3);
+		legdayskipper.learnSpell(legdayskipperSpell4);
+		legdayskipper.learnSpell(legdayskipperSpell5);
+		legdayskipper.learnSpell(legdayskipperSpell6);
+		legdayskipper.getSpellBySpellNumber(0).setSpellLevel(2);
+		legdayskipper.getSpellBySpellNumber(0).setSpellLevel(2);
+		legdayskipper.getSpellBySpellNumber(0).setSpellLevel(4);
+		legdayskipper.getSpellBySpellNumber(0).setSpellLevel(5);
+		legdayskipper.getSpellBySpellNumber(0).setSpellLevel(6);
+		legdayskipper.getSpellBySpellNumber(0).setSpellLevel(1);
 		legdayskipper.setHealth(legdayskipper.getMaxHealth());
 		
 		
 		
 		//sehr offensiv
-		wild1 = new Unimon("Wildie", 130, false, R.drawable.robomon);
+		wild1 = new Unimon("Eimerchen", 130, false, R.drawable.eimerchen);
 		wild1Spell1 =  new Spell ("Giga Impact",1,31);
 		wild1Spell2  = new Spell("Ice Shard", 2, 42);
 		wild1Spell3  = new Spell("Bite", 3, 53);
@@ -310,7 +352,8 @@ public class UnimonList {
 
 
 		//neutral
-		start1 = new Unimon("Dickman", 100, false, R.drawable.eimerchen);
+
+		start1 = new Unimon("Facemeltor", 100, false, R.drawable.facemeltor);
 		start1Spell1 =  new Spell ("Jump Kick",1,15);
 		start1Spell2 =  new Spell ("Overdrive",1,25);
 		start1Spell3 =  new Spell ("Mega Punch",1,35);
@@ -327,7 +370,7 @@ public class UnimonList {
 		start1.setHealth(start1.getMaxHealth());
 		
 		//offensiv
-		start2 = new Unimon("Dickachu", 90, false, R.drawable.kaeffchen);
+		start2 = new Unimon("Charlie", 90, false, R.drawable.charlie);
 		start2Spell1 =  new Spell ("Karate Chop",1,17);
 		start2Spell2 =  new Spell ("Cut",1,27);
 		start2Spell3 =  new Spell ("Fire Spin",1,37);
@@ -344,7 +387,7 @@ public class UnimonList {
 		start2.setHealth(start2.getMaxHealth());
 		
 		//defensiv
-		start3 = new Unimon("Dicktator", 110, false, R.drawable.kraki);
+		start3 = new Unimon("Bademeistär", 110, false, R.drawable.bademeister);
 		start3Spell1 =  new Spell ("Power Trick",1,13);
 		start3Spell2 =  new Spell ("Poison Sting",1,23);
 		start3Spell3 =  new Spell ("Electro Ball",1,33);
@@ -357,6 +400,7 @@ public class UnimonList {
 		start3.addPossibleSpell(start3Spell4);
 		start3.addPossibleSpell(start3Spell5);
 		start3.addPossibleSpell(start3Spell6);
+		start3.learnSpell(start1Spell1);
 		start3.setHealth(start3.getMaxHealth());
 		
 		

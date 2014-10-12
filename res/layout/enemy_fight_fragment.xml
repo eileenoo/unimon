@@ -2,9 +2,9 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="200dp"
     android:layout_gravity="bottom"
-    android:background="#FFBB00"
+    android:background="#00BFFF"
     android:orientation="vertical" >
 
     <TextView
@@ -15,7 +15,8 @@
         android:layout_marginLeft="10dp"
         android:layout_marginTop="10dp"
         android:paddingRight="5dp"
-        android:text="@string/enemy_fight_text_first_part" />
+        android:text="@string/enemy_fight_text_first_part" 
+        android:textSize="20sp"/>
 
     <TextView
         android:id="@+id/enemy_fight_enemyname_textview"
@@ -23,9 +24,8 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="70dp"
         android:layout_marginTop="10dp"
-        android:layout_toRightOf="@id/enemy_fight_textview_one"
-        android:paddingLeft="5dp"
-        android:paddingRight="5dp" />
+        android:layout_toRightOf="@id/enemy_fight_textview_one"       
+        android:textSize="20sp" />
 
     <TextView
         android:id="@+id/enemy_fight_textview_two"
@@ -33,9 +33,9 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="70dp"
         android:layout_marginTop="10dp"
-        android:layout_toRightOf="@id/enemy_fight_enemyname_textview"
-        android:paddingLeft="5dp"
+        android:layout_toRightOf="@id/enemy_fight_enemyname_textview"       
         android:paddingRight="5dp"
-        android:text="@string/enemy_fight_text_second_part" />
+        android:text="@string/enemy_fight_text_second_part" 
+        android:textSize="20sp"/>
 
 </RelativeLayout>

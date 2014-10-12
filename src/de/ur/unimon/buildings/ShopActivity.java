@@ -13,6 +13,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 import de.ur.mi.android.excercises.starter.R;
 import de.ur.unimon.actionbar.Inventory;
+import de.ur.unimon.database.DatabaseController;
 import de.ur.unimon.player.Player;
 import de.ur.unimon.player.PlayerController;
 
@@ -42,6 +43,13 @@ public class ShopActivity extends Activity {
 		builder = new AlertDialog.Builder(this);
 		initUI();
 
+	}
+	
+	@Override
+	protected void onDestroy() {
+		DatabaseController databaseController = new DatabaseController(this);
+		databaseController.save();
+		super.onDestroy();
 	}
 	
 	private void initUI() {
@@ -111,7 +119,7 @@ public class ShopActivity extends Activity {
 				currentMoney = player.getMoney();
 				if (currentMoney >= healpot_Price) {
 					builder.setTitle(getResources().getString(R.string.healpot_name));
-					builder.setMessage("Möchtest du Healpot wirklich kaufen?");
+					builder.setMessage("Do you really want to buy a Healpot?");
 
 					builder.setPositiveButton(getResources().getString(R.string.ok),
 							new DialogInterface.OnClickListener() {
@@ -149,7 +157,7 @@ public class ShopActivity extends Activity {
 				currentMoney = player.getMoney();
 				if (currentMoney >= uniball_Price) {
 					builder.setTitle(getResources().getString(R.string.uniball_name));
-					builder.setMessage("Möchtest du Uniball wirklich kaufen?");
+					builder.setMessage("Do you really want to buy a Uniball?");
 
 					builder.setPositiveButton(getResources().getString(R.string.ok),
 							new DialogInterface.OnClickListener() {
@@ -186,7 +194,7 @@ public class ShopActivity extends Activity {
 				currentMoney = player.getMoney();
 				if (currentMoney >= revive_Price) {
 					builder.setTitle(getResources().getString(R.string.revive_name));
-					builder.setMessage("Möchtest du Revive wirklich kaufen?");
+					builder.setMessage("Do you really want to buy a Revive?");
 
 					builder.setPositiveButton(getResources().getString(R.string.ok),
 							new DialogInterface.OnClickListener() {
@@ -223,7 +231,7 @@ public class ShopActivity extends Activity {
 				currentMoney = player.getMoney();
 				if (currentMoney >= protector_Price) {
 					builder.setTitle(getResources().getString(R.string.protector_name));
-					builder.setMessage("Möchtest du Protector wirklich kaufen?");
+					builder.setMessage("Do you really want to buy a Protector?");
 
 					builder.setPositiveButton(getResources().getString(R.string.ok),
 							new DialogInterface.OnClickListener() {

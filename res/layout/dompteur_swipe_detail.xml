@@ -28,7 +28,8 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/dompteur_unimon_image"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="5dp" />
+        android:layout_marginTop="5dp" 
+        android:textSize="18sp"/>
     
      <TextView
         android:id="@+id/dompteur_health_text"
@@ -37,7 +38,8 @@
         android:layout_centerHorizontal="true"
         android:layout_below="@+id/dompteur_unimon_level"
         android:layout_marginTop="5dp"
-        android:text="@string/health_text" />
+        android:text="@string/health_text"
+        android:textSize="18sp" />
     
     <ProgressBar
         android:id="@+id/dompteur_healthBar"
@@ -47,7 +49,8 @@
         android:layout_below="@id/dompteur_health_text"
         android:layout_margin="5dp"
         android:layout_centerHorizontal="true"
-        android:progress="0"/>
+        android:progress="0"
+        android:textSize="18sp"/>
     
     
     <TextView
@@ -65,7 +68,8 @@
           android:layout_below="@+id/dompteur_unimon_health"
           android:layout_centerHorizontal="true"
           android:layout_marginTop ="5dp"
-          android:text="@string/xp_text" />
+          android:text="@string/xp_text"
+          android:textSize="18sp" />
     
     <ProgressBar
         android:id="@+id/dompteur_xpBar"
@@ -75,7 +79,8 @@
         android:layout_below="@id/dompteur_xp_text"
         android:layout_margin="5dp"
         android:layout_centerHorizontal="true"
-        android:progress="0"/>
+        android:progress="0"
+        android:textSize="18sp"/>
     
     <TextView
         android:id="@+id/dompteur_unimon_xp"
@@ -92,7 +97,8 @@
         android:layout_below="@+id/dompteur_xpBar"   
         android:layout_centerHorizontal="true"    
         android:layout_margin="5dp"     
-        android:text="@string/skillpoint_text"/>
+        android:text="@string/skillpoint_text"
+        android:textSize="18sp"/>
     
     <LinearLayout
         android:layout_width="wrap_content"
@@ -105,13 +111,15 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
-            android:text="@string/spells_headline" />
+            android:text="@string/spells_headline"
+            android:textSize="18sp" />
 
         <TextView
             android:id="@+id/dompteur_spell"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="5dp" />
+            android:layout_margin="5dp"
+            android:textSize="18sp" />
         
     </LinearLayout>
 

@@ -13,6 +13,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 import de.ur.mi.android.excercises.starter.R;
+import de.ur.unimon.database.DatabaseController;
 import de.ur.unimon.player.Player;
 import de.ur.unimon.player.PlayerController;
 import de.ur.unimon.unimons.Unimon;
@@ -38,6 +39,13 @@ public class DompteurSkillActivity extends Activity {
 		initUI();
 		initListAdapter();
 		initListView();
+	}
+	
+	@Override
+	protected void onDestroy() {
+		DatabaseController databaseController = new DatabaseController(this);
+		databaseController.save();
+		super.onDestroy();
 	}
 
 	private void initListView() {

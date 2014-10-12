@@ -10,9 +10,7 @@ import android.widget.TextView;
 
 public class OptionsScreenActivity extends Activity {
 	TextView sounds;
-	TextView language;
 	RadioButton soundOn, soundOff;
-	RadioButton languageEnglish, languageGerman;
 	public static boolean soundOnButtonChecked;
 
 	@Override
@@ -26,9 +24,6 @@ public class OptionsScreenActivity extends Activity {
 		sounds = (TextView) findViewById(R.id.sound);
 		soundOn = (RadioButton) findViewById(R.id.sound_on_radio);
 		soundOff = (RadioButton) findViewById(R.id.sound_off_radio);
-		language = (TextView) findViewById(R.id.language);
-		languageEnglish = (RadioButton) findViewById(R.id.language_english_radio);
-		languageGerman = (RadioButton) findViewById(R.id.language_german_radio);
 	}
 
 	public void onRadioButtonClicked(View v) {

@@ -11,6 +11,7 @@ import android.widget.ListAdapter;
 import android.widget.ListView;
 import de.ur.mi.android.excercises.starter.R;
 import de.ur.unimon.actionbar.UnimonListAdapter;
+import de.ur.unimon.database.DatabaseController;
 import de.ur.unimon.player.Player;
 import de.ur.unimon.player.PlayerController;
 import de.ur.unimon.unimons.Unimon;
@@ -34,6 +35,13 @@ public class HospitalActivity extends Activity{
 		hospital = new HospitalLogic();
 		initUI();
 
+	}
+	
+	@Override
+	protected void onDestroy() {
+		DatabaseController databaseController = new DatabaseController(this);
+		databaseController.save();
+		super.onDestroy();
 	}
 
 	private void initUI() {

@@ -38,9 +38,6 @@ public class StartScreenActivity extends Activity {
 
 		dbController = new DatabaseController(this);
 
-		// löscht alle Daten aus der Datenbank
-		// dbController.clearDB();
-
 		context = this.getApplicationContext();
 
 		//initSound();
@@ -98,9 +95,9 @@ public class StartScreenActivity extends Activity {
 	@Override
 	protected void onDestroy() {		
 		Log.d("hallo", "onDestroy");
-		if (mediaPlayer.isPlaying()) {
-			mediaPlayer.stop();
-		}
+//		if (mediaPlayer.isPlaying()) {
+//			mediaPlayer.stop();
+//		}
 		finish();
 		super.onDestroy();
 	}
@@ -157,7 +154,10 @@ public class StartScreenActivity extends Activity {
 								@Override
 								public void onClick(DialogInterface dialog,
 										int which) {
+									// löscht alle Daten aus der Datenbank
+									dbController.clearDB();
 									startActivity(newGame);
+									newGame.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
 									dialog.dismiss();
 								}
 							});
@@ -175,6 +175,7 @@ public class StartScreenActivity extends Activity {
 					alert.show();
 				} else
 					startActivity(newGame);
+				newGame.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
 			}
 		});
 		resume_button.setOnClickListener(new OnClickListener() {
@@ -184,6 +185,7 @@ public class StartScreenActivity extends Activity {
 				trainerListController.setInstance(dbController.getTrainerList());
 				Intent resume = new Intent(StartScreenActivity.this,
 						MapActivity.class);
+				resume.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
 				startActivity(resume);
 			}
 		});
@@ -192,6 +194,7 @@ public class StartScreenActivity extends Activity {
 				Intent options = new Intent(StartScreenActivity.this,
 						OptionsScreenActivity.class);
 				startActivity(options);
+				options.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
 			}
 		});
 		guide_button.setOnClickListener(new OnClickListener() {
@@ -199,6 +202,7 @@ public class StartScreenActivity extends Activity {
 				Intent guide = new Intent(StartScreenActivity.this,
 						GuideScreenActivity.class);
 				startActivity(guide);
+				guide.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
 			}
 		});
 	}

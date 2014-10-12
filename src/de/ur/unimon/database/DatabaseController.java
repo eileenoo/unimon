@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import android.content.Context;
 import de.ur.unimon.actionbar.Inventory;
 import de.ur.unimon.player.Player;
+import de.ur.unimon.player.PlayerController;
 import de.ur.unimon.trainer.Trainer;
 import de.ur.unimon.trainer.TrainerList;
 import de.ur.unimon.trainer.TrainerListController;
@@ -17,6 +18,7 @@ public class DatabaseController {
 	private ArrayList<Unimon> ownedUnimons;
 	private Player player;
 	private TrainerListController trainerListController;
+	private PlayerController playerController;
 	private ArrayList<Trainer> trainerList;
 	
 	
@@ -57,7 +59,8 @@ public class DatabaseController {
 		dataBase.close();
 	}
 	
-	public void save(Player player){
+	public void save(){
+		player = playerController.getInstance();
 		trainerList = trainerListController.getInstance().getTrainerList();
 		
 		dataBase.open();

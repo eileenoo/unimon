@@ -10,6 +10,7 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import de.ur.mi.android.excercises.starter.R;
+import de.ur.unimon.database.DatabaseController;
 
 public class UnimonListDetailActivity extends Activity{
 	
@@ -28,6 +29,13 @@ public class UnimonListDetailActivity extends Activity{
 		extras = this.getIntent().getExtras();
 		initUI();
 
+	}
+	
+	@Override
+	protected void onDestroy() {
+		DatabaseController databaseController = new DatabaseController(this);
+		databaseController.save();
+		super.onDestroy();
 	}
 
 	private void initUI() {

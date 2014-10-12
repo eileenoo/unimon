@@ -4,7 +4,8 @@
     android:id="@+id/battle_activity_upper_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical" >
+    android:orientation="vertical" 
+    android:background="#99B8FA">
     
     <ImageView
         android:id="@+id/enemy_unimon_image"

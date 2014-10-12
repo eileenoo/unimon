@@ -2,7 +2,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical" >
+    android:orientation="vertical"
+    android:background="#99B8FA" >
 
     <TextView
         android:id="@+id/sound"
@@ -37,38 +38,7 @@
             android:text="@string/sound_off_text" />
     </RadioGroup>
     
-    <TextView
-            android:id="@+id/language"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="15dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="15dp"
-            android:text="@string/language_text"
-            android:textSize="20sp" />
-
-        <RadioGroup
-            android:id="@+id/radio_group_language"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:orientation="horizontal"
-            android:checkedButton="@+id/language_english_radio" >
-
-            <RadioButton
-                android:id="@+id/language_english_radio"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:onClick="onRadioButtonClicked"
-                android:text="@string/english_text" />
-
-            <RadioButton
-                android:id="@+id/language_german_radio"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:onClick="onRadioButtonClicked"
-                android:text="@string/german_text" />
-        </RadioGroup>
+    
     
 
    
