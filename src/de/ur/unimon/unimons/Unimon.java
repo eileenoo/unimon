@@ -2,7 +2,7 @@ package de.ur.unimon.unimons;
 
 import java.util.ArrayList;
 
-import android.widget.ImageView;
+import android.util.Log;
 
 public class Unimon {
 	
@@ -34,6 +34,23 @@ public class Unimon {
 		skillPoints = 0; 
 		
 		
+	}
+	
+	public void reset(){
+		level = 1;
+		maxHealth = getMaxHealth();
+		for (Spell s : possibleSpells){
+			s.setSpellLevel(0);
+			s.forgetSpell();
+		}
+		notYetLearnedSpells.clear();
+		for (int i=0; i<6; i++){
+			notYetLearnedSpells.add(possibleSpells.get(i));
+		}
+		
+		ownedSpells.clear();
+		
+		Log.d("hallo", "hi");
 	}
 	
 	public void useHealpot(){

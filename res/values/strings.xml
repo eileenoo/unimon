@@ -52,6 +52,7 @@
     <string name="shop_name">Shop</string>
     <string name="dompteur_name">Dompteur</string>
     <string name="hospital_name">Hospital</string>
+    <string name="hospital_heal_info">Your Unimons are all alive.</string>
     <string name="price">price</string>
     
     <string name="take_text">-> nehmen</string>
