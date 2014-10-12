@@ -60,7 +60,11 @@ public class StartScreenActivity extends Activity {
 		checkMediaPlayerStatus();
 		
 		if (mediaPlayer == null) {
-			SoundPlayer(this, R.raw.unimon_music);
+			if (!dbController.isSoundTableEmpty()){
+				if (dbController.getIsSoundOn()){
+					SoundPlayer(this, R.raw.unimon_music);
+				}
+			} else SoundPlayer(this, R.raw.unimon_music);
 		} 
 		}
 	
