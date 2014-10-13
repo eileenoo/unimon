@@ -20,10 +20,10 @@
     <string name="action_inventar">Inventory</string>
     <string name="action_unimons">Unimons</string>
     <string name="action_menu">Menu</string>
-    <string name="story_part_one">Hello my name is Dr. Wulfman! A villain has placed a curse on the University of Regensburg, 
-        which states that all students only write bad grades.</string>
-    <string name="story_part_two">Now it is your task to defeat the bad guy! Collect enough skillpoints to be able to train your unimons!</string>
-    <string name="story_part_three">Choose your favourite Unimon with which you pull into the fight against the villain. Have fun! And save the students!</string>
+    <string name="story_part_one">Hello my name is Dr. Wulfman. I\'m the director of the University of Regensburg. A villain, who wants our downfall, dreadfully cursed the University. 
+        This curse states that all students get super lazy and therefore only write bad grades.</string>
+    <string name="story_part_two">Now it is your task to defeat him in order to save our future. You can choose your favourite Unimon, with which you can pull into fights against the villain and his evil assistansts.</string>
+    <string name="story_part_three">Collect enough skillpoints to be able to train your unimons, in order to get stronger and stronger. You are our only hope... now go, and save the University and it\'s students!</string>
     <string name="next_button_text">Next</string>
     <string name="back_button_text">Back</string>
     <string name="money_text">Money:\u0020</string>

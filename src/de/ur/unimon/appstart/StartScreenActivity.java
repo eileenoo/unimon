@@ -5,6 +5,7 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.util.Log;
@@ -124,11 +125,17 @@ public class StartScreenActivity extends Activity {
 	}
 
 	private void initUI() {
+		Typeface font = Typeface.createFromAsset(getAssets(), "PokemonFont.ttf");
+
 		newGame_button = (Button) findViewById(R.id.newGame_button);
 		resume_button = (Button) findViewById(R.id.resume_button);
 		options_button = (Button) findViewById(R.id.options_button);
 		guide_button = (Button) findViewById(R.id.guide_button);
-
+		
+		newGame_button.setTypeface(font);
+		resume_button.setTypeface(font);
+		options_button.setTypeface(font);
+		guide_button.setTypeface(font);
 		setButtonsOnClick();
 	}
 

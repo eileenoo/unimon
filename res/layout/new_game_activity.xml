@@ -4,22 +4,26 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="#99B8FA" >
+    android:background="#2A56B2" >
 
     <ImageView
         android:id="@+id/wulfman_img"
         android:layout_width="match_parent"
-        android:layout_height="350dp"
+        android:layout_height="300dp"
         android:src="@drawable/professor"
         android:contentDescription="@string/wulfman_img" />
       
 
     <Button
         android:id="@+id/next_button"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
+        android:textColor="#ffd12e"
+        android:layout_margin="20dp"
+        android:textSize="20dp"
+        android:background="@drawable/startbutton_shape"
         android:text="@string/next_button_text" />
     
     <TextView
@@ -31,6 +35,7 @@
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
         android:text="@string/story_part_one"
+        android:textColor="#ffd12e"
         android:textSize="15sp" />
 
 </RelativeLayout>
