@@ -36,8 +36,12 @@ public class ChooseUnimonActivity extends FragmentActivity{
 		setContentView(R.layout.choose_unimon_activity);
 		initFragmentPagerAdapter();
 		initClickListener();
-
 	}
+	
+	@Override
+	public void onBackPressed() {
+	}
+
 
 	private void initClickListener() {
 		Button chooseButton = (Button) findViewById(R.id.choose_that_unimon_button);

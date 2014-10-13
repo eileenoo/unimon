@@ -16,6 +16,7 @@
     <string name="sound_on_text">On</string>
     <string name="english_text">English</string>
     <string name="german_text">German</string>
+    <string name="image_button">Image Button</string>
     
     <string name="action_inventar">Inventory</string>
     <string name="action_unimons">Unimons</string>

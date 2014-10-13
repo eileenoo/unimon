@@ -5,12 +5,15 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.ImageButton;
+import android.widget.RadioButton;
 import de.ur.mi.android.excercises.starter.R;
 import de.ur.unimon.database.DatabaseController;
 import de.ur.unimon.mapoverview.MapActivity;
@@ -22,6 +25,8 @@ import de.ur.unimon.unimons.UnimonList;
 public class StartScreenActivity extends Activity {
 
 	Button newGame_button, resume_button, options_button, guide_button;
+	ImageButton sound_button;
+	public static boolean soundOnChecked;
 	UnimonList allUnimonsList;
 	private PlayerController playerController;
 	private TrainerListController trainerListController;
@@ -57,7 +62,11 @@ public class StartScreenActivity extends Activity {
 		checkMediaPlayerStatus();
 		
 		if (mediaPlayer == null) {
-			SoundPlayer(this, R.raw.unimon_music);
+			if (!dbController.isSoundTableEmpty()){
+				if (dbController.getIsSoundOn()){
+					SoundPlayer(this, R.raw.unimon_music);
+				}
+			} else SoundPlayer(this, R.raw.unimon_music);
 		} 
 		}
 	
@@ -95,9 +104,9 @@ public class StartScreenActivity extends Activity {
 	@Override
 	protected void onDestroy() {		
 		Log.d("hallo", "onDestroy");
-//		if (mediaPlayer.isPlaying()) {
-//			mediaPlayer.stop();
-//		}
+		if (mediaPlayer.isPlaying()) {
+			mediaPlayer.stop();
+		}
 		finish();
 		super.onDestroy();
 	}
@@ -123,8 +132,20 @@ public class StartScreenActivity extends Activity {
 	private void initUI() {
 		newGame_button = (Button) findViewById(R.id.newGame_button);
 		resume_button = (Button) findViewById(R.id.resume_button);
-		options_button = (Button) findViewById(R.id.options_button);
+		//options_button = (Button) findViewById(R.id.options_button);
 		guide_button = (Button) findViewById(R.id.guide_button);
+		sound_button = (ImageButton) findViewById(R.id.image_button_sound);
+		if (dbController.isSoundTableEmpty()) {
+			sound_button.setImageResource(R.drawable.sound_on_icon);
+		}
+		else {
+			if (dbController.getIsSoundOn() == true){
+				sound_button.setImageResource(R.drawable.sound_on_icon);
+			}
+			else if(!dbController.getIsSoundOn()){
+				sound_button.setImageResource(R.drawable.sound_off_icon);
+			}					
+		}
 
 		setButtonsOnClick();
 	}
@@ -189,14 +210,14 @@ public class StartScreenActivity extends Activity {
 				startActivity(resume);
 			}
 		});
-		options_button.setOnClickListener(new OnClickListener() {
+		/*options_button.setOnClickListener(new OnClickListener() {
 			public void onClick(View v) {
 				Intent options = new Intent(StartScreenActivity.this,
 						OptionsScreenActivity.class);
 				startActivity(options);
 				options.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
 			}
-		});
+		});*/
 		guide_button.setOnClickListener(new OnClickListener() {
 			public void onClick(View v) {
 				Intent guide = new Intent(StartScreenActivity.this,
@@ -205,6 +226,28 @@ public class StartScreenActivity extends Activity {
 				guide.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
 			}
 		});
-	}
-
+		//sound_button == R.drawable.sound_on_icon
+		sound_button.setOnClickListener(new OnClickListener() {
+			public void onClick(View v) {				
+					Drawable drawable = sound_button.getDrawable();
+					if (drawable.getConstantState().equals(getResources().getDrawable(R.drawable.sound_on_icon).getConstantState())
+					 && mediaPlayer.isPlaying()){					
+					mediaPlayer.stop();
+					soundOnChecked = false;
+					dbController.saveSound(false);
+					sound_button.setImageResource(R.drawable.sound_off_icon);					
+					}				
+					else if (drawable.getConstantState().equals(getResources().getDrawable(R.drawable.sound_off_icon).getConstantState())){						
+						SoundPlayer(context, R.raw.unimon_music);
+						mediaPlayer.start();
+						mediaPlayer.setLooping(true);
+						soundOnChecked = true;
+						dbController.saveSound(true);
+						sound_button.setImageResource(R.drawable.sound_on_icon);
+						}					
+				}
+				
+			});
+	
+}
 }

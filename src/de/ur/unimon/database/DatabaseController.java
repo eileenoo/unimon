@@ -58,6 +58,7 @@ public class DatabaseController {
 		dataBase.removePlayerFromDatabase();
 		dataBase.removeUnimonsFromDatabase();
 		dataBase.removeTrainerVisibilityFromDataBase();
+		dataBase.removeSoundOnOff();
 		dataBase.close();
 	}
 	
@@ -78,8 +79,27 @@ public class DatabaseController {
 		dataBase.close();
 	}
 	
+	public void saveSound(boolean isSoundOn){
+		dataBase.open();
+		dataBase.removeSoundOnOff();
+		dataBase.insertIsSoundOn(isSoundOn);
+		dataBase.close();
+	}
+	
+	public boolean getIsSoundOn(){
+		dataBase.getReadableDB();
+		boolean isSoundOn = dataBase.getIsSoundOn();
+		dataBase.close();
+		return isSoundOn;
+	}
+	
 	public boolean isDbEmpty(){
 		dataBase.getReadableDB();
 		return dataBase.checkIfIsEmpty();
+	}
+	
+	public boolean isSoundTableEmpty(){
+		dataBase.getReadableDB();
+		return dataBase.checkIfSoundTableIsEmpty();
 	}
 }

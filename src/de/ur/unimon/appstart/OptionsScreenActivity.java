@@ -1,6 +1,7 @@
 package de.ur.unimon.appstart;
 
 import de.ur.mi.android.excercises.starter.R;
+import de.ur.unimon.database.DatabaseController;
 import android.app.Activity;
 import android.media.MediaPlayer;
 import android.os.Bundle;
@@ -9,14 +10,16 @@ import android.widget.RadioButton;
 import android.widget.TextView;
 
 public class OptionsScreenActivity extends Activity {
-	TextView sounds;
+/*	TextView sounds;
 	RadioButton soundOn, soundOff;
 	public static boolean soundOnButtonChecked;
+	private DatabaseController dbController;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.options_screen_activity);
+		dbController = new DatabaseController(this);
 		initUI();
 	}
 
@@ -24,6 +27,14 @@ public class OptionsScreenActivity extends Activity {
 		sounds = (TextView) findViewById(R.id.sound);
 		soundOn = (RadioButton) findViewById(R.id.sound_on_radio);
 		soundOff = (RadioButton) findViewById(R.id.sound_off_radio);
+		if (dbController.isSoundTableEmpty()) {
+			soundOn.setChecked(true);
+			soundOff.setChecked(false);
+		}
+		else {
+			soundOn.setChecked(dbController.getIsSoundOn());
+			soundOff.setChecked(!dbController.getIsSoundOn());
+		}
 	}
 
 	public void onRadioButtonClicked(View v) {
@@ -37,16 +48,18 @@ public class OptionsScreenActivity extends Activity {
 			StartScreenActivity.mediaPlayer.start();
 			StartScreenActivity.mediaPlayer.setLooping(true);
 			soundOnButtonChecked = true;
+			dbController.saveSound(true);
 			break;
 		case R.id.sound_off_radio:
 			if (checked)
 				if (StartScreenActivity.mediaPlayer.isPlaying()) {
 					StartScreenActivity.mediaPlayer.stop();
 					soundOnButtonChecked = false;
+					dbController.saveSound(false);
 				}
 			break;
 		}
-	}
+	}*/
 }
 /*
  * radioGroupSound = (RadioGroup) findViewById(R.id.radio_group_sound);
