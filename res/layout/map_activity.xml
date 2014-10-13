@@ -4,8 +4,8 @@
     android:layout_width="wrap_content"
     android:layout_height="match_parent"
     android:layout_alignParentBottom="true"
-    android:orientation="vertical" 
-    android:background="#99B8FA">
+    android:background="#2A56B2"
+    android:orientation="vertical" >
 
     <ScrollView
         android:id="@+id/scrollview"
@@ -32,31 +32,38 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
+        android:padding="5dp"
         android:orientation="horizontal"
         android:weightSum="3" >
 
         <Button
             android:id="@+id/inventory"
-            android:layout_width="wrap_content"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:drawableLeft="@drawable/button_icon_inventory"
             android:text="@string/action_inventar"
+            android:textColor="#ffd12e"
             android:textSize="16sp" />
 
         <Button
             android:id="@+id/unimons"
-            android:layout_width="wrap_content"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:drawableLeft="@drawable/button_icon_unimons"
             android:text="@string/action_unimons"
+            android:textColor="#ffd12e"
             android:textSize="16sp" />
 
         <Button
             android:id="@+id/back_to_start_screen"
-            android:layout_width="wrap_content"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:drawableLeft="@drawable/button_icon_menu"
             android:text="@string/action_menu"
+            android:textColor="#ffd12e"
             android:textSize="16sp" />
 
     </LinearLayout>

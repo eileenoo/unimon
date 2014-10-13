@@ -3,6 +3,7 @@ package de.ur.unimon.start.newgame;
 import de.ur.mi.android.excercises.starter.R;
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -32,9 +33,11 @@ public class NewGameActivity extends Activity{
 
 
 	private void initUI() {
+		Typeface font = Typeface.createFromAsset(getAssets(), "PokemonFont.ttf");
 		wulfmanImg = (ImageView) findViewById(R.id.wulfman_img);
 		story_part_one = (TextView) findViewById(R.id.story_part_one);
 		nextStoryPart = (Button) findViewById(R.id.next_button);
+		nextStoryPart.setTypeface(font);
 		setButtonOnClick();
 	}
 	

@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
+import android.graphics.Typeface;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.util.Log;
@@ -13,7 +14,6 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.ImageButton;
-import android.widget.RadioButton;
 import de.ur.mi.android.excercises.starter.R;
 import de.ur.unimon.database.DatabaseController;
 import de.ur.unimon.mapoverview.MapActivity;
@@ -104,9 +104,9 @@ public class StartScreenActivity extends Activity {
 	@Override
 	protected void onDestroy() {		
 		Log.d("hallo", "onDestroy");
-		if (mediaPlayer.isPlaying()) {
+	/*	if (mediaPlayer.isPlaying()) {
 			mediaPlayer.stop();
-		}
+		}*/
 		finish();
 		super.onDestroy();
 	}
@@ -130,10 +130,16 @@ public class StartScreenActivity extends Activity {
 	}
 
 	private void initUI() {
+		Typeface font = Typeface.createFromAsset(getAssets(), "PokemonFont.ttf");
+
 		newGame_button = (Button) findViewById(R.id.newGame_button);
 		resume_button = (Button) findViewById(R.id.resume_button);
-		//options_button = (Button) findViewById(R.id.options_button);
 		guide_button = (Button) findViewById(R.id.guide_button);
+		
+		newGame_button.setTypeface(font);
+		resume_button.setTypeface(font);
+		guide_button.setTypeface(font);
+
 		sound_button = (ImageButton) findViewById(R.id.image_button_sound);
 		if (dbController.isSoundTableEmpty()) {
 			sound_button.setImageResource(R.drawable.sound_on_icon);
@@ -146,7 +152,6 @@ public class StartScreenActivity extends Activity {
 				sound_button.setImageResource(R.drawable.sound_off_icon);
 			}					
 		}
-
 		setButtonsOnClick();
 	}
 
@@ -225,8 +230,7 @@ public class StartScreenActivity extends Activity {
 				startActivity(guide);
 				guide.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
 			}
-		});
-		//sound_button == R.drawable.sound_on_icon
+		});		
 		sound_button.setOnClickListener(new OnClickListener() {
 			public void onClick(View v) {				
 					Drawable drawable = sound_button.getDrawable();
