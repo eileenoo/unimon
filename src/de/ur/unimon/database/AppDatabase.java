@@ -141,6 +141,18 @@ public class AppDatabase {
 		return trainerList;
 	}
 	
+	public boolean getIsSoundOn(){
+		String selectQuery = "SELECT * FROM " + UnimonAppConfig.Data.DATABASE_TABLE_SOUND;
+		
+		Cursor c = db.rawQuery(selectQuery, null);
+		if (c != null)
+			c.moveToFirst();
+		
+		if (c.getInt(c.getColumnIndex(UnimonAppConfig.Data.KEY_SOUND_ON)) == 1) {
+			return true;
+		} else return false;
+	}
+	
 	public long insertPlayerIntoDataBase(Player currentPlayer) {
 		ContentValues values = new ContentValues();
 		values.put(UnimonAppConfig.Data.KEY_PLAYER_MONEY, currentPlayer.getMoney());
@@ -192,6 +204,14 @@ public class AppDatabase {
 		return tag_id;
 	}
 	
+	public long insertIsSoundOn(boolean isSoundOn){
+		long tag_id=0;
+		ContentValues values = new ContentValues();
+		values.put(UnimonAppConfig.Data.KEY_SOUND_ON, isSoundOn? 1:0);
+		tag_id = db.insert(UnimonAppConfig.Data.DATABASE_TABLE_SOUND, null, values);
+		return tag_id;
+	}
+	
 	
 	public void removePlayerFromDatabase() {
 		db.delete(UnimonAppConfig.Data.DATABASE_TABLE_PLAYER, null, null);
@@ -203,6 +223,22 @@ public class AppDatabase {
 	
 	public void removeTrainerVisibilityFromDataBase() {
 		db.delete(UnimonAppConfig.Data.DATABASE_TABLE_TRAINER_VISIBILITY, null, null);
+	}
+	
+	public void removeSoundOnOff() {
+		db.delete(UnimonAppConfig.Data.DATABASE_TABLE_SOUND, null, null);
+	}
+	
+	public boolean checkIfSoundTableIsEmpty() {
+		String selectQuery = "SELECT * FROM " + UnimonAppConfig.Data.DATABASE_TABLE_SOUND ;
+		Cursor c = db.rawQuery(selectQuery, null);
+		if (c != null){
+		    c.moveToFirst();
+		    if (c.getCount() == 0) {
+		      return true;
+		    }	
+		}
+		return false;
 	}
 	
 	public boolean checkIfIsEmpty(){
@@ -248,6 +284,9 @@ public class AppDatabase {
 		public static final String CREATE_TABLE_TRAINER_VISIBILITY ="CREATE TABLE " + UnimonAppConfig.Data.DATABASE_TABLE_TRAINER_VISIBILITY + " ("
 				+ UnimonAppConfig.Data.KEY_TRAINER_ID + " integer primary key, "
 				+ UnimonAppConfig.Data.KEY_TRAINER_VISIBLE + " integer);";
+		
+		public static final String CREATE_TABLE_SOUND ="CREATE TABLE " + UnimonAppConfig.Data.DATABASE_TABLE_SOUND + " ("
+				+ UnimonAppConfig.Data.KEY_SOUND_ON + " integer);";
 				
 
 		
@@ -261,6 +300,7 @@ public class AppDatabase {
 			db.execSQL("DROP TABLE IF EXISTS " + UnimonAppConfig.Data.DATABASE_TABLE_PLAYER);
 			db.execSQL("DROP TABLE IF EXISTS " + UnimonAppConfig.Data.DATABASE_TABLE_UNIMONS);
 			db.execSQL("DROP TABLE IF EXISTS " + UnimonAppConfig.Data.DATABASE_TABLE_TRAINER_VISIBILITY);
+			db.execSQL("DROP TABLE IF EXISTS " + UnimonAppConfig.Data.DATABASE_TABLE_SOUND);
 			onCreate(db);
 		}
 
@@ -269,6 +309,7 @@ public class AppDatabase {
 			db.execSQL(CREATE_TABLE_PLAYER);
 			db.execSQL(CREATE_TABLE_UNIMONS);
 			db.execSQL(CREATE_TABLE_TRAINER_VISIBILITY);
+			db.execSQL(CREATE_TABLE_SOUND);
 		}
 
 	}

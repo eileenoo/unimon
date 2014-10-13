@@ -3,6 +3,7 @@ package de.ur.unimon.database;
 import java.util.ArrayList;
 
 import android.content.Context;
+import android.util.Log;
 import de.ur.unimon.actionbar.Inventory;
 import de.ur.unimon.player.Player;
 import de.ur.unimon.player.PlayerController;
@@ -32,6 +33,7 @@ public class DatabaseController {
 		int money = dataBase.getMoney();
 		ownedUnimons = dataBase.getRawUnimons();
 		for (int i=0; i<ownedUnimons.size(); i++){
+			ownedUnimons.get(i).reset();
 			ownedUnimons = dataBase.getDetailToUnimons(ownedUnimons, i);			
 		}
 		player = new Player(money, ownedUnimons, inventory);
@@ -56,6 +58,7 @@ public class DatabaseController {
 		dataBase.removePlayerFromDatabase();
 		dataBase.removeUnimonsFromDatabase();
 		dataBase.removeTrainerVisibilityFromDataBase();
+		dataBase.removeSoundOnOff();
 		dataBase.close();
 	}
 	
@@ -76,8 +79,27 @@ public class DatabaseController {
 		dataBase.close();
 	}
 	
+	public void saveSound(boolean isSoundOn){
+		dataBase.open();
+		dataBase.removeSoundOnOff();
+		dataBase.insertIsSoundOn(isSoundOn);
+		dataBase.close();
+	}
+	
+	public boolean getIsSoundOn(){
+		dataBase.getReadableDB();
+		boolean isSoundOn = dataBase.getIsSoundOn();
+		dataBase.close();
+		return isSoundOn;
+	}
+	
 	public boolean isDbEmpty(){
 		dataBase.getReadableDB();
 		return dataBase.checkIfIsEmpty();
+	}
+	
+	public boolean isSoundTableEmpty(){
+		dataBase.getReadableDB();
+		return dataBase.checkIfSoundTableIsEmpty();
 	}
 }

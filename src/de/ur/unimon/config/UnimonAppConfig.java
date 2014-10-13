@@ -4,10 +4,11 @@ public class UnimonAppConfig {
 	
 	public class Data {
 		public static final String DB_NAME = "unimon-app";
-		public static final int DATABASE_VERSION = 6;
+		public static final int DATABASE_VERSION = 7;
 		public static final String DATABASE_TABLE_PLAYER = "player";
 		public static final String DATABASE_TABLE_UNIMONS = "unimons";
 		public static final String DATABASE_TABLE_TRAINER_VISIBILITY = "trainerVisibility";
+		public static final String DATABASE_TABLE_SOUND = "sound";
 		
 		public static final String KEY_PLAYER_MONEY ="_money";
 		public static final String KEY_PLAYER_HEALPOTS ="_healpots";
@@ -36,6 +37,8 @@ public class UnimonAppConfig {
 		
 		public static final String KEY_TRAINER_ID = "_id";
 		public static final String KEY_TRAINER_VISIBLE = "_trainerVisible";
+		
+		public static final String KEY_SOUND_ON = "_soundOn";
 	}
 
 }
