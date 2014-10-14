@@ -12,7 +12,7 @@ public class Player {
 	private Inventory inventory;
 
 	public Player() {
-		ownedMoney = 200;
+		ownedMoney = 0;
 		inventory = new Inventory(0, 0, 0, 0);
 		ownUnimonList = new ArrayList<Unimon>();
 	}

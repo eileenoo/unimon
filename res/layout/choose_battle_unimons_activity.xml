@@ -2,7 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#99B8FA" >
+    android:background="#2A56B2" >
     
     <TextView
         android:id="@+id/choose_unimon_for_battle_textView"
@@ -10,7 +10,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:text="@string/choose_primary_unimon" 
-        android:textSize="20sp"/>"
+        android:textSize="20sp"/>
     
     <ListView
         android:id="@+id/choose_unimon_listView"

@@ -215,25 +215,25 @@ public class MapActivity extends Activity implements NavigationListener,
 					R.drawable.player);
  
 			trainer1 = BitmapFactory.decodeResource(getResources(),
-					R.drawable.trainer_1_icon);
+					R.drawable.trainer_level_3);
 
 			trainer2 = BitmapFactory.decodeResource(getResources(),
-					R.drawable.trainer_2_icon);
+					R.drawable.trainer_level_9);
 
 			trainer3 = BitmapFactory.decodeResource(getResources(),
-					R.drawable.trainer_3_icon);
+					R.drawable.trainer_level_12);
 
 			trainer4 = BitmapFactory.decodeResource(getResources(),
-					R.drawable.trainer_4_icon);
+					R.drawable.trainer_level_1);
 
 			trainer5 = BitmapFactory.decodeResource(getResources(),
-					R.drawable.trainer_5_icon);
+					R.drawable.trainer_level_16);
 
 			trainer6 = BitmapFactory.decodeResource(getResources(),
-					R.drawable.trainer_6_icon);
+					R.drawable.trainer_level_5);
 
 			trainerBoss = BitmapFactory.decodeResource(getResources(),
-					R.drawable.trainer_boss_icon);
+					R.drawable.trainer_boss_level_20);
 
 		}
 

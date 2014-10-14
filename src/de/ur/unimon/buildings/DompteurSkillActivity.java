@@ -40,7 +40,7 @@ public class DompteurSkillActivity extends Activity {
 		initListAdapter();
 		initListView();
 	}
-	
+
 	@Override
 	protected void onDestroy() {
 		DatabaseController databaseController = new DatabaseController(this);
@@ -80,15 +80,113 @@ public class DompteurSkillActivity extends Activity {
 	}
 
 	private void initListAdapter() {
+		unimon.notYetLearnedSpellsLvl.clear();
 		spellList = (ListView) findViewById(R.id.dompteur_spell_listView);
 		if (skillType.equals("newSkill")) {
-			spellListAdapter = new SpellListAdapter(this,
-					unimon.getNotYetLearnedSpellList());
-		} else if (skillType.equals("improveSkill")) {
+			if (unimon.getLevel() >= 3 && unimon.getLevel() < 5) {
+				for (int i = 0; i < unimon.notYetLearnedSpells.size(); i++) {
+					if (unimon.notYetLearnedSpells.get(i).getSpellNumber() == 2) {
+						unimon.notYetLearnedSpellsLvl
+								.add(unimon.notYetLearnedSpells.get(i));
+					}
+				}
+				spellListAdapter = new SpellListAdapter(this,
+						unimon.notYetLearnedSpellsLvl);
+
+			}
+
+			if (unimon.getLevel() >= 5 && unimon.getLevel() < 9) {
+				for (int i = 0; i < unimon.notYetLearnedSpells.size(); i++) {
+					if (unimon.notYetLearnedSpells.get(i).getSpellNumber() == 2) {
+						unimon.notYetLearnedSpellsLvl
+								.add(unimon.notYetLearnedSpells.get(i));
+					}
+					if (unimon.notYetLearnedSpells.get(i).getSpellNumber() == 3) {
+						unimon.notYetLearnedSpellsLvl
+								.add(unimon.notYetLearnedSpells.get(i));
+					}
+				}
+				spellListAdapter = new SpellListAdapter(this,
+						unimon.notYetLearnedSpellsLvl);
+
+			}
+			if (unimon.getLevel() >= 9 && unimon.getLevel() < 14) {
+				for (int i = 0; i < unimon.notYetLearnedSpells.size(); i++) {
+					if (unimon.notYetLearnedSpells.get(i).getSpellNumber() == 2) {
+						unimon.notYetLearnedSpellsLvl
+								.add(unimon.notYetLearnedSpells.get(i));
+					}
+					if (unimon.notYetLearnedSpells.get(i).getSpellNumber() == 3) {
+						unimon.notYetLearnedSpellsLvl
+								.add(unimon.notYetLearnedSpells.get(i));
+					}
+					if (unimon.notYetLearnedSpells.get(i).getSpellNumber() == 4) {
+						unimon.notYetLearnedSpellsLvl
+								.add(unimon.notYetLearnedSpells.get(i));
+					}
+				}
+				spellListAdapter = new SpellListAdapter(this,
+						unimon.notYetLearnedSpellsLvl);
+
+			}
+			if (unimon.getLevel() >= 14 && unimon.getLevel() < 20) {
+				for (int i = 0; i < unimon.notYetLearnedSpells.size(); i++) {
+					if (unimon.notYetLearnedSpells.get(i).getSpellNumber() == 2) {
+						unimon.notYetLearnedSpellsLvl
+								.add(unimon.notYetLearnedSpells.get(i));
+					}
+					if (unimon.notYetLearnedSpells.get(i).getSpellNumber() == 3) {
+						unimon.notYetLearnedSpellsLvl
+								.add(unimon.notYetLearnedSpells.get(i));
+					}
+					if (unimon.notYetLearnedSpells.get(i).getSpellNumber() == 4) {
+						unimon.notYetLearnedSpellsLvl
+								.add(unimon.notYetLearnedSpells.get(i));
+					}
+					if (unimon.notYetLearnedSpells.get(i).getSpellNumber() == 5) {
+						unimon.notYetLearnedSpellsLvl
+								.add(unimon.notYetLearnedSpells.get(i));
+					}
+				}
+				spellListAdapter = new SpellListAdapter(this,
+						unimon.notYetLearnedSpellsLvl);
+
+			}
+			if (unimon.getLevel() >= 20) {
+				for (int i = 0; i < unimon.notYetLearnedSpells.size(); i++) {
+					if (unimon.notYetLearnedSpells.get(i).getSpellNumber() == 2) {
+						unimon.notYetLearnedSpellsLvl
+								.add(unimon.notYetLearnedSpells.get(i));
+					}
+					if (unimon.notYetLearnedSpells.get(i).getSpellNumber() == 3) {
+						unimon.notYetLearnedSpellsLvl
+								.add(unimon.notYetLearnedSpells.get(i));
+					}
+					if (unimon.notYetLearnedSpells.get(i).getSpellNumber() == 4) {
+						unimon.notYetLearnedSpellsLvl
+								.add(unimon.notYetLearnedSpells.get(i));
+					}
+					if (unimon.notYetLearnedSpells.get(i).getSpellNumber() == 5) {
+						unimon.notYetLearnedSpellsLvl
+								.add(unimon.notYetLearnedSpells.get(i));
+					}
+					if (unimon.notYetLearnedSpells.get(i).getSpellNumber() == 6) {
+						unimon.notYetLearnedSpellsLvl
+								.add(unimon.notYetLearnedSpells.get(i));
+					}
+				}
+				spellListAdapter = new SpellListAdapter(this,
+						unimon.notYetLearnedSpellsLvl);
+
+			}
+		}
+
+		else if (skillType.equals("improveSkill")) {
 			spellListAdapter = new SpellListAdapter(this,
 					unimon.getOwnedSpells());
 		}
 		spellList.setAdapter(spellListAdapter);
+
 	}
 
 	private void getCurrentUnimon() {
@@ -111,8 +209,10 @@ public class DompteurSkillActivity extends Activity {
 		healthBar = (ProgressBar) findViewById(R.id.healthBar);
 		unimonImage.setImageResource(unimon.getImage());
 		name.setText(unimon.getName());
-		level.setText(getResources().getString(R.string.level_text) + unimon.getLevel());
-		skillPoints.setText(getResources().getString(R.string.skillpoint_text) + unimon.getSkillPoints());
+		level.setText(getResources().getString(R.string.level_text)
+				+ unimon.getLevel());
+		skillPoints.setText(getResources().getString(R.string.skillpoint_text)
+				+ unimon.getSkillPoints());
 		health.setText(unimon.getHealth() + "/" + unimon.getMaxHealth());
 		healthBar.setMax(unimon.getMaxHealth());
 		healthBar.setProgress(unimon.getHealth());
