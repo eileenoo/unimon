@@ -134,10 +134,10 @@ public class UnimonList {
 		schleimi = new Unimon("Schleimi", 123, true, R.drawable.kiffi);
 		schleimiSpell1 = new Spell("Scratch", 1, 15);
 		schleimiSpell2 = new Spell("Bite", 2, 25);
-		schleimiSpell3 = new Spell("Headbutt",3,35);
-		schleimiSpell4 = new Spell("Punch",4,45);
-		schleimiSpell5 = new Spell ("Kick",5,55);
-		schleimiSpell6 = new Spell ("Earthquake",6,65);
+		schleimiSpell3 = new Spell("Headbutt",3, 31);
+		schleimiSpell4 = new Spell("Punch",4, 55);
+		schleimiSpell5 = new Spell ("Kick",5,95);
+		schleimiSpell6 = new Spell ("Earthquake",6,170);
 		schleimi.possibleSpells.add(schleimiSpell1);
 		schleimi.possibleSpells.add(schleimiSpell2);
 		schleimi.possibleSpells.add(schleimiSpell3);
@@ -154,11 +154,11 @@ public class UnimonList {
 		//defensiver
 		kaeffchen = new Unimon("Käffchen", 182, true, R.drawable.kaeffchen);
 		kaeffchenSpell1 = new Spell ("Take Down",1,10);
-		kaeffchenSpell2 = new Spell ("Flamethrower",2,15);
+		kaeffchenSpell2 = new Spell ("Flamethrower",2,14);
 		kaeffchenSpell3 = new Spell ("Low Kick",3,20);
-		kaeffchenSpell4 = new Spell ("Rock Throw",4,25);
-		kaeffchenSpell5 = new Spell ("Glare",5,35);
-		kaeffchenSpell6 = new Spell ("Blizzard",6,40);
+		kaeffchenSpell4 = new Spell ("Rock Throw",4,42);
+		kaeffchenSpell5 = new Spell ("Glare",5,85);
+		kaeffchenSpell6 = new Spell ("Blizzard",6,155);
 		kaeffchen.addPossibleSpell(kaeffchenSpell1);
 		kaeffchen.addPossibleSpell(kaeffchenSpell2);
 		kaeffchen.addPossibleSpell(kaeffchenSpell3);
@@ -179,10 +179,10 @@ public class UnimonList {
 		robotaer = new Unimon("Robotär", 93, true, R.drawable.robomon);
 		robotaerSpell1 = new Spell ("Kick",1,30);
 		robotaerSpell2 = new Spell("Take Down", 2, 40);
-		robotaerSpell3 = new Spell ("Ice Shard",3,45);
-		robotaerSpell4 = new Spell ("Head Smash",4,60);
-		robotaerSpell5 = new Spell("Dynamic Punch",5,65);
-		robotaerSpell6 = new Spell ("Machinegun",6,80);
+		robotaerSpell3 = new Spell ("Ice Shard",3,50);
+		robotaerSpell4 = new Spell ("Head Smash",4,73);
+		robotaerSpell5 = new Spell("Dynamic Punch",5,117);
+		robotaerSpell6 = new Spell ("Machinegun",6,190);
 		robotaer.addPossibleSpell(robotaerSpell1);
 		robotaer.addPossibleSpell(robotaerSpell2);
 		robotaer.addPossibleSpell(robotaerSpell3);
@@ -204,11 +204,11 @@ public class UnimonList {
 		//ausgeglichen
 		hentaicha = new Unimon("Hentaicha", 113, true, R.drawable.kraki);
 		hentaichaSpell1 =  new Spell ("Wood Hammer",1,16);
-		hentaichaSpell2  = new Spell("Bite", 2, 24);
-		hentaichaSpell3  = new Spell("Icicle Spear", 3, 34);
-		hentaichaSpell4  = new Spell("Beat Up", 4, 47);
-		hentaichaSpell5  = new Spell("Sucker Punch", 5, 55);
-		hentaichaSpell6  = new Spell("Poison Fang", 6, 63);
+		hentaichaSpell2  = new Spell("Bite", 2, 23);
+		hentaichaSpell3  = new Spell("Icicle Spear", 3, 31);
+		hentaichaSpell4  = new Spell("Beat Up", 4, 53);
+		hentaichaSpell5  = new Spell("Sucker Punch", 5, 96);
+		hentaichaSpell6  = new Spell("Poison Fang", 6, 165);
 		hentaicha.addPossibleSpell(hentaichaSpell1);
 		hentaicha.addPossibleSpell(hentaichaSpell2);
 		hentaicha.addPossibleSpell(hentaichaSpell3);
@@ -222,11 +222,11 @@ public class UnimonList {
 		// sehr defensiv
 		hydroxyethan = new Unimon("Hydroxyethan", 260, true, R.drawable.robomon);
 		hydroxyethanSpell1 = new Spell ("Sucker Punch",1,11);
-		hydroxyethanSpell2 = new Spell("Bite", 2, 22);
-		hydroxyethanSpell3 = new Spell ("Explosion",3,33);
+		hydroxyethanSpell2 = new Spell("Bite", 2, 15);
+		hydroxyethanSpell3 = new Spell ("Explosion",3,21);
 		hydroxyethanSpell4 = new Spell ("Low Kick",4,44);
-		hydroxyethanSpell5 = new Spell("Flamethrower",5,50);
-		hydroxyethanSpell6 = new Spell ("Headbutt",6,55);
+		hydroxyethanSpell5 = new Spell("Flamethrower",5,85);
+		hydroxyethanSpell6 = new Spell ("Headbutt",6, 157);
 		hydroxyethan.addPossibleSpell(hydroxyethanSpell1);
 		hydroxyethan.addPossibleSpell(hydroxyethanSpell2);
 		hydroxyethan.addPossibleSpell(hydroxyethanSpell3);
@@ -251,11 +251,11 @@ public class UnimonList {
 		//sehr offensiv und hält relativ viel aus
 		asymptoterus = new Unimon("Asymptoterus", 124, true, R.drawable.kiffi);
 		asymptoterusSpell1 = new Spell ("Giga Impact",1,32);
-		asymptoterusSpell2 = new Spell("Icicle Spear", 2, 43);
-		asymptoterusSpell3 = new Spell ("Explosion",3,54);
-		asymptoterusSpell4 = new Spell ("Blizzard",4,65);
-		asymptoterusSpell5 = new Spell("Flamethrower",5,74);
-		asymptoterusSpell6 = new Spell ("Head Smash",6,85);
+		asymptoterusSpell2 = new Spell("Icicle Spear", 2, 40);
+		asymptoterusSpell3 = new Spell ("Explosion",3,47);
+		asymptoterusSpell4 = new Spell ("Blizzard",4,70);
+		asymptoterusSpell5 = new Spell("Flamethrower",5,113);
+		asymptoterusSpell6 = new Spell ("Head Smash",6,175);
 		asymptoterus.addPossibleSpell(asymptoterusSpell1);
 		asymptoterus.addPossibleSpell(asymptoterusSpell2);
 		asymptoterus.addPossibleSpell(asymptoterusSpell3);
@@ -273,12 +273,12 @@ public class UnimonList {
 		
 		//oberboss stark defensiv+offensiv
 		legdayskipper = new Unimon("Legdayskipper", 210, true, R.drawable.robomon);
-		legdayskipperSpell1 = new Spell ("Giga Impact",1,33);
-		legdayskipperSpell2 = new Spell("Take Down", 2, 44);
-		legdayskipperSpell3 = new Spell ("Low Kick",3,55);
-		legdayskipperSpell4 = new Spell ("Punch",4,66);
-		legdayskipperSpell5 = new Spell("Jump Kick",5,77);
-		legdayskipperSpell6 = new Spell ("Tail Whip",6,88);
+		legdayskipperSpell1 = new Spell ("Giga Impact",1,40);
+		legdayskipperSpell2 = new Spell("Take Down", 2, 50);
+		legdayskipperSpell3 = new Spell ("Low Kick",3,66);
+		legdayskipperSpell4 = new Spell ("Punch",4,88);
+		legdayskipperSpell5 = new Spell("Jump Kick",5,130);
+		legdayskipperSpell6 = new Spell ("Tail Whip",6,200);
 		legdayskipper.addPossibleSpell(legdayskipperSpell1);
 		legdayskipper.addPossibleSpell(legdayskipperSpell2);
 		legdayskipper.addPossibleSpell(legdayskipperSpell3);
@@ -305,11 +305,11 @@ public class UnimonList {
 		//sehr offensiv
 		wild1 = new Unimon("Eimerchen", 130, false, R.drawable.eimerchen);
 		wild1Spell1 =  new Spell ("Giga Impact",1,31);
-		wild1Spell2  = new Spell("Ice Shard", 2, 42);
-		wild1Spell3  = new Spell("Bite", 3, 53);
-		wild1Spell4  = new Spell("Double Hit", 4, 64);
-		wild1Spell5  = new Spell("Slap in the Face", 5, 75);
-		wild1Spell6  = new Spell("Head Smash", 6, 86);
+		wild1Spell2  = new Spell("Ice Shard", 2, 37);
+		wild1Spell3  = new Spell("Bite", 3, 45);
+		wild1Spell4  = new Spell("Double Hit", 4, 63);
+		wild1Spell5  = new Spell("Slap in the Face", 5, 110);
+		wild1Spell6  = new Spell("Head Smash", 6, 169);
 		wild1.addPossibleSpell(wild1Spell1);
 		wild1.addPossibleSpell(wild1Spell2);
 		wild1.addPossibleSpell(wild1Spell3);
@@ -321,11 +321,11 @@ public class UnimonList {
 		//defensiv
 		wild2 = new Unimon("Bob", 210, false, R.drawable.robomon);
 		wild2Spell1 =  new Spell ("Mud Bomb",1,15);
-		wild2Spell2  = new Spell("Head Smash", 2, 26);
-		wild2Spell3  = new Spell("Electro Ball", 3, 33);
+		wild2Spell2  = new Spell("Head Smash", 2, 19);
+		wild2Spell3  = new Spell("Electro Ball", 3, 25);
 		wild2Spell4  = new Spell("Fling", 4, 47);
-		wild2Spell5  = new Spell("Machinegun", 5, 55);
-		wild2Spell6  = new Spell("Blow of an Ax", 6, 63);
+		wild2Spell5  = new Spell("Machinegun", 5, 90);
+		wild2Spell6  = new Spell("Blow of an Ax", 6, 150);
 		wild2.addPossibleSpell(wild2Spell1);
 		wild2.addPossibleSpell(wild2Spell2);
 		wild2.addPossibleSpell(wild2Spell3);
@@ -337,11 +337,11 @@ public class UnimonList {
 		//ausgeglichen
 		wild3 = new Unimon("Ozab", 130, false, R.drawable.robomon);
 		wild3Spell1 =  new Spell ("Tail Whip",1,15);
-		wild3Spell2  = new Spell("Gunshot", 2, 25);
-		wild3Spell3  = new Spell("Storm", 3, 35);
-		wild3Spell4  = new Spell("Fling", 4, 45);
-		wild3Spell5  = new Spell("Double Hit", 5, 55);
-		wild3Spell6  = new Spell("Sand Attack", 6, 65);
+		wild3Spell2  = new Spell("Gunshot", 2, 23);
+		wild3Spell3  = new Spell("Storm", 3, 27);
+		wild3Spell4  = new Spell("Fling", 4, 48);
+		wild3Spell5  = new Spell("Double Hit", 5, 93);
+		wild3Spell6  = new Spell("Sand Attack", 6, 174);
 		wild3.addPossibleSpell(wild3Spell1);
 		wild3.addPossibleSpell(wild3Spell2);
 		wild3.addPossibleSpell(wild3Spell3);
@@ -353,13 +353,13 @@ public class UnimonList {
 
 		//neutral
 
-		start1 = new Unimon("Facemeltor", 100, false, R.drawable.facemeltor);
+		start1 = new Unimon("Facemeltor", 120, false, R.drawable.facemeltor);
 		start1Spell1 =  new Spell ("Jump Kick",1,15);
-		start1Spell2 =  new Spell ("Overdrive",2,25);
-		start1Spell3 =  new Spell ("Mega Punch",3,35);
-		start1Spell4 =  new Spell ("Electro Ball",4,45);
-		start1Spell5 =  new Spell ("Dizzy Punch",5,55);
-		start1Spell6 =  new Spell ("Beat Up",6,65);
+		start1Spell2 =  new Spell ("Overdrive",2,21);
+		start1Spell3 =  new Spell ("Mega Punch",3,34);
+		start1Spell4 =  new Spell ("Electro Ball",4,55);
+		start1Spell5 =  new Spell ("Dizzy Punch",5,97);
+		start1Spell6 =  new Spell ("Beat Up",6,165);
 		start1.addPossibleSpell(start1Spell1);
 		start1.addPossibleSpell(start1Spell2);
 		start1.addPossibleSpell(start1Spell3);
@@ -371,12 +371,12 @@ public class UnimonList {
 		
 		//offensiv
 		start2 = new Unimon("Charlie", 90, false, R.drawable.charlie);
-		start2Spell1 =  new Spell ("Karate Chop",1,17);
-		start2Spell2 =  new Spell ("Cut",2,27);
-		start2Spell3 =  new Spell ("Fire Spin",3,37);
-		start2Spell4 =  new Spell ("Arm Thrust",4,47);
-		start2Spell5 =  new Spell ("Thunder Punch",5,57);
-		start2Spell6 =  new Spell ("Rock Blast",6,67);
+		start2Spell1 =  new Spell ("Karate Chop",1,19);
+		start2Spell2 =  new Spell ("Cut",2,18);
+		start2Spell3 =  new Spell ("Fire Spin",3,27);
+		start2Spell4 =  new Spell ("Arm Thrust",4,48);
+		start2Spell5 =  new Spell ("Thunder Punch",5,109);
+		start2Spell6 =  new Spell ("Rock Blast",6,174);
 		start2.addPossibleSpell(start2Spell1);
 		start2.addPossibleSpell(start2Spell2);
 		start2.addPossibleSpell(start2Spell3);
@@ -387,13 +387,13 @@ public class UnimonList {
 		start2.setHealth(start2.getMaxHealth());
 		
 		//defensiv
-		start3 = new Unimon("Bademeistär", 110, false, R.drawable.bademeister);
-		start3Spell1 =  new Spell ("Power Trick",1,13);
+		start3 = new Unimon("Bademeistär", 150, false, R.drawable.bademeister);
+		start3Spell1 =  new Spell ("Power Trick",1,12);
 		start3Spell2 =  new Spell ("Poison Sting",2,23);
-		start3Spell3 =  new Spell ("Electro Ball",3,33);
-		start3Spell4 =  new Spell ("Noble Roar",4,43);
-		start3Spell5 =  new Spell ("Jump Kick",5,53);
-		start3Spell6 =  new Spell ("Wild Charge",6,63);
+		start3Spell3 =  new Spell ("Electro Ball",3,30);
+		start3Spell4 =  new Spell ("Noble Roar",4,47);
+		start3Spell5 =  new Spell ("Jump Kick",5,89);
+		start3Spell6 =  new Spell ("Wild Charge",6,155);
 		start3.addPossibleSpell(start3Spell1);
 		start3.addPossibleSpell(start3Spell2);
 		start3.addPossibleSpell(start3Spell3);

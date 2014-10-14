@@ -23,7 +23,8 @@ public class Spell {
 	public int getDamageforDisplay(int level){
 		if (level == 0){
 			return 0;
-		} else return (int) (baseDamage + Math.exp((level/2d))+5);		
+		} else return (int)(baseDamage + (spellLevel*spellNumber)/2);	//return (int) (baseDamage + Math.exp((level/2d))+5);	
+				
 	}
 	
 	public int getNextLevel(){
@@ -87,7 +88,7 @@ public class Spell {
 		Random randomDmgCalculator = new Random();
 		
 //		int tempDamage = (int) (baseDamage + Math.exp((spellLevel/2d))+5);
-		int tempDamage = (int) (baseDamage + spellLevel*2.5);
+		int tempDamage = (int)(baseDamage + (spellLevel*spellNumber)/2);
 		int randomBonusDmg = randomDmgCalculator.nextInt((int) (tempDamage*0.2)+1);
 		int randomSign = randomDmgCalculator.nextInt(2);
 		if (randomSign == 0){
@@ -100,7 +101,7 @@ public class Spell {
 		int missChance = randomDmgCalculator.nextInt(14);
 		
 		if (critChance == 1){
-			damage *= 1.5;
+			damage *= 1.4;
 		}
 		if (missChance == 1){
 			damage = 0;
