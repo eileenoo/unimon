@@ -91,6 +91,11 @@ public class BattleActivity extends Activity implements
 		createFirstFragment();
 		setUpAnimation();
 	}
+	
+	@Override
+	public void onBackPressed() {
+	    //Hardware Zurückbutton disabled
+	}
 
 	private void setUpAnimation() {
 		toEnemyDamageTextIn.setDuration(1000);

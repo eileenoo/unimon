@@ -26,6 +26,10 @@ public class NewGameActivity extends Activity{
 		setContentView(R.layout.new_game_activity);
 		initUI();
 	}
+	
+	@Override
+	public void onBackPressed() {
+	}
 
 
 	private void initUI() {

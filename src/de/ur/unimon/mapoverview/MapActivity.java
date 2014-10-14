@@ -213,27 +213,27 @@ public class MapActivity extends Activity implements NavigationListener,
 			super(context);
 			player = BitmapFactory.decodeResource(getResources(),
 					R.drawable.player);
-
+ 
 			trainer1 = BitmapFactory.decodeResource(getResources(),
-					R.drawable.blauer_punkt);
+					R.drawable.trainer_1_icon);
 
 			trainer2 = BitmapFactory.decodeResource(getResources(),
-					R.drawable.blauer_punkt);
+					R.drawable.trainer_2_icon);
 
 			trainer3 = BitmapFactory.decodeResource(getResources(),
-					R.drawable.blauer_punkt);
+					R.drawable.trainer_3_icon);
 
 			trainer4 = BitmapFactory.decodeResource(getResources(),
-					R.drawable.blauer_punkt);
+					R.drawable.trainer_4_icon);
 
 			trainer5 = BitmapFactory.decodeResource(getResources(),
-					R.drawable.blauer_punkt);
+					R.drawable.trainer_5_icon);
 
 			trainer6 = BitmapFactory.decodeResource(getResources(),
-					R.drawable.blauer_punkt);
+					R.drawable.trainer_6_icon);
 
 			trainerBoss = BitmapFactory.decodeResource(getResources(),
-					R.drawable.blauer_punkt);
+					R.drawable.trainer_boss_icon);
 
 		}
 

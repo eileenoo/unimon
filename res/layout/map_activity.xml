@@ -65,6 +65,7 @@
             android:text="@string/action_menu"
             android:textColor="#ffd12e"
             android:textSize="16sp" />
+
     </LinearLayout>
 
 </RelativeLayout>

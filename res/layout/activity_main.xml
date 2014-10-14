@@ -9,7 +9,7 @@
         android:id="@+id/unimon_logo_img"
         android:layout_width="match_parent"
         android:layout_height="270dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="20dp"
         android:contentDescription="@string/wulfman_img"
         android:src="@drawable/unimon_logo" />
 
@@ -30,7 +30,7 @@
         android:id="@+id/resume_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/options_button"
+        android:layout_above="@+id/guide_button"
         android:layout_marginBottom="10dp"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
@@ -40,24 +40,11 @@
         android:textSize="25sp" />
 
     <Button
-        android:id="@+id/options_button"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/guide_button"
-        android:layout_marginBottom="10dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:background="@drawable/startbutton_shape"
-        android:text="@string/optionsButton_text"
-        android:textColor="#ffd12e"
-        android:textSize="25sp" />
-
-    <Button
         android:id="@+id/guide_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="20dp"
+        android:layout_above="@+id/image_button_sound"
+        android:layout_marginBottom="10dp"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
         android:background="@drawable/startbutton_shape"
@@ -65,4 +52,17 @@
         android:textColor="#ffd12e"
         android:textSize="25sp" />
 
+    <ImageButton
+        android:id="@+id/image_button_sound"
+        android:layout_width="70dp"
+        android:layout_height="50dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="20dp"
+        android:background="@drawable/startbutton_shape"
+        android:contentDescription="@string/image_button"
+        android:padding="10dp"
+        android:src="@drawable/sound_off_icon" />
+
 </RelativeLayout>
+

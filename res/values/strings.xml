@@ -16,6 +16,7 @@
     <string name="sound_on_text">On</string>
     <string name="english_text">English</string>
     <string name="german_text">German</string>
+    <string name="image_button">Image Button</string>
     
     <string name="action_inventar">Inventory</string>
     <string name="action_unimons">Unimons</string>
@@ -52,6 +53,7 @@
     <string name="shop_name">Shop</string>
     <string name="dompteur_name">Dompteur</string>
     <string name="hospital_name">Hospital</string>
+    <string name="hospital_heal_info">Your Unimons are all alive.</string>
     <string name="price">price</string>
     
     <string name="take_text">-> nehmen</string>
@@ -64,12 +66,14 @@
     <string name="escape_not_successfull_toast_text">Your escape was not successful!</string>
     <string name="catch_unimon_success_text">You catched the Unimon! Yay!</string>
     <string name="catch_unimon_fail_text">Unimon catch failed!</string>
-    <string name="game_description_text">The endboss has placed a curse on the University of Regensburg, which states that all students only write bad grades. The aim of the game is to defeat the villain and thus lift the curse. To defeat him, you must collect enough skillpoints and thus train your Unimons. Dean Wulffman asked you now to defeat the villain, so the University of Regensburg again cut by local standards at best. 
+    <string name="story_description_text">The endboss has placed a curse on the University of Regensburg, which states that all students only write bad grades. The aim of the game is to defeat the villain and thus lift the curse. To defeat him, you must collect enough skillpoints and thus train your Unimons. Dean Wulffman asked you now to defeat the villain, so the University of Regensburg again cut by local standards at best. 
         Since you previously skipped all lectures and seminars, you might not be subject to the curse. In order to defeat the bad guy, you are on the dean your first unimon, while you may choose between three different Unimons.</string>
-    <string name="game_description_title">Game-Description</string>
+    <string name="story_description_title">Story</string>
     <string name="tips_tricks_title">Tips and Tricks</string>
-    <string name="tips_tricks_text">You can catch a unimon only if it is a wild unimon. If it belongs to a trainer you cannot catch it. ---- Avoid entering the building, otherwise you may experience problems with the gps signal. The unimon game is based on gps. </string>
-    <string name="wulfman_img">Dr. Wulfman</string>
+    <string name="tips_tricks_one_text">Avoid entering buildings, otherwise you may experience problems with the gps signal. \nThe unimon game is based on gps.</string>
+    <string name="tips_tricks_two_text">Shop: Buy items. \nDompteur: Improve or learn new Spells. \nHospital: Heal Unimons.</string>
+    <string name="tips_tricks_three_text">Money: Buy items. \nXP: Level up. \nSkillpoints: Train Unimons.</string>
+    <string name="wulfman_img">Dr. Wulfman</string> 
 
     <string name="dompteur_new_skill">Learn new skill</string>
     <string name="dompteur_improve_skill">Improve skill</string>

@@ -119,7 +119,7 @@ public class ShopActivity extends Activity {
 				currentMoney = player.getMoney();
 				if (currentMoney >= healpot_Price) {
 					builder.setTitle(getResources().getString(R.string.healpot_name));
-					builder.setMessage("Möchtest du Healpot wirklich kaufen?");
+					builder.setMessage("Do you really want to buy a Healpot?");
 
 					builder.setPositiveButton(getResources().getString(R.string.ok),
 							new DialogInterface.OnClickListener() {
@@ -157,7 +157,7 @@ public class ShopActivity extends Activity {
 				currentMoney = player.getMoney();
 				if (currentMoney >= uniball_Price) {
 					builder.setTitle(getResources().getString(R.string.uniball_name));
-					builder.setMessage("Möchtest du Uniball wirklich kaufen?");
+					builder.setMessage("Do you really want to buy a Uniball?");
 
 					builder.setPositiveButton(getResources().getString(R.string.ok),
 							new DialogInterface.OnClickListener() {
@@ -194,7 +194,7 @@ public class ShopActivity extends Activity {
 				currentMoney = player.getMoney();
 				if (currentMoney >= revive_Price) {
 					builder.setTitle(getResources().getString(R.string.revive_name));
-					builder.setMessage("Möchtest du Revive wirklich kaufen?");
+					builder.setMessage("Do you really want to buy a Revive?");
 
 					builder.setPositiveButton(getResources().getString(R.string.ok),
 							new DialogInterface.OnClickListener() {
@@ -231,7 +231,7 @@ public class ShopActivity extends Activity {
 				currentMoney = player.getMoney();
 				if (currentMoney >= protector_Price) {
 					builder.setTitle(getResources().getString(R.string.protector_name));
-					builder.setMessage("Möchtest du Protector wirklich kaufen?");
+					builder.setMessage("Do you really want to buy a Protector?");
 
 					builder.setPositiveButton(getResources().getString(R.string.ok),
 							new DialogInterface.OnClickListener() {

@@ -131,7 +131,7 @@ public class UnimonList {
 
 		
 		// ausgeglichen
-		schleimi = new Unimon("Kiffi", 123, true, R.drawable.kiffi);
+		schleimi = new Unimon("Schleimi", 123, true, R.drawable.kiffi);
 		schleimiSpell1 = new Spell("Scratch", 1, 15);
 		schleimiSpell2 = new Spell("Bite", 2, 25);
 		schleimiSpell3 = new Spell("Headbutt",3,35);
@@ -249,7 +249,7 @@ public class UnimonList {
 		
 		
 		//sehr offensiv und hält relativ viel aus
-		asymptoterus = new Unimon("Asymptoterus", 124, true, R.drawable.robomon);
+		asymptoterus = new Unimon("Asymptoterus", 124, true, R.drawable.kiffi);
 		asymptoterusSpell1 = new Spell ("Giga Impact",1,32);
 		asymptoterusSpell2 = new Spell("Icicle Spear", 2, 43);
 		asymptoterusSpell3 = new Spell ("Explosion",3,54);
@@ -352,6 +352,7 @@ public class UnimonList {
 
 
 		//neutral
+
 		start1 = new Unimon("Facemeltor", 100, false, R.drawable.facemeltor);
 		start1Spell1 =  new Spell ("Jump Kick",1,15);
 		start1Spell2 =  new Spell ("Overdrive",2,25);

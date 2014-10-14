@@ -10,7 +10,7 @@ import android.widget.RadioButton;
 import android.widget.TextView;
 
 public class OptionsScreenActivity extends Activity {
-	TextView sounds;
+/*	TextView sounds;
 	RadioButton soundOn, soundOff;
 	public static boolean soundOnButtonChecked;
 	private DatabaseController dbController;
@@ -59,7 +59,7 @@ public class OptionsScreenActivity extends Activity {
 				}
 			break;
 		}
-	}
+	}*/
 }
 /*
  * radioGroupSound = (RadioGroup) findViewById(R.id.radio_group_sound);

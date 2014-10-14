@@ -1,57 +1,76 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-	android:background="#99B8FA"
+    android:background="#99B8FA"
     android:orientation="vertical" >
-
+<RelativeLayout 
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    
     <TextView
-        android:id="@+id/game_description"
+        android:id="@+id/story_description_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10sp"
         android:layout_marginBottom="10sp"
         android:layout_marginLeft="10sp"
-        android:text="@string/game_description_title"
+        android:layout_marginTop="10sp"
+        android:text="@string/story_description_title"
         android:textSize="20sp" />
 
-    <ScrollView
-        android:id="@+id/game_description_scroll"
+    <TextView
+        android:id="@+id/story_description"
         android:layout_width="match_parent"
-        android:layout_height="200dp"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/tips_tricks"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/story_description_title"
         android:layout_marginBottom="10sp"
-        android:layout_marginLeft="10sp"
-        android:layout_below="@+id/game_description" >
-
-        <TextView
-            android:layout_width="300dp"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:text="@string/game_description_text" />
-    </ScrollView>
+        android:orientation="vertical"
+        android:text="@string/story_description_text" />
 
     <TextView
         android:id="@+id/tips_tricks"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/story_description"
         android:layout_marginBottom="10sp"
         android:layout_marginLeft="10sp"
-        android:layout_below="@+id/game_description_scroll"
         android:text="@string/tips_tricks_title"
         android:textSize="20sp" />
 
-    <ScrollView
-        android:id="@+id/tips_tricks_scroll"
+    <TextView
+        android:id="@+id/tips_tricks_one"
         android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:layout_marginLeft="10sp"
-        android:layout_below="@+id/tips_tricks" >
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/tips_tricks"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/tips_tricks"
+        android:layout_marginBottom="10sp"
+        android:orientation="vertical"
+        android:text="@string/tips_tricks_one_text" />
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:text="@string/tips_tricks_text" />
-    </ScrollView>
+    <TextView
+        android:id="@+id/tips_tricks_two"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/tips_tricks_one"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/tips_tricks_one"
+        android:layout_marginBottom="10sp"
+        android:orientation="vertical"
+        android:text="@string/tips_tricks_two_text" />
 
-</RelativeLayout>
+    <TextView
+        android:id="@+id/tips_tricks_three"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/tips_tricks_one"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/tips_tricks_two"
+        android:layout_marginBottom="10sp"
+        android:orientation="vertical"
+        android:text="@string/tips_tricks_three_text" />
+    </RelativeLayout>
+
+</ScrollView>

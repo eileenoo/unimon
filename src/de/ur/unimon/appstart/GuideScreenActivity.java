@@ -1,16 +1,15 @@
 package de.ur.unimon.appstart;
 
 import de.ur.mi.android.excercises.starter.R;
+
 import android.app.Activity;
 import android.os.Bundle;
-import android.widget.ScrollView;
 import android.widget.TextView;
 
 
 public class GuideScreenActivity extends Activity{
 	
-	TextView descriptionTitle, tipsTricksTitle;
-	ScrollView description, tipsTricks;
+	TextView descriptionTitle, tipsTricksTitle, tipsTricksOne, tipsTricksTwo, tipsTricksThree;
 	
 
 	@Override
@@ -22,10 +21,12 @@ public class GuideScreenActivity extends Activity{
 	}
 	
 	private void initUI(){
-		descriptionTitle = (TextView) findViewById(R.id.game_description);
-		description =(ScrollView) findViewById(R.id.game_description_scroll);
+		descriptionTitle = (TextView) findViewById(R.id.story_description);
 		tipsTricksTitle =(TextView) findViewById(R.id.tips_tricks);
-		tipsTricks = (ScrollView) findViewById(R.id.tips_tricks_scroll);		
+		tipsTricksOne = (TextView) findViewById(R.id.tips_tricks_one);
+		tipsTricksTwo = (TextView) findViewById(R.id.tips_tricks_two);
+		tipsTricksThree = (TextView) findViewById(R.id.tips_tricks_three);
+		
 	}
 
 }
