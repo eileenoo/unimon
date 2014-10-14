@@ -163,10 +163,10 @@ public class Unimon {
 		calculateMaxHealth();
 		return maxHealth;
 	}
-
-	private void calculateMaxHealth() {
-		// setMaxHealth((int) (baseHealth + Math.exp((level/15d))+10));
-		maxHealth = (int) (baseHealth + level * 24);
+	
+	private void calculateMaxHealth(){
+//		setMaxHealth((int) (baseHealth + Math.exp((level/15d))+10));
+		maxHealth = (int) ((baseHealth + level*24)*1.5);
 	}
 
 	public void setHealth(int health) {
