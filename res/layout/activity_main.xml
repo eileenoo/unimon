@@ -9,6 +9,7 @@
         android:id="@+id/unimon_logo_img"
         android:layout_width="match_parent"
         android:layout_height="270dp"
+        android:layout_marginTop="10dp"
         android:contentDescription="@string/wulfman_img"
         android:src="@drawable/unimon_logo" />
 
