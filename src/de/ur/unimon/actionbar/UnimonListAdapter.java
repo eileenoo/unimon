@@ -54,7 +54,6 @@ public class UnimonListAdapter extends BaseAdapter {
 					.inflate(R.layout.unimon_list_item, null);
 
 		}
-
 		Unimon unimon = (Unimon) getItem(position);
 
 		if (unimon != null) {

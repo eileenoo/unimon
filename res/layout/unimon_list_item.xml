@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent" >
+    android:layout_height="match_parent"
+    android:background="#2A56B2" >
 
     <ImageView
         android:id="@+id/unimon_image"
@@ -20,7 +21,8 @@
         android:layout_alignParentRight="true"
         android:layout_alignParentTop="true"
         android:layout_toRightOf="@+id/unimon_image"
-        android:text="@string/name_text" />
+        android:text="@string/name_text"
+        android:textColor="#ffd12e" />
 
     <TextView
         android:id="@+id/unimon_level"
@@ -29,7 +31,8 @@
         android:layout_alignLeft="@+id/unimon_name"
         android:layout_alignParentRight="true"
         android:layout_below="@+id/unimon_name"
-        android:text="@string/level_text" />
+        android:text="@string/level_text"
+        android:textColor="#ffd12e" />
     
     <ProgressBar
         android:id="@+id/healthBar"
@@ -49,7 +52,7 @@
           android:layout_alignParentRight="true"
           android:layout_below="@+id/unimon_level"
           android:layout_marginLeft="40dp"
-          android:layout_toRightOf="@+id/health_text" />
+          android:layout_toRightOf="@+id/health_text"           />
       
        <TextView
           android:id="@+id/health_text"
@@ -57,7 +60,8 @@
           android:layout_height="wrap_content"
           android:layout_below="@+id/unimon_level"
           android:layout_toRightOf="@+id/unimon_image"
-          android:text="@string/health_text" />
+          android:text="@string/health_text"
+          android:textColor="#ffd12e" />
       
       <ProgressBar
           android:id="@+id/xpBar"
@@ -76,7 +80,8 @@
           android:layout_alignBottom="@+id/xpBar"
           android:layout_alignLeft="@+id/unimon_health"
           android:layout_alignParentRight="true"
-          android:layout_below="@+id/unimon_health" />           
+          android:layout_below="@+id/unimon_health"
+           />           
 
       <TextView
           android:id="@+id/xp_text"
@@ -84,6 +89,7 @@
           android:layout_height="wrap_content"
           android:layout_below="@+id/unimon_health"
           android:layout_toRightOf="@+id/unimon_image"
-          android:text="@string/xp_text" />
+          android:text="@string/xp_text"
+          android:textColor="#ffd12e" />
 
 </RelativeLayout>

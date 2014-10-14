@@ -1,14 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent" >
+    android:layout_height="match_parent"
+    android:background="#2A56B2" >
     
     <TextView 
         android:id="@+id/spell_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="5dp"
-        android:text="HIIIIIIIIIIIIIIIIi"
+        android:text="@string/spell_name"
         android:textSize="25sp"/>
     
     <TextView 
@@ -17,7 +18,7 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="10dp"
         android:layout_below="@id/spell_name"
-        android:text="Level: 3"
+        android:text="@string/spell_level"
         android:textSize="15sp"/>
     
     <TextView 
@@ -26,7 +27,7 @@
         android:layout_height="wrap_content" 
         android:layout_below="@id/level"
         android:layout_marginLeft="10dp"
-        android:text="Damage: 20"
+        android:text="@string/current_spell_damage"
         android:textSize="15sp"/>
     
     <TextView 
@@ -35,8 +36,8 @@
         android:layout_height="wrap_content" 
         android:layout_below="@id/current_spell_damage"
         android:layout_marginLeft="10dp"
-        android:text="Damage at level 2: 22"
-        android:textSize="15sp"/>"
+        android:text="@string/next_level_spell_damage"
+        android:textSize="15sp"/>
     
 
 </RelativeLayout>

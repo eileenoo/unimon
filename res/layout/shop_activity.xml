@@ -2,7 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/shopbackground"
+    android:background="#ee5226"
     android:orientation="vertical" >
     
     <TextView
@@ -120,6 +120,8 @@
         android:layout_alignRight="@+id/uniball_image"
         android:layout_below="@+id/money"
         android:layout_marginTop="14dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="10dp"
         android:adjustViewBounds="true"
         android:contentDescription="@string/image_text"
         android:maxHeight="60dp"
@@ -132,6 +134,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/healpot_image"
+        android:layout_marginLeft="20dp"
         android:layout_marginTop="14dp"
         android:adjustViewBounds="true"
         android:contentDescription="@string/image_text"
@@ -146,6 +149,8 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/revive_image"
         android:layout_marginTop="14dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="10dp"
         android:layout_toLeftOf="@+id/healpot_info"
         android:adjustViewBounds="true"
         android:contentDescription="@string/image_text"
@@ -162,6 +167,8 @@
         android:layout_toLeftOf="@+id/item_protector"
         android:adjustViewBounds="true"
         android:layout_marginTop="14dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="10dp"
         android:contentDescription="@string/image_text"
         android:maxHeight="60dp"
         android:maxWidth="60dp"
@@ -217,6 +224,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
+        android:layout_marginRight="20dp"
         android:layout_alignTop="@+id/item_healpot"
         android:text="@string/price"
         android:textAppearance="?android:attr/textAppearanceLarge" />
@@ -227,6 +235,7 @@
         android:layout_height="wrap_content"
         android:layout_alignBottom="@+id/item_uniball_count"
         android:layout_alignParentRight="true"
+        android:layout_marginRight="20dp"
         android:layout_alignTop="@+id/item_uniball"
         android:text="@string/price"
         android:textAppearance="?android:attr/textAppearanceLarge" />
@@ -236,6 +245,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
+        android:layout_marginRight="20dp"
         android:layout_alignTop="@+id/item_revive"
         android:text="@string/price"
         android:textAppearance="?android:attr/textAppearanceLarge" />
@@ -245,8 +255,19 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
+        android:layout_marginRight="20dp"
         android:layout_alignTop="@+id/item_protector"
         android:text="@string/price"
         android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <Button
+        android:id="@+id/leave_shop_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="20dp"
+        android:layout_alignParentBottom="true"
+        android:text="@string/shop_back_button" />
     
 </RelativeLayout>

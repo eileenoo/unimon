@@ -1,8 +1,8 @@
 package de.ur.unimon.battle;
 
 import de.ur.mi.android.excercises.starter.R;
+
 import de.ur.unimon.actionbar.UnimonListAdapter;
-import de.ur.unimon.appstart.OptionsScreenActivity;
 import de.ur.unimon.database.DatabaseController;
 import de.ur.unimon.mapoverview.MapActivity;
 import android.app.Activity;

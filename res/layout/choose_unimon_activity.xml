@@ -6,7 +6,7 @@
     android:gravity="center_horizontal"
     android:layout_width="match_parent" 
     android:layout_height="match_parent"
-    android:background="#99B8FA">
+    android:background="#2A56B2">
 
     <android.support.v4.view.ViewPager
         android:id="@+id/pager"

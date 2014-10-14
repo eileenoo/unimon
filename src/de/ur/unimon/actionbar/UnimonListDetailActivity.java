@@ -3,6 +3,7 @@ package de.ur.unimon.actionbar;
 import java.util.ArrayList;
 
 import android.app.Activity;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -39,7 +40,7 @@ public class UnimonListDetailActivity extends Activity{
 	}
 
 	private void initUI() {
-		
+		Typeface font = Typeface.createFromAsset(getAssets(), "PokemonFont.ttf");
 		
 		unimonImageResource = extras.getInt("chosen_unimon_image");
 		chosenUnimonName = extras.getString("chosen_unimon_name");
@@ -66,6 +67,7 @@ public class UnimonListDetailActivity extends Activity{
 		
 		unimonImage.setImageResource(unimonImageResource);
 		unimonName.setText(chosenUnimonName);
+		unimonName.setTypeface(font);
 		unimonHealth.setText(health + "/" + maxHealth);
 		unimonLevel.setText(getResources().getString(R.string.level_text) + chosenUnimonLevel);
 		skillPoints.setText(getResources().getString(R.string.skillpoint_text) + chosenUnimonSkillPoints);

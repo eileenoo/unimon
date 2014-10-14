@@ -2,7 +2,8 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent" >
+    android:layout_height="match_parent"
+    android:background="#2A56B2" >
     
     <TextView 
         android:id="@+id/inventory_unimon_name"
@@ -10,7 +11,8 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="50dp"
-        android:textSize="20sp"/>
+        android:textSize="20sp"
+        android:textColor="#ffd12e"/>
     
     <ImageView 
         android:id="@+id/inventory_unimon_image"
@@ -28,7 +30,8 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/inventory_unimon_image"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="5dp" />
+        android:layout_marginTop="5dp"
+        android:textColor="#ffd12e" />
     
     <TextView
         android:id="@+id/inventory_health_text"
@@ -65,7 +68,8 @@
           android:layout_below="@+id/inventory_unimon_health"
           android:layout_centerHorizontal="true"
           android:layout_marginTop ="5dp"
-          android:text="@string/xp_text" />
+          android:text="@string/xp_text"
+          android:textColor="#ffd12e" />
         
      <ProgressBar
         android:id="@+id/inventory_xpBar"
@@ -96,13 +100,15 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
-            android:text="@string/spells_headline" />
+            android:text="@string/spells_headline"
+            android:textColor="#ffd12e" />
 
         <TextView
             android:id="@+id/inventory_spell"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="5dp" />
+            android:layout_margin="5dp"
+            android:textColor="#ffd12e" />
         
     </LinearLayout>
 

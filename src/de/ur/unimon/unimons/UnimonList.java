@@ -6,8 +6,6 @@ import de.ur.mi.android.excercises.starter.R;
 import android.util.Log;
 
 public class UnimonList {
-	
-	public static final String TAG = "Hoi";
 
 	private static Unimon schleimi;
 	private static Unimon kaeffchen;

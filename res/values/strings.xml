@@ -40,7 +40,7 @@
     <string name="healpot_name">Healpot</string>
     <string name="healpot_info_text">Heals your Unimon by 20%</string>
     <string name="uniball_name">Uniball</string>
-    <string name="uniball_info_text">Use an Uniball during a battle to catch the opposing Unimon!</string>
+    <string name="uniball_info_text">Try to catch the opposing Unimon!</string>
     <string name="revive_name">Revive</string>
     <string name="revive_info_text">Revives your dead Unimon.</string>
     <string name="protector_name">Protector</string>
@@ -51,7 +51,9 @@
     <string name="use_protector_button_text">Use Protector</string>
     <string name="use_protector_toast">Now you\'re safe from one wild unimon</string>
     <string name="shop_name">Shop</string>
+    <string name="shop_back_button">Leave Shop</string>
     <string name="dompteur_name">Dompteur</string>
+    <string name="hospital_fragment">Do you want to enter the hospital?</string>
     <string name="hospital_name">Hospital</string>
     <string name="hospital_heal_info">Your Unimons are all alive.</string>
     <string name="price">price</string>
@@ -118,6 +120,10 @@
 	<string name="inventory_use_healPot">Use HealPot</string>
 	<string name="inventory_use_revive">Revive</string>
 	<string name="spells_headline">Spells:\u0020</string>
+	<string name="spell_name">spellname</string>
+	<string name="spell_level">spelllevel</string>	
+	<string name="next_level_spell_damage">next spell damage</string>	
+	<string name="current_spell_damage">current spell damage</string>	
 	
 	<string name="battle_won_money_earend_text">Money earned:\u0020</string>
 	<string name="battle_won_XP_text">XP earned:\u0020</string>

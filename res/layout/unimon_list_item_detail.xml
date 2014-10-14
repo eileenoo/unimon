@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical" 
-    android:background="#99B8FA" >
+    android:background="#2A56B2" >
 
     <TextView
         android:id="@+id/detail_unimon_name"
@@ -11,7 +11,8 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="50dp"
-        android:textSize="20sp" />
+        android:textSize="20sp"
+        android:textColor="#ffd12e" />
     
     <ImageView
         android:id="@+id/detail_unimon_image"
@@ -30,7 +31,8 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/detail_unimon_image"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="5dp" />
+        android:layout_marginTop="5dp"
+        android:textColor="#ffd12e" />
     
      <TextView
         android:id="@+id/detail_health_text"
@@ -39,7 +41,8 @@
         android:layout_centerHorizontal="true"
         android:layout_below="@+id/detail_unimon_level"
         android:layout_marginTop="5dp"
-        android:text="@string/health_text" />
+        android:text="@string/health_text"
+        android:textColor="#ffd12e" />
 
     <ProgressBar
         android:id="@+id/detail_healthBar"
@@ -66,7 +69,8 @@
           android:layout_below="@+id/detail_unimon_health"
           android:layout_centerHorizontal="true"
           android:layout_marginTop ="5dp"
-          android:text="@string/xp_text" />
+          android:text="@string/xp_text"
+          android:textColor="#ffd12e" />
     
     <ProgressBar
         android:id="@+id/detail_xpBar"
@@ -93,7 +97,8 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/detail_xpBar"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="10dp" />
+        android:layout_marginTop="10dp"
+        android:textColor="#ffd12e" />
 
 
     <LinearLayout
@@ -108,13 +113,15 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
-            android:text="@string/spells_headline" />
+            android:text="@string/spells_headline" 
+            android:textColor="#ffd12e"/>
 
         <TextView
             android:id="@+id/detail_spell"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="5dp" />
+            android:layout_margin="5dp"
+            android:textColor="#ffd12e" />
     </LinearLayout>
 
 </RelativeLayout>
