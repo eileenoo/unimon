@@ -1,6 +1,7 @@
 package de.ur.unimon.buildings;
 
 import android.app.Activity;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -201,6 +202,8 @@ public class DompteurSkillActivity extends Activity {
 	}
 
 	private void initUI() {
+		Typeface font = Typeface.createFromAsset(getAssets(), "PokemonFont.ttf");
+		
 		unimonImage = (ImageView) findViewById(R.id.unimon_image);
 		name = (TextView) findViewById(R.id.unimon_name);
 		level = (TextView) findViewById(R.id.unimon_level);
@@ -209,6 +212,7 @@ public class DompteurSkillActivity extends Activity {
 		healthBar = (ProgressBar) findViewById(R.id.healthBar);
 		unimonImage.setImageResource(unimon.getImage());
 		name.setText(unimon.getName());
+		name.setTypeface(font);
 		level.setText(getResources().getString(R.string.level_text)
 				+ unimon.getLevel());
 		skillPoints.setText(getResources().getString(R.string.skillpoint_text)

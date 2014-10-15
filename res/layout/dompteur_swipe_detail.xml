@@ -11,7 +11,8 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="50dp"
-        android:textSize="20sp"/>
+        android:textSize="20sp"
+        android:textColor="#ffd12e" />
     
     <ImageView 
         android:id="@+id/dompteur_unimon_image"
@@ -30,7 +31,7 @@
         android:layout_below="@id/dompteur_unimon_image"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="5dp" 
-        android:textSize="18sp"/>
+        android:textColor="#ffd12e" />
     
      <TextView
         android:id="@+id/dompteur_health_text"
@@ -40,7 +41,7 @@
         android:layout_below="@+id/dompteur_unimon_level"
         android:layout_marginTop="5dp"
         android:text="@string/health_text"
-        android:textSize="18sp" />
+        android:textColor="#ffd12e"  />
     
     <ProgressBar
         android:id="@+id/dompteur_healthBar"
@@ -70,7 +71,7 @@
           android:layout_centerHorizontal="true"
           android:layout_marginTop ="5dp"
           android:text="@string/xp_text"
-          android:textSize="18sp" />
+          android:textColor="#ffd12e"  />
     
     <ProgressBar
         android:id="@+id/dompteur_xpBar"
@@ -99,7 +100,7 @@
         android:layout_centerHorizontal="true"    
         android:layout_margin="5dp"     
         android:text="@string/skillpoint_text"
-        android:textSize="18sp"/>
+        android:textColor="#ffd12e" />
     
     <LinearLayout
         android:layout_width="wrap_content"
@@ -113,14 +114,14 @@
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
             android:text="@string/spells_headline"
-            android:textSize="18sp" />
+            android:textColor="#ffd12e"  />
 
         <TextView
             android:id="@+id/dompteur_spell"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
-            android:textSize="18sp" />
+            android:textColor="#ffd12e"  />
         
     </LinearLayout>
 

@@ -40,7 +40,8 @@
         android:layout_centerHorizontal="true"
         android:layout_below="@+id/inventory_unimon_level"
         android:layout_marginTop="5dp"
-        android:text="@string/health_text" />
+        android:text="@string/health_text"
+        android:textColor="#ffd12e"/>
     
     <ProgressBar
         android:id="@+id/inventory_healthBar"

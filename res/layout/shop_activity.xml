@@ -4,19 +4,21 @@
     android:layout_height="match_parent"
     android:background="#ee5226"
     android:orientation="vertical" >
-    
+   <!-- #aa1c04 --> 
     <TextView
         android:id="@+id/money"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/money_text"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="20dp"
         android:textAppearance="?android:attr/textAppearanceLarge" />
     
     <TextView
         android:id="@+id/item_healpot_count"
         android:layout_width="186dp"
         android:layout_height="wrap_content"
-        android:layout_toRightOf="@+id/healpot_image"
+        android:layout_toRightOf="@+id/uniball_image"
         android:layout_below="@+id/item_healpot"
         android:text="@string/item_count_text" />
     
@@ -24,7 +26,7 @@
         android:id="@+id/healpot_info"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_toRightOf="@+id/healpot_image"
+        android:layout_toRightOf="@+id/uniball_image"
         android:layout_below="@+id/item_healpot_count"
         android:text="@string/healpot_info_text" />
     
@@ -49,7 +51,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/item_revive"
-        android:layout_toRightOf="@+id/revive_image"
+        android:layout_toRightOf="@+id/uniball_image"
         android:text="@string/item_count_text" />
     
     <TextView
@@ -57,7 +59,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/item_revive_count"
-        android:layout_toRightOf="@+id/revive_image"
+        android:layout_toRightOf="@+id/uniball_image"
         android:text="@string/revive_info_text" />
     
     <TextView
@@ -65,7 +67,7 @@
         android:layout_width="match_parent"  
         android:layout_height="wrap_content"
         android:layout_below="@+id/item_protector"
-        android:layout_toRightOf="@+id/protectors_image"
+        android:layout_toRightOf="@+id/uniball_image"
         android:text="@string/item_count_text" />
     
     <TextView
@@ -73,7 +75,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/item_protector_count"
-        android:layout_toRightOf="@+id/protectors_image"
+        android:layout_toRightOf="@+id/uniball_image"
         android:text="@string/protector_info_text" />
 
     <TextView
@@ -81,7 +83,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignTop="@+id/healpot_image"
-        android:layout_toRightOf="@+id/healpot_image"
+        android:layout_toRightOf="@+id/uniball_image"
         android:text="@string/healpot_name"
         android:textSize="15sp" />
 
@@ -99,7 +101,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignTop="@+id/revive_image"
-        android:layout_toRightOf="@+id/revive_image"
+        android:layout_toRightOf="@+id/uniball_image"
         android:text="@string/revive_name"
         android:textSize="15sp" />
 
@@ -108,7 +110,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignTop="@+id/protectors_image"
-        android:layout_toRightOf="@+id/protectors_image"
+        android:layout_toRightOf="@+id/uniball_image"
         android:text="@string/protector_name"
         android:textSize="15sp" />
 
@@ -117,24 +119,23 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
-        android:layout_alignRight="@+id/uniball_image"
         android:layout_below="@+id/money"
         android:layout_marginTop="14dp"
-        android:layout_marginLeft="20dp"
+        android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
         android:adjustViewBounds="true"
         android:contentDescription="@string/image_text"
         android:maxHeight="60dp"
         android:maxWidth="60dp"
         android:scaleType="fitCenter"
-        android:src="@drawable/healpot" />
+        android:src="@drawable/uniball" />
 
     <ImageView
         android:id="@+id/uniball_image"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/healpot_image"
-        android:layout_marginLeft="20dp"
+        android:layout_marginLeft="10dp"
         android:layout_marginTop="14dp"
         android:adjustViewBounds="true"
         android:contentDescription="@string/image_text"
@@ -149,9 +150,8 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/revive_image"
         android:layout_marginTop="14dp"
-        android:layout_marginLeft="20dp"
+        android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
-        android:layout_toLeftOf="@+id/healpot_info"
         android:adjustViewBounds="true"
         android:contentDescription="@string/image_text"
         android:maxHeight="60dp"
@@ -163,12 +163,11 @@
         android:id="@+id/revive_image"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/protectors_image"
         android:layout_below="@+id/uniball_info"
-        android:layout_toLeftOf="@+id/item_protector"
-        android:adjustViewBounds="true"
-        android:layout_marginTop="14dp"
-        android:layout_marginLeft="20dp"
         android:layout_marginRight="10dp"
+        android:layout_marginTop="14dp"
+        android:adjustViewBounds="true"
         android:contentDescription="@string/image_text"
         android:maxHeight="60dp"
         android:maxWidth="60dp"
@@ -268,6 +267,7 @@
         android:layout_marginRight="20dp"
         android:layout_marginBottom="20dp"
         android:layout_alignParentBottom="true"
-        android:text="@string/shop_back_button" />
+        android:text="@string/shop_back_button"
+        android:background="@drawable/shopbutton_shape" />
     
 </RelativeLayout>

@@ -4,111 +4,97 @@
     android:layout_height="match_parent"
     android:background="#2A56B2"
     android:orientation="vertical" >
-    
+
     <TextView
         android:id="@+id/money"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="10dp"
         android:text="@string/money_text"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
-    
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textColor="#ffd12e" />
+
     <TextView
         android:id="@+id/item_healpot_count"
         android:layout_width="186dp"
         android:layout_height="wrap_content"
-        android:layout_toRightOf="@+id/healpot_image"
         android:layout_below="@+id/item_healpot"
-        android:text="@string/item_count_text" />
-    
+        android:layout_toRightOf="@+id/uniball_image"
+        android:text="@string/item_count_text"
+        android:textColor="#ffd12e" />
+
     <TextView
         android:id="@+id/healpot_info"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_toRightOf="@+id/healpot_image"
         android:layout_below="@+id/item_healpot_count"
-        android:text="@string/healpot_info_text" />
-    
+        android:layout_toRightOf="@+id/uniball_image"
+        android:text="@string/healpot_info_text"
+        android:textColor="#ffd12e" />
+
     <TextView
         android:id="@+id/item_uniball_count"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/item_uniball"
         android:layout_toRightOf="@+id/uniball_image"
-        android:text="@string/item_count_text" />
-    
+        android:text="@string/item_count_text"
+        android:textColor="#ffd12e" />
+
     <TextView
         android:id="@+id/uniball_info"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/item_uniball_count"
         android:layout_toRightOf="@+id/uniball_image"
-        android:text="@string/uniball_info_text" />
-    
+        android:text="@string/uniball_info_text"
+        android:textColor="#ffd12e" />
+
     <TextView
         android:id="@+id/item_revive_count"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/item_revive"
-        android:layout_toRightOf="@+id/revive_image"
-        android:text="@string/item_count_text" />
-    
+        android:layout_toRightOf="@+id/uniball_image"
+        android:text="@string/item_count_text"
+        android:textColor="#ffd12e" />
+
     <TextView
         android:id="@+id/revive_info"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/item_revive_count"
-        android:layout_toRightOf="@+id/revive_image"
-        android:text="@string/revive_info_text" />
-    
+        android:layout_toRightOf="@+id/uniball_image"
+        android:text="@string/revive_info_text"
+        android:textColor="#ffd12e" />
+
     <TextView
-        android:id="@+id/item_protector_count"     
-        android:layout_width="match_parent"  
+        android:id="@+id/item_protector_count"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/item_protector"
-        android:layout_toRightOf="@+id/protectors_image"
-        android:text="@string/item_count_text" />
-    
+        android:layout_toRightOf="@+id/uniball_image"
+        android:text="@string/item_count_text"
+        android:textColor="#ffd12e" />
+
     <TextView
         android:id="@+id/protector_info"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/item_protector_count"
-        android:layout_toRightOf="@+id/protectors_image"
-        android:text="@string/protector_info_text" />
-    
-    <Button
-        android:id="@+id/use_item_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/use_protector_button"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentRight="true"
-        android:layout_marginBottom="5dp"
-        android:layout_marginLeft="5dp"
-        android:layout_marginRight="5dp"
-        android:background="@drawable/startbutton_shape"
-        android:text="@string/use_item_button_text" />
-    
-    <Button
-        android:id="@+id/use_protector_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentRight="true"
-        android:layout_marginBottom="5dp"
-        android:layout_marginLeft="5dp"
-        android:layout_marginRight="5dp"
-        android:background="@drawable/startbutton_shape"
-        android:text="@string/use_protector_button_text" />
+        android:layout_toRightOf="@+id/uniball_image"
+        android:text="@string/protector_info_text"
+        android:textColor="#ffd12e" />
 
     <TextView
         android:id="@+id/item_healpot"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignTop="@+id/healpot_image"
-        android:layout_toRightOf="@+id/healpot_image"
+        android:layout_toRightOf="@+id/uniball_image"
         android:text="@string/healpot_name"
+        android:textColor="#ffd12e"
         android:textSize="15sp" />
 
     <TextView
@@ -118,6 +104,7 @@
         android:layout_alignTop="@+id/uniball_image"
         android:layout_toRightOf="@+id/uniball_image"
         android:text="@string/uniball_name"
+        android:textColor="#ffd12e"
         android:textSize="15sp" />
 
     <TextView
@@ -125,8 +112,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignTop="@+id/revive_image"
-        android:layout_toRightOf="@+id/revive_image"
+        android:layout_toRightOf="@+id/uniball_image"
         android:text="@string/revive_name"
+        android:textColor="#ffd12e"
         android:textSize="15sp" />
 
     <TextView
@@ -134,8 +122,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignTop="@+id/protectors_image"
-        android:layout_toRightOf="@+id/protectors_image"
+        android:layout_toRightOf="@+id/uniball_image"
         android:text="@string/protector_name"
+        android:textColor="#ffd12e"
         android:textSize="15sp" />
 
     <ImageView
@@ -144,6 +133,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_below="@+id/money"
+        android:layout_marginLeft="20dp"
         android:layout_marginTop="14dp"
         android:layout_toLeftOf="@+id/item_uniball"
         android:adjustViewBounds="true"
@@ -151,13 +141,14 @@
         android:maxHeight="60dp"
         android:maxWidth="60dp"
         android:scaleType="fitCenter"
-        android:src="@drawable/healpot" />
+        android:src="@drawable/uniball" />
 
     <ImageView
         android:id="@+id/uniball_image"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/healpot_image"
+        android:layout_marginLeft="20dp"
         android:layout_marginTop="14dp"
         android:adjustViewBounds="true"
         android:contentDescription="@string/image_text"
@@ -171,8 +162,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/revive_image"
+        android:layout_marginLeft="20dp"
         android:layout_marginTop="14dp"
-        android:layout_toLeftOf="@+id/healpot_info"
         android:adjustViewBounds="true"
         android:contentDescription="@string/image_text"
         android:maxHeight="60dp"
@@ -185,13 +176,49 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/uniball_info"
-        android:layout_toLeftOf="@+id/item_protector"
-        android:adjustViewBounds="true"
+        android:layout_marginLeft="20dp"
         android:layout_marginTop="14dp"
+        android:adjustViewBounds="true"
         android:contentDescription="@string/image_text"
         android:maxHeight="60dp"
         android:maxWidth="60dp"
         android:scaleType="fitCenter"
         android:src="@drawable/uniball" />
-    
+
+    <Button
+        android:id="@+id/use_item_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/use_protector_button"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="5dp"
+        android:background="@drawable/startbutton_shape"
+        android:text="@string/use_item_button_text"
+        android:textColor="#ffd12e" />
+
+    <Button
+        android:id="@+id/use_protector_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/back_to_map_inventory_button"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="5dp"
+        android:background="@drawable/startbutton_shape"
+        android:text="@string/use_protector_button_text"
+        android:textColor="#ffd12e" />
+
+    <Button
+        android:id="@+id/back_to_map_inventory_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/startbutton_shape"
+        android:text="@string/back_to_map_button_text"
+        android:textColor="#ffd12e" />
+
 </RelativeLayout>

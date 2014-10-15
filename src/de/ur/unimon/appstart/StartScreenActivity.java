@@ -56,9 +56,7 @@ public class StartScreenActivity extends Activity {
 		}
 	}
 
-	private void initSound() {
-		Log.d("hallo", "initSound");	
-		
+	private void initSound() {		
 		checkMediaPlayerStatus();
 		
 		if (mediaPlayer == null) {
@@ -73,7 +71,6 @@ public class StartScreenActivity extends Activity {
 
 	@Override
 	public void onBackPressed() {
-		Log.d("hallo", "onBackPressed");
 		Intent intent = new Intent(Intent.ACTION_MAIN);
 		intent.addCategory(Intent.CATEGORY_HOME);
 		intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
@@ -89,24 +86,18 @@ public class StartScreenActivity extends Activity {
 
 	@Override
 	protected void onStart() {
-		Log.d("hallo", "onStart");
 		initSound();
 		super.onStart();
 	}
 
 	@Override
 	protected void onStop() {
-		Log.d("hallo", "onStop");
 		super.onStop();
 	}
 	
 
 	@Override
 	protected void onDestroy() {		
-		Log.d("hallo", "onDestroy");
-	/*	if (mediaPlayer.isPlaying()) {
-			mediaPlayer.stop();
-		}*/
 		finish();
 		super.onDestroy();
 	}

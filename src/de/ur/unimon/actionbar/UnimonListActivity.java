@@ -4,13 +4,20 @@ import java.util.ArrayList;
 
 
 
+
+
+
+
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListAdapter;
 import android.widget.ListView;
@@ -18,12 +25,14 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import de.ur.mi.android.excercises.starter.R;
 import de.ur.unimon.database.DatabaseController;
+import de.ur.unimon.mapoverview.MapActivity;
 import de.ur.unimon.player.PlayerController;
 import de.ur.unimon.unimons.Spell;
 import de.ur.unimon.unimons.Unimon;
 
 public class UnimonListActivity extends Activity{
 	
+	Button backToMapButton;
 	ListView listUnimons;
 	ListAdapter listUnimons_adapter;
 	private ArrayList <Unimon> unimons;
@@ -34,7 +43,11 @@ public class UnimonListActivity extends Activity{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.unimon_list_activity);
 		initUI();
-
+	}
+	
+	@Override
+	public void onBackPressed() {
+	    
 	}
 	
 	@Override
@@ -45,6 +58,19 @@ public class UnimonListActivity extends Activity{
 	}
 
 	private void initUI() {
+		Typeface font = Typeface.createFromAsset(getAssets(), "PokemonFont.ttf");
+		
+		backToMapButton = (Button) findViewById(R.id.back_to_map_button_unimons);
+		backToMapButton.setTypeface(font);
+		backToMapButton.setOnClickListener(new OnClickListener() {
+			public void onClick(View v) {
+				Intent backToMap = new Intent(UnimonListActivity.this,
+						MapActivity.class);
+				startActivity(backToMap);
+				backToMap.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
+			}
+		});
+		
 		unimons = playerController.getInstance().getUnimonList();
 		initListAdapter();
 		initListView();

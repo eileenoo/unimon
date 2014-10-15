@@ -6,6 +6,7 @@ import android.app.Activity;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
@@ -175,6 +176,8 @@ public class BattleActivity extends Activity implements
 	}
 
 	private void initUI() {
+		Typeface font = Typeface.createFromAsset(getAssets(), "PokemonFont.ttf");
+		
 		showHealTextView = (TextView) findViewById(R.id.heal_text);
 		damageToEnemyUnimonDealt = (TextView) findViewById(R.id.to_enemy_damage_dealt);
 		damageToOwnUnimonDealt = (TextView) findViewById(R.id.to_own_damage_dealt);
@@ -182,7 +185,9 @@ public class BattleActivity extends Activity implements
 		enemyUnimonImage = (ImageView) findViewById(R.id.enemy_unimon_image);
 		ownUnimonImage = (ImageView) findViewById(R.id.own_unimon_image);
 		enemyUnimonName = (TextView) findViewById(R.id.enemy_unimon_name);
+		enemyUnimonName.setTypeface(font);
 		ownUnimonName = (TextView) findViewById(R.id.own_unimon_name);
+		ownUnimonName.setTypeface(font);
 		enemyUnimonLevel = (TextView) findViewById(R.id.enemy_unimon_level);
 		ownUnimonLevel = (TextView) findViewById(R.id.own_unimon_level);
 		enemyUnimonHealth = (TextView) findViewById(R.id.enemy_unimon_health);
@@ -359,7 +364,45 @@ public class BattleActivity extends Activity implements
 	}
 
 	private void fightEnd() {
+		
 		XP = trainer.getExpValue();
+		money = trainer.getMoneyValue();
+		enemyUnimon.setHealth(enemyUnimon.getMaxHealth());
+		if (gameWon){
+			player.addMoney(money);
+			switch (battleController.getXpSplit()) {
+			case 1:
+				currentBattleUnimonList[0].addXp(XP);
+				break;
+			case 2:
+				currentBattleUnimonList[0].addXp(XP / 2);
+				if (battleController.isSecondUnimonUsed()) {
+					currentBattleUnimonList[1].addXp((int) (Math.round(XP / 2d)));
+				} else
+					currentBattleUnimonList[2].addXp((int) (Math.round(XP / 2d)));
+				break;
+			case 3:
+				currentBattleUnimonList[0].addXp((int) (Math.round(XP / 3d)));
+				currentBattleUnimonList[1].addXp((int) (Math.round(XP / 3d)));
+				currentBattleUnimonList[2].addXp((int) (Math.round(XP / 3d)));
+				break;
+			}
+		}
+		if (enemyUnimon.getName() != "Legdayskipper"){
+		Intent toBattleEndActivity = new Intent(BattleActivity.this,
+				BattleEndActivity.class);
+		
+		toBattleEndActivity.putExtra("XP", XP);
+		toBattleEndActivity.putExtra("Money", money);
+		toBattleEndActivity.putExtra("IsGameWon", gameWon);
+		startActivity(toBattleEndActivity);}
+		else {
+			Intent gameFinished = new Intent(BattleActivity.this,
+					EndScreenActivity.class);
+			startActivity(gameFinished);
+		}
+		
+		/*XP = trainer.getExpValue();
 		money = trainer.getMoneyValue();
 		enemyUnimon.setHealth(enemyUnimon.getMaxHealth());
 		if (gameWon){
@@ -389,7 +432,7 @@ public class BattleActivity extends Activity implements
 		toBattleEndActivity.putExtra("XP", XP);
 		toBattleEndActivity.putExtra("Money", money);
 		toBattleEndActivity.putExtra("IsGameWon", gameWon);
-		startActivity(toBattleEndActivity);
+		startActivity(toBattleEndActivity);*/
 	}
 
 	// _____________________LISTENERS__________________
@@ -412,6 +455,16 @@ public class BattleActivity extends Activity implements
 	public boolean onIsEscapeAvailable() {
 		boolean isEscapeAvailable = battleController.ableToEscape();
 		return isEscapeAvailable;
+	}
+	
+	@Override
+	public void onIsNoItemAvailable() {		
+			 showToast(R.string.no_items_available);		
+	}	
+	
+	@Override
+	public void onIsOnlyOneUnimonAvailable() {
+		showToast(R.string.only_one_unimon_available_text);		
 	}
 
 	@Override
@@ -499,4 +552,5 @@ public class BattleActivity extends Activity implements
 	public String onGetEnemyName() {
 		return enemyUnimon.getName();
 	}
+
 }

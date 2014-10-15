@@ -55,19 +55,15 @@
     <string name="dompteur_name">Dompteur</string>
     <string name="hospital_fragment">Do you want to enter the hospital?</string>
     <string name="hospital_name">Hospital</string>
+    <string name="leave_hospital_button_text">Leave hospital</string>
     <string name="hospital_heal_info">Your Unimons are all alive.</string>
     <string name="price">price</string>
     
-    <string name="take_text">-> nehmen</string>
     <string name="image_text">Bild von Item</string>
     
     <string name="name_text">Name:\u0020</string>
     <string name="level_text">Level:\u0020</string>
     <string name="unimon_image_text">Unimon image</string>
-    <string name="escape_toast_text">Your escape was successful!</string>
-    <string name="escape_not_successfull_toast_text">Your escape was not successful!</string>
-    <string name="catch_unimon_success_text">You catched the Unimon! Yay!</string>
-    <string name="catch_unimon_fail_text">Unimon catch failed!</string>
     <string name="story_description_text">The endboss has placed a curse on the University of Regensburg, which states that all students only write bad grades. The aim of the game is to defeat the villain and thus lift the curse. To defeat him, you must collect enough skillpoints and thus train your Unimons. Dean Wulffman asked you now to defeat the villain, so the University of Regensburg again cut by local standards at best. 
         Since you previously skipped all lectures and seminars, you might not be subject to the curse. In order to defeat the bad guy, you are on the dean your first unimon, while you may choose between three different Unimons.</string>
     <string name="story_description_title">Story</string>
@@ -77,19 +73,28 @@
     <string name="tips_tricks_three_text">Money: Buy items. \nXP: Level up. \nSkillpoints: Train Unimons.</string>
     <string name="wulfman_img">Dr. Wulfman</string> 
 
-    <string name="dompteur_new_skill">Learn new skill</string>
+    <string name="dompteur_new_skill">New skill</string>
     <string name="dompteur_improve_skill">Improve skill</string>
     <string name="hospital_healAll">Heal all Unimons</string>
 
 
     <string name="battle_lost">Battle lost. Your unimon is dead.</string>
     <string name="battle_won">Battle won! Yay!</string>
+    <string name="back_to_menu_button">Back to menu</string>
+	<string name="winner_text_one"> Congrats! It has been a long and difficult way, but in the end, you have beaten the evil warlock and the curse was removed!</string>
+	<string name="winner_text_two"> Your journey ends here, but feel free to continue in freeplay-mode! Catch all unimons and train them as high as you can! </string>
     <string name="battle_escape_button_text">Try to escape</string>
+    <string name="escape_toast_text">Your escape was successful!</string>
+    <string name="escape_not_successfull_toast_text">Your escape was not successful!</string>
     <string name="battle_attack_button_text">Attack</string>
     <string name="battle_change_unimon_button_text">Change Unimon</string>
+    <string name="catch_unimon_success_text">You catched the Unimon! Yay!</string>
+    <string name="catch_unimon_fail_text">Unimon catch failed!</string>
     <string name="battle_use_item_button_text">Use Item</string>
+    <string name="no_items_available">Not available! Go to the shop!</string>
     <string name="battle_healpot_button_text">Use healpot</string>
     <string name="battle_uniball_button_text">Use uniball</string>
+    <string name="only_one_unimon_available_text">You have only one Unimon!</string>
     <string name="battle_select_text">Select:\u0020</string>
     <string name="battle_enemyunimon_lost_health_text">Enemy Unimon lost health.</string>
     <string name="battle_unimon1_button_text">Select Unimon 1</string>
@@ -117,7 +122,7 @@
 	
 	
 	<string name="inventory_use_item">Use Item</string>
-	<string name="inventory_use_healPot">Use HealPot</string>
+	<string name="inventory_use_healPot">Use Healpot</string>
 	<string name="inventory_use_revive">Revive</string>
 	<string name="spells_headline">Spells:\u0020</string>
 	<string name="spell_name">spellname</string>
@@ -127,7 +132,7 @@
 	
 	<string name="battle_won_money_earend_text">Money earned:\u0020</string>
 	<string name="battle_won_XP_text">XP earned:\u0020</string>
-	<string name="battle_end_button_text">Back to map</string>
+	<string name="back_to_map_button_text">Back to map</string>
 
 	<string name="enemy_fight_text_first_part">It\'s</string>
 	<string name="enemy_fight_text_second_part">\'s turn!</string>

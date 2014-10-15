@@ -215,25 +215,25 @@ public class MapActivity extends Activity implements NavigationListener,
 					R.drawable.player);
  
 			trainer1 = BitmapFactory.decodeResource(getResources(),
-					R.drawable.trainer_level_3);
+					R.drawable.trainer_1_level_3_icon);
 
 			trainer2 = BitmapFactory.decodeResource(getResources(),
-					R.drawable.trainer_level_9);
+					R.drawable.trainer_2_level_9_icon);
 
 			trainer3 = BitmapFactory.decodeResource(getResources(),
-					R.drawable.trainer_level_12);
+					R.drawable.trainer_3_level_12_icon);
 
 			trainer4 = BitmapFactory.decodeResource(getResources(),
-					R.drawable.trainer_level_1);
+					R.drawable.trainer_4_level_1_icon);
 
 			trainer5 = BitmapFactory.decodeResource(getResources(),
-					R.drawable.trainer_level_16);
+					R.drawable.trainer_5_level_16_icon);
 
 			trainer6 = BitmapFactory.decodeResource(getResources(),
-					R.drawable.trainer_level_5);
+					R.drawable.trainer_6_level_5_icon);
 
 			trainerBoss = BitmapFactory.decodeResource(getResources(),
-					R.drawable.trainer_boss_level_20);
+					R.drawable.trainer_boss_level_20_icon);
 
 		}
 
@@ -279,7 +279,6 @@ public class MapActivity extends Activity implements NavigationListener,
 			PlayerPositionDetail playerPosDetail) {
 
 		if (rangeChecker.isPlayerInMapRange(playerPosDetail) == true) {
-			Log.d("hallo", "onPlayerPositionDetailChanged aufgerufen");
 			double diffX = Math.abs(bottomRightCornerLongitude
 					- leftUpperCornerLongitude);
 			double helpVarX = diffX / PIXEL_X;
@@ -307,11 +306,9 @@ public class MapActivity extends Activity implements NavigationListener,
 			showToast(R.string.playerOutOfRange_info);
 		}
 		count++;
-		Log.d("hallo", "Count: " + count);
 	}
 
 	private void startRandomUnimonBattle(int count) {
-		Log.d("hallo", "startRandomUnimonBattle");
 		if (count % 24 == 0) {
 			gettingAttacked();
 		} else
@@ -321,7 +318,6 @@ public class MapActivity extends Activity implements NavigationListener,
 	private void gettingAttacked() {
 		int rand = rnd.nextInt(10);
 		if (rand == 1 && InventoryActivity.isProtectorActive == false) {
-			Log.d("hallo", "Kampf start");
 			builder.setTitle(getResources().getString(
 					R.string.alert_random_unimon_battle_title));
 			builder.setMessage(getResources().getString(
@@ -346,7 +342,6 @@ public class MapActivity extends Activity implements NavigationListener,
 			randomUnimonBattleAlert.show();
 			randomUnimonBattleAlert.setCancelable(false);
 		} else if (rand == 1 && InventoryActivity.isProtectorActive == true) {
-			Log.d("hallo", "Kampf abgewehrt");
 			showToast(R.string.protector_used_toast);
 			InventoryActivity.isProtectorActive = false;
 		}
@@ -419,7 +414,6 @@ public class MapActivity extends Activity implements NavigationListener,
 
 	@Override
 	public void onShowFragmentForBuilding(String building) {
-		Log.d("hallo", "onShowFragmentForBuilding");
 		// EnterAlertFragment alertFragment = new EnterAlertFragment();
 		FragmentTransaction transaction = fragmentManager.beginTransaction();
 		transaction.setCustomAnimations(R.animator.slide_in_bottom,
@@ -470,7 +464,6 @@ public class MapActivity extends Activity implements NavigationListener,
 
 	@Override
 	public void onTrainerVisibilityChanged(ArrayList<Trainer> trainerList) {
-		Log.d("hallo", "onvisi");
 		this.trainerList = trainerList;
 	}
 }

@@ -3,6 +3,8 @@ package de.ur.unimon.buildings;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -13,7 +15,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 import de.ur.mi.android.excercises.starter.R;
 import de.ur.unimon.actionbar.Inventory;
+import de.ur.unimon.battle.BattleEndActivity;
 import de.ur.unimon.database.DatabaseController;
+import de.ur.unimon.mapoverview.MapActivity;
 import de.ur.unimon.player.Player;
 import de.ur.unimon.player.PlayerController;
 
@@ -27,6 +31,7 @@ public class ShopActivity extends Activity {
 	private int currentMoney, healpot_Price, uniball_Price, revive_Price,
 			protector_Price;
 	ImageButton buyHealpotButton, buyUniballButton, buyReviveButton, buyProtectorButton;
+	Button leaveShopButton;
 
 	Inventory inventory;
 	private Player player;
@@ -42,7 +47,11 @@ public class ShopActivity extends Activity {
 		player = playerController.getInstance();
 		builder = new AlertDialog.Builder(this);
 		initUI();
-
+	}
+	
+	@Override
+	public void onBackPressed() {
+	    
 	}
 	
 	@Override
@@ -53,9 +62,11 @@ public class ShopActivity extends Activity {
 	}
 	
 	private void initUI() {
+		Typeface font = Typeface.createFromAsset(getAssets(), "PokemonFont.ttf");
+		
 		inventory = player.getInventory();
 		money = (TextView) findViewById(R.id.money);
-		money.setText(getResources().getString(R.string.money_text) + player.getMoney() + "€");
+		money.setText(getResources().getString(R.string.money_text) + player.getMoney() + " €");
 
 		// Healpot
 		healpot_Price = 100;
@@ -66,7 +77,7 @@ public class ShopActivity extends Activity {
 
 		healpotImage.setImageResource(R.drawable.healpot);
 		healpotCount.setText(getResources().getString(R.string.item_count_text) + inventory.getHealpotCount());
-		healpotPrice.setText("" + healpot_Price + "€");
+		healpotPrice.setText("" + healpot_Price + " €");
 		
 		buyHealpotButton = (ImageButton) findViewById(R.id.buy_healpot_button);
 
@@ -79,7 +90,7 @@ public class ShopActivity extends Activity {
 
 		uniballImage.setImageResource(R.drawable.uniball);
 		uniballCount.setText(getResources().getString(R.string.item_count_text) + inventory.getUniballCount());
-		uniballPrice.setText("" + uniball_Price + "€");
+		uniballPrice.setText("" + uniball_Price + " €");
 		
 		buyUniballButton = (ImageButton) findViewById(R.id.buy_uniball_button);
 
@@ -90,9 +101,9 @@ public class ShopActivity extends Activity {
 		reviveCount = (TextView) findViewById(R.id.item_revive_count);
 		revivePrice = (TextView) findViewById(R.id.item_revive_price);
 
-		reviveImage.setImageResource(R.drawable.uniball);
+		reviveImage.setImageResource(R.drawable.revive);
 		reviveCount.setText(getResources().getString(R.string.item_count_text) + inventory.getReviveCount());
-		revivePrice.setText("" + revive_Price + "€");
+		revivePrice.setText("" + revive_Price + " €");
 		
 		buyReviveButton = (ImageButton) findViewById(R.id.buy_revive_button);		
 
@@ -103,17 +114,30 @@ public class ShopActivity extends Activity {
 		protectorCount = (TextView) findViewById(R.id.item_protector_count);
 		protectorPrice = (TextView) findViewById(R.id.item_protector_price);
 
-		protectorImage.setImageResource(R.drawable.uniball);
+		protectorImage.setImageResource(R.drawable.protector);
 		protectorCount.setText(getResources().getString(R.string.item_count_text) + inventory.getProtectorCount());
-		protectorPrice.setText("" + protector_Price + "€");
+		protectorPrice.setText("" + protector_Price + " €");
 		
-		buyProtectorButton = (ImageButton) findViewById(R.id.buy_protector_button);		
-
+		buyProtectorButton = (ImageButton) findViewById(R.id.buy_protector_button);	
+		
+		leaveShopButton = (Button) findViewById(R.id.leave_shop_button);
+		leaveShopButton.setTypeface(font);
+		
 		setButtonsOnClick();
 
 	}
 
 	private void setButtonsOnClick() {
+		
+		leaveShopButton.setOnClickListener(new OnClickListener() {
+			public void onClick(View v) {
+				Intent backToMap = new Intent (ShopActivity.this, MapActivity.class);
+				startActivity(backToMap);
+				backToMap.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
+			}
+		});
+		
+		
 		buyHealpotButton.setOnClickListener(new OnClickListener() {
 			public void onClick(View v) {
 				currentMoney = player.getMoney();

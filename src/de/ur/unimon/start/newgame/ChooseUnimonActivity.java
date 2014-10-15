@@ -3,6 +3,7 @@ package de.ur.unimon.start.newgame;
 import java.util.ArrayList;
 
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
@@ -27,6 +28,7 @@ public class ChooseUnimonActivity extends FragmentActivity{
 	
 	UnimonFragmentPagerAdapter unimonFragmentPagerAdapter;
 	ViewPager viewPager;
+	Button chooseButton;
 	private  PlayerController playerController;
 	public static ArrayList<Unimon> startUnimonList = new UnimonList().getStartUnimonList();
 	
@@ -44,7 +46,10 @@ public class ChooseUnimonActivity extends FragmentActivity{
 
 
 	private void initClickListener() {
-		Button chooseButton = (Button) findViewById(R.id.choose_that_unimon_button);
+		Typeface font = Typeface.createFromAsset(getAssets(), "PokemonFont.ttf");
+		
+		chooseButton = (Button) findViewById(R.id.choose_that_unimon_button);
+		chooseButton.setTypeface(font);
 		chooseButton.setOnClickListener(new OnClickListener() {
 			
 			@Override

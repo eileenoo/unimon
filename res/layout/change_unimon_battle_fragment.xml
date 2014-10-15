@@ -3,19 +3,28 @@
     android:layout_width="match_parent"
     android:layout_height="200dp"
     android:layout_gravity="bottom"
-    android:background="#00BFFF"
+    android:background="@drawable/startbutton_shape"
     android:orientation="vertical" >
 
     <Button
         android:id="@+id/battle_unimon_two_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/battle_unimon2_button_text" />
+        android:layout_gravity="center_horizontal|center"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:text="@string/battle_unimon2_button_text"
+        android:textColor="#ffd12e" />
 
     <Button
         android:id="@+id/battle_unimon_three_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/battle_unimon3_button_text" />
+        android:layout_gravity="center_horizontal|center"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:text="@string/battle_unimon3_button_text"
+        android:textColor="#ffd12e" />
 
 </LinearLayout>

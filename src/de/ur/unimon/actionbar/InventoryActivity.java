@@ -12,6 +12,7 @@ import de.ur.unimon.start.newgame.NewGameActivity;
 import de.ur.unimon.unimons.Unimon;
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -26,7 +27,7 @@ public class InventoryActivity extends Activity {
 			protectorName, healpotCount, uniballCount, reviveCount,
 			protectorCount;
 
-	private Button useItemButton, useProtectorButton;
+	private Button useItemButton, useProtectorButton, backToMapButton;
 	private ImageView healpotImage, uniballImage, reviveImage, protectorImage;
 	private Toast toast;
 	public static boolean isProtectorActive;
@@ -41,7 +42,11 @@ public class InventoryActivity extends Activity {
 		setContentView(R.layout.inventory_activity);
 		initUI();
 		isProtectorActive = false;
-
+	}
+	
+	@Override
+	public void onBackPressed() {
+	    
 	}
 
 	@Override
@@ -66,12 +71,14 @@ public class InventoryActivity extends Activity {
 	}
 
 	private void initUI() {
-
+		Typeface font = Typeface.createFromAsset(getAssets(), "PokemonFont.ttf");
+		
 		player = playerController.getInstance();
 		inventory = player.getInventory();
 		money = (TextView) findViewById(R.id.money);
 		money.setText(getResources().getString(R.string.money_text)
 				+ player.getMoney());
+		money.setTypeface(font);
 
 		if (inventory != null) {
 
@@ -100,7 +107,7 @@ public class InventoryActivity extends Activity {
 			reviveName = (TextView) findViewById(R.id.item_revive);
 			reviveCount = (TextView) findViewById(R.id.item_revive_count);
 
-			reviveImage.setImageResource(R.drawable.uniball);
+			reviveImage.setImageResource(R.drawable.revive);
 			reviveCount.setText(getResources().getString(
 					R.string.item_count_text)
 					+ inventory.getReviveCount());
@@ -110,14 +117,18 @@ public class InventoryActivity extends Activity {
 			protectorName = (TextView) findViewById(R.id.item_protector);
 			protectorCount = (TextView) findViewById(R.id.item_protector_count);
 
-			protectorImage.setImageResource(R.drawable.uniball);
+			protectorImage.setImageResource(R.drawable.protector);
 			protectorCount.setText(getResources().getString(
 					R.string.item_count_text)
 					+ inventory.getProtectorCount());
 
 			// Use Item Button
 			useItemButton = (Button) findViewById(R.id.use_item_button);
+			useItemButton.setTypeface(font);
 			useProtectorButton = (Button) findViewById(R.id.use_protector_button);
+			useProtectorButton.setTypeface(font);
+			backToMapButton = (Button) findViewById(R.id.back_to_map_inventory_button);
+			backToMapButton.setTypeface(font);
 			setButtonsOnClick();
 
 		}
@@ -128,12 +139,17 @@ public class InventoryActivity extends Activity {
 
 		useItemButton.setOnClickListener(new OnClickListener() {
 			public void onClick(View v) {
+				if (player.getInventory().healpotAvailable() || player.getInventory().reviveAvailable()){
 				Intent useItem = new Intent(InventoryActivity.this,
 						InventoryUnimonSwipeActivity.class);
 				startActivity(useItem);
+				}
+				else {
+					showToast(R.string.no_items_available);
+				}
 			}
 		});
-
+		
 		useProtectorButton.setOnClickListener(new OnClickListener() {
 			public void onClick(View v) {
 				if(player.getInventory().protectorAvailable()){
@@ -145,8 +161,17 @@ public class InventoryActivity extends Activity {
 					isProtectorActive = true;
 				}
 				else{
-					showToast(R.string.protector_toast);
+					showToast(R.string.no_items_available);
 				}
+			}
+		});
+		
+		backToMapButton.setOnClickListener(new OnClickListener() {
+			public void onClick(View v) {
+				Intent backToMap = new Intent(InventoryActivity.this,
+						MapActivity.class);
+				startActivity(backToMap);
+				backToMap.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
 			}
 		});
 	}

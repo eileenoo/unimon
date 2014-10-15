@@ -2,6 +2,7 @@ package de.ur.unimon.actionbar;
 
 import java.util.ArrayList;
 
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
@@ -45,7 +46,10 @@ public class InventoryUnimonSwipeActivity extends FragmentActivity{
 	}
 
 	private void initClickListener() {
+		Typeface font = Typeface.createFromAsset(getAssets(), "PokemonFont.ttf");
+		
 		useHealPot = (Button) findViewById(R.id.inventory_use_healPot);
+		useHealPot.setTypeface(font);
 		useHealPot.setOnClickListener(new OnClickListener() {
 			
 			@Override
@@ -70,8 +74,9 @@ public class InventoryUnimonSwipeActivity extends FragmentActivity{
 				}
 			}
 		});
-		
+
 		revive = (Button) findViewById(R.id.inventory_use_revive);
+		revive.setTypeface(font);
 		revive.setOnClickListener(new OnClickListener() {
 			
 			@Override
@@ -131,7 +136,6 @@ public class InventoryUnimonSwipeActivity extends FragmentActivity{
 
 
 public static class SwipeFragment extends Fragment{
-	
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,

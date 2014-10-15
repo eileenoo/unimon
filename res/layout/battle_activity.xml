@@ -13,18 +13,21 @@
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
         android:layout_alignParentTop="true"
+        android:layout_marginRight="10dp"
         android:src="@drawable/robomon"/>
 
     <TextView
         android:id="@+id/enemy_unimon_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_toLeftOf="@id/enemy_unimon_image"
-        android:layout_marginRight="10dp"
         android:layout_alignLeft="@+id/enemy_healthBar"
-        android:text="@string/name_text" 
-        android:textSize="15sp"/>
+        android:layout_alignParentTop="true"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_toLeftOf="@id/enemy_unimon_image"
+        android:text="@string/name_text"
+        android:textColor="#ffd12e"
+        android:textSize="15sp" />
 
     <TextView
         android:id="@+id/enemy_unimon_level"
@@ -32,8 +35,10 @@
         android:layout_height="wrap_content"
         android:layout_toLeftOf="@id/enemy_unimon_image"
         android:layout_below="@id/enemy_unimon_name"
+        android:layout_marginTop="5dp"
         android:layout_alignLeft="@+id/enemy_healthBar"      
-        android:text="@string/level_text" />
+        android:text="@string/level_text"
+        android:textColor="#ffd12e" />
   	
     
     <ProgressBar
@@ -44,7 +49,8 @@
         android:layout_below="@id/enemy_unimon_level"
         android:layout_toLeftOf="@id/enemy_unimon_image"
         android:layout_marginRight="10dp"
-        android:layout_marginTop="5dp"/>
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="10dp"/>
     
       <TextView
         android:id="@+id/enemy_unimon_health"
@@ -73,6 +79,7 @@
         android:layout_alignParentLeft="true"
         android:layout_below="@id/enemy_healthBar"
         android:layout_marginTop="60dp"
+        android:layout_marginLeft="10dp"
         android:src="@drawable/robomon"/>
 
     <TextView
@@ -82,7 +89,8 @@
         android:layout_toRightOf="@id/own_unimon_image"
         android:layout_above="@+id/own_unimon_level"
         android:layout_marginLeft="10dp"
-        android:text="@string/name_text" 
+        android:text="@string/name_text"
+        android:textColor="#ffd12e" 
         android:textSize="15sp"/>
 
     <TextView
@@ -90,9 +98,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_toRightOf="@id/own_unimon_image"
+        android:layout_marginTop="5dp"
         android:layout_above="@+id/own_healthBar"
         android:layout_alignLeft="@id/own_unimon_name"  
-        android:text="@string/level_text" />
+        android:text="@string/level_text"
+        android:textColor="#ffd12e" />
   	
     
     <ProgressBar
@@ -104,7 +114,8 @@
         android:layout_toRightOf="@id/own_unimon_image"
         android:layout_marginTop="5dp"
         android:layout_marginLeft="10dp"
-        android:layout_marginBottom="10dp"/>
+        android:layout_marginBottom="10dp"
+        android:layout_marginRight="10dp"/>
     
       <TextView
         android:id="@+id/own_unimon_health"

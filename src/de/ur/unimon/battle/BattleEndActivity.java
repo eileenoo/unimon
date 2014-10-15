@@ -1,12 +1,12 @@
 package de.ur.unimon.battle;
 
 import de.ur.mi.android.excercises.starter.R;
-
 import de.ur.unimon.actionbar.UnimonListAdapter;
 import de.ur.unimon.database.DatabaseController;
 import de.ur.unimon.mapoverview.MapActivity;
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -34,7 +34,7 @@ public class BattleEndActivity extends Activity{
 	
 	@Override
 	public void onBackPressed() {
-	    //Hardware Zurückbutton disabled
+
 	}
 	
 	@Override
@@ -52,6 +52,8 @@ public class BattleEndActivity extends Activity{
 	}
 
 	private void initUI() {
+		Typeface font = Typeface.createFromAsset(getAssets(), "PokemonFont.ttf");
+		
 		xpEarned = (TextView) findViewById(R.id.xpwon_textview);
 		moneyEarned = (TextView) findViewById(R.id.moneywon_textview);
 		moneyEarnedTextView = (TextView) findViewById(R.id.battle_end_moneywon_textview);
@@ -71,6 +73,7 @@ public class BattleEndActivity extends Activity{
 		}
 
 		backToMapButton = (Button) findViewById(R.id.back_to_map_button);
+		backToMapButton.setTypeface(font);
 		backToMapButton.setOnClickListener(new OnClickListener() {
 			
 			@Override

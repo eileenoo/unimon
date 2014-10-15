@@ -9,8 +9,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
+        android:layout_margin="10dp"
         android:text="@string/choose_primary_unimon" 
-        android:textSize="20sp"/>
+        android:textSize="22sp"
+        android:textColor="#ffd12e"/>
     
     <ListView
         android:id="@+id/choose_unimon_listView"

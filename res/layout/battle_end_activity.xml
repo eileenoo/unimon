@@ -51,14 +51,14 @@
     <Button
         android:id="@+id/back_to_map_button"
         android:layout_width="match_parent"
-        android:layout_height="60dp"
+        android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_margin="10dp"
-        android:background="@drawable/button_selector_battleend"
+        android:background="@drawable/startbutton_shape"
         android:paddingBottom="6dp"
         android:paddingTop="6dp"
-        android:text="@string/battle_end_button_text"
+        android:text="@string/back_to_map_button_text"
         android:textColor="#ffd12e"
-        android:textSize="25sp" />
+        android:textSize="20sp" />
 
 </RelativeLayout>

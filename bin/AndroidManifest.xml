@@ -76,6 +76,11 @@
             android:name="de.ur.unimon.battle.BattleEndActivity"
             android:label="@string/app_name"
             android:screenOrientation="portrait" >
+        </activity>        
+        <activity
+            android:name="de.ur.unimon.battle.EndScreenActivity"
+            android:label="@string/app_name"
+            android:screenOrientation="portrait" >
         </activity>
 
         <!-- BUILDINGS_PACKAGE -->

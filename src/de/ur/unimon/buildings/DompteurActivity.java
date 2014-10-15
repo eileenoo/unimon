@@ -3,6 +3,7 @@ package de.ur.unimon.buildings;
 import java.util.ArrayList;
 
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
@@ -58,13 +59,18 @@ public class DompteurActivity extends FragmentActivity{
 	}
 
 	private void initUI() {
+		Typeface font = Typeface.createFromAsset(getAssets(), "PokemonFont.ttf");
+		
 		player = playerController.getInstance();
 		ownedUnimonList = player.getUnimonList();
 		dompteurText = (TextView) findViewById(R.id.dompteur_text);
+		newSkill = (Button) findViewById(R.id.dompteur_new_skill);
+		newSkill.setTypeface(font);
+		improveSkill = (Button) findViewById(R.id.dompteur_improve_skill);
+		improveSkill.setTypeface(font);
 	}
 	
 	private void initClickListener() {
-		newSkill = (Button) findViewById(R.id.dompteur_new_skill);
 		newSkill.setOnClickListener(new OnClickListener() {
 			
 			@Override
@@ -83,8 +89,7 @@ public class DompteurActivity extends FragmentActivity{
 				}
 			}
 		});
-		
-		improveSkill = (Button) findViewById(R.id.dompteur_improve_skill);
+				
 		improveSkill.setOnClickListener(new OnClickListener() {
 			
 			@Override

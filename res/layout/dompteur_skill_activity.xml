@@ -10,6 +10,7 @@
         android:layout_height="100dp"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
+        android:layout_marginTop="20dp"
         android:text="@string/unimon_image_text"
         android:contentDescription="@string/unimon_image_text"
 		android:src="@drawable/robomon"/>
@@ -20,17 +21,23 @@
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
         android:layout_alignParentTop="true"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="2dp"
         android:layout_toRightOf="@+id/unimon_image"
-        android:text="@string/name_text" />
+        android:text="@string/name_text"
+        android:textSize="20sp"
+        android:textColor="#ffd12e"  />
 
     <TextView
         android:id="@+id/unimon_level"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/unimon_name"
+        android:layout_marginBottom="2dp"
         android:layout_alignParentRight="true"
         android:layout_below="@+id/unimon_name"      
-        android:text="@string/level_text" />
+        android:text="@string/level_text"
+        android:textColor="#ffd12e"  />
   	
     <TextView 
         android:id="@+id/unimon_skillpoints"
@@ -39,7 +46,8 @@
         android:layout_toRightOf="@+id/unimon_image"
         android:layout_alignLeft="@+id/unimon_name"
         android:layout_below="@+id/unimon_level"
-        android:text="SkillPoints" />
+        android:text="SkillPoints"
+        android:textColor="#ffd12e"  />
     
     <ProgressBar
         android:id="@+id/healthBar"
@@ -58,14 +66,19 @@
         android:layout_alignParentRight="true"
         android:layout_toRightOf="@+id/unimon_image"
         android:layout_marginTop="10dp"
-        android:layout_marginLeft="100dp"/>
+        android:layout_marginBottom="2dp"
+        android:layout_marginLeft="90dp"/>
     
     
     <ListView 
         android:id="@+id/dompteur_spell_listView" 
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/unimon_health"/>
+        android:layout_margin="10dp"
+        android:paddingBottom="10dp"
+        android:layout_below="@+id/unimon_health"
+        android:textColor="#ffd12e"
+        android:background="@drawable/startbutton_shape" />
     
 
 </RelativeLayout>

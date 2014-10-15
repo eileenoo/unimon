@@ -17,10 +17,13 @@
     
     <Button 
         android:id="@+id/choose_that_unimon_button"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:text="@string/choose_that_unimon"/>
+        android:layout_margin="10dp"
+        android:text="@string/choose_that_unimon"
+        android:textColor="#ffd12e"
+        android:background="@drawable/startbutton_shape"/>
 
 </RelativeLayout>

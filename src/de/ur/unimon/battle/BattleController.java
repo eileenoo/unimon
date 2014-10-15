@@ -99,7 +99,6 @@ public class BattleController {
 	public Unimon ownUnimonAttack(Spell spell) {
 		toEnemyDamageDealt = spell.getDamage();
 		enemyUnimon.loseHealth(toEnemyDamageDealt);
-		Log.d("hallo", "ownUnimon Damage: "+toEnemyDamageDealt);
 		return enemyUnimon;
 	}
 	
@@ -111,7 +110,6 @@ public class BattleController {
 		int spellSize = enemyUnimon.ownedSpells.size();
 		toOwnUnimonDamageDealt = enemyUnimon.ownedSpells.get(randomGenerator.nextInt(spellSize)).getDamage();
 		battleUnimon.loseHealth(toOwnUnimonDamageDealt);
-		Log.d("hallo", "enemeyUnimon Damage: "+toOwnUnimonDamageDealt);
 		return battleUnimon;
 	}
 	

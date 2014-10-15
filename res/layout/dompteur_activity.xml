@@ -2,43 +2,60 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="wrap_content"
     android:layout_height="match_parent"
-    android:layout_alignParentBottom="true"
     android:orientation="vertical"
     android:background="@drawable/dompteurbackground" >
 
+    <android.support.v4.view.ViewPager
+        android:id="@+id/dompteur_pager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/dompteurbackground">
+    </android.support.v4.view.ViewPager>
+    
     <TextView
         android:id="@+id/dompteur_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="20dp"
         android:text="@string/dompteur_info_text"
+        android:textColor="#ffd12e"
         android:textSize="20sp" />
     
-    <android.support.v4.view.ViewPager
-        android:id="@+id/dompteur_pager"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-    </android.support.v4.view.ViewPager>
 
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true" >
+        android:layout_marginBottom="10dp"
+        android:weightSum="3" >
 
         <Button
             android:id="@+id/dompteur_improve_skill"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_weight="1"
+            android:background="@drawable/startbutton_shape"
             android:text="@string/dompteur_improve_skill"
-            android:textSize="20sp" />
+            android:textSize="20sp"
+            android:textColor="#ffd12e" />
 
         <Button
             android:id="@+id/dompteur_new_skill"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginRight="10dp"
+            android:layout_weight="2"
+            android:background="@drawable/startbutton_shape"
+            android:padding="10dp"
             android:text="@string/dompteur_new_skill"
+            android:textColor="#ffd12e"
             android:textSize="20sp" />
+
     </LinearLayout>
     
 </RelativeLayout>

@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="200dp"
     android:layout_gravity="bottom"
-    android:background="#00BFFF"
+    android:background="@drawable/startbutton_shape"
     android:orientation="vertical" >
 
     <TextView
@@ -16,7 +16,8 @@
         android:layout_marginTop="10dp"
         android:paddingRight="5dp"
         android:text="@string/enemy_fight_text_first_part" 
-        android:textSize="20sp"/>
+        android:textSize="20sp"
+        android:textColor="#ffd12e"/>
 
     <TextView
         android:id="@+id/enemy_fight_enemyname_textview"
@@ -25,7 +26,8 @@
         android:layout_marginBottom="70dp"
         android:layout_marginTop="10dp"
         android:layout_toRightOf="@id/enemy_fight_textview_one"       
-        android:textSize="20sp" />
+        android:textSize="20sp"
+        android:textColor="#ffd12e" />
 
     <TextView
         android:id="@+id/enemy_fight_textview_two"
@@ -36,6 +38,7 @@
         android:layout_toRightOf="@id/enemy_fight_enemyname_textview"       
         android:paddingRight="5dp"
         android:text="@string/enemy_fight_text_second_part" 
-        android:textSize="20sp"/>
+        android:textSize="20sp"
+        android:textColor="#ffd12e"/>
 
 </RelativeLayout>

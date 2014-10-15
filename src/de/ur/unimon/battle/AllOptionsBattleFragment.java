@@ -8,6 +8,9 @@
 package de.ur.unimon.battle;
 
 import de.ur.mi.android.excercises.starter.R;
+import de.ur.unimon.actionbar.Inventory;
+import de.ur.unimon.player.Player;
+import de.ur.unimon.player.PlayerController;
 import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentManager;
@@ -20,6 +23,7 @@ import android.view.View.OnKeyListener;
 import android.view.ViewGroup;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.Toast;
 
 public class AllOptionsBattleFragment extends Fragment {
 
@@ -38,6 +42,9 @@ public class AllOptionsBattleFragment extends Fragment {
 	private Button attackButton, useItemButton, escapeButton,
 			changeUnimonButton;
 	private boolean currentUnimonListHasContent;
+	Inventory inventory;
+	Player player;
+	PlayerController playerController;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -46,6 +53,9 @@ public class AllOptionsBattleFragment extends Fragment {
 		Bundle extras = getArguments();
 		currentUnimonListHasContent = extras
 				.getBoolean("CurrentUnimonListContent");
+
+		player = playerController.getInstance();
+		inventory = player.getInventory();
 
 		fragmentManager = this.getFragmentManager();
 	}
@@ -57,8 +67,6 @@ public class AllOptionsBattleFragment extends Fragment {
 				container, false);
 		return view;
 	}
-	
-	
 
 	@Override
 	public void onActivityCreated(Bundle savedInstanceState) {
@@ -89,6 +97,10 @@ public class AllOptionsBattleFragment extends Fragment {
 		public void onEscapeFailed();
 
 		public boolean onIsEscapeAvailable();
+
+		public void onIsNoItemAvailable();
+
+		public void onIsOnlyOneUnimonAvailable();
 	}
 
 	@Override
@@ -121,22 +133,24 @@ public class AllOptionsBattleFragment extends Fragment {
 	}
 
 	private void changeUnimonButtonClicked() {
-		if (!currentUnimonListHasContent) {
-			changeUnimonButton.setClickable(false);
-		} else {
-			changeUnimonButton.setOnClickListener(new OnClickListener() {
+		changeUnimonButton.setOnClickListener(new OnClickListener() {
 
-				@Override
-				public void onClick(View v) {
-					ChangeUnimonBattleFragment changeUnimonFrag = new ChangeUnimonBattleFragment();
+			@Override
+			public void onClick(View v) {
+				ChangeUnimonBattleFragment changeUnimonFrag = new ChangeUnimonBattleFragment();
+				
+				if (!currentUnimonListHasContent) {
+					listener.onIsOnlyOneUnimonAvailable();
+				} else {					
 					fragmentTransaction = fragmentManager.beginTransaction();
 					fragmentTransaction.replace(R.id.battle_activity_layout,
 							changeUnimonFrag, "ChangeUnimonFragment");
 					fragmentTransaction.addToBackStack(null);
 					fragmentTransaction.commit();
 				}
-			});
-		}
+			}
+		});
+
 	}
 
 	private void escapeButtonClicked() {
@@ -159,11 +173,17 @@ public class AllOptionsBattleFragment extends Fragment {
 			@Override
 			public void onClick(View v) {
 				ChooseItemFragment itemFrag = new ChooseItemFragment();
-				fragmentTransaction = fragmentManager.beginTransaction();
-				fragmentTransaction.replace(R.id.battle_activity_layout,
-						itemFrag, "ItemBattleFragment");
-				fragmentTransaction.addToBackStack(null);
-				fragmentTransaction.commit();
+				if (!player.getInventory().healpotAvailable()
+						&& !player.getInventory().uniballAvailable()) {
+					listener.onIsNoItemAvailable();
+				} else {
+					fragmentTransaction = fragmentManager.beginTransaction();
+					fragmentTransaction.replace(R.id.battle_activity_layout,
+							itemFrag, "ItemBattleFragment");
+					fragmentTransaction.addToBackStack(null);
+					fragmentTransaction.commit();
+				}
+
 			}
 		});
 	}
@@ -182,4 +202,5 @@ public class AllOptionsBattleFragment extends Fragment {
 			}
 		});
 	}
+
 }
