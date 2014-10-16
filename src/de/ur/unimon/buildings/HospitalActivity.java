@@ -64,7 +64,6 @@ public class HospitalActivity extends Activity {
 		leaveHospitalButton.setTypeface(font);
 		
 		setButtonsOnClick();
-		initListAdapter();
 
 	}
 
@@ -78,7 +77,6 @@ public class HospitalActivity extends Activity {
 					if (unimons.get(i).getHealth() != unimons.get(i)
 							.getMaxHealth()) {
 						hospital.healAll(unimons);
-						initListAdapter();
 					} else {
 						showToast(R.string.hospital_heal_info);
 					}
@@ -96,11 +94,6 @@ public class HospitalActivity extends Activity {
 		});
 	}
 
-	private void initListAdapter() {
-		listUnimons = (ListView) findViewById(R.id.listView_unimons);
-		listUnimons_adpater = new UnimonListAdapter(this, unimons);
-		listUnimons.setAdapter(listUnimons_adpater);
-	}
 
 	private void showToast(int toastText) {
 		int duration = Toast.LENGTH_LONG;

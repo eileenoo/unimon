@@ -21,7 +21,7 @@
         android:layout_alignParentRight="true"
         android:textColor="#ffd12e"
         android:layout_margin="20dp"
-        android:textSize="20dp"
+        android:textSize="20sp"
         android:background="@drawable/startbutton_shape"
         android:text="@string/next_button_text" />
     

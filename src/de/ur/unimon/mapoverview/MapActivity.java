@@ -2,7 +2,6 @@ package de.ur.unimon.mapoverview;
 
 import java.util.ArrayList;
 import java.util.Random;
-
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.FragmentManager;
@@ -14,7 +13,6 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -29,7 +27,6 @@ import de.ur.unimon.database.DatabaseController;
 import de.ur.unimon.navigation.NavigationController;
 import de.ur.unimon.navigation.NavigationListener;
 import de.ur.unimon.navigation.PlayerPositionDetail;
-import de.ur.unimon.player.PlayerController;
 import de.ur.unimon.trainer.Trainer;
 import de.ur.unimon.trainer.TrainerListController;
 
@@ -66,8 +63,8 @@ public class MapActivity extends Activity implements NavigationListener,
 	public static final double bottomRightCornerLongitude = 12.09969;
 	public static final double bottomRightCornerLatitude = 48.99169;
 
-	public float PIXEL_X; // 1559; //1169
-	public float PIXEL_Y; // 2731; //2048
+	public float PIXEL_X;
+	public float PIXEL_Y;
 
 	private Toast toast;
 
@@ -105,7 +102,6 @@ public class MapActivity extends Activity implements NavigationListener,
 	private void initFragmentManager() {
 		fragmentManager = getFragmentManager();
 		alertFragment = new EnterAlertFragment();
-
 	}
 
 	@Override
@@ -117,7 +113,7 @@ public class MapActivity extends Activity implements NavigationListener,
 		controller.save();
 		super.onDestroy();
 	}
-	
+
 	@Override
 	protected void onResume() {
 		navigationController.start();
@@ -142,12 +138,6 @@ public class MapActivity extends Activity implements NavigationListener,
 		canvasLayout = (LinearLayout) findViewById(R.id.canvas_layout);
 		inventoryButton = (Button) findViewById(R.id.inventory);
 		unimonsButton = (Button) findViewById(R.id.unimons);
-
-		// mapButton = (Button) findViewById(R.id.map_overview);
-		// movePlayerButton = (Button)
-		// findViewById(R.id.move_player_test_button);
-		// backToStartScreenButton = (Button)
-		// findViewById(R.id.back_to_map_button);
 		menuButton = (Button) findViewById(R.id.back_to_start_screen);
 		map = BitmapFactory.decodeResource(getResources(), R.drawable.map);
 		MapView canvasMap = new MapView(this);
@@ -161,13 +151,6 @@ public class MapActivity extends Activity implements NavigationListener,
 		PIXEL_Y = map.getHeight();
 		setButtonsOnClick();
 	}
-
-	/**
-	 * private int getWindowWidth() { DisplayMetrics displaymetrics = new
-	 * DisplayMetrics();
-	 * getWindowManager().getDefaultDisplay().getMetrics(displaymetrics); return
-	 * displaymetrics.widthPixels; }
-	 **/
 
 	private void setButtonsOnClick() {
 		inventoryButton.setOnClickListener(new OnClickListener() {
@@ -196,15 +179,6 @@ public class MapActivity extends Activity implements NavigationListener,
 			}
 		});
 
-		// backToStartScreenButton.setOnClickListener(new OnClickListener() {
-		// public void onClick(View v) {
-		// Intent startScreen = new Intent(MapActivity.this,
-		// StartScreenActivity.class);
-		// startActivity(startScreen);
-		// }
-		// });
-
-		// movePlayerButton.setOnClickListener(new OnClickListener() {
 	}
 
 	private class MapView extends View {
@@ -213,7 +187,7 @@ public class MapActivity extends Activity implements NavigationListener,
 			super(context);
 			player = BitmapFactory.decodeResource(getResources(),
 					R.drawable.player);
- 
+
 			trainer1 = BitmapFactory.decodeResource(getResources(),
 					R.drawable.trainer_1_level_3_icon);
 
@@ -414,7 +388,6 @@ public class MapActivity extends Activity implements NavigationListener,
 
 	@Override
 	public void onShowFragmentForBuilding(String building) {
-		// EnterAlertFragment alertFragment = new EnterAlertFragment();
 		FragmentTransaction transaction = fragmentManager.beginTransaction();
 		transaction.setCustomAnimations(R.animator.slide_in_bottom,
 				R.animator.slide_out_top);

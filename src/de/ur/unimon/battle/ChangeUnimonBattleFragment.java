@@ -5,7 +5,6 @@ import de.ur.unimon.unimons.Unimon;
 import android.app.Activity;
 import android.app.Fragment;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -50,7 +49,6 @@ public class ChangeUnimonBattleFragment extends Fragment {
 		initButtons();
 	}
 
-	// Container Activity must implement this interface
 	public interface OnUnimonChangedListener {
 		public void onUnimonChanged(Unimon chosenUnimon, int index);
 
@@ -91,7 +89,6 @@ public class ChangeUnimonBattleFragment extends Fragment {
 		} else {
 			unimonThreeButton.setVisibility(View.GONE);
 		}
-
 	}
 
 	private void clickToChangeUnimon(Button unimonNameButton,
@@ -101,7 +98,6 @@ public class ChangeUnimonBattleFragment extends Fragment {
 			@Override
 			public void onClick(View v) {
 				Unimon chosenUnimon = currentBattleUnimonList[unimonNameIndex];
-				Log.d("gewaltes unimon:", chosenUnimon.getName());
 				listener.onUnimonChanged(chosenUnimon, unimonNameIndex);
 				getFragmentManager().popBackStack();
 			}

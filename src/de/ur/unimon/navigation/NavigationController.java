@@ -1,14 +1,12 @@
 package de.ur.unimon.navigation;
 
 import java.util.ArrayList;
-
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
-import android.util.Log;
 import android.widget.Toast;
 import de.ur.unimon.trainer.TrainerList;
 import de.ur.unimon.trainer.TrainerListController;
@@ -110,7 +108,6 @@ public class NavigationController implements LocationListener {
 		buildingDistances.add(distanceShop);
 		buildingDistances.add(distanceDompteur);
 		buildingDistances.add(distanceHospital);
-		
 
 		float distanceTrainerOne = lastLocation.distanceTo(trainerOne);
 		float distanceTrainerTwo = lastLocation.distanceTo(trainerTwo);
@@ -128,8 +125,7 @@ public class NavigationController implements LocationListener {
 		trainerDistances.add(distanceTrainerBoss);
 
 		playerPosDetail = new PlayerPositionDetail(latitude, longitude,
-				buildingDistances,
-				trainerDistances);
+				buildingDistances, trainerDistances);
 
 		navigationListener.onPlayerPositionDetailChanged(playerPosDetail);
 	}
@@ -184,8 +180,8 @@ public class NavigationController implements LocationListener {
 	}
 
 	private void setShopCoords() {
-		shop.setLatitude(49.0001500);
-		shop.setLongitude(12.0942936);
+		shop.setLatitude(49.0003500);
+		shop.setLongitude(12.0948936);
 	}
 
 	private void setDompteurCoords() {
@@ -200,7 +196,6 @@ public class NavigationController implements LocationListener {
 
 	@Override
 	public void onLocationChanged(Location location) {
-		Log.d("hoi", "onLocationChanged");
 		lastLocation = location;
 		updateNavigationInformation();
 	}

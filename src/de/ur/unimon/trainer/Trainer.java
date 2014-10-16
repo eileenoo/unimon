@@ -25,19 +25,19 @@ public class Trainer {
 		this.moneyValue = moneyValue;
 		this.isSeen = isSeen;
 	}
-	
-	public Trainer (int id, Unimon unimon, int expValue, int moneyValue) {
+
+	public Trainer(int id, Unimon unimon, int expValue, int moneyValue) {
 		this.id = id;
 		this.unimon = unimon;
 		this.expValue = expValue;
 		this.moneyValue = moneyValue;
 	}
-	
-	public boolean isSeen(){
+
+	public boolean isSeen() {
 		return isSeen;
 	}
-	
-	public void setVisible(){
+
+	public void setVisible() {
 		isSeen = true;
 	}
 
@@ -68,7 +68,5 @@ public class Trainer {
 	public Unimon getUnimon() {
 		return unimon;
 	}
-	
-	
 
 }

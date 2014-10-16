@@ -1,15 +1,10 @@
 package de.ur.unimon.actionbar;
 
-import java.util.ArrayList;
-
 import de.ur.mi.android.excercises.starter.R;
-import de.ur.unimon.appstart.StartScreenActivity;
 import de.ur.unimon.database.DatabaseController;
 import de.ur.unimon.mapoverview.MapActivity;
 import de.ur.unimon.player.Player;
 import de.ur.unimon.player.PlayerController;
-import de.ur.unimon.start.newgame.NewGameActivity;
-import de.ur.unimon.unimons.Unimon;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Typeface;
@@ -43,10 +38,10 @@ public class InventoryActivity extends Activity {
 		initUI();
 		isProtectorActive = false;
 	}
-	
+
 	@Override
 	public void onBackPressed() {
-	    
+
 	}
 
 	@Override
@@ -62,7 +57,7 @@ public class InventoryActivity extends Activity {
 				+ inventory.getProtectorCount());
 		super.onResume();
 	}
-	
+
 	@Override
 	protected void onDestroy() {
 		DatabaseController databaseController = new DatabaseController(this);
@@ -71,8 +66,9 @@ public class InventoryActivity extends Activity {
 	}
 
 	private void initUI() {
-		Typeface font = Typeface.createFromAsset(getAssets(), "PokemonFont.ttf");
-		
+		Typeface font = Typeface
+				.createFromAsset(getAssets(), "PokemonFont.ttf");
+
 		player = playerController.getInstance();
 		inventory = player.getInventory();
 		money = (TextView) findViewById(R.id.money);
@@ -139,33 +135,32 @@ public class InventoryActivity extends Activity {
 
 		useItemButton.setOnClickListener(new OnClickListener() {
 			public void onClick(View v) {
-				if (player.getInventory().healpotAvailable() || player.getInventory().reviveAvailable()){
-				Intent useItem = new Intent(InventoryActivity.this,
-						InventoryUnimonSwipeActivity.class);
-				startActivity(useItem);
-				}
-				else {
+				if (player.getInventory().healpotAvailable()
+						|| player.getInventory().reviveAvailable()) {
+					Intent useItem = new Intent(InventoryActivity.this,
+							InventoryUnimonSwipeActivity.class);
+					startActivity(useItem);
+				} else {
 					showToast(R.string.no_items_available);
 				}
 			}
 		});
-		
+
 		useProtectorButton.setOnClickListener(new OnClickListener() {
 			public void onClick(View v) {
-				if(player.getInventory().protectorAvailable()){
+				if (player.getInventory().protectorAvailable()) {
 					showToast(R.string.use_protector_toast);
 					player.getInventory().reduceProtector();
 					protectorCount.setText(getResources().getString(
 							R.string.item_count_text)
 							+ inventory.getProtectorCount());
 					isProtectorActive = true;
-				}
-				else{
+				} else {
 					showToast(R.string.no_items_available);
 				}
 			}
 		});
-		
+
 		backToMapButton.setOnClickListener(new OnClickListener() {
 			public void onClick(View v) {
 				Intent backToMap = new Intent(InventoryActivity.this,
@@ -175,11 +170,11 @@ public class InventoryActivity extends Activity {
 			}
 		});
 	}
-	
+
 	private void showToast(int toastText) {
 		int duration = Toast.LENGTH_LONG;
 		toast = Toast.makeText(this, toastText, duration);
 		toast.show();
 	}
-	
+
 }

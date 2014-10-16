@@ -1,4 +1,5 @@
 // Quelle: http://stackoverflow.com/questions/6495898/findviewbyid-in-fragment-android
+
 // Quelle: http://www.mysamplecode.com/2012/08/android-fragment-example.html
 // Quelle: http://developer.android.com/training/basics/fragments/communicating.html
 // Quelle: http://examples.javacodegeeks.com/android/core/app/fragment/android-fragments-example/
@@ -8,6 +9,7 @@
 package de.ur.unimon.battle;
 
 import de.ur.mi.android.excercises.starter.R;
+
 import de.ur.unimon.actionbar.Inventory;
 import de.ur.unimon.player.Player;
 import de.ur.unimon.player.PlayerController;
@@ -23,18 +25,8 @@ import android.view.View.OnKeyListener;
 import android.view.ViewGroup;
 import android.view.View.OnClickListener;
 import android.widget.Button;
-import android.widget.Toast;
 
 public class AllOptionsBattleFragment extends Fragment {
-
-	// Ein Fehler kšnnte sein: Bundle extras bla in eine andere Methode
-	// reinschreiben... zB in onCreateView()
-
-	// In diesem Fragment werden alle Mšglichkeiten des Spielers im Kampf
-	// angezeigt (AttackButton, ChangeUnimonButton, EscapeButton, ItemButton).
-	// Sobald einer dieser Buttons gecklickt wird, wird dieses Fragment mit
-	// einem neuen Fragment (AttackFragment, ChangeUnimonFragment, ItemFragment
-	// ausgetauscht.
 
 	private OnOptionsSelectorListener listener;
 	private FragmentManager fragmentManager;
@@ -90,7 +82,6 @@ public class AllOptionsBattleFragment extends Fragment {
 		});
 	}
 
-	// Container Activity must implement this interface
 	public interface OnOptionsSelectorListener {
 		public void onEscapeSuccessfull();
 
@@ -138,10 +129,10 @@ public class AllOptionsBattleFragment extends Fragment {
 			@Override
 			public void onClick(View v) {
 				ChangeUnimonBattleFragment changeUnimonFrag = new ChangeUnimonBattleFragment();
-				
+
 				if (!currentUnimonListHasContent) {
 					listener.onIsOnlyOneUnimonAvailable();
-				} else {					
+				} else {
 					fragmentTransaction = fragmentManager.beginTransaction();
 					fragmentTransaction.replace(R.id.battle_activity_layout,
 							changeUnimonFrag, "ChangeUnimonFragment");

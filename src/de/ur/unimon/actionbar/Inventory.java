@@ -21,7 +21,7 @@ public class Inventory {
 			return false;
 		}
 	}
-	
+
 	public boolean uniballAvailable() {
 		if (uniballs > 0) {
 			return true;
@@ -29,7 +29,7 @@ public class Inventory {
 			return false;
 		}
 	}
-	
+
 	public boolean reviveAvailable() {
 		if (revive > 0) {
 			return true;
@@ -37,7 +37,7 @@ public class Inventory {
 			return false;
 		}
 	}
-	
+
 	public boolean protectorAvailable() {
 		if (protectors > 0) {
 			return true;
@@ -49,7 +49,7 @@ public class Inventory {
 	public void addHealpot() {
 		healpots++;
 	}
-	
+
 	public void reduceHealpot() {
 		healpots--;
 	}
@@ -57,7 +57,7 @@ public class Inventory {
 	public void addUniball() {
 		uniballs++;
 	}
-	
+
 	public void reduceUniball() {
 		uniballs--;
 	}
@@ -65,15 +65,15 @@ public class Inventory {
 	public void addRevive() {
 		revive++;
 	}
-	
-	public void reduceRevive(){
+
+	public void reduceRevive() {
 		revive--;
 	}
 
 	public void addProtector() {
 		protectors++;
 	}
-	
+
 	public void reduceProtector() {
 		protectors--;
 	}

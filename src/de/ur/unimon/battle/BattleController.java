@@ -1,8 +1,6 @@
 package de.ur.unimon.battle;
 
 import java.util.Random;
-
-import android.util.Log;
 import de.ur.unimon.player.Player;
 import de.ur.unimon.player.PlayerController;
 import de.ur.unimon.unimons.Spell;
@@ -55,7 +53,7 @@ public class BattleController {
 		}
 		return escape;
 	}
-	
+
 	public boolean ableToCatchUnimon() {
 		if (enemyUnimon.ownedByTrainer()) {
 			return false;
@@ -70,54 +68,56 @@ public class BattleController {
 	public void unimonCatchSuccess() {
 		player.ownUnimonList.add(enemyUnimon);
 	}
-	
-	public int getXpSplit(){
-		if (isSecondUnimonUsed == true && isThirdUnimonUsed == true){
+
+	public int getXpSplit() {
+		if (isSecondUnimonUsed == true && isThirdUnimonUsed == true) {
 			return 3;
-		} else if (isSecondUnimonUsed == false && isThirdUnimonUsed == false){
+		} else if (isSecondUnimonUsed == false && isThirdUnimonUsed == false) {
 			return 1;
-		} else return 2;
+		} else
+			return 2;
 	}
-	
-	public boolean isSecondUnimonUsed(){
+
+	public boolean isSecondUnimonUsed() {
 		return isSecondUnimonUsed;
 	}
-	
-	public boolean isThirdUnimonUsed(){
+
+	public boolean isThirdUnimonUsed() {
 		return isThirdUnimonUsed;
 	}
 
 	public void changeCurrentUnimon(Unimon chosenUnimon, int index) {
-		if (index == 1){
+		if (index == 1) {
 			isSecondUnimonUsed = true;
-		}  else if (index == 2){
+		} else if (index == 2) {
 			isThirdUnimonUsed = true;
 		}
 		battleUnimon = chosenUnimon;
 	}
-	
+
 	public Unimon ownUnimonAttack(Spell spell) {
 		toEnemyDamageDealt = spell.getDamage();
 		enemyUnimon.loseHealth(toEnemyDamageDealt);
 		return enemyUnimon;
 	}
-	
-	public int getLostHealthOfEnemyUnimon (Spell spell) {
+
+	public int getLostHealthOfEnemyUnimon(Spell spell) {
 		return spell.getDamage();
 	}
-	
+
 	public Unimon enemyUnimonAttack() {
 		int spellSize = enemyUnimon.ownedSpells.size();
-		toOwnUnimonDamageDealt = enemyUnimon.ownedSpells.get(randomGenerator.nextInt(spellSize)).getDamage();
+		toOwnUnimonDamageDealt = enemyUnimon.ownedSpells.get(
+				randomGenerator.nextInt(spellSize)).getDamage();
 		battleUnimon.loseHealth(toOwnUnimonDamageDealt);
 		return battleUnimon;
 	}
-	
-	public int getToEnemyUnimonDamageDealt(){
+
+	public int getToEnemyUnimonDamageDealt() {
 		return toEnemyDamageDealt;
 	}
-	
-	public int getToOwnUnimonDamageDealt(){
+
+	public int getToOwnUnimonDamageDealt() {
 		return toOwnUnimonDamageDealt;
 	}
 }

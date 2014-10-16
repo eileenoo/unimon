@@ -1,6 +1,7 @@
 package de.ur.unimon.appstart;
 
 import android.app.Activity;
+
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -9,7 +10,6 @@ import android.graphics.drawable.Drawable;
 import android.graphics.Typeface;
 import android.media.MediaPlayer;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -44,30 +44,27 @@ public class StartScreenActivity extends Activity {
 		dbController = new DatabaseController(this);
 
 		context = this.getApplicationContext();
-
-		//initSound();
-		// initDatabase();
 		initUI();
 	}
-	
-	private void checkMediaPlayerStatus(){
-		if (mediaPlayer == null || !mediaPlayer.isPlaying()) { 
+
+	private void checkMediaPlayerStatus() {
+		if (mediaPlayer == null || !mediaPlayer.isPlaying()) {
 			mediaPlayer = null;
 		}
 	}
 
-	private void initSound() {		
+	private void initSound() {
 		checkMediaPlayerStatus();
-		
+
 		if (mediaPlayer == null) {
-			if (!dbController.isSoundTableEmpty()){
-				if (dbController.getIsSoundOn()){
+			if (!dbController.isSoundTableEmpty()) {
+				if (dbController.getIsSoundOn()) {
 					SoundPlayer(this, R.raw.unimon_music);
 				}
-			} else SoundPlayer(this, R.raw.unimon_music);
-		} 
+			} else
+				SoundPlayer(this, R.raw.unimon_music);
 		}
-	
+	}
 
 	@Override
 	public void onBackPressed() {
@@ -94,21 +91,12 @@ public class StartScreenActivity extends Activity {
 	protected void onStop() {
 		super.onStop();
 	}
-	
 
 	@Override
-	protected void onDestroy() {		
+	protected void onDestroy() {
 		finish();
 		super.onDestroy();
 	}
-
-	/*
-	 * @Override protected void onDestroy() { playerDb.close();
-	 * super.onDestroy(); }
-	 * 
-	 * private void initDatabase() { playerDb = new PlayerDatabase(this);
-	 * playerDb.open(); }
-	 */
 
 	public static void SoundPlayer(Context context, int raw_id) {
 		mediaPlayer = MediaPlayer.create(context, raw_id);
@@ -121,12 +109,13 @@ public class StartScreenActivity extends Activity {
 	}
 
 	private void initUI() {
-		Typeface font = Typeface.createFromAsset(getAssets(), "PokemonFont.ttf");
+		Typeface font = Typeface
+				.createFromAsset(getAssets(), "PokemonFont.ttf");
 
 		newGame_button = (Button) findViewById(R.id.newGame_button);
 		resume_button = (Button) findViewById(R.id.resume_button);
 		guide_button = (Button) findViewById(R.id.guide_button);
-		
+
 		newGame_button.setTypeface(font);
 		resume_button.setTypeface(font);
 		guide_button.setTypeface(font);
@@ -134,14 +123,12 @@ public class StartScreenActivity extends Activity {
 		sound_button = (ImageButton) findViewById(R.id.image_button_sound);
 		if (dbController.isSoundTableEmpty()) {
 			sound_button.setImageResource(R.drawable.sound_on_icon);
-		}
-		else {
-			if (dbController.getIsSoundOn() == true){
+		} else {
+			if (dbController.getIsSoundOn() == true) {
 				sound_button.setImageResource(R.drawable.sound_on_icon);
-			}
-			else if(!dbController.getIsSoundOn()){
+			} else if (!dbController.getIsSoundOn()) {
 				sound_button.setImageResource(R.drawable.sound_off_icon);
-			}					
+			}
 		}
 		setButtonsOnClick();
 	}
@@ -171,7 +158,6 @@ public class StartScreenActivity extends Activity {
 								@Override
 								public void onClick(DialogInterface dialog,
 										int which) {
-									// löscht alle Daten aus der Datenbank
 									dbController.clearDB();
 									startActivity(newGame);
 									newGame.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
@@ -197,7 +183,6 @@ public class StartScreenActivity extends Activity {
 		});
 		resume_button.setOnClickListener(new OnClickListener() {
 			public void onClick(View v) {
-				// playerController.getInstanceFromDB(context);
 				playerController.setInstance(dbController.getPlayer());
 				trainerListController.setInstance(dbController.getTrainerList());
 				Intent resume = new Intent(StartScreenActivity.this,
@@ -206,14 +191,6 @@ public class StartScreenActivity extends Activity {
 				startActivity(resume);
 			}
 		});
-		/*options_button.setOnClickListener(new OnClickListener() {
-			public void onClick(View v) {
-				Intent options = new Intent(StartScreenActivity.this,
-						OptionsScreenActivity.class);
-				startActivity(options);
-				options.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
-			}
-		});*/
 		guide_button.setOnClickListener(new OnClickListener() {
 			public void onClick(View v) {
 				Intent guide = new Intent(StartScreenActivity.this,
@@ -221,28 +198,31 @@ public class StartScreenActivity extends Activity {
 				startActivity(guide);
 				guide.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
 			}
-		});		
+		});
 		sound_button.setOnClickListener(new OnClickListener() {
-			public void onClick(View v) {				
-					Drawable drawable = sound_button.getDrawable();
-					if (drawable.getConstantState().equals(getResources().getDrawable(R.drawable.sound_on_icon).getConstantState())
-					 && mediaPlayer.isPlaying()){					
+			public void onClick(View v) {
+				Drawable drawable = sound_button.getDrawable();
+				if (drawable.getConstantState().equals(
+						getResources().getDrawable(R.drawable.sound_on_icon)
+								.getConstantState())
+						&& mediaPlayer.isPlaying()) {
 					mediaPlayer.stop();
 					soundOnChecked = false;
 					dbController.saveSound(false);
-					sound_button.setImageResource(R.drawable.sound_off_icon);					
-					}				
-					else if (drawable.getConstantState().equals(getResources().getDrawable(R.drawable.sound_off_icon).getConstantState())){						
-						SoundPlayer(context, R.raw.unimon_music);
-						mediaPlayer.start();
-						mediaPlayer.setLooping(true);
-						soundOnChecked = true;
-						dbController.saveSound(true);
-						sound_button.setImageResource(R.drawable.sound_on_icon);
-						}					
+					sound_button.setImageResource(R.drawable.sound_off_icon);
+				} else if (drawable.getConstantState().equals(
+						getResources().getDrawable(R.drawable.sound_off_icon)
+								.getConstantState())) {
+					SoundPlayer(context, R.raw.unimon_music);
+					mediaPlayer.start();
+					mediaPlayer.setLooping(true);
+					soundOnChecked = true;
+					dbController.saveSound(true);
+					sound_button.setImageResource(R.drawable.sound_on_icon);
 				}
-				
-			});
-	
-}
+			}
+
+		});
+
+	}
 }

@@ -1,7 +1,6 @@
 package de.ur.unimon.player;
 
 import java.util.ArrayList;
-
 import de.ur.unimon.actionbar.Inventory;
 import de.ur.unimon.unimons.Unimon;
 
@@ -13,7 +12,7 @@ public class Player {
 
 	public Player() {
 		ownedMoney = 0;
-		inventory = new Inventory(0,0,0,0);
+		inventory = new Inventory(0, 0, 0, 0);
 		ownUnimonList = new ArrayList<Unimon>();
 	}
 
@@ -23,7 +22,6 @@ public class Player {
 		this.ownUnimonList = ownUnimonList;
 		this.inventory = inventory;
 	}
-
 
 	public void addMoney(int newMoney) {
 		ownedMoney += newMoney;
@@ -40,7 +38,7 @@ public class Player {
 	public ArrayList<Unimon> getUnimonList() {
 		return ownUnimonList;
 	}
-	
+
 	public Unimon getUnimonByName(String unimonName) {
 
 		for (int i = 0; i < ownUnimonList.size(); i++) {
@@ -54,23 +52,23 @@ public class Player {
 	public void addHealpotToInventory() {
 		inventory.addHealpot();
 	}
-	
+
 	public void takeHealpotOutOfInventory() {
 		inventory.reduceHealpot();
 	}
-	
+
 	public void addUniballToInventory() {
 		inventory.addUniball();
 	}
-	
+
 	public void addReviveToInventory() {
 		inventory.addRevive();
 	}
-	
+
 	public void takeReviveOutOfInventory() {
 		inventory.reduceRevive();
 	}
-	
+
 	public void addProtectorToInventory() {
 		inventory.addProtector();
 	}
@@ -78,11 +76,11 @@ public class Player {
 	public Inventory getInventory() {
 		return inventory;
 	}
-	
-	public int getHigheslevelOfUnimnon(){
+
+	public int getHigheslevelOfUnimnon() {
 		int highestLevel = 0;
-		for (Unimon u : ownUnimonList){
-			if (highestLevel < u.getLevel()){
+		for (Unimon u : ownUnimonList) {
+			if (highestLevel < u.getLevel()) {
 				highestLevel = u.getLevel();
 			}
 		}

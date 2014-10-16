@@ -1,8 +1,6 @@
 package de.ur.unimon.battle;
 
 import de.ur.mi.android.excercises.starter.R;
-import de.ur.unimon.battle.ChangeUnimonBattleFragment.OnUnimonChangedListener;
-import de.ur.unimon.unimons.Unimon;
 import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentTransaction;
@@ -17,7 +15,6 @@ public class ChooseItemFragment extends Fragment {
 
 	private OnChooseItemListener listener;
 	private Button healpotButton, uniballButton;
-
 
 	@Override
 	public void onAttach(Activity activity) {

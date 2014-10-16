@@ -1,7 +1,6 @@
 package de.ur.unimon.battle;
 
 import java.util.ArrayList;
-
 import android.app.Activity;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
@@ -9,7 +8,6 @@ import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.os.Handler;
-import android.util.Log;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.view.animation.Animation.AnimationListener;
@@ -22,13 +20,10 @@ import de.ur.unimon.mapoverview.MapActivity;
 import de.ur.unimon.player.Player;
 import de.ur.unimon.player.PlayerController;
 import de.ur.unimon.trainer.Trainer;
-import de.ur.unimon.trainer.TrainerList;
 import de.ur.unimon.trainer.TrainerListController;
 import de.ur.unimon.unimons.Spell;
 import de.ur.unimon.unimons.Unimon;
 import de.ur.wildlings.WildlingCreator;
-import de.ur.unimon.unimons.UnimonList;
-
 
 public class BattleActivity extends Activity implements
 		AllOptionsBattleFragment.OnOptionsSelectorListener,
@@ -92,10 +87,9 @@ public class BattleActivity extends Activity implements
 		createFirstFragment();
 		setUpAnimation();
 	}
-	
+
 	@Override
 	public void onBackPressed() {
-	    //Hardware Zurückbutton disabled
 	}
 
 	private void setUpAnimation() {
@@ -176,8 +170,9 @@ public class BattleActivity extends Activity implements
 	}
 
 	private void initUI() {
-		Typeface font = Typeface.createFromAsset(getAssets(), "PokemonFont.ttf");
-		
+		Typeface font = Typeface
+				.createFromAsset(getAssets(), "PokemonFont.ttf");
+
 		showHealTextView = (TextView) findViewById(R.id.heal_text);
 		damageToEnemyUnimonDealt = (TextView) findViewById(R.id.to_enemy_damage_dealt);
 		damageToOwnUnimonDealt = (TextView) findViewById(R.id.to_own_damage_dealt);
@@ -194,7 +189,7 @@ public class BattleActivity extends Activity implements
 		ownUnimonHealth = (TextView) findViewById(R.id.own_unimon_health);
 		enemyUnimonHealthbar = (ProgressBar) findViewById(R.id.enemy_healthBar);
 		ownUnimonHealthbar = (ProgressBar) findViewById(R.id.own_healthBar);
-		
+
 		enemyUnimonImage.setImageResource(enemyUnimon.getImage());
 		ownUnimonImage.setImageResource(battleUnimon.getImage());
 		enemyUnimonName.setText(enemyUnimon.getName());
@@ -260,15 +255,17 @@ public class BattleActivity extends Activity implements
 		playerStatus = true;
 		player = playerController.getInstance();
 		wildlingCreator = new WildlingCreator();
-		ArrayList<Trainer> trainerList = trainerListController.getInstance().getTrainerList();
+		ArrayList<Trainer> trainerList = trainerListController.getInstance()
+				.getTrainerList();
 
 		int trainerID = getIntent().getExtras().getInt("trainerID");
 		if (trainerID == 99) {
 			wildlingCreator.createWildUnimon();
 			trainer = wildlingCreator.getTrainer();
+		} else {
+			trainer = trainerList.get(trainerID);
 		}
-		else { trainer = trainerList.get(trainerID); }
-		enemyUnimon = trainer.getUnimon();		
+		enemyUnimon = trainer.getUnimon();
 	}
 
 	private void initBattleController() {
@@ -321,24 +318,24 @@ public class BattleActivity extends Activity implements
 
 	private void checkStatus() {
 		if (!isUnimonCaught) {
-		
+
 			enemyFragment = new EnemyFightFragment();
-	
+
 			if (playerStatus) {
 				fragmentTransaction = getFragmentManager().beginTransaction();
 				fragmentTransaction.replace(R.id.battle_activity_layout,
 						allOptionsFragment);
 				fragmentManager.popBackStack();
 				fragmentTransaction.commit();
-	
+
 			} else {
 				fragmentTransaction = getFragmentManager().beginTransaction();
-	
+
 				fragmentTransaction.replace(R.id.battle_activity_layout,
 						enemyFragment);
 				fragmentManager.popBackStack();
 				fragmentTransaction.commit();
-	
+
 				handler.postDelayed(new Runnable() {
 					@Override
 					public void run() {
@@ -349,7 +346,6 @@ public class BattleActivity extends Activity implements
 		}
 	}
 
-	// Is called, after each move (attack, escape, changeUnimon, useItem)
 	private void enemyFight() {
 		battleUnimon = battleController.enemyUnimonAttack();
 		showDamageDealtToOwnUnimon();
@@ -364,11 +360,10 @@ public class BattleActivity extends Activity implements
 	}
 
 	private void fightEnd() {
-		
 		XP = trainer.getExpValue();
 		money = trainer.getMoneyValue();
 		enemyUnimon.setHealth(enemyUnimon.getMaxHealth());
-		if (gameWon){
+		if (gameWon) {
 			player.addMoney(money);
 			switch (battleController.getXpSplit()) {
 			case 1:
@@ -377,9 +372,11 @@ public class BattleActivity extends Activity implements
 			case 2:
 				currentBattleUnimonList[0].addXp(XP / 2);
 				if (battleController.isSecondUnimonUsed()) {
-					currentBattleUnimonList[1].addXp((int) (Math.round(XP / 2d)));
+					currentBattleUnimonList[1]
+							.addXp((int) (Math.round(XP / 2d)));
 				} else
-					currentBattleUnimonList[2].addXp((int) (Math.round(XP / 2d)));
+					currentBattleUnimonList[2]
+							.addXp((int) (Math.round(XP / 2d)));
 				break;
 			case 3:
 				currentBattleUnimonList[0].addXp((int) (Math.round(XP / 3d)));
@@ -388,51 +385,20 @@ public class BattleActivity extends Activity implements
 				break;
 			}
 		}
-		if (enemyUnimon.getName() != "Legdayskipper"){
-		Intent toBattleEndActivity = new Intent(BattleActivity.this,
-				BattleEndActivity.class);
-		
-		toBattleEndActivity.putExtra("XP", XP);
-		toBattleEndActivity.putExtra("Money", money);
-		toBattleEndActivity.putExtra("IsGameWon", gameWon);
-		startActivity(toBattleEndActivity);}
-		else {
+		if (enemyUnimon.getName() != "Legdayskipper") {
+			Intent toBattleEndActivity = new Intent(BattleActivity.this,
+					BattleEndActivity.class);
+
+			toBattleEndActivity.putExtra("XP", XP);
+			toBattleEndActivity.putExtra("Money", money);
+			toBattleEndActivity.putExtra("IsGameWon", gameWon);
+			startActivity(toBattleEndActivity);
+		} else {
 			Intent gameFinished = new Intent(BattleActivity.this,
 					EndScreenActivity.class);
 			startActivity(gameFinished);
 		}
-		
-		/*XP = trainer.getExpValue();
-		money = trainer.getMoneyValue();
-		enemyUnimon.setHealth(enemyUnimon.getMaxHealth());
-		if (gameWon){
-			player.addMoney(money);
-			switch (battleController.getXpSplit()) {
-			case 1:
-				currentBattleUnimonList[0].addXp(XP);
-				break;
-			case 2:
-				currentBattleUnimonList[0].addXp(XP / 2);
-				if (battleController.isSecondUnimonUsed()) {
-					currentBattleUnimonList[1].addXp((int) (Math.round(XP / 2d)));
-				} else
-					currentBattleUnimonList[2].addXp((int) (Math.round(XP / 2d)));
-				break;
-			case 3:
-				currentBattleUnimonList[0].addXp((int) (Math.round(XP / 3d)));
-				currentBattleUnimonList[1].addXp((int) (Math.round(XP / 3d)));
-				currentBattleUnimonList[2].addXp((int) (Math.round(XP / 3d)));
-				break;
-			}
-		}
-		
-		Intent toBattleEndActivity = new Intent(BattleActivity.this,
-				BattleEndActivity.class);
-		
-		toBattleEndActivity.putExtra("XP", XP);
-		toBattleEndActivity.putExtra("Money", money);
-		toBattleEndActivity.putExtra("IsGameWon", gameWon);
-		startActivity(toBattleEndActivity);*/
+
 	}
 
 	// _____________________LISTENERS__________________
@@ -456,15 +422,15 @@ public class BattleActivity extends Activity implements
 		boolean isEscapeAvailable = battleController.ableToEscape();
 		return isEscapeAvailable;
 	}
-	
+
 	@Override
-	public void onIsNoItemAvailable() {		
-			 showToast(R.string.no_items_available);		
-	}	
-	
+	public void onIsNoItemAvailable() {
+		showToast(R.string.no_items_available);
+	}
+
 	@Override
 	public void onIsOnlyOneUnimonAvailable() {
-		showToast(R.string.only_one_unimon_available_text);		
+		showToast(R.string.only_one_unimon_available_text);
 	}
 
 	@Override

@@ -75,4 +75,3 @@ public class EndScreenActivity extends Activity {
 		});
 	}
 }
-

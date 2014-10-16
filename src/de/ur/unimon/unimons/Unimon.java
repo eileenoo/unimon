@@ -2,13 +2,11 @@ package de.ur.unimon.unimons;
 
 import java.util.ArrayList;
 
-import android.util.Log;
-
 public class Unimon {
 
 	private String name;
 	private int level, xp, xpPerLevel;
-	public int skillPoints;
+	public int skillPoints, image;
 	private int health, baseHealth, maxHealth;
 	public ArrayList<Spell> possibleSpells;
 	public ArrayList<Spell> notYetLearnedSpells;
@@ -16,7 +14,6 @@ public class Unimon {
 	public ArrayList<Spell> notYetLearnedSpellsLvl;
 	private boolean isAlive;
 	private boolean ownedByTrainer;
-	private int image;
 
 	public Unimon(String name, int baseHealth, boolean ownedByTrainer, int image) {
 		this.name = name;
@@ -50,8 +47,6 @@ public class Unimon {
 		}
 
 		ownedSpells.clear();
-
-		Log.d("hallo", "hi");
 	}
 
 	public void useHealpot() {
@@ -163,10 +158,9 @@ public class Unimon {
 		calculateMaxHealth();
 		return maxHealth;
 	}
-	
-	private void calculateMaxHealth(){
-//		setMaxHealth((int) (baseHealth + Math.exp((level/15d))+10));
-		maxHealth = (int) ((baseHealth + level*24)*1.5);
+
+	private void calculateMaxHealth() {
+		maxHealth = (int) ((baseHealth + level * 24) * 1.5);
 	}
 
 	public void setHealth(int health) {

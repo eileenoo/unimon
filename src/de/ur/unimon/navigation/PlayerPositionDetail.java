@@ -25,7 +25,7 @@ public class PlayerPositionDetail {
 	public double getLongitude() {
 		return longitude;
 	}
-	
+
 	public float getDistanceToBuilding(int i) {
 		return buildingDistances.get(i);
 	}
