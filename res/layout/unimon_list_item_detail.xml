@@ -23,7 +23,7 @@
         android:layout_centerVertical="true"
         android:layout_margin="20dp"
         android:contentDescription="@string/unimon_image_text"
-        android:src="@drawable/robomon" />
+        android:src="@drawable/robomon_5000" />
     
     <TextView
         android:id="@+id/detail_unimon_level"

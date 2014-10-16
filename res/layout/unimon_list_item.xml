@@ -5,12 +5,11 @@
 
     <ImageView
         android:id="@+id/unimon_image"
-        android:layout_width="wrap_content"
+        android:layout_width="120dp"
         android:layout_height="wrap_content"
         android:layout_alignBottom="@+id/xpBar"
         android:layout_alignParentTop="true"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginRight="10dp"
         android:contentDescription="@string/unimon_image_text"
         android:focusable="false"
         android:src="@drawable/kaeffchen" />

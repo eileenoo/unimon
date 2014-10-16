@@ -56,7 +56,7 @@ public class SpellListAdapter extends BaseAdapter{
 			spellName.setText(spell.getSpellName());
 			spellLevel.setText("Level: "+spell.getSpellLevel());
 			currentSpellDamage.setText("Damage: "+spell.getDamageforDisplay(spell.getSpellLevel()));
-			nextLevelSpellDamage.setText("Damage at level "+spell.getNextLevel()+": "+spell.getDamageforDisplay(spell.getNextLevel()));
+			nextLevelSpellDamage.setText("Damage at level "+spell.getNextLevel()+": "+spell.getDamageforDisplayNxtLvl(spell.getNextLevel()));
 		}
 		
 		return convertView;

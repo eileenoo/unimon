@@ -6,14 +6,16 @@
     
     <ImageView
         android:id="@+id/unimon_image"
-        android:layout_width="wrap_content"
+        android:layout_width="120dp"
         android:layout_height="100dp"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
         android:layout_marginTop="20dp"
         android:text="@string/unimon_image_text"
+        android:layout_marginRight="10dp"
+        android:layout_marginLeft="10dp"
         android:contentDescription="@string/unimon_image_text"
-		android:src="@drawable/robomon"/>
+		android:src="@drawable/robomon_5000"/>
 
     <TextView
         android:id="@+id/unimon_name"
@@ -54,6 +56,7 @@
         style="?android:attr/progressBarStyleHorizontal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
         android:layout_alignBottom="@+id/unimon_image"
         android:layout_alignParentRight="true"
         android:layout_toRightOf="@+id/unimon_image"/>
@@ -66,7 +69,7 @@
         android:layout_alignParentRight="true"
         android:layout_toRightOf="@+id/unimon_image"
         android:layout_marginTop="10dp"
-        android:layout_marginBottom="2dp"
+        
         android:layout_marginLeft="90dp"/>
     
     

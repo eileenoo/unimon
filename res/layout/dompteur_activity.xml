@@ -3,13 +3,12 @@
     android:layout_width="wrap_content"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@drawable/dompteurbackground" >
+    android:background="#2A56B2" >
 
     <android.support.v4.view.ViewPager
         android:id="@+id/dompteur_pager"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@drawable/dompteurbackground">
+        android:layout_height="match_parent">
     </android.support.v4.view.ViewPager>
     
     <TextView

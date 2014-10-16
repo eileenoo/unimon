@@ -184,8 +184,8 @@ public class NavigationController implements LocationListener {
 	}
 
 	private void setShopCoords() {
-		shop.setLatitude(48.9977715);
-		shop.setLongitude(12.0938617);
+		shop.setLatitude(49.0001500);
+		shop.setLongitude(12.0942936);
 	}
 
 	private void setDompteurCoords() {

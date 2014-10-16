@@ -8,7 +8,7 @@ import android.util.Log;
 public class UnimonList {
 
 	private static Unimon schleimi;
-	private static Unimon kaeffchen;
+	private static Unimon kiffi;
 	private static Unimon robotaer;
 	private static Unimon hentaicha;
 	private static Unimon hydroxyethan;
@@ -29,12 +29,12 @@ public class UnimonList {
 	private static Spell schleimiSpell5;
 	private static Spell schleimiSpell6;
 	
-	private static Spell kaeffchenSpell1;
-	private static Spell kaeffchenSpell2;
-	private static Spell kaeffchenSpell3;
-	private static Spell kaeffchenSpell4;
-	private static Spell kaeffchenSpell5;
-	private static Spell kaeffchenSpell6;
+	private static Spell kiffiSpell1;
+	private static Spell kiffiSpell2;
+	private static Spell kiffiSpell3;
+	private static Spell kiffiSpell4;
+	private static Spell kiffiSpell5;
+	private static Spell kiffiSpell6;
 	
 	private static Spell hydroxyethanSpell1;
 	private static Spell hydroxyethanSpell2;
@@ -129,7 +129,7 @@ public class UnimonList {
 
 		
 		// ausgeglichen
-		schleimi = new Unimon("Schleimi", 123, true, R.drawable.kiffi);
+		schleimi = new Unimon("Schleimi", 123, true, R.drawable.schleimi);
 		schleimiSpell1 = new Spell("Scratch", 1, 15);
 		schleimiSpell2 = new Spell("Bite", 2, 25);
 		schleimiSpell3 = new Spell("Headbutt",3, 31);
@@ -150,31 +150,31 @@ public class UnimonList {
 		
 
 		//defensiver
-		kaeffchen = new Unimon("Käffchen", 182, true, R.drawable.kaeffchen);
-		kaeffchenSpell1 = new Spell ("Take Down",1,10);
-		kaeffchenSpell2 = new Spell ("Flamethrower",2,14);
-		kaeffchenSpell3 = new Spell ("Low Kick",3,20);
-		kaeffchenSpell4 = new Spell ("Rock Throw",4,42);
-		kaeffchenSpell5 = new Spell ("Glare",5,85);
-		kaeffchenSpell6 = new Spell ("Blizzard",6,155);
-		kaeffchen.addPossibleSpell(kaeffchenSpell1);
-		kaeffchen.addPossibleSpell(kaeffchenSpell2);
-		kaeffchen.addPossibleSpell(kaeffchenSpell3);
-		kaeffchen.addPossibleSpell(kaeffchenSpell4);
-		kaeffchen.addPossibleSpell(kaeffchenSpell5);
-		kaeffchen.addPossibleSpell(kaeffchenSpell6);
-		kaeffchen.learnSpell(kaeffchenSpell1);
-		kaeffchen.learnSpell(kaeffchenSpell2);
-		kaeffchen.learnSpell(kaeffchenSpell3);
-		kaeffchen.learnSpell(kaeffchenSpell4);
-		kaeffchen.setLevel(9);
-		kaeffchen.getSpellBySpellNumber(0).setSpellLevel(2);
-		kaeffchen.getSpellBySpellNumber(1).setSpellLevel(2);
-		kaeffchen.getSpellBySpellNumber(2).setSpellLevel(4);
-		kaeffchen.setHealth(kaeffchen.getMaxHealth());
+		kiffi = new Unimon("Kiffi", 182, true, R.drawable.kiffi);
+		kiffiSpell1 = new Spell ("Take Down",1,10);
+		kiffiSpell2 = new Spell ("Flamethrower",2,14);
+		kiffiSpell3 = new Spell ("Low Kick",3,20);
+		kiffiSpell4 = new Spell ("Rock Throw",4,42);
+		kiffiSpell5 = new Spell ("Glare",5,85);
+		kiffiSpell6 = new Spell ("Blizzard",6,155);
+		kiffi.addPossibleSpell(kiffiSpell1);
+		kiffi.addPossibleSpell(kiffiSpell2);
+		kiffi.addPossibleSpell(kiffiSpell3);
+		kiffi.addPossibleSpell(kiffiSpell4);
+		kiffi.addPossibleSpell(kiffiSpell5);
+		kiffi.addPossibleSpell(kiffiSpell6);
+		kiffi.learnSpell(kiffiSpell1);
+		kiffi.learnSpell(kiffiSpell2);
+		kiffi.learnSpell(kiffiSpell3);
+		kiffi.learnSpell(kiffiSpell4);
+		kiffi.setLevel(9);
+		kiffi.getSpellBySpellNumber(0).setSpellLevel(2);
+		kiffi.getSpellBySpellNumber(1).setSpellLevel(2);
+		kiffi.getSpellBySpellNumber(2).setSpellLevel(4);
+		kiffi.setHealth(kiffi.getMaxHealth());
 
 		//offensiver
-		robotaer = new Unimon("Robotär", 93, true, R.drawable.robomon);
+		robotaer = new Unimon("Robomon 5000", 93, true, R.drawable.robomon_5000);
 		robotaerSpell1 = new Spell ("Kick",1,30);
 		robotaerSpell2 = new Spell("Take Down", 2, 40);
 		robotaerSpell3 = new Spell ("Ice Shard",3,50);
@@ -200,7 +200,7 @@ public class UnimonList {
 
 		
 		//ausgeglichen
-		hentaicha = new Unimon("Hentaicha", 113, true, R.drawable.kraki);
+		hentaicha = new Unimon("Hentaicha", 113, true, R.drawable.hentaicha);
 		hentaichaSpell1 =  new Spell ("Wood Hammer",1,16);
 		hentaichaSpell2  = new Spell("Bite", 2, 23);
 		hentaichaSpell3  = new Spell("Icicle Spear", 3, 31);
@@ -218,7 +218,7 @@ public class UnimonList {
 		
 
 		// sehr defensiv
-		hydroxyethan = new Unimon("Hydroxyethan", 260, true, R.drawable.robomon);
+		hydroxyethan = new Unimon("Hydroxyethan", 260, true, R.drawable.hydroxyethan);
 		hydroxyethanSpell1 = new Spell ("Sucker Punch",1,11);
 		hydroxyethanSpell2 = new Spell("Bite", 2, 15);
 		hydroxyethanSpell3 = new Spell ("Explosion",3,21);
@@ -247,7 +247,7 @@ public class UnimonList {
 		
 		
 		//sehr offensiv und hält relativ viel aus
-		asymptoterus = new Unimon("Asymptoterus", 124, true, R.drawable.kiffi);
+		asymptoterus = new Unimon("Asymptoterus", 124, true, R.drawable.asymptoterus);
 		asymptoterusSpell1 = new Spell ("Giga Impact",1,32);
 		asymptoterusSpell2 = new Spell("Icicle Spear", 2, 40);
 		asymptoterusSpell3 = new Spell ("Explosion",3,47);
@@ -270,7 +270,7 @@ public class UnimonList {
 		
 		
 		//oberboss stark defensiv+offensiv
-		legdayskipper = new Unimon("Legdayskipper", 210, true, R.drawable.robomon);
+		legdayskipper = new Unimon("Legdayskipper", 210, true, R.drawable.legdayskipper);
 		legdayskipperSpell1 = new Spell ("Giga Impact",1,40);
 		legdayskipperSpell2 = new Spell("Take Down", 2, 50);
 		legdayskipperSpell3 = new Spell ("Low Kick",3,66);
@@ -301,7 +301,7 @@ public class UnimonList {
 		
 		
 		//sehr offensiv
-		wild1 = new Unimon("Eimerchen", 130, false, R.drawable.eimerchen);
+		wild1 = new Unimon("Facemeltor", 130, false, R.drawable.facemeltor);
 		wild1Spell1 =  new Spell ("Giga Impact",1,31);
 		wild1Spell2  = new Spell("Ice Shard", 2, 37);
 		wild1Spell3  = new Spell("Bite", 3, 45);
@@ -317,7 +317,7 @@ public class UnimonList {
 		wild1.setHealth(wild1.getMaxHealth());
 
 		//defensiv
-		wild2 = new Unimon("Bob", 210, false, R.drawable.robomon);
+		wild2 = new Unimon("Saibot", 210, false, R.drawable.saibot);
 		wild2Spell1 =  new Spell ("Mud Bomb",1,15);
 		wild2Spell2  = new Spell("Head Smash", 2, 19);
 		wild2Spell3  = new Spell("Electro Ball", 3, 25);
@@ -333,7 +333,7 @@ public class UnimonList {
 		wild2.setHealth(wild2.getMaxHealth());
 
 		//ausgeglichen
-		wild3 = new Unimon("Ozab", 130, false, R.drawable.robomon);
+		wild3 = new Unimon("Knuddeluff", 130, false, R.drawable.knuddeluff);
 		wild3Spell1 =  new Spell ("Tail Whip",1,15);
 		wild3Spell2  = new Spell("Gunshot", 2, 23);
 		wild3Spell3  = new Spell("Storm", 3, 27);
@@ -351,7 +351,7 @@ public class UnimonList {
 
 		//neutral
 
-		start1 = new Unimon("Facemeltor", 120, false, R.drawable.facemeltor);
+		start1 = new Unimon("Potty", 120, false, R.drawable.potty);
 		start1Spell1 =  new Spell ("Jump Kick",1,15);
 		start1Spell2 =  new Spell ("Overdrive",2,21);
 		start1Spell3 =  new Spell ("Mega Punch",3,34);
@@ -369,7 +369,7 @@ public class UnimonList {
 		start1.setHealth(start1.getMaxHealth());
 		
 		//offensiv
-		start2 = new Unimon("Charlie", 90, false, R.drawable.charlie);
+		start2 = new Unimon("Ozab", 90, false, R.drawable.asymptoterus);
 		start2Spell1 =  new Spell ("Karate Chop",1,19);
 		start2Spell2 =  new Spell ("Cut",2,18);
 		start2Spell3 =  new Spell ("Fire Spin",3,27);
@@ -386,7 +386,7 @@ public class UnimonList {
 		start2.setHealth(start2.getMaxHealth());
 		
 		//defensiv
-		start3 = new Unimon("Bademeistär", 150, false, R.drawable.bademeister);
+		start3 = new Unimon("Kaeffchen", 150, false, R.drawable.kaeffchen);
 		start3Spell1 =  new Spell ("Power Trick",1,12);
 		start3Spell2 =  new Spell ("Poison Sting",2,23);
 		start3Spell3 =  new Spell ("Electro Ball",3,30);
@@ -401,13 +401,11 @@ public class UnimonList {
 		start3.addPossibleSpell(start3Spell6);
 		start3.learnSpell(start3Spell1);
 		start3.setHealth(start3.getMaxHealth());
-		
-		
-		
+				
 		
 		
 		allUnimonsList.add(schleimi);
-		allUnimonsList.add(kaeffchen);
+		allUnimonsList.add(kiffi);
 		allUnimonsList.add(robotaer);
 		allUnimonsList.add(hentaicha);
 		allUnimonsList.add(hydroxyethan);
@@ -429,7 +427,7 @@ public class UnimonList {
 		startUnimonsList.add(start3);
 		
 		trainerUnimonsList.add(schleimi);
-		trainerUnimonsList.add(kaeffchen);
+		trainerUnimonsList.add(kiffi);
 		trainerUnimonsList.add(robotaer);
 		trainerUnimonsList.add(hentaicha);
 		trainerUnimonsList.add(hydroxyethan);

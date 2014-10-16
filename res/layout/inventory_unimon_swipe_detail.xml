@@ -22,7 +22,7 @@
         android:layout_centerHorizontal="true"
         android:layout_margin="20dp"
         android:layout_centerVertical="true"
-        android:src="@drawable/robomon"/>
+        android:src="@drawable/robomon_5000"/>
     
     <TextView
         android:id="@+id/inventory_unimon_level"

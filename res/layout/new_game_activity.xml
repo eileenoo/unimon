@@ -10,10 +10,8 @@
         android:id="@+id/wulfman_img"
         android:layout_width="match_parent"
         android:layout_height="300dp"
-        android:layout_margin="20dp"
-        android:src="@drawable/professor"
-        android:contentDescription="@string/wulfman_img" />
-      
+        android:contentDescription="@string/wulfman_img"
+        android:src="@drawable/professor" />
 
     <Button
         android:id="@+id/next_button"

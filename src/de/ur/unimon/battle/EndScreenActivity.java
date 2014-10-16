@@ -2,6 +2,7 @@ package de.ur.unimon.battle;
 
 import de.ur.mi.android.excercises.starter.R;
 import de.ur.unimon.appstart.StartScreenActivity;
+import de.ur.unimon.database.DatabaseController;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
@@ -18,11 +19,13 @@ public class EndScreenActivity extends Activity {
 	ImageView gameFinished;
 	WebView finish_text_one, finish_text_two;
 	Button backToMenu;
+	DatabaseController controller;
 
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.game_finished);
 		initUI();
+		controller = new DatabaseController(this);
 
 		setOnClickListener();
 	}
@@ -63,6 +66,7 @@ public class EndScreenActivity extends Activity {
 	private void setOnClickListener() {
 		backToMenu.setOnClickListener(new OnClickListener() {
 			public void onClick(View v) {
+				controller.save();
 				Intent startscreen = new Intent(EndScreenActivity.this,
 						StartScreenActivity.class);
 				startActivity(startscreen);
