@@ -341,7 +341,7 @@ public class UnimonList {
 		start1.addPossibleSpell(start1Spell4);
 		start1.addPossibleSpell(start1Spell5);
 		start1.addPossibleSpell(start1Spell6);
-		start1.setLevel(50);
+		start1.setLevel(1);
 		start1.learnSpell(start1Spell1);
 		start1.setHealth(start1.getMaxHealth());
 

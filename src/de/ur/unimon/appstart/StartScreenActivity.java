@@ -42,7 +42,6 @@ public class StartScreenActivity extends Activity {
 		builder = new AlertDialog.Builder(this);
 
 		dbController = new DatabaseController(this);
-
 		context = this.getApplicationContext();
 		initUI();
 	}
